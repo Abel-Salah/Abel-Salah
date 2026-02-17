@@ -33,7 +33,7 @@ const ProjectCard = ({ number, title, context, action, result, index }: ProjectC
           <div className="grid grid-cols-3 gap-8 text-lg">
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
-                Context
+                Contexte
               </span>
               <p className="text-foreground">{context}</p>
             </div>
@@ -47,7 +47,7 @@ const ProjectCard = ({ number, title, context, action, result, index }: ProjectC
             
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
-                Result
+                Résultat
               </span>
               <p className="text-primary font-semibold text-xl">{result}</p>
             </div>

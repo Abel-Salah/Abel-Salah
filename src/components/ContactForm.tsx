@@ -22,8 +22,8 @@ const ContactForm = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Message sent.",
-      description: "I'll get back to you soon.",
+      title: "Message envoyé.",
+      description: "Je vous réponds très vite.",
     });
 
     setFormData({ name: "", email: "", message: "" });
@@ -52,7 +52,7 @@ const ContactForm = () => {
           htmlFor="name"
           className="text-xs uppercase tracking-wider text-muted-foreground"
         >
-          Name
+          Nom
         </label>
         <Input
           id="name"
@@ -61,7 +61,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           className="bg-secondary border-border text-foreground placeholder:text-muted-foreground h-14 text-lg"
-          placeholder="Your name"
+          placeholder="Votre nom"
         />
       </div>
 
@@ -80,7 +80,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           className="bg-secondary border-border text-foreground placeholder:text-muted-foreground h-14 text-lg"
-          placeholder="your@email.com"
+          placeholder="votre@email.com"
         />
       </div>
 
@@ -98,7 +98,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           className="bg-secondary border-border text-foreground placeholder:text-muted-foreground min-h-[200px] text-lg resize-none"
-          placeholder="Tell me about your project..."
+          placeholder="Parlez-moi de votre projet..."
         />
       </div>
 
@@ -107,7 +107,7 @@ const ContactForm = () => {
         disabled={isSubmitting}
         className="w-full h-16 text-lg font-semibold uppercase tracking-wider bg-primary hover:bg-primary/90 text-primary-foreground"
       >
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
       </Button>
     </motion.form>
   );

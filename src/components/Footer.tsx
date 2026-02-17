@@ -6,9 +6,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/work", label: "Work" },
-    { to: "/about", label: "About" },
+    { to: "/", label: "Accueil" },
+    { to: "/work", label: "Réalisations" },
+    { to: "/about", label: "À propos" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -37,8 +37,8 @@ const Footer = () => {
           viewport={{ once: true }}
           className="heading-display text-[18vw] md:text-[14vw] leading-[0.85] text-center whitespace-nowrap"
         >
-          <span className="text-foreground">LIAM</span>
-          <span className="text-primary"> FLETCHER</span>
+          <span className="text-foreground">ABEL</span>
+          <span className="text-primary"> SALAH</span>
         </motion.h2>
       </div>
 
@@ -80,16 +80,16 @@ const Footer = () => {
               className="md:col-span-4"
             >
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
-                Get in Touch
+                Me contacter
               </h3>
               <div className="space-y-4">
                 <a 
-                  href="mailto:hello@liamfletcher.com" 
+                  href="mailto:contact@abelsalah.com" 
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
-                  hello@liamfletcher.com
+                  contact@abelsalah.com
                 </a>
-                <p className="text-muted-foreground">Melbourne, Australia</p>
+                <p className="text-muted-foreground">France</p>
               </div>
             </motion.div>
 
@@ -102,7 +102,7 @@ const Footer = () => {
               className="md:col-span-3"
             >
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
-                Connect
+                Suivez-moi
               </h3>
               <ul className="space-y-4">
                 {socialLinks.map((link) => (
@@ -134,7 +134,7 @@ const Footer = () => {
                 className="inline-flex items-center justify-center w-28 h-28 md:w-32 md:h-32 bg-primary text-primary-foreground rounded-full hover:scale-105 transition-transform group"
               >
                 <span className="text-xs font-semibold uppercase tracking-wider text-center leading-tight">
-                  Start a<br />Project
+                  Parlons-<br />en
                 </span>
               </Link>
             </motion.div>
@@ -149,10 +149,10 @@ const Footer = () => {
             className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4"
           >
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Liam Fletcher. All rights reserved.
+              © {currentYear} Abel SALAH. Tous droits réservés.
             </p>
             <p className="text-sm text-muted-foreground">
-              <span className="text-primary">Strategic copywriting</span> that converts.
+              <span className="text-primary">L'IA au service</span> de votre entreprise.
             </p>
           </motion.div>
         </div>

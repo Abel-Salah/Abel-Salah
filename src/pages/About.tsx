@@ -2,20 +2,20 @@ import { motion } from "framer-motion";
 import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 
 const services = [
-  "Landing page copy",
-  "Brand messaging & positioning",
-  "Email sequences",
-  "Website copy",
-  "Product copy & UX writing",
-  "Sales pages",
+  "Audit IA",
+  "Stratégie d'implémentation",
+  "Formation des équipes",
+  "Automatisation des processus",
+  "Conseil en data & IA",
+  "Accompagnement au changement",
 ];
 
 const clients = [
-  "Founders & CEOs",
-  "Growth teams",
-  "Product managers",
-  "Marketing leaders",
-  "Startups & scale-ups",
+  "Dirigeants & CEO",
+  "Directeurs de la transformation",
+  "Équipes produit",
+  "DSI & CTO",
+  "PME & grands groupes",
 ];
 
 const About = () => {
@@ -30,7 +30,7 @@ const About = () => {
           className="mb-20"
         >
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
-            About
+            À propos
           </h1>
         </motion.div>
 
@@ -51,34 +51,36 @@ const About = () => {
             >
               <img 
                 src={liamPortrait} 
-                alt="Liam Fletcher - Strategic Copywriter"
+                alt="Abel SALAH — Expert IA en Entreprise"
                 className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500"
               />
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
             </motion.div>
             <p className="text-sm text-muted-foreground mt-6 uppercase tracking-wider">
-              Melbourne, Australia
+              France
             </p>
           </div>
 
           {/* Text */}
           <div className="lg:col-span-8">
             <p className="text-3xl md:text-4xl leading-relaxed text-foreground mb-8">
-              I don't write pretty words.
+              Je ne vends pas de la technologie.
               <br />
               <span className="text-primary">
-                I write copy that moves people to act.
+                Je crée de la valeur business avec l'IA.
               </span>
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              My work sits at the intersection of strategy, psychology, and
-              business goals. Every headline, every CTA, every email is built on
-              research, tested against reality, and optimized for results.
+              Mon travail se situe à l'intersection de la stratégie, de la data
+              et des objectifs métier. Chaque recommandation, chaque déploiement,
+              chaque formation est fondé sur l'analyse, testé en conditions réelles
+              et optimisé pour des résultats concrets.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              After 8 years working with startups, agencies, and product teams across 
-              Australia and beyond, I've learned one thing: clarity converts. 
-              Everything else is noise.
+              Après 8 ans d'expérience dans la transformation digitale et l'IA
+              auprès de startups, PME et grands groupes en France et au-delà,
+              j'ai compris une chose : la clarté de la stratégie fait toute la différence.
+              Le reste, c'est du bruit.
             </p>
           </div>
         </motion.div>
@@ -121,7 +123,7 @@ const About = () => {
             className="col-span-12 md:col-span-6"
           >
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-              Who I work with
+              Avec qui je travaille
             </span>
             <ul className="space-y-4">
               {clients.map((client, index) => (
@@ -149,12 +151,12 @@ const About = () => {
           className="border-t border-border pt-20 mt-20"
         >
           <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-            Philosophy
+            Philosophie
           </span>
           <blockquote className="heading-display text-4xl md:text-6xl leading-tight">
-            "Good copy is expensive.
+            "L'IA mal déployée coûte cher.
             <br />
-            <span className="text-primary">Bad copy is way more."</span>
+            <span className="text-primary">L'IA bien déployée change tout."</span>
           </blockquote>
         </motion.div>
       </div>
