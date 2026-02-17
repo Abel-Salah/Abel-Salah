@@ -1,79 +1,119 @@
 
-# Personnalisation du site pour Abel SALAH — Expert IA en entreprise
 
-## Vue d'ensemble
-Transformer le portfolio actuel (copywriter australien) en site vitrine pour Abel SALAH, expert en IA pour les entreprises en France. Le design, les animations et la structure restent identiques. Seul le contenu textuel est mis a jour et traduit en francais.
+# Repositionnement : Expert IA & Consultant pour les entreprises
 
-## Fichiers a modifier
+## Probleme actuel
+Le contenu est generique et pourrait etre celui de n'importe quel consultant IA. Il ne s'appuie pas sur votre vrai parcours (16 ans, direction commerciale, fondateur de Skillco/Dataonline) qui est justement ce qui vous rend credible et different.
 
-### 1. `index.html` — Meta-donnees
-- Titre : "Abel SALAH — Expert IA en Entreprise"
-- Description et balises Open Graph en francais
+## Strategie de repositionnement
+Utiliser votre parcours **non pas comme un CV** mais comme **preuve de credibilite** : vous comprenez le business parce que vous l'avez vecu (direction d'equipes, CA de 4.8M, creation d'entreprises). C'est ca qui vous differencie des consultants IA purement techniques.
 
-### 2. `src/components/Navigation.tsx` — Barre de navigation
-- "LIAM FLETCHER" devient "ABEL SALAH"
-- Labels traduits : Accueil, Realisations, A propos, Contact
-- Suppression du lien Styleguide (non pertinent)
+---
 
-### 3. `src/pages/Index.tsx` — Page d'accueil
-- Titre hero : "L'IA ne remplace pas votre entreprise. **Elle l'accelere.**"
-- Sous-titre : "Je suis Abel SALAH — expert en intelligence artificielle appliquee aux entreprises. J'aide les dirigeants et les equipes a exploiter pleinement le potentiel de l'IA."
-- Section "Generic vs. Strategic" devient "Avant l'IA vs. Avec l'IA" avec des exemples concrets :
-  - "On fait tout manuellement" -> "Automatisez 80% des taches repetitives avec l'IA"
-  - "L'IA, c'est trop complexe pour nous" -> "Un plan d'action clair, des resultats en 3 mois"
-  - "On ne sait pas par ou commencer" -> "Audit IA gratuit. Priorisez ce qui compte vraiment."
-- Section projets avec des cas d'usage IA en entreprise (ex. automatisation RH, service client IA, optimisation supply chain)
-- CTA : "Pret a passer a l'action ?" / "Reservez un appel"
+## Fichier 1 : `src/pages/Index.tsx`
 
-### 4. `src/pages/Work.tsx` — Page Realisations
-- Titre : "Realisations"
-- Projets adaptes au domaine IA :
-  - 01 — Automatisation du service client (chatbot IA, -60% tickets support)
-  - 02 — Optimisation des processus RH (tri CV automatise, 5x plus rapide)
-  - 03 — Prevision des ventes par IA (modele predictif, +35% precision)
-- Labels ProjectCard traduits : Contexte, Action, Resultat
-- CTA bas de page : "Envie d'un cas d'usage similaire ? Creons le votre."
+### Hero — Sous-titre repositionne
+- Remplacer "expert en intelligence artificielle appliquee aux entreprises"
+- Par : "16 ans sur le terrain du business. Aujourd'hui, j'aide les entreprises a integrer l'IA la ou ca compte : ventes, operations, strategie."
 
-### 5. `src/pages/About.tsx` — Page A propos
-- Titre : "A propos"
-- Bio adaptee : expert IA, base en France, 8+ ans d'experience dans la transformation digitale et l'IA
-- Phrase d'accroche : "Je ne vends pas de la technologie. **Je cree de la valeur business avec l'IA.**"
-- Services : Audit IA, Strategie d'implementation, Formation des equipes, Automatisation des processus, Conseil en data & IA, Accompagnement au changement
-- "Who I work with" -> "Avec qui je travaille" : Dirigeants & CEO, Directeurs de la transformation, Equipes produit, DSI & CTO, PME & grands groupes
-- Citation : "L'IA mal deployee coute cher. **L'IA bien deployee change tout.**"
-- Localisation : "France"
+### Chiffres cles — Nouvelle section animee (entre hero et "Avant/Apres")
+Ajouter 3 compteurs visuels dans une grille :
+- **16+** ans d'experience
+- **62** projets realises  
+- **99%** taux de reussite
 
-### 6. `src/pages/Contact.tsx` — Page Contact
-- Titre et texte traduits en francais
-- Labels : Temps de reponse ("Sous 24 heures"), Quoi inclure, "Pas encore pret ?"
-- Texte adapte au conseil IA
+Style : grille de 3 colonnes, memes animations `motion.div`, typographie `heading-display` pour les chiffres, `text-muted-foreground` pour les labels.
 
-### 7. `src/components/ContactForm.tsx` — Formulaire
-- Labels : Nom, Email, Message
-- Placeholders en francais : "Votre nom", "votre@email.com", "Parlez-moi de votre projet..."
-- Bouton : "Envoyer le message" / "Envoi en cours..."
-- Toast de confirmation en francais
+### Section "Avant l'IA vs. Avec l'IA" — Rester tel quel
+Le contenu actuel est bon et oriente business. Pas de changement.
 
-### 8. `src/components/Footer.tsx` — Pied de page
-- "LIAM FLETCHER" -> "ABEL SALAH"
-- Email : placeholder a adapter (ex. contact@abelsalah.com)
-- Localisation : "France"
-- Navigation et liens sociaux traduits
-- Copyright : "Abel SALAH. Tous droits reserves."
-- Tagline : "L'IA au service de votre entreprise."
-- Bouton CTA : "Parlons-en"
+### Cas d'usage — Rendre plus credibles et specifiques
+Remplacer les projets generiques par des cas ancres dans la realite :
+- 01 — **IA au service de la force de vente**
+  - Contexte : Reseau de distribution, 28 commerciaux, processus manuels
+  - Action : Automatisation du scoring leads et prevision des ventes par IA
+  - Resultat : +40 % de conversion, -50 % temps de prospection
+- 02 — **Digitalisation des processus RH avec l'IA**
+  - Contexte : Entreprise en hypercroissance, onboarding et formation non structures
+  - Action : Deploiement d'un LMS intelligent avec parcours personnalises par IA
+  - Resultat : Temps d'integration divise par 3
+- 03 — **Strategie data & acquisition B2B**
+  - Contexte : PME sans pipeline commercial structure
+  - Action : Mise en place d'un systeme d'acquisition automatise (scraping, scoring, CRM IA)
+  - Resultat : Pipeline commercial x5 en 6 mois
 
-### 9. `src/components/ProjectCard.tsx` — Labels des cartes
-- "Context" -> "Contexte"
-- "Action" -> "Action" (identique)
-- "Result" -> "Resultat"
+---
 
-### 10. `src/components/CopyReveal.tsx` — Indicateur
-- "hover" -> "survolez"
+## Fichier 2 : `src/pages/About.tsx`
+
+### Bio — Reecrite avec le vrai parcours comme preuve
+Remplacer "8 ans d'experience" par un texte qui raconte le parcours sans faire CV :
+- "Avant de devenir consultant IA, j'ai dirige des equipes commerciales, gere un CA de 4.8M d'euros, et fonde plusieurs entreprises dans le digital. Cette experience terrain me permet de comprendre les vrais enjeux des dirigeants — pas seulement la tech, mais le business."
+
+### Services — Recentrer sur le consulting IA, pas la formation
+Remplacer la liste actuelle par :
+- Audit & strategie IA pour dirigeants
+- Automatisation des processus commerciaux
+- Integration d'outils IA (CRM, vente, marketing)
+- Accompagnement a la transformation digitale
+- Strategie data & acquisition client
+- Deploiement de solutions IA sur mesure
+
+### Avec qui je travaille — Affiner
+- Dirigeants & CEO
+- Directeurs commerciaux & marketing
+- Responsables operations
+- DSI & CTO
+- PME, ETI & grands groupes
+
+### Ajouter une section "Certifications & Partenariats" (avant la citation)
+Nouvelle section avec le meme style visuel que Services/Clients :
+- Master Commerce International
+- Certifications Google (Ads, Analytics)
+- Partenaire HubSpot
+- Label : "Reconnaissance"
+
+### Citation — Garder telle quelle
+"L'IA mal deployee coute cher. L'IA bien deployee change tout." — parfait pour le positionnement.
+
+---
+
+## Fichier 3 : `src/pages/Work.tsx`
+
+### Projets — 5 cas d'usage credibles et orientes resultats
+Remplacer les 3 projets actuels par 5, inspires du vrai parcours mais presentes comme des missions de conseil IA :
+
+- 01 — **IA & performance commerciale retail**
+  - Contexte : Reseau de 3 magasins, 28 collaborateurs, CA 4.8M euros
+  - Action : Implementation d'outils IA pour le scoring client, prevision de stocks et optimisation des ventes
+  - Resultat : +25 % de rentabilite sur le reseau
+
+- 02 — **Automatisation de l'acquisition B2B**
+  - Contexte : Startup sans equipe commerciale structuree
+  - Action : Pipeline automatise : scraping de donnees, scoring par IA, sequences d'emailing intelligentes
+  - Resultat : 500+ leads qualifies / mois
+
+- 03 — **Plateforme de formation augmentee par l'IA**
+  - Contexte : Besoin de former des equipes commerciales a grande echelle
+  - Action : Creation d'un LMS avec parcours adaptatifs generes par IA
+  - Resultat : Deploiement sur 3 villes, taux de completion 95 %
+
+- 04 — **IA pour le e-commerce : recommandation & conversion**
+  - Contexte : Site e-commerce avec taux de conversion faible
+  - Action : Integration d'un moteur de recommandation IA et optimisation du tunnel de vente
+  - Resultat : +60 % taux de conversion
+
+- 05 — **Strategie data & CRM intelligent**
+  - Contexte : Donnees clients dispersees, pas de vision unifiee
+  - Action : Centralisation dans un CRM IA (HubSpot), segmentation automatique, scoring predictif
+  - Resultat : Cycle de vente reduit de 40 %
+
+---
 
 ## Details techniques
-- Aucune dependance supplementaire requise
-- La photo portrait existante sera conservee (remplacable plus tard par la photo d'Abel)
-- La route `/styleguide` sera retiree du menu mais le fichier reste accessible
-- Toutes les animations Framer Motion restent inchangees
-- Le composant `CopyReveal` garde le meme comportement (avant/apres au survol)
+- Aucune nouvelle dependance
+- Nouvelle section "Chiffres cles" sur Index.tsx : grille de 3 `motion.div` avec animation `whileInView`
+- Nouvelle section "Certifications" sur About.tsx : meme pattern que la grille Services/Clients existante
+- Toutes les animations Framer Motion conservees
+- Le design et la structure de chaque page restent identiques
+
