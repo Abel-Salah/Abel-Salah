@@ -4,24 +4,38 @@ import ProjectCard from "@/components/ProjectCard";
 const projects = [
   {
     number: "01",
-    title: "Automatisation du service client",
-    context: "E-commerce avec un volume élevé de tickets support",
-    action: "Déploiement d'un chatbot IA avec escalade intelligente",
-    result: "-60 % tickets support",
+    title: "IA & performance commerciale retail",
+    context: "Réseau de 3 magasins, 28 collaborateurs, CA 4.8M €",
+    action: "Outils IA pour le scoring client, prévision de stocks et optimisation des ventes",
+    result: "+25 % rentabilité",
   },
   {
     number: "02",
-    title: "Optimisation des processus RH",
-    context: "Entreprise en forte croissance, recrutement massif",
-    action: "Tri automatisé des CV et pré-qualification par IA",
-    result: "5x plus rapide",
+    title: "Automatisation de l'acquisition B2B",
+    context: "Startup sans équipe commerciale structurée",
+    action: "Pipeline automatisé : scraping, scoring par IA, séquences d'emailing intelligentes",
+    result: "500+ leads / mois",
   },
   {
     number: "03",
-    title: "Prévision des ventes par IA",
-    context: "Réseau de distribution multi-canal",
-    action: "Modèle prédictif sur données historiques et saisonnières",
-    result: "+35 % précision",
+    title: "Plateforme de formation augmentée par l'IA",
+    context: "Former des équipes commerciales à grande échelle",
+    action: "Création d'un LMS avec parcours adaptatifs générés par IA",
+    result: "3 villes, 95 % complétion",
+  },
+  {
+    number: "04",
+    title: "IA pour le e-commerce : recommandation & conversion",
+    context: "Site e-commerce avec taux de conversion faible",
+    action: "Moteur de recommandation IA et optimisation du tunnel de vente",
+    result: "+60 % conversion",
+  },
+  {
+    number: "05",
+    title: "Stratégie data & CRM intelligent",
+    context: "Données clients dispersées, pas de vision unifiée",
+    action: "Centralisation CRM IA (HubSpot), segmentation automatique, scoring prédictif",
+    result: "Cycle de vente -40 %",
   },
 ];
 
@@ -40,7 +54,7 @@ const Work = () => {
             Réalisations
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            Des projets concrets où l'IA a créé un impact mesurable.
+            Des missions concrètes où l'IA a créé un impact mesurable.
             Stratégie, exécution, résultats.
           </p>
         </motion.div>
