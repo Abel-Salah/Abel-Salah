@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import CalendlyPopup from "@/components/CalendlyPopup";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import About from "./pages/About";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
+        <CalendlyPopup />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

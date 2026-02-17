@@ -1,0 +1,56 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+declare global {
+  interface Window {
+    __openCalendly?: () => void;
+  }
+}
+
+const CalendlyPopup = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    window.__openCalendly = () => setIsOpen(true);
+    return () => {
+      delete window.__openCalendly;
+    };
+  }, []);
+
+  return (
+    <>
+      <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: "spring", stiffness: 200 }}
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 font-semibold uppercase tracking-wider text-sm shadow-lg hover:bg-primary/90 transition-colors"
+      >
+        <Calendar className="w-5 h-5" />
+        Prendre RDV
+      </motion.button>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-[650px] w-[95vw] h-[80vh] p-0 overflow-hidden">
+          <DialogTitle className="sr-only">Prendre rendez-vous</DialogTitle>
+          <iframe
+            src="https://calendly.com/abel_salah/rdv-abel"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            title="Calendly - Prendre RDV"
+            className="w-full h-full"
+          />
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default CalendlyPopup;
