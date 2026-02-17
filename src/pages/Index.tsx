@@ -7,7 +7,7 @@ import ProjectCard from "@/components/ProjectCard";
 const stats = [
   { value: "16+", label: "ans d'expérience" },
   { value: "62", label: "projets réalisés" },
-  { value: "99%", label: "taux de réussite" },
+  { value: "95%", label: "clients satisfaits" },
 ];
 
 const Index = () => {
