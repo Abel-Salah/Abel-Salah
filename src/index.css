@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,7 +48,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
     @apply tracking-tight;
   }
 
@@ -59,7 +60,8 @@
 
 @layer utilities {
   .heading-display {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
     @apply text-foreground leading-[0.9] tracking-tighter;
   }
 
