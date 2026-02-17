@@ -16,8 +16,8 @@ const Contact = () => {
             Contact
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            Have a project in mind? Let's talk about how strategic copy can
-            drive your results.
+            Un projet en tête ? Parlons de la façon dont l'IA peut
+            accélérer vos résultats.
           </p>
         </motion.div>
 
@@ -37,30 +37,30 @@ const Contact = () => {
             <div className="space-y-12">
               <div>
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Response time
+                  Temps de réponse
                 </span>
-                <p className="text-2xl text-foreground">Within 24 hours</p>
+                <p className="text-2xl text-foreground">Sous 24 heures</p>
               </div>
 
               <div>
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  What to include
+                  Quoi inclure
                 </span>
                 <ul className="space-y-2 text-lg text-muted-foreground">
-                  <li>• Brief project description</li>
-                  <li>• Timeline expectations</li>
-                  <li>• Budget range (optional)</li>
+                  <li>• Description rapide du projet</li>
+                  <li>• Délais envisagés</li>
+                  <li>• Budget estimé (optionnel)</li>
                 </ul>
               </div>
 
               <div className="border-t border-border pt-12">
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Not ready to commit?
+                  Pas encore prêt ?
                 </span>
                 <p className="text-lg text-foreground">
-                  That's fine. Send a message anyway. 
+                  Pas de souci. Envoyez un message quand même.
                   <br />
-                  <span className="text-primary">Let's just talk.</span>
+                  <span className="text-primary">Discutons simplement.</span>
                 </p>
               </div>
             </div>

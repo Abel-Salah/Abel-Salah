@@ -34,7 +34,7 @@ const CopyReveal = ({ before, after, className }: CopyRevealProps) => {
               {before}
             </span>
             <span className="text-xs uppercase tracking-wider text-muted-foreground/50">
-              hover
+              survolez
             </span>
           </motion.div>
         ) : (

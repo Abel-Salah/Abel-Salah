@@ -5,10 +5,9 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/styleguide", label: "Styleguide" },
+  { href: "/", label: "Accueil" },
+  { href: "/work", label: "Réalisations" },
+  { href: "/about", label: "À propos" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -28,7 +27,7 @@ const Navigation = () => {
             className="heading-display text-xl hover:text-primary transition-colors"
             onClick={closeMenu}
           >
-            LIAM FLETCHER
+            ABEL SALAH
           </Link>
           
           {/* Desktop Navigation */}
@@ -54,7 +53,7 @@ const Navigation = () => {
           <button
             onClick={toggleMenu}
             className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

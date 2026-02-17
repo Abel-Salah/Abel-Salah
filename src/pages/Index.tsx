@@ -7,40 +7,40 @@ import ProjectCard from "@/components/ProjectCard";
 const Index = () => {
   const copyExamples = [
     {
-      before: "We're the best solution in the market",
-      after: "Your reports done in 3 clicks. No training needed.",
+      before: "On fait tout manuellement",
+      after: "Automatisez 80 % des tâches répétitives avec l'IA",
     },
     {
-      before: "Our innovative platform helps businesses",
-      after: "Cut 10 hours of manual work. Every week.",
+      before: "L'IA, c'est trop complexe pour nous",
+      after: "Un plan d'action clair, des résultats en 3 mois",
     },
     {
-      before: "Contact us to learn more",
-      after: "Book a 15-min demo. See results before you commit.",
+      before: "On ne sait pas par où commencer",
+      after: "Audit IA gratuit. Priorisez ce qui compte vraiment.",
     },
   ];
 
   const projects = [
     {
       number: "01",
-      title: "Analytics Dashboard Rebrand",
-      context: "B2B SaaS with complex data visualization",
-      action: "Rewrote the entire dashboard copy for clarity and action",
-      result: "+42% user activation",
+      title: "Automatisation du service client",
+      context: "E-commerce avec un volume élevé de tickets support",
+      action: "Déploiement d'un chatbot IA avec escalade intelligente",
+      result: "-60 % tickets support",
     },
     {
       number: "02",
-      title: "Fintech App Launch",
-      context: "Mobile banking app entering Australian market",
-      action: "Created brand voice, onboarding flows, and in-app copy",
-      result: "3x more signups",
+      title: "Optimisation des processus RH",
+      context: "Entreprise en forte croissance, recrutement massif",
+      action: "Tri automatisé des CV et pré-qualification par IA",
+      result: "5x plus rapide",
     },
     {
       number: "03",
-      title: "Email Lifecycle Overhaul",
-      context: "E-commerce brand with high churn",
-      action: "Strategic 12-email sequence with behavioral triggers",
-      result: "-28% churn rate",
+      title: "Prévision des ventes par IA",
+      context: "Réseau de distribution multi-canal",
+      action: "Modèle prédictif sur données historiques et saisonnières",
+      result: "+35 % précision",
     },
   ];
 
@@ -56,8 +56,8 @@ const Index = () => {
             className="max-w-6xl"
           >
             <h1 className="heading-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] mb-8">
-              Words don't sell.
-              <span className="text-primary"> Strategy does.</span>
+              L'IA ne remplace pas votre entreprise.
+              <span className="text-primary"> Elle l'accélère.</span>
             </h1>
           </motion.div>
 
@@ -67,8 +67,8 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16"
           >
-            I'm Liam Fletcher — strategic copywriter based in Melbourne. 
-            I help startups and digital products move people to action.
+            Je suis Abel SALAH — expert en intelligence artificielle appliquée aux entreprises. 
+            J'aide les dirigeants et les équipes à exploiter pleinement le potentiel de l'IA.
           </motion.p>
 
           <motion.div
@@ -80,7 +80,7 @@ const Index = () => {
               to="/work"
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider text-primary hover:gap-6 transition-all group"
             >
-              See the work
+              Voir les réalisations
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
@@ -98,10 +98,10 @@ const Index = () => {
             className="mb-20"
           >
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-              The difference
+              La différence
             </span>
             <h2 className="heading-display text-4xl md:text-6xl">
-              Generic vs. Strategic
+              Avant l'IA vs. Avec l'IA
             </h2>
           </motion.div>
 
@@ -137,10 +137,10 @@ const Index = () => {
             className="mb-16"
           >
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-              Selected work
+              Cas d'usage
             </span>
             <h2 className="heading-display text-4xl md:text-6xl">
-              Projects that <span className="text-primary">convert</span>
+              Des projets qui <span className="text-primary">transforment</span>
             </h2>
           </motion.div>
 
@@ -161,7 +161,7 @@ const Index = () => {
               to="/work"
               className="inline-flex items-center gap-4 text-lg font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-all group"
             >
-              View all projects
+              Voir toutes les réalisations
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
@@ -178,7 +178,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="heading-display text-5xl md:text-7xl mb-12"
           >
-            Ready to convert?
+            Prêt à passer à l'action ?
           </motion.h2>
 
           <motion.div
@@ -191,7 +191,7 @@ const Index = () => {
               to="/contact"
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 hover:bg-primary/90 transition-colors"
             >
-              Start a project
+              Réservez un appel
               <ArrowRight className="w-6 h-6" />
             </Link>
           </motion.div>

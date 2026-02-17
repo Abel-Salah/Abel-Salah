@@ -4,24 +4,24 @@ import ProjectCard from "@/components/ProjectCard";
 const projects = [
   {
     number: "01",
-    title: "Analytics Dashboard Rebrand",
-    context: "B2B SaaS with complex data visualization",
-    action: "Rewrote the entire dashboard copy for clarity and action",
-    result: "+42% user activation",
+    title: "Automatisation du service client",
+    context: "E-commerce avec un volume élevé de tickets support",
+    action: "Déploiement d'un chatbot IA avec escalade intelligente",
+    result: "-60 % tickets support",
   },
   {
     number: "02",
-    title: "Fintech App Launch",
-    context: "Mobile banking app entering Australian market",
-    action: "Created brand voice, onboarding flows, and in-app copy",
-    result: "3x more signups",
+    title: "Optimisation des processus RH",
+    context: "Entreprise en forte croissance, recrutement massif",
+    action: "Tri automatisé des CV et pré-qualification par IA",
+    result: "5x plus rapide",
   },
   {
     number: "03",
-    title: "Email Lifecycle Overhaul",
-    context: "E-commerce brand with high churn",
-    action: "Strategic 12-email sequence with behavioral triggers",
-    result: "-28% churn rate",
+    title: "Prévision des ventes par IA",
+    context: "Réseau de distribution multi-canal",
+    action: "Modèle prédictif sur données historiques et saisonnières",
+    result: "+35 % précision",
   },
 ];
 
@@ -37,11 +37,11 @@ const Work = () => {
           className="mb-20"
         >
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
-            Work
+            Réalisations
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            Selected projects where strategy met execution. 
-            Real results, real impact.
+            Des projets concrets où l'IA a créé un impact mesurable.
+            Stratégie, exécution, résultats.
           </p>
         </motion.div>
 
@@ -61,10 +61,10 @@ const Work = () => {
           className="border-t border-border pt-20 mt-20 text-center"
         >
           <p className="text-2xl text-muted-foreground mb-4">
-            Like what you see?
+            Envie d'un cas d'usage similaire ?
           </p>
           <p className="heading-display text-4xl md:text-5xl">
-            Let's create <span className="text-primary">your</span> case study.
+            Créons <span className="text-primary">le vôtre.</span>
           </p>
         </motion.div>
       </div>
