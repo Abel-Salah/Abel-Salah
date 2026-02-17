@@ -218,13 +218,13 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Link
-              to="/contact"
+            <button
+              onClick={() => window.__openCalendly?.()}
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 hover:bg-primary/90 transition-colors"
             >
               Réservez un appel
               <ArrowRight className="w-6 h-6" />
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
