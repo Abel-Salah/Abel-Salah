@@ -4,6 +4,12 @@ import { ArrowRight } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
 
+const stats = [
+  { value: "16+", label: "ans d'expérience" },
+  { value: "62", label: "projets réalisés" },
+  { value: "99%", label: "taux de réussite" },
+];
+
 const Index = () => {
   const copyExamples = [
     {
@@ -23,24 +29,24 @@ const Index = () => {
   const projects = [
     {
       number: "01",
-      title: "Automatisation du service client",
-      context: "E-commerce avec un volume élevé de tickets support",
-      action: "Déploiement d'un chatbot IA avec escalade intelligente",
-      result: "-60 % tickets support",
+      title: "IA au service de la force de vente",
+      context: "Réseau de distribution, 28 commerciaux, processus manuels",
+      action: "Automatisation du scoring leads et prévision des ventes par IA",
+      result: "+40 % conversion",
     },
     {
       number: "02",
-      title: "Optimisation des processus RH",
-      context: "Entreprise en forte croissance, recrutement massif",
-      action: "Tri automatisé des CV et pré-qualification par IA",
-      result: "5x plus rapide",
+      title: "Digitalisation des processus RH avec l'IA",
+      context: "Entreprise en hypercroissance, onboarding et formation non structurés",
+      action: "Déploiement d'un LMS intelligent avec parcours personnalisés par IA",
+      result: "Intégration ÷3",
     },
     {
       number: "03",
-      title: "Prévision des ventes par IA",
-      context: "Réseau de distribution multi-canal",
-      action: "Modèle prédictif sur données historiques et saisonnières",
-      result: "+35 % précision",
+      title: "Stratégie data & acquisition B2B",
+      context: "PME sans pipeline commercial structuré",
+      action: "Système d'acquisition automatisé : scraping, scoring, CRM IA",
+      result: "Pipeline x5",
     },
   ];
 
@@ -67,8 +73,8 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16"
           >
-            Je suis Abel SALAH — expert en intelligence artificielle appliquée aux entreprises. 
-            J'aide les dirigeants et les équipes à exploiter pleinement le potentiel de l'IA.
+            16 ans sur le terrain du business. Aujourd'hui, j'aide les entreprises 
+            à intégrer l'IA là où ça compte : ventes, opérations, stratégie.
           </motion.p>
 
           <motion.div
@@ -84,6 +90,31 @@ const Index = () => {
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Key Stats Section */}
+      <section className="py-24 px-4 md:px-6 border-t border-border">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <span className="heading-display text-6xl md:text-8xl text-primary">
+                  {stat.value}
+                </span>
+                <p className="text-muted-foreground text-lg mt-2 uppercase tracking-wider">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

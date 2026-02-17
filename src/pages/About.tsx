@@ -2,20 +2,26 @@ import { motion } from "framer-motion";
 import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 
 const services = [
-  "Audit IA",
-  "Stratégie d'implémentation",
-  "Formation des équipes",
-  "Automatisation des processus",
-  "Conseil en data & IA",
-  "Accompagnement au changement",
+  "Audit & stratégie IA pour dirigeants",
+  "Automatisation des processus commerciaux",
+  "Intégration d'outils IA (CRM, vente, marketing)",
+  "Accompagnement à la transformation digitale",
+  "Stratégie data & acquisition client",
+  "Déploiement de solutions IA sur mesure",
 ];
 
 const clients = [
   "Dirigeants & CEO",
-  "Directeurs de la transformation",
-  "Équipes produit",
+  "Directeurs commerciaux & marketing",
+  "Responsables opérations",
   "DSI & CTO",
-  "PME & grands groupes",
+  "PME, ETI & grands groupes",
+];
+
+const certifications = [
+  "Master Commerce International",
+  "Certifications Google (Ads, Analytics)",
+  "Partenaire HubSpot",
 ];
 
 const About = () => {
@@ -51,7 +57,7 @@ const About = () => {
             >
               <img 
                 src={liamPortrait} 
-                alt="Abel SALAH — Expert IA en Entreprise"
+                alt="Abel SALAH — Expert IA & Consultant en Entreprise"
                 className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500"
               />
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
@@ -71,16 +77,15 @@ const About = () => {
               </span>
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              Mon travail se situe à l'intersection de la stratégie, de la data
-              et des objectifs métier. Chaque recommandation, chaque déploiement,
-              chaque formation est fondé sur l'analyse, testé en conditions réelles
-              et optimisé pour des résultats concrets.
+              Avant de devenir consultant IA, j'ai dirigé des équipes commerciales, 
+              géré un CA de 4.8M d'euros, et fondé plusieurs entreprises dans le digital. 
+              Cette expérience terrain me permet de comprendre les vrais enjeux des 
+              dirigeants — pas seulement la tech, mais le business.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Après 8 ans d'expérience dans la transformation digitale et l'IA
-              auprès de startups, PME et grands groupes en France et au-delà,
-              j'ai compris une chose : la clarté de la stratégie fait toute la différence.
-              Le reste, c'est du bruit.
+              Après 16 ans d'expérience dans le développement commercial et la 
+              transformation digitale, j'ai compris une chose : l'IA n'est utile que 
+              si elle sert une stratégie claire. Le reste, c'est du bruit.
             </p>
           </div>
         </motion.div>
@@ -136,6 +141,34 @@ const About = () => {
                   className="text-2xl text-foreground hover:text-primary transition-colors cursor-default"
                 >
                   {client}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Certifications & Partenariats */}
+        <div className="border-t border-border pt-20 mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+              Reconnaissance
+            </span>
+            <ul className="space-y-4">
+              {certifications.map((cert, index) => (
+                <motion.li
+                  key={cert}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="text-2xl text-foreground hover:text-primary transition-colors cursor-default"
+                >
+                  {cert}
                 </motion.li>
               ))}
             </ul>
