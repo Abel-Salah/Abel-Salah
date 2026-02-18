@@ -1,58 +1,99 @@
 
 
-# Retirer les gradients des boutons + Ameliorations du site
+# Optimisation SEO complete pour "Expert IA Entreprise"
 
-## 1. Retirer le gradient des boutons
+## Diagnostic actuel
 
-Remplacer `bg-gradient-to-r from-primary to-blue-400` par un simple `bg-primary` sur les deux boutons :
+Le site a plusieurs problemes SEO majeurs qui freinent le positionnement :
 
-- **`src/components/CalendlyPopup.tsx`** (ligne 33) : retirer le gradient, utiliser `bg-primary`
-- **`src/pages/Index.tsx`** (ligne 223) : retirer le gradient du bouton "Reservez un appel", utiliser `bg-primary`
+| Element | Statut | Impact |
+|---|---|---|
+| Meta title/description par page | Manquant (1 seul pour tout le site) | Critique |
+| Sitemap XML | Absent | Critique |
+| Donnees structurees (JSON-LD) | Absent | Eleve |
+| URL canonique | Absente | Eleve |
+| Meta og:url | Absent | Moyen |
+| Twitter @site | Pointe vers @Lovable | Faible |
+| Balises semantiques (article, nav) | Partielles | Moyen |
 
-## 2. Ameliorations detectees apres revue du site
+## Corrections prevues
 
-### A. Cartes projets cassees sur mobile (PRIORITAIRE)
+### 1. Meta tags dynamiques par page (react-helmet-async)
 
-Sur mobile (390px), les `ProjectCard` utilisent une grille `grid-cols-12` + `grid-cols-3` sans adaptation responsive. Le resultat : le texte se chevauche, les colonnes sont illisibles (visible sur la capture mobile). 
+Installer `react-helmet-async` pour gerer les meta tags par page. Chaque page aura son propre title et description optimises pour les mots-cles cibles :
 
-**Correction** : rendre les cartes responsives avec des colonnes empilees sur mobile.
+- **Accueil** : "Abel SALAH | Expert IA pour Entreprises en France - Audit, Strategie & Deploiement"
+  - Description : "Expert en intelligence artificielle pour les entreprises. Audit IA gratuit, automatisation des processus, strategie data et deploiement de solutions IA sur mesure. 16 ans d'experience, 62 projets realises."
+  
+- **Realisations** : "Cas d'usage IA en entreprise | Abel SALAH - Expert IA"
+  - Description : "Decouvrez comment l'IA a transforme des entreprises : +40% conversion, pipeline x5, cycle de vente -40%. Cas concrets d'implementation IA en ventes, RH et acquisition."
 
-- `src/components/ProjectCard.tsx` : changer `grid-cols-12` en `grid-cols-1 md:grid-cols-12` et `grid-cols-3` en `grid-cols-1 md:grid-cols-3`, ajuster le `col-span`
+- **A propos** : "Abel SALAH | Consultant IA & Transformation Digitale - 16 ans d'experience"
+  - Description : "Ancien directeur commercial (CA 4.8M EUR), aujourd'hui consultant expert en IA pour entreprises. Audit IA, automatisation commerciale, strategie data. PME, ETI, grands groupes."
 
-### B. Bouton "Prendre RDV" qui chevauche le contenu sur mobile
+- **Contact** : "Contactez Abel SALAH | Expert IA pour Entreprises en France"
+  - Description : "Prenez rendez-vous avec un expert IA. Audit gratuit, reponse sous 24h. Accompagnement personnalise pour integrer l'intelligence artificielle dans votre entreprise."
 
-Le bouton flottant en bas a droite (`fixed bottom-6 right-6`) recouvre du texte sur mobile, notamment sur les cartes projets et le footer.
+### 2. Donnees structurees JSON-LD
 
-**Correction** : ajouter un `mb-20` ou `pb-20` sur le contenu en bas de page, ou reduire la taille du bouton sur mobile.
+Ajouter un schema `Person` + `ProfessionalService` dans `index.html` pour que Google affiche un Knowledge Panel riche :
 
-- `src/components/CalendlyPopup.tsx` : ajouter des classes responsives pour reduire la taille sur mobile (`text-xs px-3 py-2 md:text-sm md:px-5 md:py-3`)
+```json
+{
+  "@type": "ProfessionalService",
+  "name": "Abel SALAH - Expert IA en Entreprise",
+  "description": "Consultant expert en intelligence artificielle...",
+  "areaServed": "France",
+  "knowsAbout": ["Intelligence Artificielle", "IA en entreprise", ...]
+}
+```
 
-### C. Photo "A propos" : bordure bleue decorative derriere la photo
+### 3. Sitemap XML
 
-La bordure `border-2 border-primary translate-x-4 translate-y-4` est coupee sur mobile car le parent a `overflow-hidden` implicite. 
+Creer `public/sitemap.xml` listant les 4 pages principales avec les dates de derniere modification et priorites.
 
-**Correction** : ajouter un `overflow-visible` explicite et un padding sur le conteneur de la photo pour que la bordure decorative soit visible.
+### 4. Mettre a jour robots.txt
 
-### D. Espacement du footer sur mobile
+Ajouter la reference au sitemap dans `robots.txt`.
 
-Le footer avec le grand "ABEL SALAH" est bien, mais le bouton rond "Parlons-en" pourrait etre mieux centre sur mobile.
+### 5. Corriger index.html
 
-**Correction mineure** : centrer le bouton rond du footer sur mobile avec `flex justify-center md:justify-end`.
+- Ajouter `og:url` avec l'URL canonique du site
+- Ajouter `<link rel="canonical">`
+- Corriger `twitter:site` de `@Lovable` vers le bon handle (ou le retirer)
+- Ajouter `meta keywords` avec les mots-cles cibles
 
-## Details techniques
+### 6. Enrichir le contenu semantique des pages
 
-### Fichiers modifies
+- Ajouter des attributs `aria-label` sur les `<section>` pour mieux decrire le contenu
+- S'assurer que les alt text des images contiennent les mots-cles cibles
 
-| Fichier | Modification |
+## Fichiers concernes
+
+| Fichier | Action |
 |---|---|
-| `src/components/CalendlyPopup.tsx` | Retirer gradient, reduire taille mobile |
-| `src/pages/Index.tsx` | Retirer gradient du bouton CTA |
-| `src/components/ProjectCard.tsx` | Grille responsive (mobile-first) |
+| `package.json` | Ajouter `react-helmet-async` |
+| `src/main.tsx` | Wrapper avec `HelmetProvider` |
+| `src/components/SEOHead.tsx` | Nouveau composant reutilisable pour les meta tags |
+| `src/pages/Index.tsx` | Ajouter `<SEOHead>` avec title/description optimises |
+| `src/pages/Work.tsx` | Ajouter `<SEOHead>` |
+| `src/pages/About.tsx` | Ajouter `<SEOHead>` |
+| `src/pages/Contact.tsx` | Ajouter `<SEOHead>` |
+| `index.html` | JSON-LD, canonical, og:url, corriger twitter:site |
+| `public/sitemap.xml` | Nouveau fichier |
+| `public/robots.txt` | Ajouter reference sitemap |
 
-### Priorite
+## Mots-cles cibles
 
-1. Retirer les gradients (demande utilisateur)
-2. Corriger les cartes projets sur mobile (bug visuel majeur)
-3. Ajuster le bouton flottant sur mobile
-4. Corrections mineures (photo, footer)
+Les meta seront optimises autour de ces requetes :
+- "expert IA entreprise"
+- "consultant intelligence artificielle France"
+- "audit IA entreprise"
+- "automatisation IA PME"
+- "strategie IA pour entreprises"
+- "deploiement IA en entreprise"
+
+## Remarque importante
+
+Le site est une SPA (Single Page Application) rendue cote client. Google sait indexer le JavaScript, mais pour un SEO vraiment optimal a long terme, il faudrait envisager du Server-Side Rendering (SSR) ou du pre-rendering. Cela dit, les optimisations proposees ici auront deja un impact significatif et sont realisables immediatement.
 
