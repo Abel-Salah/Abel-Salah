@@ -53,7 +53,7 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
+      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20 bg-[radial-gradient(ellipse_at_top_left,_hsl(var(--primary)/0.05)_0%,_transparent_60%)]">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -200,7 +200,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-4 md:px-6 border-t border-border">
+      <section className="py-32 px-4 md:px-6 border-t border-border bg-gradient-to-b from-transparent to-[hsl(var(--primary)/0.03)]">
         <div className="container mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -220,7 +220,7 @@ const Index = () => {
           >
             <button
               onClick={() => window.__openCalendly?.()}
-              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-gradient-to-r from-primary to-blue-400 text-primary-foreground px-12 py-6 hover:opacity-90 transition-opacity"
             >
               Réservez un appel
               <ArrowRight className="w-6 h-6" />
