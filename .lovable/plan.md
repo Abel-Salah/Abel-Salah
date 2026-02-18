@@ -1,99 +1,80 @@
 
+# Ajouter un blog SEO "Expert IA Entreprise"
 
-# Optimisation SEO complete pour "Expert IA Entreprise"
+## Vue d'ensemble
 
-## Diagnostic actuel
+Creation d'une section blog statique (sans base de donnees) avec des articles optimises pour le referencement sur les requetes liees a "expert IA entreprise". Les articles sont stockes en dur dans un fichier de donnees TypeScript, ce qui reste simple et performant pour un site vitrine.
 
-Le site a plusieurs problemes SEO majeurs qui freinent le positionnement :
+## Architecture
 
-| Element | Statut | Impact |
-|---|---|---|
-| Meta title/description par page | Manquant (1 seul pour tout le site) | Critique |
-| Sitemap XML | Absent | Critique |
-| Donnees structurees (JSON-LD) | Absent | Eleve |
-| URL canonique | Absente | Eleve |
-| Meta og:url | Absent | Moyen |
-| Twitter @site | Pointe vers @Lovable | Faible |
-| Balises semantiques (article, nav) | Partielles | Moyen |
+Le blog comprendra :
+- Une page listing `/blog` avec tous les articles
+- Des pages article individuelles `/blog/:slug`
+- 5 articles pre-rediges optimises SEO
+- Integration dans la navigation et le footer
+- Sitemap et donnees structurees mises a jour
 
-## Corrections prevues
+## Articles prevus
 
-### 1. Meta tags dynamiques par page (react-helmet-async)
+| # | Slug | Titre optimise | Mot-cle cible |
+|---|---|---|---|
+| 1 | `pourquoi-faire-appel-expert-ia-entreprise` | Pourquoi faire appel a un expert IA en entreprise ? | expert IA entreprise |
+| 2 | `audit-ia-entreprise-par-ou-commencer` | Audit IA en entreprise : par ou commencer ? | audit IA entreprise |
+| 3 | `automatisation-ia-pme-guide-pratique` | Automatisation IA pour PME : guide pratique | automatisation IA PME |
+| 4 | `ia-force-de-vente-cas-concrets` | L'IA au service de la force de vente : cas concrets | IA force de vente |
+| 5 | `strategie-ia-entreprise-2026` | Strategie IA en entreprise : les priorites 2026 | strategie IA entreprise |
 
-Installer `react-helmet-async` pour gerer les meta tags par page. Chaque page aura son propre title et description optimises pour les mots-cles cibles :
+Chaque article aura ~600-800 mots de contenu riche avec des sous-titres H2/H3 bien structures, un CTA vers la page contact, et des meta tags dedies.
 
-- **Accueil** : "Abel SALAH | Expert IA pour Entreprises en France - Audit, Strategie & Deploiement"
-  - Description : "Expert en intelligence artificielle pour les entreprises. Audit IA gratuit, automatisation des processus, strategie data et deploiement de solutions IA sur mesure. 16 ans d'experience, 62 projets realises."
-  
-- **Realisations** : "Cas d'usage IA en entreprise | Abel SALAH - Expert IA"
-  - Description : "Decouvrez comment l'IA a transforme des entreprises : +40% conversion, pipeline x5, cycle de vente -40%. Cas concrets d'implementation IA en ventes, RH et acquisition."
+## Fichiers a creer
 
-- **A propos** : "Abel SALAH | Consultant IA & Transformation Digitale - 16 ans d'experience"
-  - Description : "Ancien directeur commercial (CA 4.8M EUR), aujourd'hui consultant expert en IA pour entreprises. Audit IA, automatisation commerciale, strategie data. PME, ETI, grands groupes."
-
-- **Contact** : "Contactez Abel SALAH | Expert IA pour Entreprises en France"
-  - Description : "Prenez rendez-vous avec un expert IA. Audit gratuit, reponse sous 24h. Accompagnement personnalise pour integrer l'intelligence artificielle dans votre entreprise."
-
-### 2. Donnees structurees JSON-LD
-
-Ajouter un schema `Person` + `ProfessionalService` dans `index.html` pour que Google affiche un Knowledge Panel riche :
-
-```json
-{
-  "@type": "ProfessionalService",
-  "name": "Abel SALAH - Expert IA en Entreprise",
-  "description": "Consultant expert en intelligence artificielle...",
-  "areaServed": "France",
-  "knowsAbout": ["Intelligence Artificielle", "IA en entreprise", ...]
-}
-```
-
-### 3. Sitemap XML
-
-Creer `public/sitemap.xml` listant les 4 pages principales avec les dates de derniere modification et priorites.
-
-### 4. Mettre a jour robots.txt
-
-Ajouter la reference au sitemap dans `robots.txt`.
-
-### 5. Corriger index.html
-
-- Ajouter `og:url` avec l'URL canonique du site
-- Ajouter `<link rel="canonical">`
-- Corriger `twitter:site` de `@Lovable` vers le bon handle (ou le retirer)
-- Ajouter `meta keywords` avec les mots-cles cibles
-
-### 6. Enrichir le contenu semantique des pages
-
-- Ajouter des attributs `aria-label` sur les `<section>` pour mieux decrire le contenu
-- S'assurer que les alt text des images contiennent les mots-cles cibles
-
-## Fichiers concernes
-
-| Fichier | Action |
+| Fichier | Role |
 |---|---|
-| `package.json` | Ajouter `react-helmet-async` |
-| `src/main.tsx` | Wrapper avec `HelmetProvider` |
-| `src/components/SEOHead.tsx` | Nouveau composant reutilisable pour les meta tags |
-| `src/pages/Index.tsx` | Ajouter `<SEOHead>` avec title/description optimises |
-| `src/pages/Work.tsx` | Ajouter `<SEOHead>` |
-| `src/pages/About.tsx` | Ajouter `<SEOHead>` |
-| `src/pages/Contact.tsx` | Ajouter `<SEOHead>` |
-| `index.html` | JSON-LD, canonical, og:url, corriger twitter:site |
-| `public/sitemap.xml` | Nouveau fichier |
-| `public/robots.txt` | Ajouter reference sitemap |
+| `src/data/blogPosts.ts` | Donnees des articles (titre, slug, contenu, date, description SEO, tags) |
+| `src/pages/Blog.tsx` | Page listing des articles |
+| `src/pages/BlogPost.tsx` | Page article individuel |
 
-## Mots-cles cibles
+## Fichiers a modifier
 
-Les meta seront optimises autour de ces requetes :
-- "expert IA entreprise"
-- "consultant intelligence artificielle France"
-- "audit IA entreprise"
-- "automatisation IA PME"
-- "strategie IA pour entreprises"
-- "deploiement IA en entreprise"
+| Fichier | Modification |
+|---|---|
+| `src/App.tsx` | Ajouter les routes `/blog` et `/blog/:slug` |
+| `src/components/Navigation.tsx` | Ajouter "Blog" dans le menu |
+| `src/components/Footer.tsx` | Ajouter "Blog" dans les liens de navigation |
+| `src/components/SEOHead.tsx` | Ajouter support pour `ogType="article"` et les meta `article:published_time` |
+| `public/sitemap.xml` | Ajouter `/blog` et les 5 URLs d'articles |
+| `index.html` | Ajouter un schema JSON-LD `Blog` |
 
-## Remarque importante
+## Details techniques
 
-Le site est une SPA (Single Page Application) rendue cote client. Google sait indexer le JavaScript, mais pour un SEO vraiment optimal a long terme, il faudrait envisager du Server-Side Rendering (SSR) ou du pre-rendering. Cela dit, les optimisations proposees ici auront deja un impact significatif et sont realisables immediatement.
+### Structure des donnees (`blogPosts.ts`)
 
+Chaque article contient :
+- `slug` : URL-friendly
+- `title` : titre H1 optimise
+- `metaTitle` : titre pour la balise `<title>` (avec "Abel SALAH - Expert IA")
+- `metaDescription` : description SEO (~155 caracteres)
+- `date` : date de publication
+- `readTime` : temps de lecture estime
+- `tags` : categories (ex: "Strategie IA", "PME")
+- `excerpt` : extrait pour la page listing
+- `content` : contenu complet en sections structurees (titre + paragraphes)
+
+### Page listing (`Blog.tsx`)
+
+- Grille d'articles avec titre, date, extrait et tags
+- Animations framer-motion coherentes avec le reste du site
+- Style minimaliste (fond sombre, typographie existante)
+- SEOHead avec title "Blog IA Entreprise | Abel SALAH - Expert IA"
+
+### Page article (`BlogPost.tsx`)
+
+- Rendu du contenu avec titres H2/H3 et paragraphes
+- Navigation (article precedent/suivant)
+- CTA en bas d'article vers `/contact`
+- SEOHead avec `ogType="article"` et meta specifiques
+- Schema JSON-LD `Article` par article (dans le composant via Helmet)
+
+### Navigation
+
+Ajout de "Blog" comme 5e element dans `navItems` (entre "A propos" et "Contact") dans Navigation.tsx et Footer.tsx.
