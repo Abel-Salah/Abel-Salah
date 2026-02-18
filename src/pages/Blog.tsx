@@ -3,8 +3,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { blogPosts } from "@/data/blogPosts";
+import { useGeneratedBlogPosts } from "@/hooks/useGeneratedBlogPosts";
+import { useMemo } from "react";
 
 const Blog = () => {
+  const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts();
+
+  const allPosts = useMemo(() => {
+    const merged = [...blogPosts, ...generatedPosts];
+    merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return merged;
+  }, [generatedPosts]);
+
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
       <SEOHead
@@ -29,8 +39,12 @@ const Blog = () => {
           </p>
         </motion.div>
 
+        {isLoading && (
+          <div className="text-center text-muted-foreground mb-8">Chargement des articles...</div>
+        )}
+
         <div className="grid gap-8 md:gap-12">
-          {blogPosts.map((post, index) => (
+          {allPosts.map((post, index) => (
             <motion.article
               key={post.slug}
               initial={{ opacity: 0, y: 30 }}

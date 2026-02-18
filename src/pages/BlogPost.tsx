@@ -1,16 +1,39 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
 import { getPostBySlug, getAdjacentPosts } from "@/data/blogPosts";
+import { getGeneratedPostBySlug } from "@/hooks/useGeneratedBlogPosts";
 
 const SITE_URL = "https://abel-sala.lovable.app";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getPostBySlug(slug) : undefined;
+
+  // Try static first
+  const staticPost = slug ? getPostBySlug(slug) : undefined;
   const adjacent = slug ? getAdjacentPosts(slug) : { previous: null, next: null };
+
+  // If not static, try generated
+  const { data: generatedPost, isLoading } = useQuery({
+    queryKey: ["generated-post", slug],
+    queryFn: () => getGeneratedPostBySlug(slug!),
+    enabled: !staticPost && !!slug,
+  });
+
+  const post = staticPost || generatedPost;
+
+  if (isLoading && !staticPost) {
+    return (
+      <main className="min-h-screen bg-background pt-24 pb-16">
+        <div className="container mx-auto px-4 text-center text-muted-foreground">
+          Chargement de l'article...
+        </div>
+      </main>
+    );
+  }
 
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -118,8 +141,10 @@ const BlogPost = () => {
                   key={j}
                   className="text-muted-foreground leading-relaxed mb-4 last:mb-0"
                   dangerouslySetInnerHTML={{
-                    __html: paragraph
-                      .replace(/\*\*(.*?)\*\*/g, "<strong class='text-foreground'>$1</strong>"),
+                    __html: paragraph.replace(
+                      /\*\*(.*?)\*\*/g,
+                      "<strong class='text-foreground'>$1</strong>"
+                    ),
                   }}
                 />
               ))}
@@ -150,39 +175,41 @@ const BlogPost = () => {
           </Link>
         </motion.div>
 
-        {/* Adjacent navigation */}
-        <nav className="mt-12 pt-8 border-t border-border flex justify-between gap-4">
-          {adjacent.previous ? (
-            <Link
-              to={`/blog/${adjacent.previous.slug}`}
-              className="group flex-1 text-left"
-            >
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                Précédent
-              </span>
-              <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
-                {adjacent.previous.title}
-              </p>
-            </Link>
-          ) : (
-            <div />
-          )}
-          {adjacent.next ? (
-            <Link
-              to={`/blog/${adjacent.next.slug}`}
-              className="group flex-1 text-right"
-            >
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                Suivant
-              </span>
-              <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
-                {adjacent.next.title}
-              </p>
-            </Link>
-          ) : (
-            <div />
-          )}
-        </nav>
+        {/* Adjacent navigation (only for static posts) */}
+        {staticPost && (
+          <nav className="mt-12 pt-8 border-t border-border flex justify-between gap-4">
+            {adjacent.previous ? (
+              <Link
+                to={`/blog/${adjacent.previous.slug}`}
+                className="group flex-1 text-left"
+              >
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Précédent
+                </span>
+                <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
+                  {adjacent.previous.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+            {adjacent.next ? (
+              <Link
+                to={`/blog/${adjacent.next.slug}`}
+                className="group flex-1 text-right"
+              >
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Suivant
+                </span>
+                <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
+                  {adjacent.next.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+          </nav>
+        )}
       </article>
     </main>
   );
