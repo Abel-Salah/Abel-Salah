@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
+import SEOHead from "@/components/SEOHead";
 
 const stats = [
   { value: "16+", label: "ans d'expérience" },
@@ -52,6 +53,11 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEOHead
+        title="Abel SALAH | Expert IA pour Entreprises en France - Audit, Stratégie & Déploiement"
+        description="Expert en intelligence artificielle pour les entreprises. Audit IA gratuit, automatisation des processus, stratégie data et déploiement de solutions IA sur mesure. 16 ans d'expérience, 62 projets réalisés."
+        canonical="/"
+      />
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
         <div className="container mx-auto">

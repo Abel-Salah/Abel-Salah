@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const services = [
 "Audit & stratégie IA pour dirigeants",
@@ -27,6 +28,11 @@ const certifications = [
 const About = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
+      <SEOHead
+        title="Abel SALAH | Consultant IA & Transformation Digitale - 16 ans d'expérience"
+        description="Ancien directeur commercial (CA 4.8M €), aujourd'hui consultant expert en IA pour entreprises. Audit IA, automatisation commerciale, stratégie data. PME, ETI, grands groupes."
+        canonical="/about"
+      />
       <div className="container mx-auto">
         {/* Header */}
         <motion.div
