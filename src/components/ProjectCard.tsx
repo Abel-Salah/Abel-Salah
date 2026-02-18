@@ -18,19 +18,19 @@ const ProjectCard = ({ number, title, context, action, result, index }: ProjectC
       viewport={{ once: true }}
       className="border-t border-border py-16 group bg-gradient-to-r from-transparent to-transparent hover:from-transparent hover:to-[hsl(var(--primary)/0.05)] transition-all duration-500"
     >
-      <div className="grid grid-cols-12 gap-8">
-        <div className="col-span-2">
-          <span className="heading-display text-6xl text-muted-foreground/30 group-hover:text-primary transition-colors duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+        <div className="md:col-span-2">
+          <span className="heading-display text-4xl md:text-6xl text-muted-foreground/30 group-hover:text-primary transition-colors duration-500">
             {number}
           </span>
         </div>
         
-        <div className="col-span-10 space-y-8">
-          <h3 className="heading-display text-4xl md:text-5xl group-hover:text-primary transition-colors duration-300">
+        <div className="md:col-span-10 space-y-6 md:space-y-8">
+          <h3 className="heading-display text-3xl md:text-5xl group-hover:text-primary transition-colors duration-300">
             {title}
           </h3>
           
-          <div className="grid grid-cols-3 gap-8 text-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-lg">
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
                 Contexte

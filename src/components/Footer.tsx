@@ -127,7 +127,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="md:col-span-2 flex md:justify-end"
+              className="md:col-span-2 flex justify-center md:justify-end"
             >
               <Link
                 to="/contact"
