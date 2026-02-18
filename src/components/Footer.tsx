@@ -9,6 +9,7 @@ const Footer = () => {
     { to: "/", label: "Accueil" },
     { to: "/work", label: "Réalisations" },
     { to: "/about", label: "À propos" },
+    { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
   ];
 
