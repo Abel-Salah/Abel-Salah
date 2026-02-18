@@ -1,80 +1,137 @@
 
-# Ajouter un blog SEO "Expert IA Entreprise"
+# Generation automatique d'articles de blog avec Lovable AI
 
 ## Vue d'ensemble
 
-Creation d'une section blog statique (sans base de donnees) avec des articles optimises pour le referencement sur les requetes liees a "expert IA entreprise". Les articles sont stockes en dur dans un fichier de donnees TypeScript, ce qui reste simple et performant pour un site vitrine.
+Mise en place d'un systeme de generation automatique d'articles de blog SEO via une edge function Supabase + Lovable AI Gateway + base de donnees pour stocker les articles generes. Un cron job declenchera la generation selon le calendrier prevu.
 
 ## Architecture
 
-Le blog comprendra :
-- Une page listing `/blog` avec tous les articles
-- Des pages article individuelles `/blog/:slug`
-- 5 articles pre-rediges optimises SEO
-- Integration dans la navigation et le footer
-- Sitemap et donnees structurees mises a jour
+```text
++------------------+       +---------------------+       +-------------------+
+|  Cron Job        | ----> | Edge Function       | ----> | Lovable AI        |
+|  (pg_cron)       |       | generate-blog-post  |       | Gateway (Gemini)  |
++------------------+       +---------------------+       +-------------------+
+                                    |
+                                    v
+                            +-------------------+
+                            | Table Supabase    |
+                            | blog_posts        |
+                            +-------------------+
+                                    ^
+                                    |
+                            +-------------------+
+                            | Frontend React    |
+                            | Blog.tsx          |
+                            +-------------------+
+```
 
-## Articles prevus
+## Calendrier de publication
 
-| # | Slug | Titre optimise | Mot-cle cible |
-|---|---|---|---|
-| 1 | `pourquoi-faire-appel-expert-ia-entreprise` | Pourquoi faire appel a un expert IA en entreprise ? | expert IA entreprise |
-| 2 | `audit-ia-entreprise-par-ou-commencer` | Audit IA en entreprise : par ou commencer ? | audit IA entreprise |
-| 3 | `automatisation-ia-pme-guide-pratique` | Automatisation IA pour PME : guide pratique | automatisation IA PME |
-| 4 | `ia-force-de-vente-cas-concrets` | L'IA au service de la force de vente : cas concrets | IA force de vente |
-| 5 | `strategie-ia-entreprise-2026` | Strategie IA en entreprise : les priorites 2026 | strategie IA entreprise |
+| Frequence | Type d'article | Exemples de sujets |
+|---|---|---|
+| 2x par jour (lun-ven) | Concret & actionnable | "5 prompts IA pour qualifier vos leads en 10 min", "Automatiser vos relances clients avec l'IA : tuto pas a pas" |
+| 2x par semaine (mar, jeu) | Promotion Abel SALAH | "Pourquoi faire appel a Abel SALAH pour votre audit IA", "3 raisons de travailler avec Abel SALAH pour votre strategie IA" |
 
-Chaque article aura ~600-800 mots de contenu riche avec des sous-titres H2/H3 bien structures, un CTA vers la page contact, et des meta tags dedies.
+## Etapes d'implementation
+
+### 1. Activer Lovable Cloud
+
+Prerequis pour la base de donnees et les edge functions.
+
+### 2. Creer la table `generated_blog_posts`
+
+Colonnes :
+- `id` (uuid, PK)
+- `slug` (text, unique)
+- `title` (text)
+- `meta_title` (text)
+- `meta_description` (text)
+- `date` (date)
+- `read_time` (text)
+- `tags` (text[])
+- `excerpt` (text)
+- `content` (jsonb) -- tableau de sections {title, content[]}
+- `article_type` (text) -- "actionnable" ou "promotion"
+- `published` (boolean, default true)
+- `created_at` (timestamptz)
+
+RLS : lecture publique (SELECT pour tous), ecriture reservee au service role.
+
+### 3. Creer l'edge function `generate-blog-post`
+
+Cette function :
+1. Recoit un parametre `type` ("actionnable" ou "promotion")
+2. Recupere les articles existants (titres) pour eviter les doublons
+3. Appelle Lovable AI Gateway (google/gemini-3-flash-preview) avec un prompt SEO detaille
+4. Utilise le tool calling pour obtenir un JSON structure (slug, title, metaTitle, metaDescription, tags, excerpt, content sections)
+5. Insere l'article dans la table `generated_blog_posts`
+
+Prompts differencies selon le type :
+- **Actionnable** : "Redige un article de blog SEO hyper concret et actionnable sur l'IA en entreprise. Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres. Mots-cles cibles : expert IA entreprise, automatisation IA, audit IA..."
+- **Promotion** : "Redige un article de blog SEO qui met en avant l'expertise d'Abel SALAH, consultant expert IA. Explique pourquoi les entreprises devraient faire appel a lui pour [audit/strategie/deploiement IA]. Inclus ses resultats concrets : 62 projets, 16 ans experience, CA 4.8M..."
+
+### 4. Configurer les cron jobs (pg_cron + pg_net)
+
+- **Articles actionnables** : 2x par jour a 8h et 14h (lun-ven)
+- **Articles promotion** : 2x par semaine le mardi et jeudi a 10h
+
+### 5. Modifier le frontend
+
+- **`src/data/blogPosts.ts`** : Garder les 5 articles statiques existants
+- **`src/pages/Blog.tsx`** : Charger les articles depuis Supabase + les articles statiques, fusionner et trier par date
+- **`src/pages/BlogPost.tsx`** : Chercher d'abord dans les articles statiques, sinon requeter Supabase par slug
+- Ajouter un hook `useGeneratedBlogPosts` pour fetcher les articles generes
+
+### 6. Mettre a jour le sitemap
+
+Creer une edge function `sitemap` qui genere dynamiquement le sitemap XML avec tous les articles (statiques + generes).
 
 ## Fichiers a creer
 
 | Fichier | Role |
 |---|---|
-| `src/data/blogPosts.ts` | Donnees des articles (titre, slug, contenu, date, description SEO, tags) |
-| `src/pages/Blog.tsx` | Page listing des articles |
-| `src/pages/BlogPost.tsx` | Page article individuel |
+| `supabase/functions/generate-blog-post/index.ts` | Edge function de generation via Lovable AI |
+| `supabase/functions/sitemap/index.ts` | Sitemap dynamique |
+| `src/hooks/useGeneratedBlogPosts.ts` | Hook React pour charger les articles generes |
 
 ## Fichiers a modifier
 
 | Fichier | Modification |
 |---|---|
-| `src/App.tsx` | Ajouter les routes `/blog` et `/blog/:slug` |
-| `src/components/Navigation.tsx` | Ajouter "Blog" dans le menu |
-| `src/components/Footer.tsx` | Ajouter "Blog" dans les liens de navigation |
-| `src/components/SEOHead.tsx` | Ajouter support pour `ogType="article"` et les meta `article:published_time` |
-| `public/sitemap.xml` | Ajouter `/blog` et les 5 URLs d'articles |
-| `index.html` | Ajouter un schema JSON-LD `Blog` |
+| `src/pages/Blog.tsx` | Fusionner articles statiques + generes |
+| `src/pages/BlogPost.tsx` | Fallback vers Supabase si slug non trouve en statique |
+| `supabase/config.toml` | Declarer les edge functions |
+
+## Migration SQL (via insert tool, pas migration)
+
+- Creation de la table `generated_blog_posts`
+- Activation des extensions `pg_cron` et `pg_net`
+- Creation des 3 cron jobs (2x/jour actionnable + 2x/semaine promotion)
 
 ## Details techniques
 
-### Structure des donnees (`blogPosts.ts`)
+### Prompt de generation (actionnable)
 
-Chaque article contient :
-- `slug` : URL-friendly
-- `title` : titre H1 optimise
-- `metaTitle` : titre pour la balise `<title>` (avec "Abel SALAH - Expert IA")
-- `metaDescription` : description SEO (~155 caracteres)
-- `date` : date de publication
-- `readTime` : temps de lecture estime
-- `tags` : categories (ex: "Strategie IA", "PME")
-- `excerpt` : extrait pour la page listing
-- `content` : contenu complet en sections structurees (titre + paragraphes)
+Le prompt systeme inclura :
+- Tonalite : professionnel, concret, pas de jargon inutile
+- Structure obligatoire : 4-5 sections H2, paragraphes courts, listes numerotees
+- Mots-cles SEO a placer naturellement
+- Longueur cible : 600-800 mots
+- CTA implicite vers Abel SALAH en fin d'article
+- Date actuelle pour contextualiser
 
-### Page listing (`Blog.tsx`)
+### Prompt de generation (promotion)
 
-- Grille d'articles avec titre, date, extrait et tags
-- Animations framer-motion coherentes avec le reste du site
-- Style minimaliste (fond sombre, typographie existante)
-- SEOHead avec title "Blog IA Entreprise | Abel SALAH - Expert IA"
+Le prompt systeme inclura :
+- Mise en avant d'Abel SALAH comme expert IA
+- Chiffres cles : 62 projets, 16 ans experience, +40% conversion, pipeline x5
+- Approche : audit gratuit, accompagnement sur mesure, resultats mesurables
+- Angle different a chaque article (audit, strategie, deploiement, formation, ROI)
+- CTA direct vers la page contact
 
-### Page article (`BlogPost.tsx`)
+### Gestion des erreurs
 
-- Rendu du contenu avec titres H2/H3 et paragraphes
-- Navigation (article precedent/suivant)
-- CTA en bas d'article vers `/contact`
-- SEOHead avec `ogType="article"` et meta specifiques
-- Schema JSON-LD `Article` par article (dans le composant via Helmet)
-
-### Navigation
-
-Ajout de "Blog" comme 5e element dans `navItems` (entre "A propos" et "Contact") dans Navigation.tsx et Footer.tsx.
+- Rate limiting (429) : le cron reessaiera au prochain cycle
+- Credits epuises (402) : log d'erreur, notification possible
+- Doublons : verification du slug avant insertion
