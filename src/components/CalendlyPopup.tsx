@@ -30,7 +30,7 @@ const CalendlyPopup = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 bg-gradient-to-r from-primary to-blue-400 text-primary-foreground px-5 py-3 rounded-lg font-semibold uppercase tracking-wider text-sm shadow-lg hover:opacity-90 transition-opacity"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 bg-primary text-primary-foreground px-3 py-2 md:px-5 md:py-3 rounded-lg font-semibold uppercase tracking-wider text-xs md:text-sm shadow-lg hover:opacity-90 transition-opacity"
       >
         <Calendar className="w-5 h-5" />
         Prendre RDV
