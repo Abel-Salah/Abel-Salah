@@ -53,7 +53,7 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20 bg-[radial-gradient(ellipse_at_top_left,_hsl(var(--primary)/0.05)_0%,_transparent_60%)]">
+      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}

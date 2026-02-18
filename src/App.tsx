@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import CalendlyPopup from "@/components/CalendlyPopup";
+import ScrollGradient from "@/components/ScrollGradient";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import About from "./pages/About";
@@ -23,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <ScrollGradient />
         <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />
