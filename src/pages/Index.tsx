@@ -220,7 +220,7 @@ const Index = () => {
           >
             <button
               onClick={() => window.__openCalendly?.()}
-              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-gradient-to-r from-primary to-blue-400 text-primary-foreground px-12 py-6 hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-gradient-to-r from-primary to-blue-400 text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity"
             >
               Réservez un appel
               <ArrowRight className="w-6 h-6" />
