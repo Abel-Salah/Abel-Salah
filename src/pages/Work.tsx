@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
+import SEOHead from "@/components/SEOHead";
 
 const projects = [
   {
@@ -42,6 +43,11 @@ const projects = [
 const Work = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
+      <SEOHead
+        title="Cas d'usage IA en entreprise | Abel SALAH - Expert IA"
+        description="Découvrez comment l'IA a transformé des entreprises : +40% conversion, pipeline x5, cycle de vente -40%. Cas concrets d'implémentation IA en ventes, RH et acquisition."
+        canonical="/work"
+      />
       <div className="container mx-auto">
         {/* Header */}
         <motion.div

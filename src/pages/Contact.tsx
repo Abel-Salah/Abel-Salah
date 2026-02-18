@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
 import ContactForm from "@/components/ContactForm";
+import SEOHead from "@/components/SEOHead";
 
 const Contact = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
+      <SEOHead
+        title="Contactez Abel SALAH | Expert IA pour Entreprises en France"
+        description="Prenez rendez-vous avec un expert IA. Audit gratuit, réponse sous 24h. Accompagnement personnalisé pour intégrer l'intelligence artificielle dans votre entreprise."
+        canonical="/contact"
+      />
       <div className="container mx-auto">
         {/* Header */}
         <motion.div
