@@ -1,34 +1,39 @@
 
 
-# Ajout de gradients subtils sur le site
+# Gradient anime qui suit le scroll utilisateur
 
-## Modifications prevues
+## Concept
 
-### 1. Section Hero (`src/pages/Index.tsx`)
-- Ajouter un gradient radial sombre en arriere-plan : du bleu tres fonce (primary a ~5% opacite) vers le noir, centre en haut a gauche
-- Utilise `bg-[radial-gradient(...)]` via une classe inline ou un style CSS
+Un orbe de lumiere bleue subtile (gradient radial) qui se deplace en arriere-plan au fur et a mesure que l'utilisateur scrolle la page. L'effet est purement decoratif, tres discret (opacite ~5-8%), et donne une sensation de profondeur vivante au site.
 
-### 2. Section CTA (`src/pages/Index.tsx`)
-- Remplacer le fond uni par un degrade vertical subtil allant du fond standard vers une teinte legerement bleutee
-- Ajoute de la profondeur et attire l'oeil vers le bouton d'action
+## Comment ca marche
 
-### 3. Cartes projets (`src/components/ProjectCard.tsx`)
-- Au survol (`group-hover`), ajouter un fond en degrade horizontal subtil (transparent vers bleu a ~5% opacite)
-- Transition douce pour un effet premium sans etre intrusif
+- Un composant `ScrollGradient` est place dans `App.tsx`, en arriere-plan fixe (`fixed`, `pointer-events-none`, `z-0`)
+- Il ecoute le scroll de la page et deplace un orbe radial flou (via `transform: translate`) en fonction de la position du scroll
+- L'orbe se deplace verticalement avec le scroll et oscille legerement horizontalement pour un effet organique
+- Utilisation de framer-motion pour des transitions fluides (spring)
 
-### 4. Bouton Calendly flottant (`src/components/CalendlyPopup.tsx`)
-- Remplacer le `bg-primary` par un degrade lineaire bleu vers bleu clair (`bg-gradient-to-r from-primary to-blue-400`)
-- Meme traitement pour le bouton CTA "Reservez un appel" dans Index.tsx
+## Fichiers concernes
+
+### 1. Nouveau fichier : `src/components/ScrollGradient.tsx`
+- Composant qui :
+  - Ecoute `window.scrollY` via un event listener
+  - Calcule la position Y de l'orbe proportionnellement au scroll (de haut en bas de la page)
+  - Ajoute un leger decalage X sinusoidal pour un mouvement naturel
+  - Affiche un `div` fixe avec un `radial-gradient` bleu a ~5% opacite
+  - Taille de l'orbe : environ 600-800px de diametre, tres flou
+  - `pointer-events: none` pour ne pas bloquer les interactions
+
+### 2. Modification : `src/App.tsx`
+- Importer et ajouter `<ScrollGradient />` juste apres `<ScrollToTop />`
+
+### 3. Modification : `src/pages/Index.tsx`
+- Retirer le gradient radial statique du hero (`bg-[radial-gradient(...)]`) puisque le nouveau gradient anime le remplace de facon plus elegante
 
 ## Details techniques
 
-### Fichiers modifies
-- `src/pages/Index.tsx` : gradient radial sur la section hero, gradient sur la section CTA, gradient sur le bouton "Reservez un appel"
-- `src/components/ProjectCard.tsx` : gradient au hover sur l'article
-- `src/components/CalendlyPopup.tsx` : gradient sur le bouton flottant
-
-### Approche
-- Utilisation de classes Tailwind natives (`bg-gradient-to-r`, `from-*`, `to-*`) et de `bg-[radial-gradient(...)]` pour le hero
-- Pas de CSS supplementaire, tout reste dans les classes Tailwind
-- Les gradients restent tres subtils (opacites basses) pour preserver l'esthetique sombre et minimaliste du site
+- Performance : utilisation de `transform` uniquement (GPU-accelere, pas de repaint)
+- Le composant utilise `useEffect` + `requestAnimationFrame` pour ecouter le scroll sans lag
+- L'orbe est un simple `div` avec `background: radial-gradient(circle, hsl(225 100% 50% / 0.06), transparent 70%)`
+- Position fixe, plein ecran, `z-index: 0`, les contenus restent au-dessus avec `z-index` relatif
 
