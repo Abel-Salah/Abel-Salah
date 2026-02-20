@@ -105,12 +105,12 @@ const Index = () => {
               initial={{ opacity: 0, scale: 0.95, x: 30 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:flex lg:col-span-4 items-center justify-end"
+              className="hidden lg:flex lg:col-span-4 items-end justify-end self-end"
             >
               <img
                 src={abelHero}
                 alt="Abel SALAH — Expert IA pour Entreprises"
-                className="w-full object-contain grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full object-contain"
               />
             </motion.div>
           </div>
