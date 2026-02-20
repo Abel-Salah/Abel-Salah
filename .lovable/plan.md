@@ -1,38 +1,23 @@
 
 
-# Ajouter la photo d'Abel SALAH dans le hero de la page d'accueil (desktop uniquement)
+# Ajustements du hero : couleur, image et mise en page
 
-## Objectif
+## 1. Changer la couleur primaire en #0F1CFE
 
-Integrer la photo portrait d'Abel SALAH a droite du texte hero sur la page d'accueil, visible uniquement sur grand ecran (desktop). Sur mobile, la photo sera masquee pour garder un hero epure.
+La couleur actuelle est `225 100% 50%` (HSL). La nouvelle couleur `#0F1CFE` correspond a `237 99% 53%` en HSL. Modification dans `src/index.css` de la variable `--primary` et `--accent` et `--ring` ainsi que les variables sidebar associees.
 
-## Modifications
+## 2. Afficher l'image en entier (sans decoupe)
 
-### 1. Copier l'image dans le projet
+Actuellement l'image utilise `object-cover` avec `max-h-[600px]`, ce qui la decoupe. Remplacement par `object-contain` et suppression de la hauteur maximale pour que l'image s'affiche integralement.
 
-Copier `Abel_salah.png` dans `src/assets/abel-salah-hero.png` pour l'importer en tant que module ES6.
+## 3. Pousser l'image plus a droite, laisser plus de place au texte
 
-### 2. Modifier `src/pages/Index.tsx`
+Changer la repartition de la grille : passer le texte de `lg:col-span-7` a `lg:col-span-8` et l'image de `lg:col-span-5` a `lg:col-span-4`. Supprimer aussi le padding et le cadre decoratif (border offset) qui prennent de la place inutilement.
 
-- Importer l'image
-- Restructurer la section hero en grille 2 colonnes sur desktop :
-  - Colonne gauche (lg:col-span-7) : le contenu actuel (titre, sous-titre, CTA)
-  - Colonne droite (lg:col-span-5) : la photo avec une animation d'apparition
-- Utiliser `hidden lg:block` sur le conteneur de l'image pour la masquer sur mobile
-- Appliquer un leger effet grayscale au hover (coherent avec la page About)
+## Fichiers modifies
 
-### Details techniques
-
-```text
-Hero desktop :
-+---------------------------+------------------+
-|  Titre H1                 |                  |
-|  Sous-titre               |   Photo Abel     |
-|  CTA                      |   (hidden mobile)|
-+---------------------------+------------------+
-```
-
-- Breakpoint : `lg` (1024px) pour afficher l'image
-- L'image sera positionnee avec `object-cover` et une hauteur maximale pour rester proportionnelle
-- Animation framer-motion : fade-in + leger scale depuis la droite
+| Fichier | Modification |
+|---|---|
+| `src/index.css` | Variable `--primary`, `--accent`, `--ring`, `--sidebar-primary`, `--sidebar-ring` : `237 99% 53%` |
+| `src/pages/Index.tsx` | Grille 8/4, `object-contain`, suppression `max-h` et cadre decoratif |
 
