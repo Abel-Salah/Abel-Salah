@@ -63,7 +63,7 @@ const Index = () => {
       <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-8">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -105,16 +105,13 @@ const Index = () => {
               initial={{ opacity: 0, scale: 0.95, x: 30 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:block lg:col-span-5"
+              className="hidden lg:flex lg:col-span-4 items-center justify-end"
             >
-              <div className="relative p-4">
-                <img
-                  src={abelHero}
-                  alt="Abel SALAH — Expert IA pour Entreprises"
-                  className="w-full max-h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                />
-                <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
-              </div>
+              <img
+                src={abelHero}
+                alt="Abel SALAH — Expert IA pour Entreprises"
+                className="w-full object-contain grayscale hover:grayscale-0 transition-all duration-500"
+              />
             </motion.div>
           </div>
         </div>
