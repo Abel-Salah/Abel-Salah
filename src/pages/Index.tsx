@@ -108,7 +108,7 @@ const Index = () => {
           initial={{ opacity: 0, scale: 0.95, x: 30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden lg:block absolute bottom-0 right-[5%] w-[28%] max-w-[400px]">
+          className="hidden lg:block absolute bottom-0 right-[5%] w-[34%] max-w-[520px]">
 
           <img
 
