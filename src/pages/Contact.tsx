@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import ContactForm from "@/components/ContactForm";
 import SEOHead from "@/components/SEOHead";
 
 const Contact = () => {
@@ -22,16 +21,29 @@ const Contact = () => {
             Contact
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl">
-            Un projet en tête ? Parlons de la façon dont l'IA peut
-            accélérer vos résultats.
+            Un projet en tête ? Réservez un créneau directement dans mon agenda.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-12 gap-16">
-          {/* Form */}
-          <div className="col-span-12 md:col-span-7">
-            <ContactForm />
-          </div>
+          {/* Calendly Embed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="col-span-12 md:col-span-7"
+          >
+            <div className="w-full rounded-lg overflow-hidden border border-border" style={{ height: "700px" }}>
+              <iframe
+                src="https://calendly.com/abel_salah/rdv-abel"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Calendly - Prendre RDV avec Abel SALAH"
+                className="w-full h-full"
+              />
+            </div>
+          </motion.div>
 
           {/* Info */}
           <motion.div
@@ -50,12 +62,12 @@ const Contact = () => {
 
               <div>
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Quoi inclure
+                  Comment ça se passe
                 </span>
                 <ul className="space-y-2 text-lg text-muted-foreground">
-                  <li>• Description rapide du projet</li>
-                  <li>• Délais envisagés</li>
-                  <li>• Budget estimé (optionnel)</li>
+                  <li>• Choisissez un créneau</li>
+                  <li>• Appel découverte de 30 min</li>
+                  <li>• Proposition sous 48h</li>
                 </ul>
               </div>
 
@@ -64,7 +76,7 @@ const Contact = () => {
                   Pas encore prêt ?
                 </span>
                 <p className="text-lg text-foreground">
-                  Pas de souci. Envoyez un message quand même.
+                  Pas de souci. Réservez quand même.
                   <br />
                   <span className="text-primary">Discutons simplement.</span>
                 </p>
