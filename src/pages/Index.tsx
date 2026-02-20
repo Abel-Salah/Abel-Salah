@@ -60,7 +60,7 @@ const Index = () => {
         canonical="/"
       />
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
+      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20 relative overflow-hidden">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
@@ -100,21 +100,22 @@ const Index = () => {
                 </Link>
               </motion.div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, x: 30 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:flex lg:col-span-4 items-end justify-end self-end"
-            >
-              <img
-                src={abelHero}
-                alt="Abel SALAH — Expert IA pour Entreprises"
-                className="w-full object-contain"
-              />
-            </motion.div>
           </div>
         </div>
+
+        {/* Portrait — collé en bas à droite */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, x: 30 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="hidden lg:block absolute bottom-0 right-[5%] w-[28%] max-w-[400px]"
+        >
+          <img
+            src={abelHero}
+            alt="Abel SALAH — Expert IA pour Entreprises"
+            className="w-full object-contain"
+          />
+        </motion.div>
       </section>
 
       {/* Key Stats Section */}

@@ -84,12 +84,12 @@ const Footer = () => {
                 Me contacter
               </h3>
               <div className="space-y-4">
-                <a 
-                  href="mailto:contact@abelsalah.com" 
+                <button
+                  onClick={() => window.__openCalendly?.()}
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
-                  contact@abelsalah.com
-                </a>
+                  Prendre rendez-vous →
+                </button>
                 <p className="text-muted-foreground">France</p>
               </div>
             </motion.div>
