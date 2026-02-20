@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
 import SEOHead from "@/components/SEOHead";
+import abelHero from "@/assets/abel-salah-hero.png";
 
 const stats = [
   { value: "16+", label: "ans d'expérience" },
@@ -61,41 +62,61 @@ const Index = () => {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20">
         <div className="container mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-6xl"
-          >
-            <h1 className="heading-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] mb-8">
-              L'IA ne remplace pas votre entreprise.
-              <span className="text-primary"> Elle l'accélère.</span>
-            </h1>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="max-w-6xl"
+              >
+                <h1 className="heading-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] mb-8">
+                  L'IA ne remplace pas votre entreprise.
+                  <span className="text-primary"> Elle l'accélère.</span>
+                </h1>
+              </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16"
-          >
-            16 ans sur le terrain du business. Aujourd'hui, j'aide les entreprises 
-            à intégrer l'IA là où ça compte : ventes, opérations, stratégie.
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16"
+              >
+                16 ans sur le terrain du business. Aujourd'hui, j'aide les entreprises 
+                à intégrer l'IA là où ça compte : ventes, opérations, stratégie.
+              </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <Link
-              to="/work"
-              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider text-primary hover:gap-6 transition-all group"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <Link
+                  to="/work"
+                  className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider text-primary hover:gap-6 transition-all group"
+                >
+                  Voir les réalisations
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                </Link>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, x: 30 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:block lg:col-span-5"
             >
-              Voir les réalisations
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-            </Link>
-          </motion.div>
+              <div className="relative p-4">
+                <img
+                  src={abelHero}
+                  alt="Abel SALAH — Expert IA pour Entreprises"
+                  className="w-full max-h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                />
+                <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
