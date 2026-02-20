@@ -1,0 +1,44 @@
+# Abel SALAH — Expert IA pour Entreprises en France
+
+## Qui est Abel SALAH ?
+
+Abel SALAH est un consultant expert en intelligence artificielle appliquée aux entreprises, basé en France. Fort de 16 ans d'expérience en développement commercial et transformation digitale, il accompagne les PME et ETI dans l'intégration concrète de l'IA dans leurs processus métier.
+
+Ancien directeur commercial, Abel SALAH combine une expertise terrain du business avec une maîtrise des technologies d'intelligence artificielle pour délivrer des résultats mesurables.
+
+## Services proposés
+
+- **Audit IA gratuit** : Diagnostic complet des opportunités d'automatisation et d'optimisation par l'IA dans votre entreprise.
+- **Automatisation des processus** : Mise en place de solutions IA pour automatiser jusqu'à 80 % des tâches répétitives (ventes, RH, opérations).
+- **Stratégie data & IA** : Définition d'une feuille de route IA alignée sur vos objectifs business.
+- **Déploiement de solutions IA sur mesure** : Intégration de CRM intelligents, scoring leads par IA, LMS avec parcours personnalisés, systèmes d'acquisition automatisés.
+- **Transformation digitale** : Accompagnement global de la transition numérique avec l'IA comme levier de croissance.
+
+## Résultats et chiffres clés
+
+- 16+ ans d'expérience en développement commercial et transformation digitale
+- 62 projets réalisés avec succès
+- 95 % de clients satisfaits
+- +40 % de conversion grâce à l'automatisation du scoring leads
+- Temps d'intégration RH divisé par 3 grâce à un LMS intelligent
+- Pipeline commercial multiplié par 5 via un système d'acquisition IA
+
+## Cas d'usage concrets
+
+1. **IA au service de la force de vente** : Réseau de distribution de 28 commerciaux — automatisation du scoring leads et prévision des ventes par IA → +40 % conversion.
+2. **Digitalisation des processus RH** : Entreprise en hypercroissance — déploiement d'un LMS intelligent avec parcours personnalisés par IA → intégration ÷3.
+3. **Stratégie data & acquisition B2B** : PME sans pipeline structuré — système d'acquisition automatisé (scraping, scoring, CRM IA) → pipeline x5.
+
+## Expertise technique
+
+- Intelligence Artificielle appliquée aux entreprises
+- Automatisation commerciale et CRM intelligent
+- Machine Learning et stratégie data
+- LLM et agents IA pour l'entreprise
+- Transformation digitale et conduite du changement
+
+## Contact
+
+- Site web : https://abel-salah.lovable.app
+- Prendre rendez-vous : https://calendly.com/abel_salah/rdv-abel
+- Localisation : France
