@@ -1,64 +1,49 @@
 
 
-# Audit SEO complet — problemes identifies et corrections
+# Migrer le domaine vers abelsalah.fr + optimisation SEO maximale
 
-Apres analyse de tous les fichiers, il reste **plusieurs problemes critiques** qui empechent un bon referencement :
+## Constat actuel
 
----
-
-## Probleme critique : mauvais domaine partout
-
-Le site publie est `abel-salah.lovable.app` mais **5 fichiers** utilisent encore `abel-sala.lovable.app` (sans le "h") :
-
-| Fichier | Probleme |
-|---|---|
-| `index.html` | canonical, og:url, toutes les URLs JSON-LD |
-| `public/sitemap.xml` | Toutes les URLs du sitemap |
-| `src/pages/BlogPost.tsx` | `SITE_URL` en dur ligne 10 |
-| `public/robots.txt` | URL du sitemap |
-
-Seul `SEOHead.tsx` a ete corrige. **Google indexe les mauvaises URLs.**
-
-## Probleme : liens sociaux du footer generiques
-
-Le footer pointe vers `https://linkedin.com` au lieu de `https://www.linkedin.com/in/abel-salah/`. Les autres liens (Twitter, Medium) pointent vers les pages d'accueil des plateformes.
-
-## Probleme : mots-cles insuffisants
-
-Les meta keywords actuels couvrent "expert IA entreprise" et "consultant IA France" mais manquent les requetes longue traine que tes clients cherchent : "consultant IA", "aide IA entreprises", "accompagnement IA PME", "integration IA", "conseil IA France", "formation IA entreprise", etc.
-
-## Probleme : pas de schema BreadcrumbList
-
-Google utilise les breadcrumbs pour afficher la navigation dans les resultats de recherche. Aucun schema BreadcrumbList n'est present.
+**7 fichiers** utilisent encore `abel-salah.lovable.app` au lieu de `abelsalah.fr`. C'est critique : Google indexe le mauvais domaine, et les signaux SEO sont dilues.
 
 ---
 
 ## Plan de corrections
 
-### 1. Corriger le domaine dans tous les fichiers
-- `index.html` : remplacer toutes les occurrences de `abel-sala` par `abel-salah`
-- `public/sitemap.xml` : idem sur toutes les URLs
-- `src/pages/BlogPost.tsx` : corriger `SITE_URL` ligne 10
-- `public/robots.txt` : corriger l'URL du sitemap
+### 1. Remplacer le domaine partout
 
-### 2. Corriger les liens sociaux du footer
-- LinkedIn → `https://www.linkedin.com/in/abel-salah/`
-- Retirer Twitter et Medium s'ils n'existent pas (liens morts = mauvais signal SEO)
+Remplacer `abel-salah.lovable.app` par `abelsalah.fr` dans :
 
-### 3. Enrichir les meta keywords
-Ajouter dans `index.html` : "consultant IA", "aide IA entreprises", "accompagnement IA PME", "integration IA entreprise", "conseil intelligence artificielle", "formation IA entreprise", "transformation digitale IA", "IA pour PME ETI"
+| Fichier | Occurrences |
+|---|---|
+| `index.html` | canonical, og:url, toutes les URLs JSON-LD (~8 occurrences) |
+| `public/sitemap.xml` | Toutes les URLs (10 occurrences) |
+| `public/robots.txt` | URL du sitemap |
+| `public/llms.txt` | URL du site et contact |
+| `src/components/SEOHead.tsx` | Constante `SITE_URL` ligne 11 |
+| `src/pages/BlogPost.tsx` | Constante `SITE_URL` ligne 10 |
 
-### 4. Ajouter BreadcrumbList dans SEOHead.tsx
-Schema JSON-LD dynamique sur chaque page pour afficher le fil d'ariane dans Google.
+### 2. Mettre a jour les dates du sitemap
+
+Passer les `lastmod` des pages principales a `2026-02-26` (date du jour) pour signaler du contenu frais a Google.
+
+### 3. Ajouter des signaux SEO manquants pour le top 1
+
+Pour maximiser les chances de positionnement :
+
+- **Ajouter `dateModified` dans le JSON-LD** de `index.html` (signal de fraicheur pour Google)
+- **Ajouter `foundingDate: "2024"` sur l'Organisation SKILL & CO** (ancre la credibilite)
+- **Ajouter `@id` sur les entites JSON-LD** pour permettre a Google de relier les schemas entre eux (entity linking)
+- **Ajouter `potentialAction` SearchAction** sur le WebSite schema (permet l'affichage du sitelinks searchbox dans Google)
 
 ## Fichiers modifies
 
 | Fichier | Modification |
 |---|---|
-| `index.html` | Corriger domaine + enrichir keywords |
-| `public/sitemap.xml` | Corriger toutes les URLs |
-| `public/robots.txt` | Corriger URL sitemap |
-| `src/pages/BlogPost.tsx` | Corriger SITE_URL |
-| `src/components/Footer.tsx` | Corriger lien LinkedIn, retirer liens morts |
-| `src/components/SEOHead.tsx` | Ajouter BreadcrumbList schema |
+| `index.html` | Domaine → abelsalah.fr, enrichir JSON-LD avec @id, dateModified, foundingDate |
+| `public/sitemap.xml` | Domaine → abelsalah.fr, dates → 2026-02-26 |
+| `public/robots.txt` | Domaine → abelsalah.fr |
+| `public/llms.txt` | Domaine → abelsalah.fr |
+| `src/components/SEOHead.tsx` | SITE_URL → https://abelsalah.fr |
+| `src/pages/BlogPost.tsx` | SITE_URL → https://abelsalah.fr |
 
