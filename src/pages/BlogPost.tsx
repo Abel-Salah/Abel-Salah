@@ -44,6 +44,11 @@ const BlogPost = () => {
         description={post.metaDescription}
         canonical={`/blog/${post.slug}`}
         ogType="article"
+        breadcrumbs={[
+          { name: "Accueil", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
       />
       <Helmet>
         <meta property="article:published_time" content={post.date} />
