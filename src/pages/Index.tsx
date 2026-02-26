@@ -57,7 +57,9 @@ const Index = () => {
       <SEOHead
         title="Abel SALAH | Expert IA pour Entreprises en France - Audit, Stratégie & Déploiement"
         description="Expert en intelligence artificielle pour les entreprises. Audit IA gratuit, automatisation des processus, stratégie data et déploiement de solutions IA sur mesure. 16 ans d'expérience, 62 projets réalisés."
-        canonical="/" />
+        canonical="/"
+        breadcrumbs={[{ name: "Accueil", path: "/" }]}
+      />
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20 relative overflow-hidden">

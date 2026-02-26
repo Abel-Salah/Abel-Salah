@@ -21,6 +21,7 @@ const Blog = () => {
         title="Blog IA Entreprise | Abel SALAH - Expert IA"
         description="Articles et guides pratiques sur l'intelligence artificielle en entreprise. Audit IA, automatisation, stratégie data et cas concrets par Abel SALAH, expert IA."
         canonical="/blog"
+        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Blog", path: "/blog" }]}
       />
 
       <div className="container mx-auto px-4 md:px-6">
