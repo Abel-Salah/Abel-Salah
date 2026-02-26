@@ -28,4 +28,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://abel-salah.lovable.app/sitemap.xml
+Sitemap: https://abelsalah.fr/sitemap.xml
