@@ -1,49 +1,41 @@
 
 
-# Migrer le domaine vers abelsalah.fr + optimisation SEO maximale
+# Validation JSON-LD + Redirection 301
 
-## Constat actuel
+## 1. Tester le JSON-LD
 
-**7 fichiers** utilisent encore `abel-salah.lovable.app` au lieu de `abelsalah.fr`. C'est critique : Google indexe le mauvais domaine, et les signaux SEO sont dilues.
+Je ne peux pas soumettre directement au Rich Results Test de Google depuis l'editeur, mais je peux **valider la structure du JSON-LD** presente dans `index.html` :
 
----
+**Resultat de l'audit du JSON-LD actuel** : le schema est correctement structure avec 4 entites dans le `@graph` :
+- `ProfessionalService` avec `@id`, `dateModified`, `founder`, `serviceType`
+- `Organization` (SKILL & CO) avec `foundingDate`, `hasOfferCatalog`
+- `WebSite` avec `potentialAction` SearchAction
+- `Blog` avec `author`
 
-## Plan de corrections
+Les `@id` sont coherents et permettent le entity linking. **Le JSON-LD est valide.**
 
-### 1. Remplacer le domaine partout
+Pour tester toi-meme : va sur [Google Rich Results Test](https://search.google.com/test/rich-results) et entre `https://abelsalah.fr`.
 
-Remplacer `abel-salah.lovable.app` par `abelsalah.fr` dans :
+## 2. Ajouter la redirection vers abelsalah.fr
 
-| Fichier | Occurrences |
-|---|---|
-| `index.html` | canonical, og:url, toutes les URLs JSON-LD (~8 occurrences) |
-| `public/sitemap.xml` | Toutes les URLs (10 occurrences) |
-| `public/robots.txt` | URL du sitemap |
-| `public/llms.txt` | URL du site et contact |
-| `src/components/SEOHead.tsx` | Constante `SITE_URL` ligne 11 |
-| `src/pages/BlogPost.tsx` | Constante `SITE_URL` ligne 10 |
+Lovable ne permet pas de configurer des redirections 301 au niveau serveur. La solution est d'ajouter une **redirection client-side** dans `src/main.tsx` qui detecte si le visiteur arrive sur `abel-salah.lovable.app` et le redirige immediatement vers `abelsalah.fr`.
 
-### 2. Mettre a jour les dates du sitemap
+Ce n'est pas un vrai 301 HTTP, mais ca couvre le cas ou quelqu'un accede a l'ancien domaine. Pour le SEO, le `canonical` pointe deja vers `abelsalah.fr`, ce qui dit a Google quelle URL est la bonne.
 
-Passer les `lastmod` des pages principales a `2026-02-26` (date du jour) pour signaler du contenu frais a Google.
-
-### 3. Ajouter des signaux SEO manquants pour le top 1
-
-Pour maximiser les chances de positionnement :
-
-- **Ajouter `dateModified` dans le JSON-LD** de `index.html` (signal de fraicheur pour Google)
-- **Ajouter `foundingDate: "2024"` sur l'Organisation SKILL & CO** (ancre la credibilite)
-- **Ajouter `@id` sur les entites JSON-LD** pour permettre a Google de relier les schemas entre eux (entity linking)
-- **Ajouter `potentialAction` SearchAction** sur le WebSite schema (permet l'affichage du sitelinks searchbox dans Google)
-
-## Fichiers modifies
+### Fichier modifie
 
 | Fichier | Modification |
 |---|---|
-| `index.html` | Domaine → abelsalah.fr, enrichir JSON-LD avec @id, dateModified, foundingDate |
-| `public/sitemap.xml` | Domaine → abelsalah.fr, dates → 2026-02-26 |
-| `public/robots.txt` | Domaine → abelsalah.fr |
-| `public/llms.txt` | Domaine → abelsalah.fr |
-| `src/components/SEOHead.tsx` | SITE_URL → https://abelsalah.fr |
-| `src/pages/BlogPost.tsx` | SITE_URL → https://abelsalah.fr |
+| `src/main.tsx` | Ajouter un check de redirection vers abelsalah.fr si hostname = abel-salah.lovable.app |
+
+### Code ajoute dans `src/main.tsx`
+
+Avant le `createRoot`, ajouter :
+```typescript
+if (window.location.hostname === 'abel-salah.lovable.app') {
+  window.location.replace('https://abelsalah.fr' + window.location.pathname);
+}
+```
+
+`window.location.replace` simule une redirection (pas d'entree dans l'historique du navigateur).
 
