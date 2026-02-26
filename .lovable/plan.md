@@ -1,38 +1,64 @@
 
-# Ajouter LinkedIn + SKILL & CO dans le SEO
 
-## 1. Ajouter le profil LinkedIn dans le JSON-LD
+# Audit SEO complet — problemes identifies et corrections
 
-Dans `index.html`, ajouter `sameAs` sur le schema `Person` d'Abel SALAH avec l'URL LinkedIn :
-```
-"sameAs": ["https://www.linkedin.com/in/abel-salah/"]
-```
-C'est un signal fort pour les IA : ca relie l'identite web d'Abel a un profil professionnel verifie.
+Apres analyse de tous les fichiers, il reste **plusieurs problemes critiques** qui empechent un bon referencement :
 
-## 2. Ajouter SKILL & CO comme organisation fondee
+---
 
-Toujours dans le JSON-LD, enrichir le profil d'Abel avec son entreprise SKILL & CO et ses 3 branches :
-- **SKILL & CO** : Projets IA et E-Learning sur mesure
-- **SKILL & LMS** : Plateforme LMS Qualiopi
-- **SKILL & CRM** : Developpement commercial par IA
+## Probleme critique : mauvais domaine partout
 
-On ajoutera un schema `Organization` pour SKILL & CO avec Abel comme fondateur, et on mettra a jour `worksFor` pour pointer vers cette organisation.
+Le site publie est `abel-salah.lovable.app` mais **5 fichiers** utilisent encore `abel-sala.lovable.app` (sans le "h") :
 
-## 3. Mettre a jour llms.txt
+| Fichier | Probleme |
+|---|---|
+| `index.html` | canonical, og:url, toutes les URLs JSON-LD |
+| `public/sitemap.xml` | Toutes les URLs du sitemap |
+| `src/pages/BlogPost.tsx` | `SITE_URL` en dur ligne 10 |
+| `public/robots.txt` | URL du sitemap |
 
-Ajouter une section sur SKILL & CO dans `public/llms.txt` pour que les LLM comprennent qu'Abel est aussi fondateur de cette entreprise, pas seulement consultant independant.
+Seul `SEOHead.tsx` a ete corrige. **Google indexe les mauvaises URLs.**
+
+## Probleme : liens sociaux du footer generiques
+
+Le footer pointe vers `https://linkedin.com` au lieu de `https://www.linkedin.com/in/abel-salah/`. Les autres liens (Twitter, Medium) pointent vers les pages d'accueil des plateformes.
+
+## Probleme : mots-cles insuffisants
+
+Les meta keywords actuels couvrent "expert IA entreprise" et "consultant IA France" mais manquent les requetes longue traine que tes clients cherchent : "consultant IA", "aide IA entreprises", "accompagnement IA PME", "integration IA", "conseil IA France", "formation IA entreprise", etc.
+
+## Probleme : pas de schema BreadcrumbList
+
+Google utilise les breadcrumbs pour afficher la navigation dans les resultats de recherche. Aucun schema BreadcrumbList n'est present.
+
+---
+
+## Plan de corrections
+
+### 1. Corriger le domaine dans tous les fichiers
+- `index.html` : remplacer toutes les occurrences de `abel-sala` par `abel-salah`
+- `public/sitemap.xml` : idem sur toutes les URLs
+- `src/pages/BlogPost.tsx` : corriger `SITE_URL` ligne 10
+- `public/robots.txt` : corriger l'URL du sitemap
+
+### 2. Corriger les liens sociaux du footer
+- LinkedIn → `https://www.linkedin.com/in/abel-salah/`
+- Retirer Twitter et Medium s'ils n'existent pas (liens morts = mauvais signal SEO)
+
+### 3. Enrichir les meta keywords
+Ajouter dans `index.html` : "consultant IA", "aide IA entreprises", "accompagnement IA PME", "integration IA entreprise", "conseil intelligence artificielle", "formation IA entreprise", "transformation digitale IA", "IA pour PME ETI"
+
+### 4. Ajouter BreadcrumbList dans SEOHead.tsx
+Schema JSON-LD dynamique sur chaque page pour afficher le fil d'ariane dans Google.
 
 ## Fichiers modifies
 
 | Fichier | Modification |
 |---|---|
-| `index.html` | Ajouter `sameAs` LinkedIn, schema `Organization` SKILL & CO, enrichir `worksFor` |
-| `public/llms.txt` | Ajouter section SKILL & CO avec les 3 branches |
+| `index.html` | Corriger domaine + enrichir keywords |
+| `public/sitemap.xml` | Corriger toutes les URLs |
+| `public/robots.txt` | Corriger URL sitemap |
+| `src/pages/BlogPost.tsx` | Corriger SITE_URL |
+| `src/components/Footer.tsx` | Corriger lien LinkedIn, retirer liens morts |
+| `src/components/SEOHead.tsx` | Ajouter BreadcrumbList schema |
 
-## Detail technique
-
-Dans le JSON-LD `index.html` :
-- `Person.sameAs` = `["https://www.linkedin.com/in/abel-salah/"]`
-- `Person.worksFor` devient un `Organization` detaille avec `name: "SKILL & CO"`, `description`, et les sous-services
-- Ajout d'un schema `Organization` dans le `@graph` pour SKILL & CO avec `founder` pointant vers Abel
-- Les 3 branches (CO, LMS, CRM) seront listees dans `hasOfferCatalog`
