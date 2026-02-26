@@ -7,7 +7,7 @@ import SEOHead from "@/components/SEOHead";
 import { getPostBySlug, getAdjacentPosts } from "@/data/blogPosts";
 import { getGeneratedPostBySlug } from "@/hooks/useGeneratedBlogPosts";
 
-const SITE_URL = "https://abel-salah.lovable.app";
+const SITE_URL = "https://abelsalah.fr";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();

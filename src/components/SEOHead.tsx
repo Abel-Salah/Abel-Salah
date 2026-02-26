@@ -8,7 +8,7 @@ interface SEOHeadProps {
   breadcrumbs?: { name: string; path: string }[];
 }
 
-const SITE_URL = "https://abel-salah.lovable.app";
+const SITE_URL = "https://abelsalah.fr";
 const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/390e6aa2-6998-4951-8b6c-23a48e10b181";
 
 const SEOHead = ({ title, description, canonical, ogType = "website", breadcrumbs }: SEOHeadProps) => {
