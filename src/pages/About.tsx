@@ -31,7 +31,9 @@ const About = () => {
       <SEOHead
         title="Abel SALAH | Consultant IA & Transformation Digitale - 16 ans d'expérience"
         description="Ancien directeur commercial (CA 4.8M €), aujourd'hui consultant expert en IA pour entreprises. Audit IA, automatisation commerciale, stratégie data. PME, ETI, grands groupes."
-        canonical="/about" />
+        canonical="/about"
+        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "À propos", path: "/about" }]}
+      />
 
       <div className="container mx-auto">
         {/* Header */}

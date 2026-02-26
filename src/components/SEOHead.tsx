@@ -5,13 +5,25 @@ interface SEOHeadProps {
   description: string;
   canonical?: string;
   ogType?: string;
+  breadcrumbs?: { name: string; path: string }[];
 }
 
 const SITE_URL = "https://abel-salah.lovable.app";
 const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/390e6aa2-6998-4951-8b6c-23a48e10b181";
 
-const SEOHead = ({ title, description, canonical, ogType = "website" }: SEOHeadProps) => {
+const SEOHead = ({ title, description, canonical, ogType = "website", breadcrumbs }: SEOHeadProps) => {
   const fullCanonical = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
+
+  const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": `${SITE_URL}${crumb.path}`
+    }))
+  } : null;
 
   return (
     <Helmet>
@@ -31,6 +43,12 @@ const SEOHead = ({ title, description, canonical, ogType = "website" }: SEOHeadP
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+
+      {breadcrumbSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
     </Helmet>
   );
 };

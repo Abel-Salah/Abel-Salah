@@ -8,6 +8,7 @@ const Contact = () => {
         title="Contactez Abel SALAH | Expert IA pour Entreprises en France"
         description="Prenez rendez-vous avec un expert IA. Audit gratuit, réponse sous 24h. Accompagnement personnalisé pour intégrer l'intelligence artificielle dans votre entreprise."
         canonical="/contact"
+        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Contact", path: "/contact" }]}
       />
       <div className="container mx-auto">
         {/* Header */}

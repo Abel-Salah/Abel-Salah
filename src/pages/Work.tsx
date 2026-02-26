@@ -47,6 +47,7 @@ const Work = () => {
         title="Cas d'usage IA en entreprise | Abel SALAH - Expert IA"
         description="Découvrez comment l'IA a transformé des entreprises : +40% conversion, pipeline x5, cycle de vente -40%. Cas concrets d'implémentation IA en ventes, RH et acquisition."
         canonical="/work"
+        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Réalisations", path: "/work" }]}
       />
       <div className="container mx-auto">
         {/* Header */}
