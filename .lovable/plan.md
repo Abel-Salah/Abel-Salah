@@ -1,30 +1,28 @@
 
 
-# Ajouter les breadcrumbs JSON-LD sur BlogPost.tsx
+# Optimisations SEO finales
 
-Le composant `SEOHead` supporte déjà la prop `breadcrumbs`. Il suffit de la passer dans `BlogPost.tsx`.
+## Corrections a appliquer
 
-## Modification
+### 1. Ajouter `hreflang="fr"` dans SEOHead
 
-**Fichier : `src/pages/BlogPost.tsx`**
+Ajouter une balise `<link rel="alternate" hreflang="fr" href={fullCanonical} />` dans `src/components/SEOHead.tsx`. Signal explicite pour Google que le contenu est en francais.
 
-Ajouter la prop `breadcrumbs` au composant `SEOHead` (lignes 42-47) :
+### 2. Retirer `/styleguide` du routeur ou confirmer son exclusion
 
-```tsx
-<SEOHead
-  title={post.metaTitle}
-  description={post.metaDescription}
-  canonical={`/blog/${post.slug}`}
-  ogType="article"
-  breadcrumbs={[
-    { name: "Accueil", path: "/" },
-    { name: "Blog", path: "/blog" },
-    { name: post.title, path: `/blog/${post.slug}` },
-  ]}
-/>
-```
+La page `/styleguide` existe dans le routeur mais n'est pas dans le sitemap. C'est correct si c'est une page interne/dev. Aucune action necessaire si c'est intentionnel.
 
-Cela génère automatiquement un schema `BreadcrumbList` avec 3 niveaux : Accueil → Blog → Titre de l'article. Google affichera ce fil d'Ariane dans les résultats de recherche.
+### 3. Ajouter `lang="fr"` dans le `<html>` de index.html
 
-**1 fichier modifié** : `src/pages/BlogPost.tsx`
+Le tag `<html lang="fr">` est deja present -- confirme.
+
+## Resume
+
+Le SEO est deja tres bien optimise. La seule correction concrete est l'ajout du `hreflang` dans SEOHead. Le reste est en place.
+
+### Fichier modifie
+
+| Fichier | Modification |
+|---|---|
+| `src/components/SEOHead.tsx` | Ajouter `<link rel="alternate" hreflang="fr">` |
 
