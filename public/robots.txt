@@ -28,4 +28,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://abelsalah.fr/sitemap.xml
+Sitemap: https://mqmynuloecsdsjbgnwzx.supabase.co/functions/v1/generate-sitemap
