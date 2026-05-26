@@ -63,11 +63,23 @@ const BlogPost = () => {
             headline: post.title,
             description: post.metaDescription,
             datePublished: post.date,
-            author: { "@type": "Person", name: "Abel SALAH" },
+            dateModified: post.date,
+            image: [
+              "https://storage.googleapis.com/gpt-engineer-file-uploads/yFKPGRyIVtelP0DcFywODGT5Ywu2/social-images/social-1771719056921-ABEL_SALAH.webp",
+            ],
+            author: {
+              "@type": "Person",
+              name: "Abel SALAH",
+              url: `${SITE_URL}/about`,
+            },
             publisher: {
               "@type": "Organization",
               name: "Abel SALAH - Expert IA",
               url: SITE_URL,
+              logo: {
+                "@type": "ImageObject",
+                url: "https://storage.googleapis.com/gpt-engineer-file-uploads/yFKPGRyIVtelP0DcFywODGT5Ywu2/social-images/social-1771719056921-ABEL_SALAH.webp",
+              },
             },
             mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           })}

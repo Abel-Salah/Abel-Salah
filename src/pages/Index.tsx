@@ -55,8 +55,8 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       <SEOHead
-        title="Abel SALAH | Expert IA pour Entreprises en France - Audit, Stratégie & Déploiement"
-        description="Expert en intelligence artificielle pour les entreprises. Audit IA gratuit, automatisation des processus, stratégie data et déploiement de solutions IA sur mesure. 16 ans d'expérience, 62 projets réalisés."
+        title="Abel SALAH | Expert IA pour Entreprises en France"
+        description="Audit IA gratuit, automatisation et stratégie data pour PME & ETI. 16 ans d'expérience, 62 projets déployés. Intégrez l'IA avec un expert."
         canonical="/"
         breadcrumbs={[{ name: "Accueil", path: "/" }]}
       />
