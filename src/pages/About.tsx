@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Linkedin, Youtube, ArrowUpRight } from "lucide-react";
 import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 import SEOHead from "@/components/SEOHead";
+import { ventures } from "@/data/ventures";
 
 const services = [
 "Audit & stratégie IA pour dirigeants",
@@ -227,6 +229,38 @@ const About = () => {
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
             </a>
           </div>
+        </motion.div>
+
+        {/* Ce que je construis — teaser /ecosystem */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-20 mt-20">
+
+          <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+            Ce que je construis
+          </span>
+          <p className="text-2xl md:text-3xl text-foreground leading-snug mb-12 max-w-3xl">
+            Je ne théorise pas l'IA — <span className="text-primary">je la construis et je l'opère</span>. 4 produits live, en production.
+          </p>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+            {ventures.map((v) => (
+              <li key={v.domain} className="border-t border-border pt-4">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{v.number}</p>
+                <p className="text-lg md:text-xl text-foreground font-medium leading-tight">{v.name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{v.domain}</p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/ecosystem"
+            className="inline-flex items-center gap-2 text-lg text-foreground hover:text-primary transition-colors group story-link"
+          >
+            Voir l'écosystème
+            <ArrowUpRight className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
         {/* Philosophy */}

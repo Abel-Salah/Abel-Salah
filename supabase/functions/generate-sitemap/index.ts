@@ -13,6 +13,7 @@ const STATIC_PAGES = [
   { loc: "/about", priority: "0.7", changefreq: "monthly" },
   { loc: "/contact", priority: "0.8", changefreq: "monthly" },
   { loc: "/blog", priority: "0.8", changefreq: "daily" },
+  { loc: "/ecosystem", priority: "0.8", changefreq: "monthly" },
 ];
 
 const DOMAIN = "https://abelsalah.fr";
