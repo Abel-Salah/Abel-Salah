@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -71,29 +71,53 @@ const Navigation = () => {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-background border-b border-border overflow-hidden"
           >
-            <ul className="container mx-auto px-4 py-6 space-y-4">
-              {navItems.map((item, index) => (
-                <motion.li 
-                  key={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                >
-                  <Link
-                    to={item.href}
-                    onClick={closeMenu}
-                    className={cn(
-                      "block text-2xl font-medium uppercase tracking-wider transition-colors py-2",
-                      location.pathname === item.href
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary"
-                    )}
+            <div className="container mx-auto px-4 py-6">
+              <ul className="space-y-4">
+                {navItems.map((item, index) => (
+                  <motion.li 
+                    key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                   >
-                    {item.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
+                    <Link
+                      to={item.href}
+                      onClick={closeMenu}
+                      className={cn(
+                        "block text-2xl font-medium uppercase tracking-wider transition-colors py-2",
+                        location.pathname === item.href
+                          ? "text-primary"
+                          : "text-foreground hover:text-primary"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+              <div className="flex items-center gap-6 pt-6 mt-6 border-t border-border">
+                <a
+                  href="https://www.linkedin.com/in/abel-salah/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn d'Abel SALAH"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  onClick={closeMenu}
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@abelsalah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chaîne YouTube d'Abel SALAH"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  onClick={closeMenu}
+                >
+                  <Youtube className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

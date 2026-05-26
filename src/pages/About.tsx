@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Linkedin, Youtube, ArrowUpRight } from "lucide-react";
 import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 import SEOHead from "@/components/SEOHead";
 
@@ -182,6 +183,51 @@ const About = () => {
             </ul>
           </motion.div>
         </div>
+
+        {/* Retrouvez-moi */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-20 mt-20">
+
+          <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+            Retrouvez-moi
+          </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+              href="https://www.linkedin.com/in/abel-salah/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-4">
+                <Linkedin className="w-8 h-8 text-primary" />
+                <div>
+                  <p className="text-2xl text-foreground group-hover:text-primary transition-colors">LinkedIn</p>
+                  <p className="text-sm text-muted-foreground">Mon réseau & expertise B2B</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
+            </a>
+            <a
+              href="https://www.youtube.com/@abelsalah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-4">
+                <Youtube className="w-8 h-8 text-primary" />
+                <div>
+                  <p className="text-2xl text-foreground group-hover:text-primary transition-colors">YouTube</p>
+                  <p className="text-sm text-muted-foreground">Vidéos & retours d'expérience IA</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
+            </a>
+          </div>
+        </motion.div>
 
         {/* Philosophy */}
         <motion.div

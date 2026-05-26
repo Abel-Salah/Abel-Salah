@@ -15,6 +15,7 @@ const Footer = () => {
 
   const socialLinks = [
     { href: "https://www.linkedin.com/in/abel-salah/", label: "LinkedIn" },
+    { href: "https://www.youtube.com/@abelsalah", label: "YouTube" },
   ];
 
   return (

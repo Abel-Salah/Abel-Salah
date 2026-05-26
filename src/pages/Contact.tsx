@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Linkedin, Youtube } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
 const Contact = () => {
@@ -81,6 +82,32 @@ const Contact = () => {
                   <br />
                   <span className="text-primary">Discutons simplement.</span>
                 </p>
+              </div>
+
+              <div className="border-t border-border pt-12">
+                <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
+                  Suivez-moi
+                </span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.linkedin.com/in/abel-salah/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="w-12 h-12 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors text-foreground"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@abelsalah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                    className="w-12 h-12 border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors text-foreground"
+                  >
+                    <Youtube className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
