@@ -57,3 +57,12 @@ Optimisez vos process, structurez votre prospection et pilotez efficacement votr
 - YouTube : https://www.youtube.com/@abelsalah
 - Prendre rendez-vous : https://calendly.com/abel_salah/rdv-abel
 - Localisation : France
+
+## Pages
+
+- [Accueil](/): Abel SALAH, expert IA pour PME & ETI en France — audit, automatisation, stratégie data.
+- [À propos](/about): Parcours d'Abel SALAH, 16 ans en développement commercial et transformation digitale par l'IA.
+- [Réalisations](/work): Cas concrets d'IA en entreprise — ventes, RH, acquisition (+40% conversion, pipeline x5).
+- [Écosystème](/ecosystem): Les 4 produits IA construits par Abel SALAH — SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier.
+- [Blog IA Entreprise](/blog): Guides pratiques, cas concrets et analyses stratégiques sur l'IA en entreprise.
+- [Contact](/contact): Prendre rendez-vous avec Abel SALAH via Calendly pour un audit IA gratuit.

@@ -6,8 +6,8 @@ const Contact = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Contactez Abel SALAH | Expert IA pour Entreprises en France"
-        description="Prenez rendez-vous avec un expert IA. Audit gratuit, réponse sous 24h. Accompagnement personnalisé pour intégrer l'intelligence artificielle dans votre entreprise."
+        title="Contact | Abel SALAH - Expert IA pour Entreprises"
+        description="Prenez rendez-vous avec un expert IA. Audit gratuit, réponse sous 24h. Accompagnement IA personnalisé pour votre entreprise."
         canonical="/contact"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Contact", path: "/contact" }]}
       />

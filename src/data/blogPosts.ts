@@ -19,8 +19,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "pourquoi-faire-appel-expert-ia-entreprise",
     title: "Pourquoi faire appel à un expert IA en entreprise ?",
-    metaTitle: "Pourquoi faire appel à un expert IA en entreprise ? | Abel SALAH",
-    metaDescription: "Découvrez pourquoi un expert IA est indispensable pour réussir la transformation digitale de votre entreprise. ROI, gains de productivité et avantage concurrentiel.",
+    metaTitle: "Pourquoi faire appel à un expert IA en entreprise ?",
+    metaDescription: "Pourquoi un expert IA est indispensable pour réussir votre transformation digitale : ROI, gains de productivité et avantage concurrentiel.",
     date: "2026-02-10",
     readTime: "6 min",
     tags: ["Expert IA", "Transformation digitale", "Stratégie"],
@@ -64,8 +64,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "audit-ia-entreprise-par-ou-commencer",
     title: "Audit IA en entreprise : par où commencer ?",
-    metaTitle: "Audit IA en entreprise : par où commencer ? | Abel SALAH - Expert IA",
-    metaDescription: "Guide complet pour réaliser un audit IA en entreprise. Méthodologie en 5 étapes, outils d'analyse et critères de priorisation pour maximiser votre ROI.",
+    metaTitle: "Audit IA en entreprise : par où commencer ?",
+    metaDescription: "Méthodologie en 5 étapes pour réaliser un audit IA en entreprise : outils d'analyse et critères de priorisation pour maximiser le ROI.",
     date: "2026-02-05",
     readTime: "7 min",
     tags: ["Audit IA", "Méthodologie", "Entreprise"],
@@ -118,7 +118,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "automatisation-ia-pme-guide-pratique",
     title: "Automatisation IA pour PME : guide pratique",
-    metaTitle: "Automatisation IA pour PME : guide pratique | Abel SALAH - Expert IA",
+    metaTitle: "Automatisation IA pour PME : le guide pratique",
     metaDescription: "Comment les PME peuvent automatiser leurs processus grâce à l'IA. Cas concrets, outils accessibles et budget réaliste pour se lancer.",
     date: "2026-01-28",
     readTime: "7 min",
@@ -174,8 +174,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ia-force-de-vente-cas-concrets",
     title: "L'IA au service de la force de vente : cas concrets",
-    metaTitle: "L'IA au service de la force de vente : cas concrets | Abel SALAH - Expert IA",
-    metaDescription: "Cas concrets d'utilisation de l'IA pour booster la force de vente : scoring prédictif, personnalisation, coaching IA. Résultats chiffrés et retours d'expérience.",
+    metaTitle: "IA et force de vente : cas concrets et résultats",
+    metaDescription: "Cas concrets d'IA pour la force de vente : scoring prédictif, personnalisation, coaching IA. Résultats chiffrés et retours d'expérience.",
     date: "2026-01-20",
     readTime: "6 min",
     tags: ["IA commerciale", "Force de vente", "Cas concrets"],
@@ -232,8 +232,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "strategie-ia-entreprise-2026",
     title: "Stratégie IA en entreprise : les priorités 2026",
-    metaTitle: "Stratégie IA en entreprise : les priorités 2026 | Abel SALAH - Expert IA",
-    metaDescription: "Les 5 priorités stratégiques IA pour les entreprises en 2026. IA générative, souveraineté des données, IA responsable et formation des équipes.",
+    metaTitle: "Stratégie IA en entreprise : les priorités 2026",
+    metaDescription: "Les 5 priorités stratégiques IA pour 2026 : IA générative, souveraineté des données, IA responsable et formation des équipes.",
     date: "2026-01-15",
     readTime: "8 min",
     tags: ["Stratégie IA", "Tendances 2026", "Entreprise"],
