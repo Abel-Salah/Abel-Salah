@@ -8,8 +8,8 @@ const Ecosystem = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Écosystème | Produits IA construits par Abel SALAH"
-        description="Les 4 produits IA conçus et opérés par Abel SALAH : SCALLUP, SKILL LMS, Formateurs.pro et Immo Montpellier. La preuve par l'exécution."
+        title="Produits IA & Start-ups | 4 Projets Live — Abel SALAH"
+        description="4 produits IA conçus et opérés : SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Preuve d'exécution par Abel SALAH, expert IA."
         canonical="/ecosystem"
         breadcrumbs={[
           { name: "Accueil", path: "/" },

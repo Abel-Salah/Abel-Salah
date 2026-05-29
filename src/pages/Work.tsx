@@ -44,8 +44,8 @@ const Work = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Cas d'usage IA en entreprise | Abel SALAH"
-        description="Cas concrets d'IA en entreprise : +40% conversion, pipeline x5, cycle de vente -40%. Ventes, RH et acquisition transformées par l'IA."
+        title="Résultats IA en Entreprise | +40% Conversion — Abel SALAH"
+        description="Découvrez 5 cas concrets d'IA en entreprise : +40% conversion, pipeline x5, cycle de vente -40%. Résultats mesurables par Abel SALAH, expert IA."
         canonical="/work"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Réalisations", path: "/work" }]}
       />
