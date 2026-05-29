@@ -32,8 +32,8 @@ const About = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Abel SALAH | Consultant IA & Transformation Digitale"
-        description="Ancien directeur commercial (CA 4.8M €), aujourd'hui consultant IA. Audit, automatisation commerciale, stratégie data pour PME, ETI et grands groupes."
+        title="Abel SALAH | Expert IA — 16 Ans, 62 Projets Déployés"
+        description="Ancien directeur commercial, aujourd'hui expert IA. Audit gratuit, automatisation et stratégie data pour PME & ETI. 62 projets déployés avec succès."
         canonical="/about"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "À propos", path: "/about" }]}
       />

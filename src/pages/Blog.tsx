@@ -18,8 +18,8 @@ const Blog = () => {
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
       <SEOHead
-        title="Blog IA Entreprise | Abel SALAH - Expert IA"
-        description="Articles et guides pratiques sur l'intelligence artificielle en entreprise. Audit IA, automatisation, stratégie data et cas concrets par Abel SALAH, expert IA."
+        title="Blog IA Entreprise 2026 | Guides Pratiques — Abel SALAH"
+        description="Guides pratiques IA entreprise 2026 : audit, automatisation, stratégie data et cas concrets. Articles par Abel SALAH, expert IA certifié."
         canonical="/blog"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Blog", path: "/blog" }]}
       />
