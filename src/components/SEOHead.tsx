@@ -32,6 +32,7 @@ const SEOHead = ({ title, description, canonical, ogType = "website", breadcrumb
       <meta name="author" content="Abel SALAH" />
       <link rel="canonical" href={fullCanonical} />
       <link rel="alternate" hrefLang="fr" href={fullCanonical} />
+      <link rel="alternate" hrefLang="x-default" href={fullCanonical} />
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
