@@ -84,7 +84,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16">
 
-                16 ans sur le terrain du business. Aujourd'hui, j'aide les entreprises 
+                16 ans sur le terrain. Aujourd'hui, j'aide les entreprises 
                 à intégrer l'IA là où ça compte : ventes, opérations, stratégie.
               </motion.p>
 
