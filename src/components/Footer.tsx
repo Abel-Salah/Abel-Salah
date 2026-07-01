@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
+import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -90,6 +91,15 @@ const Footer = () => {
                 >
                   Prendre rendez-vous →
                 </button>
+                <a
+                  href={cvAsset.url}
+                  download
+                  className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors text-lg font-medium group"
+                >
+                  <Download className="w-4 h-4" />
+                  Télécharger mon CV
+                  <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                </a>
                 <p className="text-muted-foreground">France</p>
               </div>
             </motion.div>
