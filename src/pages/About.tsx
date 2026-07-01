@@ -198,7 +198,7 @@ const About = () => {
           <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
             Retrouvez-moi
           </span>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <a
               href="https://www.linkedin.com/in/abel-salah/"
               target="_blank"
@@ -225,6 +225,20 @@ const About = () => {
                 <div>
                   <p className="text-2xl text-foreground group-hover:text-primary transition-colors">YouTube</p>
                   <p className="text-sm text-muted-foreground">Vidéos & retours d'expérience IA</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
+            </a>
+            <a
+              href={cvAsset.url}
+              download
+              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-4">
+                <Download className="w-8 h-8 text-primary" />
+                <div>
+                  <p className="text-2xl text-foreground group-hover:text-primary transition-colors">CV</p>
+                  <p className="text-sm text-muted-foreground">Télécharger mon CV consultant IA (PDF)</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
