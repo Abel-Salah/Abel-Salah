@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
 import SEOHead from "@/components/SEOHead";
 import abelHero from "@/assets/abel-salah-hero.png";
+import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const stats = [
 { value: "16+", label: "ans d'expérience" },
