@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
 import SEOHead from "@/components/SEOHead";
 import abelHero from "@/assets/abel-salah-hero.png";
+import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const stats = [
 { value: "16+", label: "ans d'expérience" },
@@ -91,7 +92,8 @@ const Index = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}>
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
 
                 <Link
                   to="/work"
@@ -100,6 +102,15 @@ const Index = () => {
                   Voir les réalisations
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </Link>
+
+                <a
+                  href={cvAsset.url}
+                  download
+                  className="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-colors text-sm font-medium text-muted-foreground hover:text-primary">
+
+                  <Download className="w-4 h-4" />
+                  Télécharger mon CV (PDF)
+                </a>
               </motion.div>
             </div>
           </div>
