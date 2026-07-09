@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
-import BookingCTA from "@/components/BookingCTA";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +9,6 @@ const Footer = () => {
   const navLinks = [
     { to: "/", label: "Accueil" },
     { to: "/work", label: "Réalisations" },
-    { to: "/audit-ia", label: "Audit IA" },
-    { to: "/automatisation-commerciale", label: "Automatisation commerciale" },
-    { to: "/formation-ia", label: "Formation IA" },
     { to: "/about", label: "À propos" },
     { to: "/ecosystem", label: "Écosystème" },
     { to: "/blog", label: "Blog" },
@@ -89,13 +85,12 @@ const Footer = () => {
                 Me contacter
               </h3>
               <div className="space-y-4">
-                <BookingCTA
-                  source="footer"
-                  variant="link"
-                  className="text-foreground hover:text-primary text-lg font-medium"
+                <button
+                  onClick={() => window.__openCalendly?.()}
+                  className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
                   Prendre rendez-vous →
-                </BookingCTA>
+                </button>
                 <a
                   href={cvAsset.url}
                   download

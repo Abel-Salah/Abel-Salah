@@ -30,5 +30,3 @@ Allow: /
 Disallow: /styleguide
 
 Sitemap: https://abelsalah.fr/sitemap.xml
-
-AI-Content-Info: https://abelsalah.fr/llms.txt

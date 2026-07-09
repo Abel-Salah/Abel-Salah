@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
@@ -7,29 +7,13 @@ import { useGeneratedBlogPosts } from "@/hooks/useGeneratedBlogPosts";
 import { useMemo } from "react";
 
 const Blog = () => {
-  const [searchParams] = useSearchParams();
   const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts();
-  const query = searchParams.get("q")?.trim().toLowerCase() ?? "";
 
   const allPosts = useMemo(() => {
     const merged = [...blogPosts, ...generatedPosts];
     merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    if (!query) return merged;
-
-    return merged.filter((post) => {
-      const haystack = [
-        post.title,
-        post.excerpt,
-        post.metaDescription,
-        ...post.tags,
-        ...post.content.flatMap((section) => [section.title, ...section.content]),
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return haystack.includes(query);
-    });
-  }, [generatedPosts, query]);
+    return merged;
+  }, [generatedPosts]);
 
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
@@ -54,11 +38,6 @@ const Blog = () => {
             Guides pratiques, cas concrets et analyses stratégiques pour intégrer
             l'intelligence artificielle dans votre entreprise.
           </p>
-          {query && (
-            <p className="text-sm text-muted-foreground mt-6">
-              Résultats pour "{query}".
-            </p>
-          )}
         </motion.div>
 
         {isLoading && (
@@ -66,11 +45,6 @@ const Blog = () => {
         )}
 
         <div className="grid gap-8 md:gap-12">
-          {allPosts.length === 0 && !isLoading && (
-            <div className="border border-border rounded-lg p-8 text-muted-foreground">
-              Aucun article ne correspond à cette recherche.
-            </div>
-          )}
           {allPosts.map((post, index) => (
             <motion.article
               key={post.slug}

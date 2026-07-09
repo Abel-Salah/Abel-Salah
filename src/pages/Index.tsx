@@ -4,13 +4,13 @@ import { ArrowRight, Download } from "lucide-react";
 import CopyReveal from "@/components/CopyReveal";
 import ProjectCard from "@/components/ProjectCard";
 import SEOHead from "@/components/SEOHead";
+import abelHero from "@/assets/abel-salah-hero.png";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
-import BookingCTA from "@/components/BookingCTA";
 
 const stats = [
 { value: "16+", label: "ans d'expérience" },
-{ value: "60+", label: "projets & chantiers pilotés" },
-{ value: "IA", label: "ventes, ops & stratégie" }];
+{ value: "62", label: "projets réalisés" },
+{ value: "95%", label: "clients satisfaits" }];
 
 
 const Index = () => {
@@ -35,21 +35,21 @@ const Index = () => {
     title: "IA au service de la force de vente",
     context: "Réseau de distribution, 28 commerciaux, processus manuels",
     action: "Automatisation du scoring leads et prévision des ventes par IA",
-    result: "conversion améliorée"
+    result: "+40 % conversion"
   },
   {
     number: "02",
     title: "Digitalisation des processus RH avec l'IA",
     context: "Entreprise en hypercroissance, onboarding et formation non structurés",
     action: "Déploiement d'un LMS intelligent avec parcours personnalisés par IA",
-    result: "onboarding accéléré"
+    result: "Intégration ÷3"
   },
   {
     number: "03",
     title: "Stratégie data & acquisition B2B",
     context: "PME sans pipeline commercial structuré",
     action: "Système d'acquisition automatisé : scraping, scoring, CRM IA",
-    result: "pipeline structuré"
+    result: "Pipeline x5"
   }];
 
 
@@ -57,7 +57,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <SEOHead
         title="Expert IA pour Entreprises | Audit Gratuit — Abel SALAH"
-        description="Audit IA gratuit pour PME & ETI. Identifiez les bons cas d'usage, automatisez vos processus et construisez une feuille de route IA réaliste."
+        description="Audit IA gratuit pour PME & ETI. Automatisez vos processus et boostez vos résultats. 16 ans d'expérience, 62 projets IA déployés. Réservez votre audit."
         canonical="/"
         breadcrumbs={[{ name: "Accueil", path: "/" }]}
       />
@@ -124,12 +124,9 @@ const Index = () => {
           className="hidden lg:block absolute bottom-0 right-[5%] w-[34%] max-w-[520px]">
 
           <img
-            src="/optimized/abel-hero.jpg"
+
             alt="Abel SALAH — Expert IA pour Entreprises"
-            width={780}
-            height={1040}
-            className="w-full object-contain"
-          />
+            className="w-full object-contain" src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.png" />
 
         </motion.div>
       </section>
@@ -259,13 +256,13 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}>
 
-            <BookingCTA
-              source="home_final_cta"
-              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider px-12 py-6">
+            <button
+              onClick={() => window.__openCalendly?.()}
+              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
 
               Réservez un appel
               <ArrowRight className="w-6 h-6" />
-            </BookingCTA>
+            </button>
           </motion.div>
         </div>
       </section>
