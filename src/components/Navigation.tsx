@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Linkedin, Youtube } from "lucide-react";
+import { Download, Menu, X, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const navItems = [
   { href: "/", label: "Accueil" },
@@ -20,15 +21,16 @@ const Navigation = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4 md:px-6 py-4">
-        <div className="flex items-center justify-between">
+    <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#111111]/85 px-5 py-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
           <Link 
             to="/" 
-            className="heading-display text-xl hover:text-primary transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
             onClick={closeMenu}
+            aria-label="Accueil Abel SALAH"
           >
-            ABEL SALAH
+            <span className="block h-5 w-5 rounded-tl-full rounded-br-full bg-current" />
           </Link>
           
           {/* Desktop Navigation */}
@@ -38,9 +40,9 @@ const Navigation = () => {
                 <Link
                   to={item.href}
                   className={cn(
-                    "text-sm font-medium uppercase tracking-wider transition-colors story-link",
+                    "text-sm font-medium transition-colors",
                     location.pathname === item.href
-                      ? "text-primary"
+                      ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -50,10 +52,19 @@ const Navigation = () => {
             ))}
           </ul>
 
+          <a
+            href={cvAsset.url}
+            download
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            Download CV
+          </a>
+
           {/* Mobile Hamburger Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden rounded-full border border-white/10 p-2 text-foreground hover:text-primary transition-colors"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -69,9 +80,9 @@ const Navigation = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="md:hidden overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-6">
+            <div className="mt-3 rounded-3xl border border-white/10 bg-[#111111]/95 px-5 py-6 shadow-2xl backdrop-blur-xl">
               <ul className="space-y-4">
                 {navItems.map((item, index) => (
                   <motion.li 

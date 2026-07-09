@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download } from "lucide-react";
-import CopyReveal from "@/components/CopyReveal";
-import ProjectCard from "@/components/ProjectCard";
+import { ArrowRight, Bot, BrainCircuit, Download, Workflow, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import abelHero from "@/assets/abel-salah-hero.png";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const stats = [
@@ -12,49 +9,33 @@ const stats = [
 { value: "62", label: "projets réalisés" },
 { value: "95%", label: "clients satisfaits" }];
 
-
-const Index = () => {
-  const copyExamples = [
-  {
-    before: "On fait tout manuellement",
-    after: "Automatisez 80 % des tâches répétitives avec l'IA"
-  },
-  {
-    before: "L'IA, c'est trop complexe pour nous",
-    after: "Un plan d'action clair, des résultats en 3 mois"
-  },
-  {
-    before: "On ne sait pas par où commencer",
-    after: "Audit IA gratuit. Priorisez ce qui compte vraiment."
-  }];
-
-
-  const projects = [
+const services = [
   {
     number: "01",
-    title: "IA au service de la force de vente",
-    context: "Réseau de distribution, 28 commerciaux, processus manuels",
-    action: "Automatisation du scoring leads et prévision des ventes par IA",
-    result: "+40 % conversion"
+    title: "Audit IA",
+    icon: BrainCircuit,
+    text: "Identifier les cas d'usage qui ont vraiment du sens pour vos équipes, vos données et votre business.",
+    bullets: ["Diagnostic opérationnel", "Priorisation ROI", "Roadmap 30/60/90 jours"],
   },
   {
     number: "02",
-    title: "Digitalisation des processus RH avec l'IA",
-    context: "Entreprise en hypercroissance, onboarding et formation non structurés",
-    action: "Déploiement d'un LMS intelligent avec parcours personnalisés par IA",
-    result: "Intégration ÷3"
+    title: "Automatisation",
+    icon: Workflow,
+    text: "Transformer les tâches répétitives en workflows fiables : prospection, CRM, relances, reporting.",
+    bullets: ["Scoring leads", "Séquences commerciales", "Pilotage CRM"],
   },
   {
     number: "03",
-    title: "Stratégie data & acquisition B2B",
-    context: "PME sans pipeline commercial structuré",
-    action: "Système d'acquisition automatisé : scraping, scoring, CRM IA",
-    result: "Pipeline x5"
-  }];
+    title: "Formation IA",
+    icon: Bot,
+    text: "Former dirigeants, managers et équipes à utiliser l'IA sans gadget, avec méthode et adoption terrain.",
+    bullets: ["Ateliers métier", "Prompting utile", "Conduite du changement"],
+  },
+];
 
-
+const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="Expert IA pour Entreprises | Audit Gratuit — Abel SALAH"
         description="Audit IA gratuit pour PME & ETI. Automatisez vos processus et boostez vos résultats. 16 ans d'expérience, 62 projets IA déployés. Réservez votre audit."
@@ -62,51 +43,65 @@ const Index = () => {
         breadcrumbs={[{ name: "Accueil", path: "/" }]}
       />
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-20 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8">
+      <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(39,91,255,0.45),transparent_32%),radial-gradient(circle_at_20%_20%,rgba(255,166,0,0.12),transparent_18%),linear-gradient(135deg,#030303_0%,#050712_45%,#020202_100%)]" />
+        <div className="absolute right-[-8vw] top-0 h-[72vh] w-[58vw] rotate-[-34deg] overflow-hidden opacity-90 blur-[0.2px]">
+          <motion.div
+            initial={{ x: 90, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            className="h-full w-full bg-[repeating-linear-gradient(90deg,rgba(25,89,255,0.15)_0px,rgba(25,89,255,0.85)_70px,rgba(99,161,255,0.9)_112px,rgba(0,0,0,0.95)_150px)] shadow-[0_0_120px_rgba(37,99,235,0.45)]"
+          />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+
+        <div className="container relative mx-auto min-h-[calc(100vh-8rem)]">
+          <div className="grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-9">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 1, ease: "easeOut" }}
                 className="max-w-6xl">
-
-                <h1 className="heading-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] mb-8">
-                  L'IA ne remplace pas votre entreprise.
-                  <span className="text-primary"> Elle l'accélère.</span>
+                <div className="mb-8 flex items-center gap-3 text-sm text-muted-foreground">
+                  <span className="h-3 w-3 rounded-full bg-[#ffa600] shadow-[0_0_28px_rgba(255,166,0,0.8)]" />
+                  <span>Consultant IA pour PME, ETI & dirigeants</span>
+                </div>
+                <h1 className="heading-display text-[clamp(4.5rem,13vw,13rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
+                  IA
+                  <br />
+                  Business
+                  <span className="text-primary"> *</span>
                 </h1>
               </motion.div>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-12 mb-16">
-
-                16 ans sur le terrain. Aujourd'hui, j'aide les entreprises 
-                à intégrer l'IA là où ça compte : ventes, opérations, stratégie.
+                transition={{ duration: 0.8, delay: 0.25 }}
+                className="text-xl md:text-2xl text-foreground max-w-xl leading-relaxed mb-12">
+                J'aide les entreprises à intégrer l'IA là où elle crée vraiment de la valeur :
+                ventes, opérations, formation et stratégie.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.8, delay: 0.45 }}
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
 
                 <Link
-                  to="/work"
-                  className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider text-primary hover:gap-6 transition-all group">
+                  to="/contact"
+                  className="inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
 
-                  Voir les réalisations
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                  Réserver un audit IA
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
 
                 <a
                   href={cvAsset.url}
                   download
-                  className="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-colors text-sm font-medium text-muted-foreground hover:text-primary">
+                  className="inline-flex items-center gap-3 rounded-full border border-white/10 px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
 
                   <Download className="w-4 h-4" />
                   Télécharger mon CV (PDF)
@@ -116,22 +111,47 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Portrait — collé en bas à droite */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, x: 30 }}
+          initial={{ opacity: 0, scale: 0.95, x: 40 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden lg:block absolute bottom-0 right-[5%] w-[34%] max-w-[520px]">
-
+          transition={{ duration: 1, delay: 0.3 }}
+          className="hidden lg:block absolute bottom-0 right-[4%] w-[34%] max-w-[560px]">
           <img
-
             alt="Abel SALAH — Expert IA pour Entreprises"
-            className="w-full object-contain" src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.png" />
-
+            className="w-full object-contain drop-shadow-[0_35px_80px_rgba(0,0,0,0.65)]"
+            src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.png"
+          />
         </motion.div>
+
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="fixed bottom-6 right-6 z-40 hidden w-[260px] overflow-hidden rounded-3xl border border-white/10 bg-[#111111]/90 shadow-2xl shadow-black/50 backdrop-blur-xl transition-transform hover:-translate-y-1 md:block"
+        >
+          <span className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white">
+            <X className="h-5 w-5" />
+          </span>
+          <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
+            <img
+              src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png"
+              alt="Abel SALAH en vidéo d'introduction"
+              className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
+              loading="lazy"
+            />
+            <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
+              <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">
+                Hello!
+              </div>
+              <p className="text-lg font-bold leading-tight">
+                30 sec pour voir où l'IA peut créer de la valeur.
+              </p>
+            </div>
+          </div>
+        </motion.a>
       </section>
 
-      {/* Key Stats Section */}
       <section className="py-24 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
@@ -156,8 +176,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Copy Transformation Section */}
-      <section className="py-32 px-4 md:px-6 border-t border-border">
+      <section className="py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -166,36 +185,53 @@ const Index = () => {
             viewport={{ once: true }}
             className="mb-20">
 
-            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-              La différence
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+              Services
             </span>
-            <h2 className="heading-display text-4xl md:text-6xl">
-              Avant l'IA vs. Avec l'IA
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+              Comment je peux
+              <br />
+              vous aider /
             </h2>
           </motion.div>
 
-          <div className="space-y-12">
-            {copyExamples.map((example, index) =>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.12 }}
               viewport={{ once: true }}
-              className="border-l-2 border-border hover:border-primary transition-colors pl-8 py-4">
-
-                <CopyReveal
-                before={example.before}
-                after={example.after}
-                className="text-2xl md:text-3xl" />
-
+              className="group min-h-[420px] border border-border bg-card/35 p-8 hover:border-primary/60 transition-colors">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    ({service.number})
+                  </span>
+                  <Icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="heading-display mt-16 text-4xl md:text-5xl leading-none">
+                  {service.title}
+                </h3>
+                <p className="mt-8 text-base leading-relaxed text-muted-foreground">
+                  {service.text}
+                </p>
+                <div className="mt-10 space-y-3 border-t border-border pt-6">
+                  {service.bullets.map((bullet, bulletIndex) => (
+                    <p key={bullet} className="text-sm text-foreground">
+                      {String(bulletIndex + 1).padStart(2, "0")}. {bullet}
+                    </p>
+                  ))}
+                </div>
               </motion.div>
-            )}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
       <section className="py-32 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
@@ -205,18 +241,32 @@ const Index = () => {
             viewport={{ once: true }}
             className="mb-16">
 
-            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-              Cas d'usage
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+              Rythme de mission
             </span>
-            <h2 className="heading-display text-4xl md:text-6xl">
-              Des projets qui <span className="text-primary">transforment</span>
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+              De l'idée
+              <br />
+              au système IA
             </h2>
           </motion.div>
 
-          <div>
-            {projects.map((project, index) =>
-            <ProjectCard key={project.number} {...project} index={index} />
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-3 border-y border-border">
+            {["Cadrer les bons usages", "Prototyper vite", "Déployer avec vos équipes"].map((step, index) => (
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.12 }}
+                viewport={{ once: true }}
+                className="min-h-[260px] border-border p-8 md:border-r last:border-r-0"
+              >
+                <span className="heading-display text-5xl text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-12 text-2xl font-semibold">{step}</h3>
+              </motion.div>
+            ))}
           </div>
 
           <motion.div
