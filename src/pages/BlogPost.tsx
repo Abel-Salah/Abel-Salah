@@ -3,6 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 import SEOHead from "@/components/SEOHead";
 import { getPostBySlug, getAdjacentPosts } from "@/data/blogPosts";
 import { getGeneratedPostBySlug } from "@/hooks/useGeneratedBlogPosts";
@@ -154,16 +157,34 @@ const BlogPost = () => {
                 {section.title}
               </h2>
               {section.content.map((paragraph, j) => (
-                <p
+                <ReactMarkdown
                   key={j}
-                  className="text-muted-foreground leading-relaxed mb-4 last:mb-0"
-                  dangerouslySetInnerHTML={{
-                    __html: paragraph.replace(
-                      /\*\*(.*?)\*\*/g,
-                      "<strong class='text-foreground'>$1</strong>"
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeSanitize]}
+                  components={{
+                    p: ({ children }) => (
+                      <p className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                        {children}
+                      </p>
                     ),
+                    strong: ({ children }) => (
+                      <strong className="text-foreground font-semibold">{children}</strong>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc pl-6 text-muted-foreground leading-relaxed mb-4">
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="list-decimal pl-6 text-muted-foreground leading-relaxed mb-4">
+                        {children}
+                      </ol>
+                    ),
+                    li: ({ children }) => <li className="mb-2">{children}</li>,
                   }}
-                />
+                >
+                  {paragraph}
+                </ReactMarkdown>
               ))}
             </section>
           ))}

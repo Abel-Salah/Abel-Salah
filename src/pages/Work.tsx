@@ -6,37 +6,37 @@ const projects = [
   {
     number: "01",
     title: "IA & performance commerciale retail",
-    context: "Réseau de 3 magasins, 28 collaborateurs, CA 4.8M €",
+    context: "Réseau multi-sites, équipe commerciale et opérations terrain",
     action: "Outils IA pour le scoring client, prévision de stocks et optimisation des ventes",
-    result: "+25 % rentabilité",
+    result: "marges mieux pilotées",
   },
   {
     number: "02",
     title: "Automatisation de l'acquisition B2B",
     context: "Startup sans équipe commerciale structurée",
     action: "Pipeline automatisé : scraping, scoring par IA, séquences d'emailing intelligentes",
-    result: "500+ leads / mois",
+    result: "leads mieux qualifiés",
   },
   {
     number: "03",
     title: "Plateforme de formation augmentée par l'IA",
     context: "Former des équipes commerciales à grande échelle",
     action: "Création d'un LMS avec parcours adaptatifs générés par IA",
-    result: "3 villes, 95 % complétion",
+    result: "adoption renforcée",
   },
   {
     number: "04",
     title: "IA pour le e-commerce : recommandation & conversion",
     context: "Site e-commerce avec taux de conversion faible",
     action: "Moteur de recommandation IA et optimisation du tunnel de vente",
-    result: "+60 % conversion",
+    result: "tunnel clarifié",
   },
   {
     number: "05",
     title: "Stratégie data & CRM intelligent",
     context: "Données clients dispersées, pas de vision unifiée",
     action: "Centralisation CRM IA (HubSpot), segmentation automatique, scoring prédictif",
-    result: "Cycle de vente -40 %",
+    result: "cycle mieux suivi",
   },
 ];
 
@@ -44,8 +44,8 @@ const Work = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Résultats IA en Entreprise | +40% Conversion — Abel SALAH"
-        description="Découvrez 5 cas concrets d'IA en entreprise : +40% conversion, pipeline x5, cycle de vente -40%. Résultats mesurables par Abel SALAH, expert IA."
+        title="Cas d'usage IA en Entreprise — Abel SALAH"
+        description="Découvrez des cas d'usage IA en entreprise : automatisation commerciale, formation augmentée, CRM intelligent et stratégie data."
         canonical="/work"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Réalisations", path: "/work" }]}
       />

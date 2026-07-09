@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { BlogPost } from "@/data/blogPosts";
+import type { Tables } from "@/integrations/supabase/types";
 
 interface GeneratedPost {
   id: string;
@@ -15,6 +16,8 @@ interface GeneratedPost {
   content: { title: string; content: string[] }[];
   article_type: string;
 }
+
+type GeneratedBlogPostRow = Tables<"generated_blog_posts">;
 
 function mapToBlogPost(post: GeneratedPost): BlogPost {
   return {
@@ -41,7 +44,9 @@ export function useGeneratedBlogPosts() {
         .order("date", { ascending: false });
 
       if (error) throw error;
-      return (data || []).map((p: any) => mapToBlogPost(p as GeneratedPost));
+      return (data || []).map((post: GeneratedBlogPostRow) =>
+        mapToBlogPost(post as unknown as GeneratedPost)
+      );
     },
   });
 }

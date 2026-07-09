@@ -8,8 +8,10 @@ Ancien directeur commercial, Abel SALAH combine une expertise terrain du busines
 
 ## Services proposés
 
-- **Audit IA gratuit** : Diagnostic complet des opportunités d'automatisation et d'optimisation par l'IA dans votre entreprise.
-- **Automatisation des processus** : Mise en place de solutions IA pour automatiser jusqu'à 80 % des tâches répétitives (ventes, RH, opérations).
+- **Audit IA** : Diagnostic des opportunités d'automatisation et d'optimisation par l'IA dans votre entreprise.
+- **Automatisation commerciale IA** : Mise en place de workflows IA pour qualifier, prioriser et relancer les prospects avec contrôle humain.
+- **Formation IA équipes** : Acculturation et ateliers métiers pour aider les dirigeants, managers et équipes à utiliser l'IA avec méthode.
+- **Automatisation des processus** : Mise en place de solutions IA pour réduire les tâches répétitives dans les ventes, RH et opérations.
 - **Stratégie data & IA** : Définition d'une feuille de route IA alignée sur vos objectifs business.
 - **Déploiement de solutions IA sur mesure** : Intégration de CRM intelligents, scoring leads par IA, LMS avec parcours personnalisés, systèmes d'acquisition automatisés.
 - **Transformation digitale** : Accompagnement global de la transition numérique avec l'IA comme levier de croissance.
@@ -17,17 +19,17 @@ Ancien directeur commercial, Abel SALAH combine une expertise terrain du busines
 ## Résultats et chiffres clés
 
 - 16+ ans d'expérience en développement commercial et transformation digitale
-- 62 projets réalisés avec succès
-- 95 % de clients satisfaits
-- +40 % de conversion grâce à l'automatisation du scoring leads
-- Temps d'intégration RH divisé par 3 grâce à un LMS intelligent
-- Pipeline commercial multiplié par 5 via un système d'acquisition IA
+- 60+ projets et chantiers digitaux ou IA pilotés
+- Expérience terrain en développement commercial, formation et automatisation
+- Approche orientée gains mesurables, à cadrer projet par projet
+- Onboarding et formation accélérés via des parcours LMS intelligents
+- Pipeline commercial mieux structuré via scoring, CRM et automatisation IA
 
 ## Cas d'usage concrets
 
-1. **IA au service de la force de vente** : Réseau de distribution de 28 commerciaux — automatisation du scoring leads et prévision des ventes par IA → +40 % conversion.
-2. **Digitalisation des processus RH** : Entreprise en hypercroissance — déploiement d'un LMS intelligent avec parcours personnalisés par IA → intégration ÷3.
-3. **Stratégie data & acquisition B2B** : PME sans pipeline structuré — système d'acquisition automatisé (scraping, scoring, CRM IA) → pipeline x5.
+1. **IA au service de la force de vente** : automatisation du scoring leads et prévision des ventes par IA → conversion mieux pilotée.
+2. **Digitalisation des processus RH** : déploiement d'un LMS intelligent avec parcours personnalisés par IA → onboarding accéléré.
+3. **Stratégie data & acquisition B2B** : système d'acquisition automatisé (scraping, scoring, CRM IA) → pipeline structuré.
 
 ## Expertise technique
 
@@ -55,14 +57,17 @@ Optimisez vos process, structurez votre prospection et pilotez efficacement votr
 - Site web : https://abelsalah.fr
 - LinkedIn : https://www.linkedin.com/in/abel-salah/
 - YouTube : https://www.youtube.com/@abelsalah
-- Prendre rendez-vous : https://calendly.com/abel_salah/rdv-abel
+- Prendre rendez-vous : https://tidycal.com/skill-lms/abel-rdv
 - Localisation : France
 
 ## Pages
 
 - [Accueil](/): Abel SALAH, expert IA pour PME & ETI en France — audit, automatisation, stratégie data.
+- [Audit IA](/audit-ia): Diagnostic des cas d'usage IA, priorisation ROI/faisabilité, roadmap 30/60/90 jours.
+- [Automatisation commerciale](/automatisation-commerciale): Scoring, relance, CRM, prospection et pipeline B2B augmentés par IA.
+- [Formation IA](/formation-ia): Formation IA pour dirigeants, managers et équipes opérationnelles.
 - [À propos](/about): Parcours d'Abel SALAH, 16 ans en développement commercial et transformation digitale par l'IA.
-- [Réalisations](/work): Cas concrets d'IA en entreprise — ventes, RH, acquisition (+40% conversion, pipeline x5).
+- [Réalisations](/work): Cas concrets d'IA en entreprise — ventes, RH, acquisition et CRM.
 - [Écosystème](/ecosystem): Les 4 produits IA construits par Abel SALAH — SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier.
 - [Blog IA Entreprise](/blog): Guides pratiques, cas concrets et analyses stratégiques sur l'IA en entreprise.
-- [Contact](/contact): Prendre rendez-vous avec Abel SALAH via Calendly pour un audit IA gratuit.
+- [Contact](/contact): Prendre rendez-vous avec Abel SALAH via TidyCal pour un audit IA gratuit.

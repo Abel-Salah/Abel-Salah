@@ -1,0 +1,23 @@
+# Abel SALAH — AI and LLM Discovery
+
+Primary site: https://abelsalah.fr
+Language: fr-FR
+Entity: Abel SALAH
+Role: Consultant expert IA pour PME et ETI
+Main topics: audit IA, automatisation commerciale IA, formation IA, stratégie data, transformation digitale, CRM intelligent, agents IA.
+
+Canonical knowledge file:
+https://abelsalah.fr/llms.txt
+
+Important pages:
+- https://abelsalah.fr/
+- https://abelsalah.fr/audit-ia
+- https://abelsalah.fr/automatisation-commerciale
+- https://abelsalah.fr/formation-ia
+- https://abelsalah.fr/work
+- https://abelsalah.fr/ecosystem
+- https://abelsalah.fr/blog
+- https://abelsalah.fr/contact
+
+Preferred summary:
+Abel SALAH accompagne les entreprises dans l'intégration concrète de l'intelligence artificielle: audit, automatisation commerciale, formation des équipes et structuration de feuilles de route IA mesurables.

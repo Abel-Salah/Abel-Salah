@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Linkedin, Youtube, ArrowUpRight, Download } from "lucide-react";
-import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
@@ -33,8 +32,8 @@ const About = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Abel SALAH | Expert IA — 16 Ans, 62 Projets Déployés"
-        description="Ancien directeur commercial, aujourd'hui expert IA. Audit gratuit, automatisation et stratégie data pour PME & ETI. 62 projets déployés avec succès."
+        title="Abel SALAH | Expert IA — 16 Ans d'Expérience"
+        description="Ancien directeur commercial, aujourd'hui expert IA. Audit gratuit, automatisation et stratégie data pour PME & ETI avec une approche orientée résultats."
         canonical="/about"
         breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "À propos", path: "/about" }]}
       />
@@ -68,9 +67,13 @@ const About = () => {
               className="relative p-4">
 
               <img
-
+                src="/optimized/abel-about.jpg"
                 alt="Abel SALAH — Expert IA & Consultant en Entreprise"
-                className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500" src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png" />
+                loading="lazy"
+                width={620}
+                height={760}
+                className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500"
+              />
 
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
             </motion.div>
@@ -88,7 +91,7 @@ const About = () => {
                 Je crée de la valeur business avec l'IA.
               </span>
             </p>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">Avant de devenir consultant IA, j'ai dirigé des équipes commerciales, géré un CA de 4.8M d'euros, et fondé plusieurs entreprises dans le digital. Cette expérience terrain me permet de comprendre les vrais enjeux des dirigeants — pas seulement la tech, mais le business.
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">Avant de devenir consultant IA, j'ai dirigé des équipes commerciales, piloté des budgets significatifs, et fondé plusieurs entreprises dans le digital. Cette expérience terrain me permet de comprendre les vrais enjeux des dirigeants — pas seulement la tech, mais le business.
 
 
 

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import CopyReveal from "@/components/CopyReveal";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 
 const Styleguide = () => {
@@ -14,6 +15,12 @@ const Styleguide = () => {
 
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
+      <SEOHead
+        title="Styleguide — Abel SALAH"
+        description="Styleguide interne du site Abel SALAH."
+        canonical="/styleguide"
+        noindex
+      />
       <div className="container mx-auto">
         {/* Header */}
         <motion.div

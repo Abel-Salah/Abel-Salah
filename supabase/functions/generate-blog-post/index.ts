@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { parseGeneratedArticle } from "../_shared/blogArticleSchema.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -28,7 +29,9 @@ serve(async (req) => {
       .order("created_at", { ascending: false })
       .limit(50);
 
-    const existingTitles = (existingPosts || []).map((p: any) => p.title).join(", ");
+    const existingTitles = (existingPosts || [])
+      .map((post: { title: string }) => post.title)
+      .join(", ");
 
     const today = new Date().toISOString().split("T")[0];
 
@@ -38,8 +41,8 @@ serve(async (req) => {
 
 Contexte sur Abel SALAH :
 - 16 ans d'experience en strategie digitale et IA
-- 62 projets IA deployes avec succes
-- Resultats concrets : +40% de taux de conversion, pipeline commercial x5, CA accompagne de 4.8M€
+- 60+ projets et chantiers digitaux ou IA pilotes
+- Resultats a cadrer projet par projet : conversion, pipeline commercial, productivite et adoption
 - Approche : audit gratuit, accompagnement sur mesure, resultats mesurables
 - Specialites : audit IA, strategie data, automatisation des processus, deploiement IA, formation equipes
 
@@ -195,7 +198,7 @@ Regles :
       );
     }
 
-    const article = JSON.parse(toolCall.function.arguments);
+    const article = parseGeneratedArticle(JSON.parse(toolCall.function.arguments));
 
     // Check for duplicate slug
     const { data: existingSlug } = await supabase

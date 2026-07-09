@@ -1,5 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import {
+  parseGeneratedArticle,
+  type GeneratedArticle,
+} from "../_shared/blogArticleSchema.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -20,7 +24,7 @@ async function generateArticle(
   existingTitles: string,
   lovableApiKey: string,
   today: string
-): Promise<any> {
+): Promise<GeneratedArticle> {
   const systemPrompt = `Tu es un redacteur SEO expert. Redige un article de blog SEO en francais, hyper concret et actionnable sur le sujet suivant : "${topic}".
 
 Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres concrets.
@@ -104,7 +108,7 @@ Regles :
     throw new Error("AI did not return structured data");
   }
 
-  return JSON.parse(toolCall.function.arguments);
+  return parseGeneratedArticle(JSON.parse(toolCall.function.arguments));
 }
 
 serve(async (req) => {
@@ -129,8 +133,12 @@ serve(async (req) => {
       .order("created_at", { ascending: false })
       .limit(100);
 
-    let existingTitles = (existingPosts || []).map((p: any) => p.title).join(", ");
-    const existingSlugs = new Set((existingPosts || []).map((p: any) => p.slug));
+    let existingTitles = (existingPosts || [])
+      .map((post: { title: string }) => post.title)
+      .join(", ");
+    const existingSlugs = new Set(
+      (existingPosts || []).map((post: { slug: string }) => post.slug)
+    );
 
     const results: { topic: string; success: boolean; title?: string; error?: string }[] = [];
 

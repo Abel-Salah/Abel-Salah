@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Youtube } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import { TIDYCAL_BOOKING_URL } from "@/lib/booking";
 
 const Contact = () => {
   return (
@@ -28,7 +29,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-12 gap-16">
-          {/* Calendly Embed */}
+          {/* TidyCal Embed */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -37,11 +38,11 @@ const Contact = () => {
           >
             <div className="w-full rounded-lg overflow-hidden border border-border" style={{ height: "700px" }}>
               <iframe
-                src="https://calendly.com/abel_salah/rdv-abel"
+                src={TIDYCAL_BOOKING_URL}
                 width="100%"
                 height="100%"
                 frameBorder="0"
-                title="Calendly - Prendre RDV avec Abel SALAH"
+                title="TidyCal - Prendre RDV avec Abel SALAH"
                 className="w-full h-full"
               />
             </div>

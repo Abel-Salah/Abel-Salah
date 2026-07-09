@@ -1,7 +1,7 @@
-import scallupImg from "@/assets/ventures/scallup.png";
+import scallupImg from "@/assets/optimized/scallup.jpg";
 import skillLmsImg from "@/assets/ventures/skill-lms.jpg";
-import formateursProImg from "@/assets/ventures/formateurs-pro.png";
-import immoMontpellierImg from "@/assets/ventures/immo-montpellier.png";
+import formateursProImg from "@/assets/optimized/formateurs-pro.jpg";
+import immoMontpellierImg from "@/assets/optimized/immo-montpellier.jpg";
 
 export interface Venture {
   number: string;
@@ -28,9 +28,9 @@ export const ventures: Venture[] = [
       "Concevoir et opérer un produit SaaS IA B2B à l'échelle, de la stratégie au revenu.",
     image: scallupImg,
     metrics: [
-      { value: "500+", label: "PME utilisatrices" },
-      { value: "4.9/5", label: "Note moyenne" },
-      { value: "OPCO", label: "Finançable" },
+      { value: "B2B", label: "Vente & prospection" },
+      { value: "IA", label: "Agents commerciaux" },
+      { value: "CRM", label: "Intégrations métier" },
     ],
   },
   {
@@ -62,9 +62,9 @@ export const ventures: Venture[] = [
       "Data engineering, SEO programmatique et écosystèmes produits connectés.",
     image: formateursProImg,
     metrics: [
-      { value: "50 000+", label: "Formateurs référencés" },
-      { value: "9 000+", label: "Certifiés Qualiopi" },
-      { value: "98 %", label: "Profils vérifiés" },
+      { value: "Data", label: "Sources publiques" },
+      { value: "SEO", label: "Annuaire métier" },
+      { value: "OF", label: "Écosystème formation" },
     ],
   },
   {
@@ -81,7 +81,7 @@ export const ventures: Venture[] = [
     metrics: [
       { value: "8", label: "Sources scannées 24/7" },
       { value: "<1h", label: "Délai d'alerte" },
-      { value: "250+", label: "Acquéreurs accompagnés" },
+      { value: "Local", label: "Montpellier" },
     ],
   },
 ];
