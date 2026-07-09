@@ -1,73 +1,111 @@
-# Welcome to your Lovable project
+# Abel SALAH
 
-## Project info
+Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente les offres, les realisations, l'ecosysteme de produits, le blog IA et les pages d'accueil localisees en francais, anglais et espagnol.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Stack
 
-## How can I edit this code?
+- Vite
+- React 18
+- TypeScript
+- React Router
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
+- TanStack Query
+- Supabase pour les articles de blog generes
+- TidyCal pour la prise de rendez-vous
 
-There are several ways of editing your application.
+## Prerequis
 
-**Use Lovable**
+- Node.js 20+ recommande
+- npm
+- Un projet Supabase si les articles generes ou les Edge Functions sont utilises
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Le depot contient actuellement `package-lock.json`, `bun.lock` et `bun.lockb`. Les scripts documentes et valides utilisent npm. Voir [docs/decisions/package-manager.md](docs/decisions/package-manager.md).
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
+cp .env.example .env
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Le serveur Vite ecoute par defaut sur le port configure dans [vite.config.ts](vite.config.ts), actuellement `8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Variables d'environnement
 
-**Use GitHub Codespaces**
+Variables client Vite :
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+VITE_SUPABASE_PROJECT_ID=
+VITE_SUPABASE_URL=
+VITE_SUPABASE_PUBLISHABLE_KEY=
+```
 
-## What technologies are used for this project?
+Variables Edge Functions Supabase :
 
-This project is built with:
+```sh
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+LOVABLE_API_KEY=
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Ne jamais committer de secrets. Utiliser [.env.example](.env.example) comme reference.
 
-## How can I deploy this project?
+## Scripts
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```sh
+npm run dev        # serveur local
+npm run build      # build production
+npm run build:dev  # build en mode development
+npm run lint       # ESLint
+npm run preview    # preview du build
+npm audit          # audit dependances
+```
 
-## Can I connect a custom domain to my Lovable project?
+Etat observe au dernier audit documentaire :
 
-Yes, you can!
+- `npm run lint` passe avec des warnings Fast Refresh sur certains composants shadcn.
+- `npm run build` passe, avec un avertissement Vite sur un chunk JavaScript > 500 kB.
+- `npm audit --audit-level=moderate` remonte encore des vulnerabilites corrigeables par `npm audit fix`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Routes publiques
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- `/` : accueil francais
+- `/en` : accueil anglais
+- `/es` : accueil espagnol
+- `/work` : realisations
+- `/about` : a propos
+- `/contact` : prise de rendez-vous TidyCal
+- `/blog` : liste des articles
+- `/blog/:slug` : detail article statique ou genere
+- `/ecosystem` : produits et preuves d'execution
+- `/styleguide` : page interne, bloquee dans `robots.txt`
+
+## Documentation
+
+- [Installation et environnement](docs/setup.md)
+- [Architecture technique](docs/architecture.md)
+- [Supabase et securite](docs/supabase.md)
+- [SEO, sitemap et LLM](docs/seo.md)
+- [Deploiement et rollback](docs/deployment.md)
+- [Qualite, tests et maintenance](docs/quality.md)
+- [Decisions d'architecture](docs/decisions)
+
+## Points d'attention
+
+- Les fonctions Supabase `generate-sitemap` et `generate-batch-posts` sont configurees avec `verify_jwt = false`.
+- `generate-blog-post` n'est pas liste dans [supabase/config.toml](supabase/config.toml), donc son statut JWT depend de la configuration Supabase par defaut ou distante.
+- Le sitemap statique [public/sitemap.xml](public/sitemap.xml) inclut `/en` et `/es`, mais la fonction [supabase/functions/generate-sitemap/index.ts](supabase/functions/generate-sitemap/index.ts) ne genere pas encore ces alternates.
+- Le blog rend encore certains paragraphes via `dangerouslySetInnerHTML` dans [src/pages/BlogPost.tsx](src/pages/BlogPost.tsx). A securiser avant d'ouvrir davantage la generation de contenu.
+
+## Reservation
+
+URL unique de reservation :
+
+```txt
+https://tidycal.com/skill-lms/abel-rdv
+```
+
+La constante est centralisee dans [src/data/homeLocales.ts](src/data/homeLocales.ts).
