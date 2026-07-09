@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { ArrowRight, Bot, BrainCircuit, Download, Workflow, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
@@ -8,6 +9,8 @@ const stats = [
 { value: "16+", label: "ans d'expérience" },
 { value: "62", label: "projets réalisés" },
 { value: "95%", label: "clients satisfaits" }];
+
+const TIDYCAL_BOOKING_URL = "https://tidycal.com/skill-lms/abel-rdv";
 
 const services = [
   {
@@ -34,6 +37,8 @@ const services = [
 ];
 
 const Index = () => {
+  const [showIntroCard, setShowIntroCard] = useState(true);
+
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
@@ -90,13 +95,15 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.45 }}
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
 
-                <Link
-                  to="/contact"
+                <a
+                  href={TIDYCAL_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
 
                   Réserver un audit IA
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </Link>
+                </a>
 
                 <a
                   href={cvAsset.url}
@@ -123,33 +130,46 @@ const Index = () => {
           />
         </motion.div>
 
-        <motion.a
-          href="/contact"
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="fixed bottom-6 right-6 z-40 hidden w-[260px] overflow-hidden rounded-3xl border border-white/10 bg-[#111111]/90 shadow-2xl shadow-black/50 backdrop-blur-xl transition-transform hover:-translate-y-1 md:block"
-        >
-          <span className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white">
-            <X className="h-5 w-5" />
-          </span>
-          <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
-            <img
-              src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png"
-              alt="Abel SALAH en vidéo d'introduction"
-              className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
-              loading="lazy"
-            />
-            <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
-              <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">
-                Hello!
+        {showIntroCard && (
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="fixed bottom-6 right-6 z-40 hidden w-[260px] overflow-hidden rounded-3xl border border-white/10 bg-[#111111]/90 shadow-2xl shadow-black/50 backdrop-blur-xl md:block"
+          >
+            <button
+              type="button"
+              aria-label="Fermer la vidéo d'introduction"
+              onClick={() => setShowIntroCard(false)}
+              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white hover:bg-primary transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <a
+              href={TIDYCAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block transition-transform hover:-translate-y-1"
+            >
+              <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
+                <img
+                  src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png"
+                  alt="Abel SALAH en vidéo d'introduction"
+                  className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
+                  loading="lazy"
+                />
+                <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
+                  <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">
+                    Hello!
+                  </div>
+                  <p className="text-lg font-bold leading-tight">
+                    30 sec pour voir où l'IA peut créer de la valeur.
+                  </p>
+                </div>
               </div>
-              <p className="text-lg font-bold leading-tight">
-                30 sec pour voir où l'IA peut créer de la valeur.
-              </p>
-            </div>
-          </div>
-        </motion.a>
+            </a>
+          </motion.div>
+        )}
       </section>
 
       <section className="py-24 px-4 md:px-6 border-t border-border">
@@ -306,13 +326,15 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}>
 
-            <button
-              onClick={() => window.__openCalendly?.()}
+            <a
+              href={TIDYCAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
 
               Réservez un appel
               <ArrowRight className="w-6 h-6" />
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>
