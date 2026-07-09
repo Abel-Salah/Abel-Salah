@@ -86,7 +86,7 @@ const Footer = () => {
               </h3>
               <div className="space-y-4">
                 <button
-                  onClick={() => window.__openCalendly?.()}
+                  onClick={() => window.__openBooking?.()}
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
                   Prendre rendez-vous →

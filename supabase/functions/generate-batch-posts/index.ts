@@ -15,12 +15,28 @@ const DEFAULT_TOPICS = [
   "IA et formation des équipes : guide pratique pour les managers",
 ];
 
+type GeneratedArticle = {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  readTime: string;
+  tags: string[];
+  excerpt: string;
+  sections: { title: string; content: string[] }[];
+};
+
+type ExistingPost = {
+  title: string;
+  slug: string;
+};
+
 async function generateArticle(
   topic: string,
   existingTitles: string,
   lovableApiKey: string,
   today: string
-): Promise<any> {
+): Promise<GeneratedArticle> {
   const systemPrompt = `Tu es un redacteur SEO expert. Redige un article de blog SEO en francais, hyper concret et actionnable sur le sujet suivant : "${topic}".
 
 Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres concrets.
@@ -104,7 +120,7 @@ Regles :
     throw new Error("AI did not return structured data");
   }
 
-  return JSON.parse(toolCall.function.arguments);
+  return JSON.parse(toolCall.function.arguments) as GeneratedArticle;
 }
 
 serve(async (req) => {
@@ -129,8 +145,9 @@ serve(async (req) => {
       .order("created_at", { ascending: false })
       .limit(100);
 
-    let existingTitles = (existingPosts || []).map((p: any) => p.title).join(", ");
-    const existingSlugs = new Set((existingPosts || []).map((p: any) => p.slug));
+    const knownPosts = (existingPosts || []) as ExistingPost[];
+    let existingTitles = knownPosts.map((post) => post.title).join(", ");
+    const existingSlugs = new Set(knownPosts.map((post) => post.slug));
 
     const results: { topic: string; success: boolean; title?: string; error?: string }[] = [];
 

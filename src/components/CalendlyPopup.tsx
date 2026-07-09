@@ -6,10 +6,11 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 
 declare global {
   interface Window {
-    __openCalendly?: () => void;
+    __openBooking?: () => void;
   }
 }
 
@@ -17,9 +18,9 @@ const CalendlyPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    window.__openCalendly = () => setIsOpen(true);
+    window.__openBooking = () => setIsOpen(true);
     return () => {
-      delete window.__openCalendly;
+      delete window.__openBooking;
     };
   }, []);
 
@@ -40,11 +41,11 @@ const CalendlyPopup = () => {
         <DialogContent className="max-w-[650px] w-[95vw] h-[80vh] p-0 overflow-hidden">
           <DialogTitle className="sr-only">Prendre rendez-vous</DialogTitle>
           <iframe
-            src="https://calendly.com/abel_salah/rdv-abel"
+            src={TIDYCAL_BOOKING_URL}
             width="100%"
             height="100%"
             frameBorder="0"
-            title="Calendly - Prendre RDV"
+            title="TidyCal - Prendre RDV"
             className="w-full h-full"
           />
         </DialogContent>

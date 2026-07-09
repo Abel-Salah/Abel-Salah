@@ -7,6 +7,22 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+type ExistingPost = {
+  title: string;
+  slug: string;
+};
+
+type GeneratedArticle = {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  readTime: string;
+  tags: string[];
+  excerpt: string;
+  sections: { title: string; content: string[] }[];
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -28,7 +44,8 @@ serve(async (req) => {
       .order("created_at", { ascending: false })
       .limit(50);
 
-    const existingTitles = (existingPosts || []).map((p: any) => p.title).join(", ");
+    const knownPosts = (existingPosts || []) as ExistingPost[];
+    const existingTitles = knownPosts.map((post) => post.title).join(", ");
 
     const today = new Date().toISOString().split("T")[0];
 
@@ -195,7 +212,7 @@ Regles :
       );
     }
 
-    const article = JSON.parse(toolCall.function.arguments);
+    const article = JSON.parse(toolCall.function.arguments) as GeneratedArticle;
 
     // Check for duplicate slug
     const { data: existingSlug } = await supabase

@@ -41,7 +41,7 @@ export function useGeneratedBlogPosts() {
         .order("date", { ascending: false });
 
       if (error) throw error;
-      return (data || []).map((p: any) => mapToBlogPost(p as GeneratedPost));
+      return (data || []).map((post) => mapToBlogPost(post as unknown as GeneratedPost));
     },
   });
 }

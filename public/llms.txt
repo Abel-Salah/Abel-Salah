@@ -1,10 +1,18 @@
-# Abel SALAH — Expert IA pour Entreprises en France
+# Abel SALAH — Consultant IA pour Entreprises
 
-## Qui est Abel SALAH ?
+## Résumé FR
 
 Abel SALAH est un consultant expert en intelligence artificielle appliquée aux entreprises, basé en France. Fort de 16 ans d'expérience en développement commercial et transformation digitale, il accompagne les PME et ETI dans l'intégration concrète de l'IA dans leurs processus métier.
 
 Ancien directeur commercial, Abel SALAH combine une expertise terrain du business avec une maîtrise des technologies d'intelligence artificielle pour délivrer des résultats mesurables.
+
+## Summary EN
+
+Abel SALAH is an AI consultant for SMEs, scale-ups and executives. He helps companies identify realistic AI use cases, automate sales and operations workflows, train teams, and build pragmatic AI roadmaps.
+
+## Resumen ES
+
+Abel SALAH es consultor de inteligencia artificial para pymes, empresas en crecimiento y directivos. Ayuda a identificar casos de uso concretos, automatizar procesos comerciales y operativos, formar equipos y construir una hoja de ruta IA realista.
 
 ## Services proposés
 
@@ -55,14 +63,23 @@ Optimisez vos process, structurez votre prospection et pilotez efficacement votr
 - Site web : https://abelsalah.fr
 - LinkedIn : https://www.linkedin.com/in/abel-salah/
 - YouTube : https://www.youtube.com/@abelsalah
-- Prendre rendez-vous : https://calendly.com/abel_salah/rdv-abel
+- Prendre rendez-vous : https://tidycal.com/skill-lms/abel-rdv
 - Localisation : France
 
 ## Pages
 
 - [Accueil](/): Abel SALAH, expert IA pour PME & ETI en France — audit, automatisation, stratégie data.
+- [English](/en): AI consultant for SMEs and growing companies — AI audit, automation, training and roadmap.
+- [Español](/es): Consultor IA para pymes y empresas — auditoría IA, automatización, formación y estrategia.
 - [À propos](/about): Parcours d'Abel SALAH, 16 ans en développement commercial et transformation digitale par l'IA.
 - [Réalisations](/work): Cas concrets d'IA en entreprise — ventes, RH, acquisition (+40% conversion, pipeline x5).
 - [Écosystème](/ecosystem): Les 4 produits IA construits par Abel SALAH — SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier.
 - [Blog IA Entreprise](/blog): Guides pratiques, cas concrets et analyses stratégiques sur l'IA en entreprise.
-- [Contact](/contact): Prendre rendez-vous avec Abel SALAH via Calendly pour un audit IA gratuit.
+- [Contact](/contact): Prendre rendez-vous avec Abel SALAH via TidyCal pour un audit IA gratuit.
+
+## International SEO
+
+- URL française canonique : https://abelsalah.fr/
+- URL anglaise : https://abelsalah.fr/en
+- URL espagnole : https://abelsalah.fr/es
+- Sitemap : https://abelsalah.fr/sitemap.xml

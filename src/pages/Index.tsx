@@ -1,51 +1,33 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { ArrowRight, Bot, BrainCircuit, Download, Workflow, X } from "lucide-react";
+import { ArrowRight, Download, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
+import {
+  homeAlternates,
+  homeContent,
+  type HomeLocale,
+  TIDYCAL_BOOKING_URL,
+} from "@/data/homeLocales";
 
-const stats = [
-{ value: "16+", label: "ans d'expérience" },
-{ value: "62", label: "projets réalisés" },
-{ value: "95%", label: "clients satisfaits" }];
+interface IndexProps {
+  locale?: HomeLocale;
+}
 
-const TIDYCAL_BOOKING_URL = "https://tidycal.com/skill-lms/abel-rdv";
-
-const services = [
-  {
-    number: "01",
-    title: "Audit IA",
-    icon: BrainCircuit,
-    text: "Identifier les cas d'usage qui ont vraiment du sens pour vos équipes, vos données et votre business.",
-    bullets: ["Diagnostic opérationnel", "Priorisation ROI", "Roadmap 30/60/90 jours"],
-  },
-  {
-    number: "02",
-    title: "Automatisation",
-    icon: Workflow,
-    text: "Transformer les tâches répétitives en workflows fiables : prospection, CRM, relances, reporting.",
-    bullets: ["Scoring leads", "Séquences commerciales", "Pilotage CRM"],
-  },
-  {
-    number: "03",
-    title: "Formation IA",
-    icon: Bot,
-    text: "Former dirigeants, managers et équipes à utiliser l'IA sans gadget, avec méthode et adoption terrain.",
-    bullets: ["Ateliers métier", "Prompting utile", "Conduite du changement"],
-  },
-];
-
-const Index = () => {
+const Index = ({ locale = "fr" }: IndexProps) => {
   const [showIntroCard, setShowIntroCard] = useState(true);
+  const content = homeContent[locale];
 
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Expert IA pour Entreprises | Audit Gratuit — Abel SALAH"
-        description="Audit IA gratuit pour PME & ETI. Automatisez vos processus et boostez vos résultats. 16 ans d'expérience, 62 projets IA déployés. Réservez votre audit."
-        canonical="/"
-        breadcrumbs={[{ name: "Accueil", path: "/" }]}
+        title={content.seoTitle}
+        description={content.seoDescription}
+        canonical={content.canonical}
+        lang={locale}
+        alternates={homeAlternates}
+        breadcrumbs={[{ name: content.breadcrumb, path: content.canonical }]}
       />
 
       <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">
@@ -70,12 +52,12 @@ const Index = () => {
                 className="max-w-6xl">
                 <div className="mb-8 flex items-center gap-3 text-sm text-muted-foreground">
                   <span className="h-3 w-3 rounded-full bg-[#ffa600] shadow-[0_0_28px_rgba(255,166,0,0.8)]" />
-                  <span>Consultant IA pour PME, ETI & dirigeants</span>
+                  <span>{content.eyebrow}</span>
                 </div>
                 <h1 className="heading-display text-[clamp(4.5rem,13vw,13rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
-                  IA
+                  {content.heroTop}
                   <br />
-                  Business
+                  {content.heroBottom}
                   <span className="text-primary"> *</span>
                 </h1>
               </motion.div>
@@ -85,8 +67,7 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.25 }}
                 className="text-xl md:text-2xl text-foreground max-w-xl leading-relaxed mb-12">
-                J'aide les entreprises à intégrer l'IA là où elle crée vraiment de la valeur :
-                ventes, opérations, formation et stratégie.
+                {content.intro}
               </motion.p>
 
               <motion.div
@@ -101,7 +82,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
 
-                  Réserver un audit IA
+                  {content.primaryCta}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </a>
 
@@ -111,7 +92,7 @@ const Index = () => {
                   className="inline-flex items-center gap-3 rounded-full border border-white/10 px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
 
                   <Download className="w-4 h-4" />
-                  Télécharger mon CV (PDF)
+                  {content.cvCta}
                 </a>
               </motion.div>
             </div>
@@ -124,7 +105,7 @@ const Index = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="hidden lg:block absolute bottom-0 right-[4%] w-[34%] max-w-[560px]">
           <img
-            alt="Abel SALAH — Expert IA pour Entreprises"
+            alt={content.portraitAlt}
             className="w-full object-contain drop-shadow-[0_35px_80px_rgba(0,0,0,0.65)]"
             src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.png"
           />
@@ -139,7 +120,7 @@ const Index = () => {
           >
             <button
               type="button"
-              aria-label="Fermer la vidéo d'introduction"
+              aria-label={content.closeIntroLabel}
               onClick={() => setShowIntroCard(false)}
               className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white hover:bg-primary transition-colors"
             >
@@ -154,16 +135,16 @@ const Index = () => {
               <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
                 <img
                   src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png"
-                  alt="Abel SALAH en vidéo d'introduction"
+                  alt={content.videoAlt}
                   className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
                   loading="lazy"
                 />
                 <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
                   <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">
-                    Hello!
+                    {content.videoHello}
                   </div>
                   <p className="text-lg font-bold leading-tight">
-                    30 sec pour voir où l'IA peut créer de la valeur.
+                    {content.videoText}
                   </p>
                 </div>
               </div>
@@ -175,7 +156,7 @@ const Index = () => {
       <section className="py-24 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-            {stats.map((stat, index) =>
+            {content.stats.map((stat, index) =>
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
@@ -206,17 +187,17 @@ const Index = () => {
             className="mb-20">
 
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
-              Services
+              {content.servicesLabel}
             </span>
             <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
-              Comment je peux
+              {content.servicesTitleTop}
               <br />
-              vous aider /
+              {content.servicesTitleBottom}
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => {
+            {content.services.map((service, index) => {
               const Icon = service.icon;
               return (
             <motion.div
@@ -262,17 +243,17 @@ const Index = () => {
             className="mb-16">
 
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
-              Rythme de mission
+              {content.missionLabel}
             </span>
             <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
-              De l'idée
+              {content.missionTitleTop}
               <br />
-              au système IA
+              {content.missionTitleBottom}
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 border-y border-border">
-            {["Cadrer les bons usages", "Prototyper vite", "Déployer avec vos équipes"].map((step, index) => (
+            {content.missionSteps.map((step, index) => (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 30 }}
@@ -300,7 +281,7 @@ const Index = () => {
               to="/work"
               className="inline-flex items-center gap-4 text-lg font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-all group">
 
-              Voir toutes les réalisations
+              {content.workCta}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
@@ -317,7 +298,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="heading-display text-5xl md:text-7xl mb-12">
 
-            Prêt à passer à l'action ?
+            {content.finalTitle}
           </motion.h2>
 
           <motion.div
@@ -332,7 +313,7 @@ const Index = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
 
-              Réservez un appel
+              {content.finalCta}
               <ArrowRight className="w-6 h-6" />
             </a>
           </motion.div>

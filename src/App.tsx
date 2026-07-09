@@ -29,7 +29,9 @@ const App = () => (
         <ScrollGradient />
         <Navigation />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Index locale="fr" />} />
+          <Route path="/en" element={<Index locale="en" />} />
+          <Route path="/es" element={<Index locale="es" />} />
           <Route path="/work" element={<Work />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

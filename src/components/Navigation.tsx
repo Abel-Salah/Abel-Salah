@@ -5,17 +5,45 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
-const navItems = [
-  { href: "/", label: "Accueil" },
-  { href: "/work", label: "Réalisations" },
-  { href: "/about", label: "À propos" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+const navLabels = {
+  fr: [
+    { href: "/", label: "Accueil" },
+    { href: "/work", label: "Réalisations" },
+    { href: "/about", label: "À propos" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ],
+  en: [
+    { href: "/en", label: "Home" },
+    { href: "/work", label: "Work" },
+    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ],
+  es: [
+    { href: "/es", label: "Inicio" },
+    { href: "/work", label: "Proyectos" },
+    { href: "/about", label: "Sobre mí" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contacto" },
+  ],
+} as const;
+
+const languageLinks = [
+  { href: "/", label: "FR", locale: "fr" },
+  { href: "/en", label: "EN", locale: "en" },
+  { href: "/es", label: "ES", locale: "es" },
+] as const;
 
 const Navigation = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const locale = location.pathname.startsWith("/en")
+    ? "en"
+    : location.pathname.startsWith("/es")
+      ? "es"
+      : "fr";
+  const navItems = navLabels[locale];
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -24,11 +52,11 @@ const Navigation = () => {
     <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
       <div className="container mx-auto">
         <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#111111]/85 px-5 py-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
-          <Link 
-            to="/" 
+          <Link
+            to={locale === "fr" ? "/" : `/${locale}`}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
             onClick={closeMenu}
-            aria-label="Accueil Abel SALAH"
+            aria-label="Abel SALAH"
           >
             <span className="block h-5 w-5 rounded-tl-full rounded-br-full bg-current" />
           </Link>
@@ -51,6 +79,23 @@ const Navigation = () => {
               </li>
             ))}
           </ul>
+
+          <div className="hidden md:flex items-center rounded-full border border-white/10 p-1">
+            {languageLinks.map((item) => (
+              <Link
+                key={item.locale}
+                to={item.href}
+                className={cn(
+                  "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
+                  locale === item.locale
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
 
           <a
             href={cvAsset.url}
@@ -106,6 +151,23 @@ const Navigation = () => {
                   </motion.li>
                 ))}
               </ul>
+              <div className="mt-6 flex items-center gap-2 border-t border-border pt-6">
+                {languageLinks.map((item) => (
+                  <Link
+                    key={item.locale}
+                    to={item.href}
+                    onClick={closeMenu}
+                    className={cn(
+                      "rounded-full border border-white/10 px-4 py-2 text-sm font-semibold transition-colors",
+                      locale === item.locale
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
               <div className="flex items-center gap-6 pt-6 mt-6 border-t border-border">
                 <a
                   href="https://www.linkedin.com/in/abel-salah/"
