@@ -1,7 +1,7 @@
-import scallupImg from "@/assets/ventures/scallup.png";
+import scallupImg from "@/assets/ventures/scallup.webp";
 import skillLmsImg from "@/assets/ventures/skill-lms.jpg";
-import formateursProImg from "@/assets/ventures/formateurs-pro.png";
-import immoMontpellierImg from "@/assets/ventures/immo-montpellier.png";
+import formateursProImg from "@/assets/ventures/formateurs-pro.webp";
+import immoMontpellierImg from "@/assets/ventures/immo-montpellier.webp";
 
 export interface Venture {
   number: string;

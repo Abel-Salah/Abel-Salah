@@ -32,6 +32,10 @@ Au dernier controle :
 - Nettoyage shadcn apres audit des usages.
 - Moderation humaine optionnelle des articles IA avant publication production.
 
+## Images
+
+Les assets hero et ventures lourds sont servis en WebP. `sharp` est disponible en devDependency pour regenerer des variantes optimisees si de nouvelles images sont ajoutees.
+
 ## Suppressions potentielles
 
 Aucune suppression ne doit etre faite sans preuve et validation.

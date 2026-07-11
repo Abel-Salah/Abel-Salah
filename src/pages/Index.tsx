@@ -107,7 +107,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <img
             alt={content.portraitAlt}
             className="w-full object-contain drop-shadow-[0_35px_80px_rgba(0,0,0,0.65)]"
-            src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.png"
+            src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.webp"
           />
         </motion.div>
 
@@ -134,7 +134,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             >
               <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
                 <img
-                  src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.png"
+                  src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp"
                   alt={content.videoAlt}
                   className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
                   loading="lazy"
