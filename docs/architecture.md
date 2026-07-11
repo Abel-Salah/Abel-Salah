@@ -50,6 +50,10 @@ Le composant [src/components/SEOHead.tsx](../src/components/SEOHead.tsx) central
 
 Le fichier [index.html](../index.html) contient aussi des meta tags et JSON-LD globaux. Il faut maintenir la coherence entre `index.html`, `SEOHead`, `public/sitemap.xml`, `public/llms.txt` et `public/ai.txt`.
 
+## Performance
+
+Les pages secondaires sont chargees avec `React.lazy` et `Suspense` dans [src/App.tsx](../src/App.tsx). Le client Supabase et le rendu Markdown du blog restent dans les chunks blog au lieu d'alourdir le premier chargement.
+
 ## Reservation
 
-L'URL TidyCal est centralisee dans `TIDYCAL_BOOKING_URL` dans [src/data/homeLocales.ts](../src/data/homeLocales.ts). Le nom historique [src/components/CalendlyPopup.tsx](../src/components/CalendlyPopup.tsx) est obsolescent : le composant utilise TidyCal, mais devrait etre renomme dans un lot technique separe.
+L'URL TidyCal est centralisee dans `TIDYCAL_BOOKING_URL` dans [src/data/homeLocales.ts](../src/data/homeLocales.ts).

@@ -20,11 +20,7 @@ Elle est utilisee par :
 
 - [src/pages/Index.tsx](../../src/pages/Index.tsx)
 - [src/pages/Contact.tsx](../../src/pages/Contact.tsx)
-- [src/components/CalendlyPopup.tsx](../../src/components/CalendlyPopup.tsx)
-
-## Dette connue
-
-Le composant `CalendlyPopup.tsx` a un nom historique qui ne correspond plus au fournisseur actuel. Le renommer en `BookingPopup.tsx` dans un lot technique separe pour eviter un diff inutile dans les changements documentaires.
+- [src/components/Footer.tsx](../../src/components/Footer.tsx)
 
 ## API future
 

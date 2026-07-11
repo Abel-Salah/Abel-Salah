@@ -1,5 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import {
+  type GeneratedArticle,
+  validateGeneratedArticle,
+} from "../_shared/blogArticleSchema.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,17 +14,6 @@ const corsHeaders = {
 type ExistingPost = {
   title: string;
   slug: string;
-};
-
-type GeneratedArticle = {
-  slug: string;
-  title: string;
-  metaTitle: string;
-  metaDescription: string;
-  readTime: string;
-  tags: string[];
-  excerpt: string;
-  sections: { title: string; content: string[] }[];
 };
 
 serve(async (req) => {
@@ -212,7 +205,9 @@ Regles :
       );
     }
 
-    const article = JSON.parse(toolCall.function.arguments) as GeneratedArticle;
+    const article = validateGeneratedArticle(
+      JSON.parse(toolCall.function.arguments)
+    );
 
     // Check for duplicate slug
     const { data: existingSlug } = await supabase

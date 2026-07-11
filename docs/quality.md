@@ -12,10 +12,10 @@ npm audit --audit-level=moderate
 
 Au dernier controle :
 
-- `npm run lint` passe avec 7 warnings `react-refresh/only-export-components` sur des composants shadcn.
+- `npm run lint` passe sans warning.
 - `npm run build` passe.
-- Vite signale un chunk JavaScript superieur a 500 kB.
-- `npm audit --audit-level=moderate` signale encore des vulnerabilites dans des dependances ou transitives.
+- Le bundle principal est sous le seuil d'avertissement Vite grace au code splitting par routes.
+- `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
 
 ## Tests manuels recommandes
 
@@ -29,12 +29,8 @@ Au dernier controle :
 
 ## Dette technique suivie
 
-- Code splitting par routes pour reduire le chunk principal.
 - Nettoyage shadcn apres audit des usages.
-- Remplacement de `dangerouslySetInnerHTML` par un rendu Markdown controle.
-- Validation Zod des articles generes avant insertion.
-- Protection des Edge Functions de generation.
-- Choix definitif npm-only et suppression des lockfiles inutiles.
+- Moderation humaine optionnelle des articles IA avant publication production.
 
 ## Suppressions potentielles
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
+import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -85,12 +86,14 @@ const Footer = () => {
                 Me contacter
               </h3>
               <div className="space-y-4">
-                <button
-                  onClick={() => window.__openBooking?.()}
+                <a
+                  href={TIDYCAL_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
                   Prendre rendez-vous →
-                </button>
+                </a>
                 <a
                   href={cvAsset.url}
                   download

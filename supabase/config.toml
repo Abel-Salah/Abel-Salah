@@ -3,5 +3,8 @@ project_id = "mqmynuloecsdsjbgnwzx"
 [functions.generate-sitemap]
 verify_jwt = false
 
+[functions.generate-blog-post]
+verify_jwt = true
+
 [functions.generate-batch-posts]
-verify_jwt = false
+verify_jwt = true

@@ -20,22 +20,22 @@ Pages localisees actuelles :
 
 Le composant `SEOHead` sait emettre `canonical`, `og:locale` et `hreflang`. Le sitemap statique contient aussi les alternates FR/EN/ES pour la home.
 
-## Contradiction connue
+## Sitemap
 
-Le fichier [public/sitemap.xml](../public/sitemap.xml) contient `/en`, `/es` et les liens `xhtml:link`.
+Le fichier [public/sitemap.xml](../public/sitemap.xml) sert de copie statique publique.
 
-La fonction [supabase/functions/generate-sitemap/index.ts](../supabase/functions/generate-sitemap/index.ts) genere seulement les pages statiques historiques et les articles, sans `/en`, `/es`, ni `xhtml:link`.
+La fonction [supabase/functions/generate-sitemap/index.ts](../supabase/functions/generate-sitemap/index.ts) genere les pages statiques, les variantes `/en` et `/es`, les liens `xhtml:link` de la home et les articles dynamiques publies depuis Supabase.
 
-Decision a prendre :
+Source de verite recommandee :
 
-- soit le sitemap statique est la source de verite ;
-- soit la fonction dynamique est mise a jour et devient la source de verite.
+- utiliser la fonction dynamique en production si les articles generes Supabase doivent etre indexes automatiquement ;
+- conserver `public/sitemap.xml` comme fallback statique.
 
 ## Blog
 
 Les articles statiques sont dans [src/data/blogPosts.ts](../src/data/blogPosts.ts). Les articles dynamiques viennent de Supabase et sont filtres sur `published = true`.
 
-Le sitemap statique ne peut pas connaitre les articles dynamiques en base. Si les articles generes doivent etre indexables automatiquement, privilegier une generation dynamique fiable ou une etape de build/deploiement qui reconstruit `public/sitemap.xml`.
+Le sitemap statique ne peut pas connaitre les articles dynamiques en base. La fonction dynamique couvre ce cas.
 
 ## Robots
 

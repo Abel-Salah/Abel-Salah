@@ -1,5 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import {
+  type GeneratedArticle,
+  validateGeneratedArticle,
+} from "../_shared/blogArticleSchema.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,17 +18,6 @@ const DEFAULT_TOPICS = [
   "Comment choisir le bon outil IA pour son service commercial",
   "IA et formation des équipes : guide pratique pour les managers",
 ];
-
-type GeneratedArticle = {
-  slug: string;
-  title: string;
-  metaTitle: string;
-  metaDescription: string;
-  readTime: string;
-  tags: string[];
-  excerpt: string;
-  sections: { title: string; content: string[] }[];
-};
 
 type ExistingPost = {
   title: string;
@@ -120,7 +113,7 @@ Regles :
     throw new Error("AI did not return structured data");
   }
 
-  return JSON.parse(toolCall.function.arguments) as GeneratedArticle;
+  return validateGeneratedArticle(JSON.parse(toolCall.function.arguments));
 }
 
 serve(async (req) => {

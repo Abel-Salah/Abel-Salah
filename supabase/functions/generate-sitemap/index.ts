@@ -9,6 +9,8 @@ const corsHeaders = {
 
 const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "monthly" },
+  { loc: "/en", priority: "0.9", changefreq: "monthly" },
+  { loc: "/es", priority: "0.9", changefreq: "monthly" },
   { loc: "/work", priority: "0.8", changefreq: "monthly" },
   { loc: "/about", priority: "0.7", changefreq: "monthly" },
   { loc: "/contact", priority: "0.8", changefreq: "monthly" },
@@ -17,6 +19,21 @@ const STATIC_PAGES = [
 ];
 
 const DOMAIN = "https://abelsalah.fr";
+const HOME_ALTERNATES = [
+  { hreflang: "fr", href: `${DOMAIN}/` },
+  { hreflang: "en", href: `${DOMAIN}/en` },
+  { hreflang: "es", href: `${DOMAIN}/es` },
+  { hreflang: "x-default", href: `${DOMAIN}/` },
+];
+
+function alternateLinksFor(loc: string): string {
+  if (!["/", "/en", "/es"].includes(loc)) return "";
+
+  return HOME_ALTERNATES.map(
+    (alternate) =>
+      `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
+  ).join("\n") + "\n";
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -40,11 +57,12 @@ serve(async (req) => {
     const today = new Date().toISOString().split("T")[0];
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
 
     for (const page of STATIC_PAGES) {
       xml += `  <url>\n`;
       xml += `    <loc>${DOMAIN}${page.loc}</loc>\n`;
+      xml += alternateLinksFor(page.loc);
       xml += `    <lastmod>${today}</lastmod>\n`;
       xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
       xml += `    <priority>${page.priority}</priority>\n`;

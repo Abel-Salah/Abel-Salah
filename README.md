@@ -21,7 +21,7 @@ Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente le
 - npm
 - Un projet Supabase si les articles generes ou les Edge Functions sont utilises
 
-Le depot contient actuellement `package-lock.json`, `bun.lock` et `bun.lockb`. Les scripts documentes et valides utilisent npm. Voir [docs/decisions/package-manager.md](docs/decisions/package-manager.md).
+Le depot est standardise sur npm. Voir [docs/decisions/package-manager.md](docs/decisions/package-manager.md).
 
 ## Installation
 
@@ -66,9 +66,9 @@ npm audit          # audit dependances
 
 Etat observe au dernier audit documentaire :
 
-- `npm run lint` passe avec des warnings Fast Refresh sur certains composants shadcn.
-- `npm run build` passe, avec un avertissement Vite sur un chunk JavaScript > 500 kB.
-- `npm audit --audit-level=moderate` remonte encore des vulnerabilites corrigeables par `npm audit fix`.
+- `npm run lint` passe sans warning.
+- `npm run build` passe.
+- `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
 
 ## Routes publiques
 
@@ -95,10 +95,10 @@ Etat observe au dernier audit documentaire :
 
 ## Points d'attention
 
-- Les fonctions Supabase `generate-sitemap` et `generate-batch-posts` sont configurees avec `verify_jwt = false`.
-- `generate-blog-post` n'est pas liste dans [supabase/config.toml](supabase/config.toml), donc son statut JWT depend de la configuration Supabase par defaut ou distante.
-- Le sitemap statique [public/sitemap.xml](public/sitemap.xml) inclut `/en` et `/es`, mais la fonction [supabase/functions/generate-sitemap/index.ts](supabase/functions/generate-sitemap/index.ts) ne genere pas encore ces alternates.
-- Le blog rend encore certains paragraphes via `dangerouslySetInnerHTML` dans [src/pages/BlogPost.tsx](src/pages/BlogPost.tsx). A securiser avant d'ouvrir davantage la generation de contenu.
+- La fonction Supabase `generate-sitemap` est publique et ne fait que lire les articles publies.
+- Les fonctions Supabase `generate-blog-post` et `generate-batch-posts` sont configurees avec `verify_jwt = true`.
+- Le blog rend les paragraphes Markdown avec `react-markdown`, `remark-gfm` et `rehype-sanitize`.
+- Les articles generes sont valides par schema Zod avant insertion.
 
 ## Reservation
 

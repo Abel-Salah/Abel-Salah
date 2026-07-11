@@ -42,7 +42,7 @@ Ne pas les prefixer par `VITE_` et ne pas les exposer dans le frontend.
 
 ## Gestionnaire de paquets
 
-Les commandes documentees utilisent npm. Le depot contient encore des lockfiles Bun historiques ; voir [decisions/package-manager.md](decisions/package-manager.md).
+Les commandes documentees utilisent npm. Voir [decisions/package-manager.md](decisions/package-manager.md).
 
 ## Commandes utiles
 
@@ -56,5 +56,4 @@ npm audit --audit-level=moderate
 ## Problemes frequents
 
 - Si Supabase ne charge pas les articles generes, verifier `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY`.
-- Si le build affiche un chunk > 500 kB, c'est un avertissement de performance connu. Le correctif recommande est le code splitting par routes.
 - Si `npm audit` remonte des vulnerabilites, commencer par `npm audit fix`, puis relancer `npm run lint` et `npm run build`.

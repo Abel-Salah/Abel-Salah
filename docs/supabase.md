@@ -76,25 +76,26 @@ LOVABLE_API_KEY=
 [functions.generate-sitemap]
 verify_jwt = false
 
+[functions.generate-blog-post]
+verify_jwt = true
+
 [functions.generate-batch-posts]
-verify_jwt = false
+verify_jwt = true
 ```
 
 Implications :
 
 - `generate-sitemap` peut rester public si elle ne fait que lire des articles publies.
-- `generate-batch-posts` declenche une generation et une insertion avec service role ; la laisser publique est un risque.
-- `generate-blog-post` n'est pas declare dans ce fichier. Son statut JWT doit etre verifie dans la configuration Supabase distante.
+- `generate-blog-post` et `generate-batch-posts` declenchent une generation et une insertion avec service role ; elles doivent rester protegees.
 
 ## Risques connus
 
-- Les fonctions de generation publient actuellement avec `published: true`.
-- Le contenu genere est structure par schema de tool calling, mais il n'y a pas encore de validation Zod partagee dans le depot.
-- Le rendu article utilise encore `dangerouslySetInnerHTML` dans [src/pages/BlogPost.tsx](../src/pages/BlogPost.tsx) pour le gras Markdown simplifie.
+- Les fonctions de generation publient actuellement avec `published: true` apres validation Zod.
+- Le contenu genere est structure par schema de tool calling puis valide par [supabase/functions/_shared/blogArticleSchema.ts](../supabase/functions/_shared/blogArticleSchema.ts).
+- Le rendu article utilise `react-markdown`, `remark-gfm` et `rehype-sanitize` dans [src/pages/BlogPost.tsx](../src/pages/BlogPost.tsx).
 
 ## Recommandations
 
-1. Proteger `generate-batch-posts` et `generate-blog-post` par JWT, secret serveur, ou autre controle explicite.
-2. Ajouter une validation stricte du contenu genere avant insertion.
-3. Remplacer le rendu HTML ad hoc par un rendu Markdown controle.
-4. Documenter tout cron Supabase configure en production.
+1. Documenter tout cron Supabase configure en production.
+2. Ajouter une moderation humaine si l'auto-publication IA devient un flux production sensible.
+3. Surveiller les erreurs de validation Zod pour ajuster les prompts.
