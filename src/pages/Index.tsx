@@ -184,6 +184,65 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="mb-16"
+          >
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+              {content.beforeAfterLabel}
+            </span>
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+              {content.beforeAfterTitleTop}
+              <br />
+              {content.beforeAfterTitleBottom}
+            </h2>
+          </motion.div>
+
+          <div className="divide-y divide-border border-y border-border">
+            {content.beforeAfterItems.map((item, index) => (
+              <motion.div
+                key={item.area}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-1 gap-8 py-10 md:grid-cols-12 md:items-start"
+              >
+                <div className="md:col-span-3">
+                  <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 text-2xl font-semibold">{item.area}</h3>
+                </div>
+                <div className="grid gap-6 md:col-span-9 md:grid-cols-2">
+                  <div className="border border-border bg-card/25 p-6">
+                    <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      {content.beforeAfterBefore}
+                    </span>
+                    <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                      {item.before}
+                    </p>
+                  </div>
+                  <div className="border border-primary/45 bg-primary/5 p-6">
+                    <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                      {content.beforeAfterAfter}
+                    </span>
+                    <p className="mt-5 text-lg leading-relaxed text-foreground">
+                      {item.after}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-28 px-4 md:px-6 border-t border-border">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="mb-20">
 
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
