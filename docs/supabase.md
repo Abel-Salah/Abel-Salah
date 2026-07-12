@@ -72,6 +72,7 @@ Fonctions presentes :
 - [supabase/functions/discover-job-opportunities/index.ts](../supabase/functions/discover-job-opportunities/index.ts)
 - [supabase/functions/score-job-opportunities/index.ts](../supabase/functions/score-job-opportunities/index.ts)
 - [supabase/functions/draft-job-outreach/index.ts](../supabase/functions/draft-job-outreach/index.ts)
+- [supabase/functions/manage-opportunities/index.ts](../supabase/functions/manage-opportunities/index.ts)
 
 Variables requises :
 
@@ -82,9 +83,10 @@ LOVABLE_API_KEY=
 GOOGLE_SEARCH_API_KEY=
 GOOGLE_SEARCH_ENGINE_ID=
 ABEL_CV_URL=
+OPPORTUNITY_ADMIN_TOKEN=
 ```
 
-`GOOGLE_SEARCH_API_KEY`, `GOOGLE_SEARCH_ENGINE_ID` et `ABEL_CV_URL` concernent uniquement l'Opportunity Agent. Voir [docs/opportunity-agent.md](opportunity-agent.md).
+`GOOGLE_SEARCH_API_KEY`, `GOOGLE_SEARCH_ENGINE_ID`, `ABEL_CV_URL` et `OPPORTUNITY_ADMIN_TOKEN` concernent uniquement l'Opportunity Agent. Voir [docs/opportunity-agent.md](opportunity-agent.md).
 
 ## Configuration JWT
 
@@ -108,6 +110,9 @@ verify_jwt = true
 
 [functions.draft-job-outreach]
 verify_jwt = true
+
+[functions.manage-opportunities]
+verify_jwt = true
 ```
 
 Implications :
@@ -115,17 +120,18 @@ Implications :
 - `generate-sitemap` peut rester public si elle ne fait que lire des articles publies.
 - `generate-blog-post` et `generate-batch-posts` declenchent une generation et une insertion avec service role ; elles doivent rester protegees.
 - les fonctions Opportunity Agent doivent rester protegees, car elles lisent/ecrivent des opportunites et brouillons CRM.
+- `manage-opportunities` exige aussi `x-opportunity-admin-token`, compare a `OPPORTUNITY_ADMIN_TOKEN`.
 
 ## Risques connus
 
 - Les fonctions de generation publient actuellement avec `published: true` apres validation Zod.
 - Le contenu genere est structure par schema de tool calling puis valide par [supabase/functions/_shared/blogArticleSchema.ts](../supabase/functions/_shared/blogArticleSchema.ts).
 - Le rendu article utilise `react-markdown`, `remark-gfm` et `rehype-sanitize` dans [src/pages/BlogPost.tsx](../src/pages/BlogPost.tsx).
-- L'Opportunity Agent ne contient aucun envoi automatique de candidature. Les brouillons restent en `pending_review`.
+- L'Opportunity Agent ne contient aucun envoi automatique de candidature. Les brouillons restent en `pending_review` jusqu'a validation manuelle dans `/admin/opportunities`.
 
 ## Recommandations
 
 1. Documenter tout cron Supabase configure en production.
 2. Ajouter une moderation humaine si l'auto-publication IA devient un flux production sensible.
 3. Surveiller les erreurs de validation Zod pour ajuster les prompts.
-4. Ajouter une interface admin protegee avant de donner acces aux donnees Opportunity Agent hors service role.
+4. Remplacer le token admin par Supabase Auth + roles si plusieurs utilisateurs doivent acceder au dashboard.

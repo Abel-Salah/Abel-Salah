@@ -18,6 +18,10 @@ type ScoredOpportunity = {
   description: string | null;
   score: {
     score: number;
+    relevance: number | null;
+    urgency: number | null;
+    budget_potential: number | null;
+    response_probability: number | null;
     fit_summary: string;
     strengths: string[];
     risks: string[];
@@ -37,11 +41,46 @@ Regles obligatoires :
 - Message court, humain, personnalise, oriente valeur.
 - Ton professionnel, direct, sans agressivite commerciale.
 - Le brouillon doit etre relu par un humain avant envoi.
-- Retourne uniquement un JSON strict : {"subject":"...","message":"..."}.`;
+- Prepare plusieurs formats utiles : LinkedIn, email, version courte et version candidature plateforme.
+- Ajoute un plan de relance J+3, J+7, J+14.
+- Retourne uniquement un JSON strict :
+{
+  "subject":"...",
+  "rationale":"pourquoi cette opportunite est pertinente",
+  "message":"message principal",
+  "linkedin_message":"...",
+  "email_message":"...",
+  "short_message":"...",
+  "application_message":"...",
+  "follow_up_plan":[
+    {"delay_days":3,"message":"..."},
+    {"delay_days":7,"message":"..."},
+    {"delay_days":14,"message":"..."}
+  ]
+}.`;
 
 const validateDraft = (draft: OutreachDraft): OutreachDraft => ({
   subject: String(draft.subject ?? "").slice(0, 140),
+  rationale: String(draft.rationale ?? "").slice(0, 700),
   message: String(draft.message ?? "").slice(0, 1800),
+  linkedin_message: String(draft.linkedin_message ?? draft.message ?? "").slice(
+    0,
+    1200
+  ),
+  email_message: String(draft.email_message ?? draft.message ?? "").slice(0, 1800),
+  short_message: String(draft.short_message ?? draft.message ?? "").slice(0, 500),
+  application_message: String(
+    draft.application_message ?? draft.message ?? ""
+  ).slice(0, 1600),
+  follow_up_plan: Array.isArray(draft.follow_up_plan)
+    ? draft.follow_up_plan
+        .filter((step) => [3, 7, 14].includes(Number(step.delay_days)))
+        .map((step) => ({
+          delay_days: Number(step.delay_days),
+          message: String(step.message ?? "").slice(0, 900),
+        }))
+        .slice(0, 3)
+    : [],
 });
 
 serve(async (req) => {
@@ -76,7 +115,9 @@ serve(async (req) => {
 
     const { data: scores, error: scoreError } = await supabase
       .from("job_scores")
-      .select("opportunity_id, score, fit_summary, strengths, risks, suggested_angle")
+      .select(
+        "opportunity_id, score, relevance, urgency, budget_potential, response_probability, fit_summary, strengths, risks, suggested_angle"
+      )
       .gte("score", minScore)
       .order("score", { ascending: false })
       .limit(limit * 3);
@@ -143,6 +184,12 @@ serve(async (req) => {
           channel: "manual",
           subject: draft.subject,
           message: draft.message,
+          rationale: draft.rationale,
+          linkedin_message: draft.linkedin_message,
+          email_message: draft.email_message,
+          short_message: draft.short_message,
+          application_message: draft.application_message,
+          follow_up_plan: draft.follow_up_plan,
           cv_url: cvUrl,
           profile_url: profileUrl,
           status: "pending_review",

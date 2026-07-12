@@ -1,33 +1,52 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /styleguide
+Disallow: /admin/
 
 User-agent: *
 Allow: /
 Disallow: /styleguide
+Disallow: /admin/
 
 Sitemap: https://abelsalah.fr/sitemap.xml
 AI-Content-Info: https://abelsalah.fr/llms.txt

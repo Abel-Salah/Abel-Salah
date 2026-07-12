@@ -18,6 +18,7 @@ Le projet est une application React statique construite avec Vite. Le routage es
 | `/blog/:slug` | `BlogPost` | Article statique ou genere |
 | `/ecosystem` | `Ecosystem` | Produits et preuves d'execution |
 | `/styleguide` | `Styleguide` | Page interne de design |
+| `/admin/opportunities` | `AdminOpportunities` | Dashboard prive Opportunity Agent, noindex |
 
 ## Dossiers principaux
 
@@ -53,7 +54,7 @@ Il repose sur :
 - Google Programmable Search / Custom Search JSON API pour la decouverte.
 - Supabase pour le stockage prive.
 - IA via Edge Function pour le scoring et les brouillons.
-- Validation humaine obligatoire avant tout envoi.
+- Dashboard `/admin/opportunities` protege par token pour la validation humaine.
 
 Aucune fonction ne soumet de candidature automatiquement. Voir [docs/opportunity-agent.md](opportunity-agent.md).
 

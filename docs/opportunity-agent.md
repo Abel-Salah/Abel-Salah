@@ -13,7 +13,7 @@ Tables Supabase privees :
 - `job_sources` : sources et requetes de recherche.
 - `job_opportunities` : opportunites detectees.
 - `job_scores` : score IA et diagnostic de fit.
-- `job_outreach_drafts` : messages prepares en `pending_review`.
+- `job_outreach_drafts` : messages prepares en `pending_review`, avec versions LinkedIn, email, courte, candidature plateforme et relances.
 - `job_applications` : suivi CRM apres validation humaine.
 
 Edge Functions protegees par JWT :
@@ -21,6 +21,11 @@ Edge Functions protegees par JWT :
 - `discover-job-opportunities` : interroge Google Programmable Search / Custom Search JSON API.
 - `score-job-opportunities` : score les opportunites via IA.
 - `draft-job-outreach` : prepare des brouillons personnalises, sans envoi.
+- `manage-opportunities` : API privee du dashboard admin pour lister, valider, refuser, modifier les brouillons et marquer un envoi manuel.
+
+Dashboard :
+
+- `/admin/opportunities` : interface privee, non referencee dans la navigation, `noindex`, protegee par `OPPORTUNITY_ADMIN_TOKEN`.
 
 ## Variables
 
@@ -31,9 +36,11 @@ LOVABLE_API_KEY=
 GOOGLE_SEARCH_API_KEY=
 GOOGLE_SEARCH_ENGINE_ID=
 ABEL_CV_URL=
+OPPORTUNITY_ADMIN_TOKEN=
 ```
 
 `ABEL_CV_URL` est optionnelle mais recommandee si un CV public doit etre propose dans les brouillons.
+`OPPORTUNITY_ADMIN_TOKEN` doit etre long, aleatoire et stocke uniquement dans les secrets Supabase. Il est saisi manuellement dans le dashboard et conserve dans `localStorage` du navigateur de confiance.
 
 ## Configuration Google Search
 
@@ -50,7 +57,7 @@ Cette approche utilise l'API Google. Elle ne scrape pas LinkedIn, Indeed ou Welc
 1. Lancer `discover-job-opportunities` une fois par jour, limite 10 a 20 resultats.
 2. Lancer `score-job-opportunities`.
 3. Lancer `draft-job-outreach` seulement pour les scores eleves.
-4. Relire les brouillons `pending_review`.
+4. Ouvrir `/admin/opportunities` et relire les brouillons `pending_review`.
 5. Envoyer manuellement uniquement les messages vraiment pertinents.
 6. Mettre a jour `job_applications` avec le statut, les notes et le prochain follow-up.
 
@@ -61,6 +68,16 @@ curl -X POST "$SUPABASE_URL/functions/v1/discover-job-opportunities" \
   -H "Authorization: Bearer $SUPABASE_ANON_OR_USER_JWT" \
   -H "Content-Type: application/json" \
   -d '{"limit": 20}'
+```
+
+Exemple de lecture admin :
+
+```sh
+curl -X POST "$SUPABASE_URL/functions/v1/manage-opportunities" \
+  -H "Authorization: Bearer $SUPABASE_ANON_OR_USER_JWT" \
+  -H "x-opportunity-admin-token: $OPPORTUNITY_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"action": "list", "status": "drafted", "limit": 20}'
 ```
 
 ## Regles anti-spam
@@ -75,7 +92,6 @@ curl -X POST "$SUPABASE_URL/functions/v1/discover-job-opportunities" \
 
 ## Evolutions possibles
 
-- Ajouter une page admin `/admin/opportunities` protegee.
 - Ajouter un cron Supabase ou Vercel Cron qui declenche seulement `discover` et `score`, jamais l'envoi.
 - Brancher des API partenaires si elles sont disponibles et autorisees.
 - Ajouter une integration CRM dediee pour relances et pipeline.
@@ -86,4 +102,4 @@ curl -X POST "$SUPABASE_URL/functions/v1/discover-job-opportunities" \
 - Pas d'integration LinkedIn, Indeed, Welcome to the Jungle ou Malt directe.
 - Pas de candidature automatique.
 - Pas de cron configure dans le depot.
-- Pas d'interface admin encore livree.
+- Le dashboard admin repose sur un token partage. Pour plusieurs utilisateurs, remplacer par Supabase Auth + roles.

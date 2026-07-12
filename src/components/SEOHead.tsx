@@ -8,6 +8,7 @@ interface SEOHeadProps {
   lang?: "fr" | "en" | "es";
   alternates?: { hrefLang: string; path: string }[];
   breadcrumbs?: { name: string; path: string }[];
+  noindex?: boolean;
 }
 
 const SITE_URL = "https://abelsalah.fr";
@@ -21,6 +22,7 @@ const SEOHead = ({
   lang = "fr",
   alternates,
   breadcrumbs,
+  noindex = false,
 }: SEOHeadProps) => {
   const fullCanonical = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
   const ogLocale = lang === "en" ? "en_US" : lang === "es" ? "es_ES" : "fr_FR";
@@ -41,6 +43,7 @@ const SEOHead = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="author" content="Abel SALAH" />
+      {noindex && <meta name="robots" content="noindex,nofollow" />}
       <link rel="canonical" href={fullCanonical} />
       {alternates ? (
         alternates.map((alternate) => (

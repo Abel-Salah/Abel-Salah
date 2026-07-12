@@ -17,3 +17,6 @@ verify_jwt = true
 
 [functions.draft-job-outreach]
 verify_jwt = true
+
+[functions.manage-opportunities]
+verify_jwt = true

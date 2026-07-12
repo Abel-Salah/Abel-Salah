@@ -28,6 +28,10 @@ Profil cible :
 Retourne uniquement un JSON strict avec :
 {
   "score": number 0-100,
+  "relevance": number 0-100,
+  "urgency": number 0-100,
+  "budget_potential": number 0-100,
+  "response_probability": number 0-100,
   "fit_summary": "2 phrases max",
   "strengths": ["..."],
   "risks": ["..."],
@@ -36,6 +40,16 @@ Retourne uniquement un JSON strict avec :
 
 const validateScore = (score: OpportunityScore): OpportunityScore => ({
   score: Math.max(0, Math.min(100, Math.round(Number(score.score) || 0))),
+  relevance: Math.max(0, Math.min(100, Math.round(Number(score.relevance) || 0))),
+  urgency: Math.max(0, Math.min(100, Math.round(Number(score.urgency) || 0))),
+  budget_potential: Math.max(
+    0,
+    Math.min(100, Math.round(Number(score.budget_potential) || 0))
+  ),
+  response_probability: Math.max(
+    0,
+    Math.min(100, Math.round(Number(score.response_probability) || 0))
+  ),
   fit_summary: String(score.fit_summary ?? "").slice(0, 800),
   strengths: Array.isArray(score.strengths)
     ? score.strengths.map(String).slice(0, 5)

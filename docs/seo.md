@@ -39,7 +39,7 @@ Le sitemap statique ne peut pas connaitre les articles dynamiques en base. La fo
 
 ## Robots
 
-[public/robots.txt](../public/robots.txt) autorise les principaux crawlers et bloque `/styleguide`.
+[public/robots.txt](../public/robots.txt) autorise les principaux crawlers et bloque `/styleguide` ainsi que `/admin/`.
 
 Il expose :
 

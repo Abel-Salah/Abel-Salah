@@ -1,7 +1,7 @@
 export const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+    "authorization, x-client-info, apikey, content-type, x-opportunity-admin-token, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 export const profileUrl = "https://abelsalah.fr";
@@ -10,6 +10,10 @@ export const aiModel = "google/gemini-3-flash-preview";
 
 export type OpportunityScore = {
   score: number;
+  relevance?: number;
+  urgency?: number;
+  budget_potential?: number;
+  response_probability?: number;
   fit_summary: string;
   strengths: string[];
   risks: string[];
@@ -18,7 +22,13 @@ export type OpportunityScore = {
 
 export type OutreachDraft = {
   subject: string;
+  rationale?: string;
   message: string;
+  linkedin_message?: string;
+  email_message?: string;
+  short_message?: string;
+  application_message?: string;
+  follow_up_plan?: Array<{ delay_days: number; message: string }>;
 };
 
 export const jsonResponse = (body: unknown, status = 200) =>
@@ -35,6 +45,17 @@ export const getRequiredEnv = (name: string) => {
   }
 
   return value;
+};
+
+export const requireAdminToken = (req: Request) => {
+  const expected = getRequiredEnv("OPPORTUNITY_ADMIN_TOKEN");
+  const provided = req.headers.get("x-opportunity-admin-token");
+
+  if (!provided || provided !== expected) {
+    return jsonResponse({ error: "Unauthorized opportunity admin request" }, 401);
+  }
+
+  return null;
 };
 
 export const clampLimit = (value: unknown, fallback: number, max: number) => {

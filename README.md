@@ -53,6 +53,7 @@ LOVABLE_API_KEY=
 GOOGLE_SEARCH_API_KEY=
 GOOGLE_SEARCH_ENGINE_ID=
 ABEL_CV_URL=
+OPPORTUNITY_ADMIN_TOKEN=
 ```
 
 Ne jamais committer de secrets. Utiliser [.env.example](.env.example) comme reference.
@@ -85,6 +86,7 @@ Etat observe au dernier audit documentaire :
 - `/blog` : liste des articles
 - `/blog/:slug` : detail article statique ou genere
 - `/ecosystem` : produits et preuves d'execution
+- `/admin/opportunities` : dashboard prive Opportunity Agent, noindex, protege par token
 - `/styleguide` : page interne, bloquee dans `robots.txt`
 
 ## Documentation
