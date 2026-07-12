@@ -26,11 +26,14 @@ Au dernier controle :
 - Blog genere Supabase si la base contient des articles publies.
 - Page `/ecosystem`.
 - `robots.txt`, `sitemap.xml`, `llms.txt`, `ai.txt`.
+- Fonctions Opportunity Agent en dry run avec secrets de test si configurees.
+- Verification qu'aucun brouillon Opportunity Agent ne passe en `sent` sans action humaine.
 
 ## Dette technique suivie
 
 - Nettoyage shadcn apres audit des usages.
 - Moderation humaine optionnelle des articles IA avant publication production.
+- Interface admin protegee pour relire les opportunites et brouillons.
 
 ## Images
 

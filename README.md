@@ -13,6 +13,7 @@ Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente le
 - Framer Motion
 - TanStack Query
 - Supabase pour les articles de blog generes
+- Supabase pour l'Opportunity Agent semi-automatique
 - TidyCal pour la prise de rendez-vous
 
 ## Prerequis
@@ -49,6 +50,9 @@ Variables Edge Functions Supabase :
 SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 LOVABLE_API_KEY=
+GOOGLE_SEARCH_API_KEY=
+GOOGLE_SEARCH_ENGINE_ID=
+ABEL_CV_URL=
 ```
 
 Ne jamais committer de secrets. Utiliser [.env.example](.env.example) comme reference.
@@ -88,6 +92,7 @@ Etat observe au dernier audit documentaire :
 - [Installation et environnement](docs/setup.md)
 - [Architecture technique](docs/architecture.md)
 - [Supabase et securite](docs/supabase.md)
+- [Opportunity Agent](docs/opportunity-agent.md)
 - [SEO, sitemap et LLM](docs/seo.md)
 - [Deploiement et rollback](docs/deployment.md)
 - [Qualite, tests et maintenance](docs/quality.md)
@@ -97,6 +102,7 @@ Etat observe au dernier audit documentaire :
 
 - La fonction Supabase `generate-sitemap` est publique et ne fait que lire les articles publies.
 - Les fonctions Supabase `generate-blog-post` et `generate-batch-posts` sont configurees avec `verify_jwt = true`.
+- Les fonctions Opportunity Agent sont protegees par JWT et ne postulent jamais automatiquement.
 - Le blog rend les paragraphes Markdown avec `react-markdown`, `remark-gfm` et `rehype-sanitize`.
 - Les articles generes sont valides par schema Zod avant insertion.
 

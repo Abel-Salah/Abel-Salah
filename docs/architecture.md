@@ -44,6 +44,19 @@ Le blog combine deux sources :
 
 `BlogPost` tente d'abord de trouver un article statique, puis interroge Supabase si aucun article statique ne correspond au slug.
 
+## Opportunity Agent
+
+L'Opportunity Agent est une fondation backend semi-automatique pour detecter, scorer et preparer des brouillons de candidature ou prise de contact.
+
+Il repose sur :
+
+- Google Programmable Search / Custom Search JSON API pour la decouverte.
+- Supabase pour le stockage prive.
+- IA via Edge Function pour le scoring et les brouillons.
+- Validation humaine obligatoire avant tout envoi.
+
+Aucune fonction ne soumet de candidature automatiquement. Voir [docs/opportunity-agent.md](opportunity-agent.md).
+
 ## SEO
 
 Le composant [src/components/SEOHead.tsx](../src/components/SEOHead.tsx) centralise les titres, descriptions, canonical, alternates et breadcrumbs JSON-LD pour les pages React.

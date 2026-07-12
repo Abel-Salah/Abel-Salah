@@ -8,3 +8,12 @@ verify_jwt = true
 
 [functions.generate-batch-posts]
 verify_jwt = true
+
+[functions.discover-job-opportunities]
+verify_jwt = true
+
+[functions.score-job-opportunities]
+verify_jwt = true
+
+[functions.draft-job-outreach]
+verify_jwt = true
