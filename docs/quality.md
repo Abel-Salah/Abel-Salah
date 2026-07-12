@@ -27,6 +27,7 @@ Au dernier controle :
 - Page `/ecosystem`.
 - `robots.txt`, `sitemap.xml`, `llms.txt`, `ai.txt`.
 - Fonctions Opportunity Agent en dry run avec secrets de test si configurees.
+- Fonction `run-opportunity-daily` : verifier qu'elle orchestre discovery/scoring/drafts sans envoyer de message.
 - Verification qu'aucun brouillon Opportunity Agent ne passe en `sent` sans action humaine.
 - Dashboard `/admin/opportunities` : token requis, liste, validation, refus, modification de brouillon, marquage envoye.
 

@@ -73,6 +73,7 @@ Fonctions presentes :
 - [supabase/functions/score-job-opportunities/index.ts](../supabase/functions/score-job-opportunities/index.ts)
 - [supabase/functions/draft-job-outreach/index.ts](../supabase/functions/draft-job-outreach/index.ts)
 - [supabase/functions/manage-opportunities/index.ts](../supabase/functions/manage-opportunities/index.ts)
+- [supabase/functions/run-opportunity-daily/index.ts](../supabase/functions/run-opportunity-daily/index.ts)
 
 Variables requises :
 
@@ -113,6 +114,9 @@ verify_jwt = true
 
 [functions.manage-opportunities]
 verify_jwt = true
+
+[functions.run-opportunity-daily]
+verify_jwt = true
 ```
 
 Implications :
@@ -121,6 +125,7 @@ Implications :
 - `generate-blog-post` et `generate-batch-posts` declenchent une generation et une insertion avec service role ; elles doivent rester protegees.
 - les fonctions Opportunity Agent doivent rester protegees, car elles lisent/ecrivent des opportunites et brouillons CRM.
 - `manage-opportunities` exige aussi `x-opportunity-admin-token`, compare a `OPPORTUNITY_ADMIN_TOKEN`.
+- `run-opportunity-daily` exige aussi `x-opportunity-admin-token` et orchestre seulement discovery/scoring/drafts.
 
 ## Risques connus
 

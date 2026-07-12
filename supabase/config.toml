@@ -20,3 +20,6 @@ verify_jwt = true
 
 [functions.manage-opportunities]
 verify_jwt = true
+
+[functions.run-opportunity-daily]
+verify_jwt = true

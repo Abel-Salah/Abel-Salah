@@ -22,6 +22,7 @@ Edge Functions protegees par JWT :
 - `score-job-opportunities` : score les opportunites via IA.
 - `draft-job-outreach` : prepare des brouillons personnalises, sans envoi.
 - `manage-opportunities` : API privee du dashboard admin pour lister, valider, refuser, modifier les brouillons et marquer un envoi manuel.
+- `run-opportunity-daily` : orchestre `discover`, `score` et `draft` pour un declenchement manuel ou cron, toujours sans envoi.
 
 Dashboard :
 
@@ -70,6 +71,16 @@ curl -X POST "$SUPABASE_URL/functions/v1/discover-job-opportunities" \
   -d '{"limit": 20}'
 ```
 
+Exemple d'orchestration quotidienne manuelle :
+
+```sh
+curl -X POST "$SUPABASE_URL/functions/v1/run-opportunity-daily" \
+  -H "Authorization: Bearer $SUPABASE_ANON_OR_USER_JWT" \
+  -H "x-opportunity-admin-token: $OPPORTUNITY_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"discoverLimit": 20, "scoreLimit": 20, "draftLimit": 10}'
+```
+
 Exemple de lecture admin :
 
 ```sh
@@ -92,7 +103,7 @@ curl -X POST "$SUPABASE_URL/functions/v1/manage-opportunities" \
 
 ## Evolutions possibles
 
-- Ajouter un cron Supabase ou Vercel Cron qui declenche seulement `discover` et `score`, jamais l'envoi.
+- Ajouter un cron Supabase ou Vercel Cron a 7h30 qui appelle `run-opportunity-daily`, jamais l'envoi.
 - Brancher des API partenaires si elles sont disponibles et autorisees.
 - Ajouter une integration CRM dediee pour relances et pipeline.
 - Ajouter un connecteur email uniquement pour preparer des brouillons, pas pour envoyer sans validation.
@@ -101,5 +112,5 @@ curl -X POST "$SUPABASE_URL/functions/v1/manage-opportunities" \
 
 - Pas d'integration LinkedIn, Indeed, Welcome to the Jungle ou Malt directe.
 - Pas de candidature automatique.
-- Pas de cron configure dans le depot.
+- Pas de cron active dans le depot tant que les secrets et le volume quotidien ne sont pas valides.
 - Le dashboard admin repose sur un token partage. Pour plusieurs utilisateurs, remplacer par Supabase Auth + roles.
