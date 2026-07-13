@@ -8,6 +8,7 @@ interface SEOHeadProps {
   lang?: "fr" | "en" | "es";
   alternates?: { hrefLang: string; path: string }[];
   breadcrumbs?: { name: string; path: string }[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
 
@@ -22,6 +23,7 @@ const SEOHead = ({
   lang = "fr",
   alternates,
   breadcrumbs,
+  jsonLd,
   noindex = false,
 }: SEOHeadProps) => {
   const fullCanonical = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
@@ -39,7 +41,7 @@ const SEOHead = ({
   } : null;
 
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang }}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="author" content="Abel SALAH" />
@@ -74,6 +76,11 @@ const SEOHead = ({
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
+      {jsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
         </script>
       )}
     </Helmet>

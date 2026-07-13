@@ -70,6 +70,7 @@ export const homeContent = {
       {
         number: "01",
         title: "Audit IA",
+        href: "/audit-ia",
         icon: BrainCircuit,
         text: "Identifier les cas d'usage qui ont vraiment du sens pour vos équipes, vos données et votre business.",
         bullets: ["Diagnostic opérationnel", "Priorisation ROI", "Roadmap 30/60/90 jours"],
@@ -77,6 +78,7 @@ export const homeContent = {
       {
         number: "02",
         title: "Automatisation",
+        href: "/automatisation-commerciale",
         icon: Workflow,
         text: "Transformer les tâches répétitives en workflows fiables : prospection, CRM, relances, reporting.",
         bullets: ["Scoring leads", "Séquences commerciales", "Pilotage CRM"],
@@ -84,6 +86,7 @@ export const homeContent = {
       {
         number: "03",
         title: "Formation IA",
+        href: "/formation-ia",
         icon: Bot,
         text: "Former dirigeants, managers et équipes à utiliser l'IA sans gadget, avec méthode et adoption terrain.",
         bullets: ["Ateliers métier", "Prompting utile", "Conduite du changement"],
@@ -149,6 +152,7 @@ export const homeContent = {
       {
         number: "01",
         title: "AI Audit",
+        href: "/audit-ia",
         icon: BrainCircuit,
         text: "Identify the AI use cases that truly fit your teams, your data, and your business model.",
         bullets: ["Operational diagnosis", "ROI prioritization", "30/60/90-day roadmap"],
@@ -156,6 +160,7 @@ export const homeContent = {
       {
         number: "02",
         title: "Automation",
+        href: "/automatisation-commerciale",
         icon: Workflow,
         text: "Turn repetitive work into reliable workflows: prospecting, CRM, follow-ups, and reporting.",
         bullets: ["Lead scoring", "Sales sequences", "CRM operations"],
@@ -163,6 +168,7 @@ export const homeContent = {
       {
         number: "03",
         title: "AI Training",
+        href: "/formation-ia",
         icon: Bot,
         text: "Train executives, managers, and teams to use AI with method, adoption, and business clarity.",
         bullets: ["Business workshops", "Useful prompting", "Change management"],
@@ -228,6 +234,7 @@ export const homeContent = {
       {
         number: "01",
         title: "Auditoría IA",
+        href: "/audit-ia",
         icon: BrainCircuit,
         text: "Identificar los casos de uso de IA que encajan con tus equipos, tus datos y tu negocio.",
         bullets: ["Diagnóstico operativo", "Priorización ROI", "Roadmap 30/60/90 días"],
@@ -235,6 +242,7 @@ export const homeContent = {
       {
         number: "02",
         title: "Automatización",
+        href: "/automatisation-commerciale",
         icon: Workflow,
         text: "Convertir tareas repetitivas en flujos fiables: prospección, CRM, seguimientos e informes.",
         bullets: ["Scoring de leads", "Secuencias comerciales", "Operaciones CRM"],
@@ -242,6 +250,7 @@ export const homeContent = {
       {
         number: "03",
         title: "Formación IA",
+        href: "/formation-ia",
         icon: Bot,
         text: "Formar a directivos, managers y equipos para usar la IA con método, adopción y claridad.",
         bullets: ["Talleres de negocio", "Prompts útiles", "Gestión del cambio"],

@@ -8,6 +8,9 @@ Key pages:
 - French: https://abelsalah.fr/
 - English: https://abelsalah.fr/en
 - Spanish: https://abelsalah.fr/es
+- AI audit: https://abelsalah.fr/audit-ia
+- Sales automation: https://abelsalah.fr/automatisation-commerciale
+- AI training: https://abelsalah.fr/formation-ia
 - Blog: https://abelsalah.fr/blog
 - Contact: https://abelsalah.fr/contact
 

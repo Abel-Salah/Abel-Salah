@@ -16,6 +16,9 @@ const STATIC_PAGES = [
   { loc: "/contact", priority: "0.8", changefreq: "monthly" },
   { loc: "/blog", priority: "0.8", changefreq: "daily" },
   { loc: "/ecosystem", priority: "0.8", changefreq: "monthly" },
+  { loc: "/audit-ia", priority: "0.9", changefreq: "monthly" },
+  { loc: "/automatisation-commerciale", priority: "0.9", changefreq: "monthly" },
+  { loc: "/formation-ia", priority: "0.9", changefreq: "monthly" },
 ];
 
 const DOMAIN = "https://abelsalah.fr";

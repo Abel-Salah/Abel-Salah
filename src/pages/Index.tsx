@@ -285,6 +285,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                     </p>
                   ))}
                 </div>
+                <Link
+                  to={service.href}
+                  className="mt-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                >
+                  En savoir plus
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </motion.div>
               );
             })}

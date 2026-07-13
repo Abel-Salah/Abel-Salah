@@ -22,6 +22,12 @@ Abel SALAH es consultor de inteligencia artificial para pymes, empresas en creci
 - **Déploiement de solutions IA sur mesure** : Intégration de CRM intelligents, scoring leads par IA, LMS avec parcours personnalisés, systèmes d'acquisition automatisés.
 - **Transformation digitale** : Accompagnement global de la transition numérique avec l'IA comme levier de croissance.
 
+## Pages piliers SEO
+
+- **Audit IA** — https://abelsalah.fr/audit-ia : diagnostic des processus, priorisation ROI, feuille de route 30/60/90 jours.
+- **Automatisation commerciale IA** — https://abelsalah.fr/automatisation-commerciale : scoring leads, CRM, prospection, brouillons personnalisés avec validation humaine.
+- **Formation IA** — https://abelsalah.fr/formation-ia : ateliers dirigeants et équipes, prompting utile, adoption métier et gouvernance responsable.
+
 ## Résultats et chiffres clés
 
 - 16+ ans d'expérience en développement commercial et transformation digitale
@@ -74,6 +80,9 @@ Optimisez vos process, structurez votre prospection et pilotez efficacement votr
 - [À propos](/about): Parcours d'Abel SALAH, 16 ans en développement commercial et transformation digitale par l'IA.
 - [Réalisations](/work): Cas concrets d'IA en entreprise — ventes, RH, acquisition (+40% conversion, pipeline x5).
 - [Écosystème](/ecosystem): Les 4 produits IA construits par Abel SALAH — SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier.
+- [Audit IA](/audit-ia): Diagnostic IA pour identifier les cas d'usage utiles, chiffrables et déployables.
+- [Automatisation commerciale](/automatisation-commerciale): Workflow IA pour prioriser prospects, CRM, messages et suivi.
+- [Formation IA](/formation-ia): Formation IA pour dirigeants, managers et équipes opérationnelles.
 - [Blog IA Entreprise](/blog): Guides pratiques, cas concrets et analyses stratégiques sur l'IA en entreprise.
 - [Contact](/contact): Prendre rendez-vous avec Abel SALAH via TidyCal pour un audit IA gratuit.
 

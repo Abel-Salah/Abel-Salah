@@ -8,6 +8,7 @@ import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 const navLabels = {
   fr: [
     { href: "/", label: "Accueil" },
+    { href: "/audit-ia", label: "Audit IA" },
     { href: "/work", label: "Réalisations" },
     { href: "/about", label: "À propos" },
     { href: "/blog", label: "Blog" },
@@ -15,6 +16,7 @@ const navLabels = {
   ],
   en: [
     { href: "/en", label: "Home" },
+    { href: "/audit-ia", label: "AI Audit" },
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
@@ -22,6 +24,7 @@ const navLabels = {
   ],
   es: [
     { href: "/es", label: "Inicio" },
+    { href: "/audit-ia", label: "Auditoría IA" },
     { href: "/work", label: "Proyectos" },
     { href: "/about", label: "Sobre mí" },
     { href: "/blog", label: "Blog" },
