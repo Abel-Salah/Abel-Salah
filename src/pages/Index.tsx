@@ -108,6 +108,10 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             alt={content.portraitAlt}
             className="w-full object-contain drop-shadow-[0_35px_80px_rgba(0,0,0,0.65)]"
             src="/lovable-uploads/25c961c5-9b15-45eb-9b03-efab8873db58.webp"
+            width={1070}
+            height={1604}
+            fetchPriority="high"
+            decoding="async"
           />
         </motion.div>
 
@@ -138,6 +142,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   alt={content.videoAlt}
                   className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
                   loading="lazy"
+                  width={1024}
+                  height={1536}
+                  decoding="async"
                 />
                 <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
                   <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">

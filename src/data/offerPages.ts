@@ -1,9 +1,28 @@
 import { Bot, BrainCircuit, Workflow } from "lucide-react";
 
+const auditAlternates = [
+  { hrefLang: "fr", path: "/audit-ia" },
+  { hrefLang: "en", path: "/en/ai-audit" },
+  { hrefLang: "es", path: "/es/auditoria-ia" },
+];
+
+const automationAlternates = [
+  { hrefLang: "fr", path: "/automatisation-commerciale" },
+  { hrefLang: "en", path: "/en/sales-automation" },
+  { hrefLang: "es", path: "/es/automatizacion-comercial" },
+];
+
+const trainingAlternates = [
+  { hrefLang: "fr", path: "/formation-ia" },
+  { hrefLang: "en", path: "/en/ai-training" },
+  { hrefLang: "es", path: "/es/formacion-ia" },
+];
+
 export const offerPages = {
   "audit-ia": {
     lang: "fr",
     path: "/audit-ia",
+    alternates: auditAlternates,
     title: "Audit IA pour PME & ETI",
     eyebrow: "Diagnostic IA",
     seoTitle: "Audit IA Entreprise | Identifier les bons cas d'usage — Abel SALAH",
@@ -44,6 +63,7 @@ export const offerPages = {
   "automatisation-commerciale": {
     lang: "fr",
     path: "/automatisation-commerciale",
+    alternates: automationAlternates,
     title: "Automatisation commerciale IA",
     eyebrow: "Prospection & CRM",
     seoTitle: "Automatisation Commerciale IA | CRM, Prospection, Scoring — Abel SALAH",
@@ -84,6 +104,7 @@ export const offerPages = {
   "formation-ia": {
     lang: "fr",
     path: "/formation-ia",
+    alternates: trainingAlternates,
     title: "Formation IA pour équipes",
     eyebrow: "Adoption terrain",
     seoTitle: "Formation IA Entreprise | Dirigeants, Managers, Equipes — Abel SALAH",
@@ -124,6 +145,7 @@ export const offerPages = {
   "ai-audit": {
     lang: "en",
     path: "/en/ai-audit",
+    alternates: auditAlternates,
     title: "AI audit for SMEs and teams",
     eyebrow: "AI diagnosis",
     seoTitle: "AI Audit for Business | Practical Use Cases — Abel SALAH",
@@ -152,6 +174,7 @@ export const offerPages = {
   "sales-automation": {
     lang: "en",
     path: "/en/sales-automation",
+    alternates: automationAlternates,
     title: "AI sales automation",
     eyebrow: "Prospecting & CRM",
     seoTitle: "AI Sales Automation | CRM, Prospecting, Lead Scoring — Abel SALAH",
@@ -176,6 +199,7 @@ export const offerPages = {
   "ai-training": {
     lang: "en",
     path: "/en/ai-training",
+    alternates: trainingAlternates,
     title: "AI training for teams",
     eyebrow: "Practical adoption",
     seoTitle: "AI Training for Business | Executives, Managers, Teams — Abel SALAH",
@@ -200,6 +224,7 @@ export const offerPages = {
   "auditoria-ia": {
     lang: "es",
     path: "/es/auditoria-ia",
+    alternates: auditAlternates,
     title: "Auditoría IA para empresas",
     eyebrow: "Diagnóstico IA",
     seoTitle: "Auditoría IA Empresa | Casos de Uso Reales — Abel SALAH",
@@ -224,6 +249,7 @@ export const offerPages = {
   "automatizacion-comercial": {
     lang: "es",
     path: "/es/automatizacion-comercial",
+    alternates: automationAlternates,
     title: "Automatización comercial IA",
     eyebrow: "Prospección & CRM",
     seoTitle: "Automatización Comercial IA | CRM, Prospección, Scoring — Abel SALAH",
@@ -248,6 +274,7 @@ export const offerPages = {
   "formacion-ia": {
     lang: "es",
     path: "/es/formacion-ia",
+    alternates: trainingAlternates,
     title: "Formación IA para equipos",
     eyebrow: "Adopción práctica",
     seoTitle: "Formación IA Empresa | Directivos, Managers, Equipos — Abel SALAH",

@@ -34,11 +34,71 @@ const HOME_ALTERNATES = [
   { hreflang: "es", href: `${DOMAIN}/es` },
   { hreflang: "x-default", href: `${DOMAIN}/` },
 ];
+const OFFER_ALTERNATES: Record<string, { hreflang: string; href: string }[]> = {
+  "/audit-ia": [
+    { hreflang: "fr", href: `${DOMAIN}/audit-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-audit` },
+    { hreflang: "es", href: `${DOMAIN}/es/auditoria-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/audit-ia` },
+  ],
+  "/en/ai-audit": [
+    { hreflang: "fr", href: `${DOMAIN}/audit-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-audit` },
+    { hreflang: "es", href: `${DOMAIN}/es/auditoria-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/audit-ia` },
+  ],
+  "/es/auditoria-ia": [
+    { hreflang: "fr", href: `${DOMAIN}/audit-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-audit` },
+    { hreflang: "es", href: `${DOMAIN}/es/auditoria-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/audit-ia` },
+  ],
+  "/automatisation-commerciale": [
+    { hreflang: "fr", href: `${DOMAIN}/automatisation-commerciale` },
+    { hreflang: "en", href: `${DOMAIN}/en/sales-automation` },
+    { hreflang: "es", href: `${DOMAIN}/es/automatizacion-comercial` },
+    { hreflang: "x-default", href: `${DOMAIN}/automatisation-commerciale` },
+  ],
+  "/en/sales-automation": [
+    { hreflang: "fr", href: `${DOMAIN}/automatisation-commerciale` },
+    { hreflang: "en", href: `${DOMAIN}/en/sales-automation` },
+    { hreflang: "es", href: `${DOMAIN}/es/automatizacion-comercial` },
+    { hreflang: "x-default", href: `${DOMAIN}/automatisation-commerciale` },
+  ],
+  "/es/automatizacion-comercial": [
+    { hreflang: "fr", href: `${DOMAIN}/automatisation-commerciale` },
+    { hreflang: "en", href: `${DOMAIN}/en/sales-automation` },
+    { hreflang: "es", href: `${DOMAIN}/es/automatizacion-comercial` },
+    { hreflang: "x-default", href: `${DOMAIN}/automatisation-commerciale` },
+  ],
+  "/formation-ia": [
+    { hreflang: "fr", href: `${DOMAIN}/formation-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-training` },
+    { hreflang: "es", href: `${DOMAIN}/es/formacion-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/formation-ia` },
+  ],
+  "/en/ai-training": [
+    { hreflang: "fr", href: `${DOMAIN}/formation-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-training` },
+    { hreflang: "es", href: `${DOMAIN}/es/formacion-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/formation-ia` },
+  ],
+  "/es/formacion-ia": [
+    { hreflang: "fr", href: `${DOMAIN}/formation-ia` },
+    { hreflang: "en", href: `${DOMAIN}/en/ai-training` },
+    { hreflang: "es", href: `${DOMAIN}/es/formacion-ia` },
+    { hreflang: "x-default", href: `${DOMAIN}/formation-ia` },
+  ],
+};
 
 function alternateLinksFor(loc: string): string {
-  if (!["/", "/en", "/es"].includes(loc)) return "";
+  const alternates = ["/", "/en", "/es"].includes(loc)
+    ? HOME_ALTERNATES
+    : OFFER_ALTERNATES[loc];
 
-  return HOME_ALTERNATES.map(
+  if (!alternates) return "";
+
+  return alternates.map(
     (alternate) =>
       `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
   ).join("\n") + "\n";

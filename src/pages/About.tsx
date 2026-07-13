@@ -70,7 +70,13 @@ const About = () => {
               <img
 
                 alt="Abel SALAH — Expert IA & Consultant en Entreprise"
-                className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500" src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp" />
+                className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500"
+                src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp"
+                width={1024}
+                height={1536}
+                loading="lazy"
+                decoding="async"
+              />
 
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
             </motion.div>

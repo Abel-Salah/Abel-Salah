@@ -163,9 +163,9 @@ const Styleguide = () => {
             {/* Links */}
             <div>
               <p className="text-xs text-muted-foreground mb-6">Link Style — Underline on hover</p>
-              <a href="#" className="story-link text-2xl text-foreground">
+              <button type="button" className="story-link text-2xl text-foreground">
                 Hover to see the effect
-              </a>
+              </button>
             </div>
 
             {/* Buttons */}

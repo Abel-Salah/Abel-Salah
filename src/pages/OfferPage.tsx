@@ -74,6 +74,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
         description={offer.seoDescription}
         canonical={offer.path}
         lang={offer.lang}
+        alternates={offer.alternates}
         breadcrumbs={[
           { name: copy.home, path: offer.lang === "fr" ? "/" : `/${offer.lang}` },
           { name: offer.title, path: offer.path },
