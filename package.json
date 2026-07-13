@@ -8,8 +8,10 @@
     "build": "vite build && node scripts/generate-static-route-heads.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "smoke": "node scripts/smoke-checks.mjs",
     "preview": "vite preview",
-    "verify": "npm run lint && npm run build && node scripts/verify-static-seo.mjs && npm audit --audit-level=moderate"
+    "verify": "npm run lint && npm run typecheck && npm run build && node scripts/verify-static-seo.mjs && npm run smoke && npm audit --audit-level=moderate"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

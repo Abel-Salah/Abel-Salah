@@ -3,11 +3,10 @@
 ## Build production
 
 ```sh
-npm run lint
-npm run build
+npm run verify
 ```
 
-Le build produit le dossier `dist`.
+`npm run verify` lance lint, typecheck, build, verification SEO statique, smoke checks et audit npm. Le build produit le dossier `dist`.
 
 ## Preview locale
 
@@ -17,19 +16,19 @@ npm run preview
 
 ## Hebergement
 
-Le README Lovable initial indiquait un deploiement via Lovable, mais le depot ne contient pas de configuration Vercel, Netlify, Docker ou GitHub Actions.
-
-Source de verite actuelle a confirmer humainement :
+Source de verite actuelle :
 
 - Lovable peut publier le projet depuis GitHub.
+- [vercel.json](../vercel.json) et [public/_redirects](../public/_redirects) documentent les rewrites statiques utiles aux hebergeurs compatibles.
+- GitHub Actions execute `npm run verify` quand le budget Actions du compte est actif.
 - Le domaine public attendu est `https://abelsalah.fr`.
 
 ## Checklist avant mise en production
 
 1. `git status --short` propre ou changements volontairement stages.
-2. `npm run lint`.
-3. `npm run build`.
-4. `npm audit --audit-level=moderate`.
+2. `npm run verify`.
+3. CI GitHub verte si le budget Actions est actif.
+4. Branche `main` protegee avant de rendre les checks obligatoires.
 5. Verification manuelle des routes principales :
    - `/`
    - `/en`
@@ -49,8 +48,7 @@ Rollback Git simple :
 ```sh
 git log --oneline
 git revert <commit_sha>
-npm run lint
-npm run build
+npm run verify
 git push origin main
 ```
 

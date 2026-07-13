@@ -62,6 +62,276 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          applied_at: string | null
+          created_at: string
+          draft_id: string | null
+          id: string
+          next_follow_up_at: string | null
+          notes: string | null
+          opportunity_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          applied_at?: string | null
+          created_at?: string
+          draft_id?: string | null
+          id?: string
+          next_follow_up_at?: string | null
+          notes?: string | null
+          opportunity_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          applied_at?: string | null
+          created_at?: string
+          draft_id?: string | null
+          id?: string
+          next_follow_up_at?: string | null
+          notes?: string | null
+          opportunity_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_draft_id_fkey"
+            columns: ["draft_id"]
+            isOneToOne: false
+            referencedRelation: "job_outreach_drafts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "job_applications_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: true
+            referencedRelation: "job_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_opportunities: {
+        Row: {
+          company: string | null
+          description: string | null
+          discovered_at: string
+          id: string
+          location: string | null
+          published_at: string | null
+          raw_payload: Json
+          remote: boolean
+          source_id: string | null
+          source_type: string
+          status: string
+          title: string
+          url: string
+        }
+        Insert: {
+          company?: string | null
+          description?: string | null
+          discovered_at?: string
+          id?: string
+          location?: string | null
+          published_at?: string | null
+          raw_payload?: Json
+          remote?: boolean
+          source_id?: string | null
+          source_type?: string
+          status?: string
+          title: string
+          url: string
+        }
+        Update: {
+          company?: string | null
+          description?: string | null
+          discovered_at?: string
+          id?: string
+          location?: string | null
+          published_at?: string | null
+          raw_payload?: Json
+          remote?: boolean
+          source_id?: string | null
+          source_type?: string
+          status?: string
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_opportunities_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "job_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_outreach_drafts: {
+        Row: {
+          application_message: string | null
+          channel: string
+          created_at: string
+          cv_url: string | null
+          email_message: string | null
+          follow_up_plan: Json
+          id: string
+          linkedin_message: string | null
+          message: string
+          opportunity_id: string
+          profile_url: string
+          rationale: string | null
+          short_message: string | null
+          status: string
+          subject: string | null
+          updated_at: string
+        }
+        Insert: {
+          application_message?: string | null
+          channel?: string
+          created_at?: string
+          cv_url?: string | null
+          email_message?: string | null
+          follow_up_plan?: Json
+          id?: string
+          linkedin_message?: string | null
+          message: string
+          opportunity_id: string
+          profile_url?: string
+          rationale?: string | null
+          short_message?: string | null
+          status?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Update: {
+          application_message?: string | null
+          channel?: string
+          created_at?: string
+          cv_url?: string | null
+          email_message?: string | null
+          follow_up_plan?: Json
+          id?: string
+          linkedin_message?: string | null
+          message?: string
+          opportunity_id?: string
+          profile_url?: string
+          rationale?: string | null
+          short_message?: string | null
+          status?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_outreach_drafts_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: true
+            referencedRelation: "job_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_scores: {
+        Row: {
+          budget_potential: number | null
+          created_at: string
+          fit_summary: string
+          id: string
+          opportunity_id: string
+          relevance: number | null
+          response_probability: number | null
+          risks: string[]
+          score: number
+          strengths: string[]
+          suggested_angle: string | null
+          urgency: number | null
+        }
+        Insert: {
+          budget_potential?: number | null
+          created_at?: string
+          fit_summary: string
+          id?: string
+          opportunity_id: string
+          relevance?: number | null
+          response_probability?: number | null
+          risks?: string[]
+          score: number
+          strengths?: string[]
+          suggested_angle?: string | null
+          urgency?: number | null
+        }
+        Update: {
+          budget_potential?: number | null
+          created_at?: string
+          fit_summary?: string
+          id?: string
+          opportunity_id?: string
+          relevance?: number | null
+          response_probability?: number | null
+          risks?: string[]
+          score?: number
+          strengths?: string[]
+          suggested_angle?: string | null
+          urgency?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_scores_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: true
+            referencedRelation: "job_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_sources: {
+        Row: {
+          created_at: string
+          daily_limit: number
+          enabled: boolean
+          exclude_terms: string[]
+          id: string
+          include_domains: string[]
+          metadata: Json
+          min_score: number
+          name: string
+          search_queries: string[]
+          source_type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          daily_limit?: number
+          enabled?: boolean
+          exclude_terms?: string[]
+          id?: string
+          include_domains?: string[]
+          metadata?: Json
+          min_score?: number
+          name: string
+          search_queries?: string[]
+          source_type: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          daily_limit?: number
+          enabled?: boolean
+          exclude_terms?: string[]
+          id?: string
+          include_domains?: string[]
+          metadata?: Json
+          min_score?: number
+          name?: string
+          search_queries?: string[]
+          source_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

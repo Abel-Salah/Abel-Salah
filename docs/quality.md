@@ -4,19 +4,23 @@
 
 ```sh
 npm run lint
+npm run typecheck
+npm run smoke
 npm run build
 npm audit --audit-level=moderate
 npm run verify
 ```
 
-`npm run verify` regroupe les controles minimums attendus avant un push ou une pull request.
+`npm run verify` regroupe les controles minimums attendus avant un push ou une pull request : lint, typecheck, build, verification SEO statique, smoke checks et audit npm.
 
 ## Etat connu
 
 Au dernier controle :
 
 - `npm run lint` passe sans warning.
+- `npm run typecheck` passe.
 - `npm run build` passe.
+- `npm run smoke` verifie les invariants critiques : routes publiques, TidyCal, blog Markdown sanitize, admin noindex/robots, JWT Supabase et absence d'envoi automatique d'email.
 - Le bundle principal est sous le seuil d'avertissement Vite grace au code splitting par routes.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
 
@@ -28,6 +32,7 @@ Au dernier controle :
 - `CODEOWNERS` assigne les zones sensibles a `@Abel-Salah`.
 - [SECURITY.md](../SECURITY.md) documente le signalement prive et les regles de secrets.
 - Si GitHub Actions retourne `The job was not started because an Actions budget is preventing further use`, le code peut etre sain mais le budget Actions doit etre debloque cote GitHub avant d'obtenir un run vert.
+- La branche `main` doit etre protegee cote GitHub avant de considerer la CI comme bloquante.
 
 ## Tests manuels recommandes
 
@@ -62,5 +67,5 @@ Pour chaque fichier candidat :
 1. rechercher les imports directs ;
 2. rechercher les usages dynamiques ;
 3. verifier les routes et configs ;
-4. lancer `npm run lint` et `npm run build` ;
+4. lancer `npm run verify` ;
 5. verifier manuellement les pages concernees.
