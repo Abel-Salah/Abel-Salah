@@ -230,6 +230,10 @@ for (const route of routes) {
   const routeDir = path.join(distDir, route.path.replace(/^\//, ""));
   await mkdir(routeDir, { recursive: true });
   await writeFile(path.join(routeDir, "index.html"), html);
+
+  const htmlFilePath = path.join(distDir, `${route.path.replace(/^\//, "")}.html`);
+  await mkdir(path.dirname(htmlFilePath), { recursive: true });
+  await writeFile(htmlFilePath, html);
 }
 
 console.log(`Generated static SEO heads for ${routes.length} routes.`);

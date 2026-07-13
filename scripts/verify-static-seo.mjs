@@ -21,6 +21,14 @@ const checks = [
     ],
   },
   {
+    file: "audit-ia.html",
+    mustContain: [
+      '<html lang="fr">',
+      "<title>Audit IA Entreprise | Identifier les bons cas d'usage — Abel SALAH</title>",
+      '<link rel="canonical" href="https://abelsalah.fr/audit-ia" />',
+    ],
+  },
+  {
     file: "en/ai-audit/index.html",
     mustContain: [
       '<html lang="en">',
@@ -30,12 +38,28 @@ const checks = [
     ],
   },
   {
+    file: "en/ai-audit.html",
+    mustContain: [
+      '<html lang="en">',
+      "<title>AI Audit for Business | Practical Use Cases — Abel SALAH</title>",
+      '<link rel="canonical" href="https://abelsalah.fr/en/ai-audit" />',
+    ],
+  },
+  {
     file: "es/auditoria-ia/index.html",
     mustContain: [
       '<html lang="es">',
       "<title>Auditoría IA Empresa | Casos de Uso Reales — Abel SALAH</title>",
       '<link rel="canonical" href="https://abelsalah.fr/es/auditoria-ia" />',
       '<link rel="alternate" hreflang="fr" href="https://abelsalah.fr/audit-ia" />',
+    ],
+  },
+  {
+    file: "es/auditoria-ia.html",
+    mustContain: [
+      '<html lang="es">',
+      "<title>Auditoría IA Empresa | Casos de Uso Reales — Abel SALAH</title>",
+      '<link rel="canonical" href="https://abelsalah.fr/es/auditoria-ia" />',
     ],
   },
   {
