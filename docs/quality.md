@@ -6,12 +6,13 @@
 npm run lint
 npm run typecheck
 npm run smoke
+npm run verify:dist
 npm run build
 npm audit --audit-level=moderate
 npm run verify
 ```
 
-`npm run verify` regroupe les controles minimums attendus avant un push ou une pull request : lint, typecheck, build, verification SEO statique, smoke checks et audit npm.
+`npm run verify` regroupe les controles minimums attendus avant un push ou une pull request : lint, typecheck, build, verification SEO statique, verification du build genere, smoke checks et audit npm.
 
 ## Etat connu
 
@@ -20,6 +21,7 @@ Au dernier controle :
 - `npm run lint` passe sans warning.
 - `npm run typecheck` passe.
 - `npm run build` passe.
+- `npm run verify:dist` verifie le rendu `dist` genere : routes publiques, canonical, hreflang, Open Graph, Twitter Card, sitemap, redirects, TidyCal et evenements de conversion.
 - `npm run smoke` verifie les invariants critiques : routes publiques, TidyCal, blog Markdown sanitize, admin noindex/robots, JWT Supabase et absence d'envoi automatique d'email.
 - Le bundle principal est sous le seuil d'avertissement Vite grace au code splitting par routes.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
