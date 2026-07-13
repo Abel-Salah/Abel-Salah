@@ -41,7 +41,7 @@ OPPORTUNITY_ADMIN_TOKEN=
 ```
 
 `ABEL_CV_URL` est optionnelle mais recommandee si un CV public doit etre propose dans les brouillons.
-`OPPORTUNITY_ADMIN_TOKEN` doit etre long, aleatoire et stocke uniquement dans les secrets Supabase. Il est saisi manuellement dans le dashboard et conserve uniquement dans `sessionStorage` pendant la session navigateur.
+`OPPORTUNITY_ADMIN_TOKEN` doit etre long, aleatoire et stocke uniquement dans les secrets Supabase. Il est saisi manuellement dans le dashboard et conserve uniquement dans `sessionStorage` pendant la session navigateur. Utiliser le bouton "Oublier le token" en fin de session admin.
 
 ## Configuration Google Search
 

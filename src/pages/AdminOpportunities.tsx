@@ -151,6 +151,15 @@ const AdminOpportunities = () => {
     }
   }, [callAdmin, status, token]);
 
+  const clearAdminSession = () => {
+    sessionStorage.removeItem(tokenStorageKey);
+    setToken("");
+    setOpportunities([]);
+    setSelectedId(null);
+    setDraftText("");
+    toast.success("Token oublie pour cette session");
+  };
+
   const updateDraftText = async () => {
     if (!selectedDraft) return;
 
@@ -245,6 +254,15 @@ const AdminOpportunities = () => {
               <Button onClick={loadOpportunities} disabled={!token || loading}>
                 <RefreshCw className="mr-2 h-4 w-4" />
                 {loading ? "Chargement..." : "Charger les opportunites"}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={clearAdminSession}
+                disabled={!token && opportunities.length === 0}
+              >
+                <X className="mr-2 h-4 w-4" />
+                Oublier le token
               </Button>
             </div>
           </div>

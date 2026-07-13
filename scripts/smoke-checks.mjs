@@ -62,6 +62,7 @@ expectIncludes("supabase/functions/generate-batch-posts/index.ts", "Duplicate ge
 expectIncludes("src/pages/AdminOpportunities.tsx", "noindex", "admin noindex");
 expectIncludes("src/pages/AdminOpportunities.tsx", "sessionStorage", "admin token session storage");
 expectNotIncludes("src/pages/AdminOpportunities.tsx", "localStorage", "persistent admin token storage");
+expectIncludes("src/pages/AdminOpportunities.tsx", "Oublier le token", "admin token clear action");
 expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
 expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");
 expectIncludes("public/llms.txt", tidyCalUrl, "TidyCal in LLM context");
