@@ -130,7 +130,7 @@ Implications :
 ## Risques connus
 
 - Les fonctions de generation publient actuellement avec `published: true` apres validation Zod.
-- Le contenu genere est structure par schema de tool calling puis valide par [supabase/functions/_shared/blogArticleSchema.ts](../supabase/functions/_shared/blogArticleSchema.ts).
+- Le contenu genere est structure par schema de tool calling puis valide par [supabase/functions/_shared/blogArticleSchema.ts](../supabase/functions/_shared/blogArticleSchema.ts), qui refuse aussi les balises HTML brutes et les protocoles d'URL dangereux avant insertion.
 - Le rendu article utilise `react-markdown`, `remark-gfm` et `rehype-sanitize` dans [src/pages/BlogPost.tsx](../src/pages/BlogPost.tsx).
 - L'Opportunity Agent ne contient aucun envoi automatique de candidature. Les brouillons restent en `pending_review` jusqu'a validation manuelle dans `/admin/opportunities`.
 

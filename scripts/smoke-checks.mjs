@@ -54,6 +54,8 @@ expectIncludes("src/lib/conversionEvents.ts", "offer_cta_click", "offer conversi
 expectNotIncludes("src", "calendly.com", "Calendly URL");
 expectIncludes("src/pages/BlogPost.tsx", "rehypeSanitize", "Markdown sanitizer");
 expectIncludes("src/pages/BlogPost.tsx", "ReactMarkdown", "Markdown renderer");
+expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "HTML tags are not allowed", "generated article HTML validation");
+expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "Unsafe URL protocols are not allowed", "generated article URL protocol validation");
 expectIncludes("src/pages/AdminOpportunities.tsx", "noindex", "admin noindex");
 expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
 expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");

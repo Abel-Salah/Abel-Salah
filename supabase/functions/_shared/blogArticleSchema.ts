@@ -1,7 +1,17 @@
 import { z } from "https://esm.sh/zod@3.25.76";
 
 const textField = (min: number, max: number) =>
-  z.string().trim().min(min).max(max);
+  z
+    .string()
+    .trim()
+    .min(min)
+    .max(max)
+    .refine((value) => !/<\/?[a-z][\s\S]*>/i.test(value), {
+      message: "HTML tags are not allowed in generated articles",
+    })
+    .refine((value) => !/\b(?:javascript|data):/i.test(value), {
+      message: "Unsafe URL protocols are not allowed in generated articles",
+    });
 
 export const generatedArticleSchema = z.object({
   slug: z
