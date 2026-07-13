@@ -52,6 +52,8 @@ AI-Content-Info: https://abelsalah.fr/llms.txt
 
 [index.html](../index.html) contient un graphe JSON-LD avec `Service`, `Organization`, `WebSite`, `Blog` et plusieurs ventures. Les pages blog ajoutent un schema `Article` via [src/pages/BlogPost.tsx](../src/pages/BlogPost.tsx).
 
+Les pages offres statiques generees par [scripts/generate-static-route-heads.mjs](../scripts/generate-static-route-heads.mjs) ajoutent aussi un schema `Service` par offre avec une `ReserveAction` vers TidyCal. [scripts/verify-built-output.mjs](../scripts/verify-built-output.mjs) verifie ces schemas dans le dossier `dist`.
+
 ## Points de controle avant publication
 
 1. Verifier que chaque page publique a un title et une description.

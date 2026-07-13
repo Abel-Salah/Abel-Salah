@@ -26,6 +26,18 @@ const publicRoutes = [
   { path: "/ecosystem", file: "ecosystem/index.html", lang: "fr", title: "Écosystème IA" },
 ];
 
+const serviceRoutes = new Set([
+  "/audit-ia",
+  "/automatisation-commerciale",
+  "/formation-ia",
+  "/en/ai-audit",
+  "/en/sales-automation",
+  "/en/ai-training",
+  "/es/auditoria-ia",
+  "/es/automatizacion-comercial",
+  "/es/formacion-ia",
+]);
+
 function read(relativePath) {
   return readFileSync(path.join(distDir, relativePath), "utf8");
 }
@@ -91,6 +103,12 @@ if (existsSync(distDir)) {
     expectIncludes(html, '<meta property="og:image"', `Open Graph image for ${route.path}`);
     expectIncludes(html, '<meta name="twitter:card" content="summary_large_image" />', `Twitter card for ${route.path}`);
     expectIncludes(sitemap, `<loc>${sitemapUrlFor(route.path)}</loc>`, `sitemap entry for ${route.path}`);
+
+    if (serviceRoutes.has(route.path)) {
+      expectIncludes(html, '"@type":"Service"', `Service JSON-LD for ${route.path}`);
+      expectIncludes(html, '"potentialAction":{"@type":"ReserveAction"', `ReserveAction JSON-LD for ${route.path}`);
+      expectIncludes(html, "https://tidycal.com/skill-lms/abel-rdv", `booking action for ${route.path}`);
+    }
 
     if (route.path !== "/" && !["/en", "/es"].includes(route.path)) {
       expectIncludes(redirects, `${route.path} /${route.path.slice(1)}.html 200`, `_redirects entry for ${route.path}`);

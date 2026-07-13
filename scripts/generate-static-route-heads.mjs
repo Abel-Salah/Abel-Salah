@@ -63,6 +63,13 @@ const routes = [
     description:
       "Audit IA pour PME et ETI : diagnostic des processus, priorisation ROI, feuille de route 30/60/90 jours et recommandations actionnables.",
     alternates: auditAlternates,
+    service: {
+      name: "Audit IA entreprise",
+      serviceType: "AI audit",
+      audience: "PME, ETI, dirigeants",
+      description:
+        "Diagnostic des processus, priorisation des cas d'usage IA, roadmap 30/60/90 jours et recommandations actionnables.",
+    },
   },
   {
     path: "/automatisation-commerciale",
@@ -71,6 +78,13 @@ const routes = [
     description:
       "Automatisez votre prospection commerciale avec l'IA : scoring leads, enrichissement, messages personnalisés, CRM et suivi des opportunités.",
     alternates: automationAlternates,
+    service: {
+      name: "Automatisation commerciale IA",
+      serviceType: "AI sales automation",
+      audience: "Equipes commerciales, dirigeants, PME",
+      description:
+        "Scoring leads, enrichissement, brouillons personnalises, suivi CRM et regles anti-spam avec validation humaine.",
+    },
   },
   {
     path: "/formation-ia",
@@ -79,6 +93,13 @@ const routes = [
     description:
       "Formation IA pour dirigeants et équipes : cas d'usage métier, prompting utile, automatisation responsable et adoption concrète.",
     alternates: trainingAlternates,
+    service: {
+      name: "Formation IA entreprise",
+      serviceType: "AI training",
+      audience: "Dirigeants, managers, equipes operationnelles",
+      description:
+        "Ateliers IA par metier, prompting utile, automatisation responsable et routines d'adoption terrain.",
+    },
   },
   {
     path: "/en/ai-audit",
@@ -87,6 +108,13 @@ const routes = [
     description:
       "AI audit for SMEs and growing companies: workflow diagnosis, ROI prioritization, 30/60/90-day roadmap and practical recommendations.",
     alternates: auditAlternates,
+    service: {
+      name: "AI audit for business",
+      serviceType: "AI audit",
+      audience: "SMEs, executives, growing companies",
+      description:
+        "Workflow diagnosis, ROI prioritization, 30/60/90-day AI roadmap and practical recommendations.",
+    },
   },
   {
     path: "/en/sales-automation",
@@ -95,6 +123,13 @@ const routes = [
     description:
       "Automate sales workflows with AI: lead scoring, enrichment, personalized drafts, CRM follow-up and opportunity tracking.",
     alternates: automationAlternates,
+    service: {
+      name: "AI sales automation",
+      serviceType: "AI sales automation",
+      audience: "Sales teams, founders, SMEs",
+      description:
+        "Lead scoring, enrichment, personalized drafts, CRM follow-up and human validation workflow.",
+    },
   },
   {
     path: "/en/ai-training",
@@ -103,6 +138,13 @@ const routes = [
     description:
       "AI training for executives and teams: business use cases, useful prompting, responsible automation and practical adoption.",
     alternates: trainingAlternates,
+    service: {
+      name: "AI training for business",
+      serviceType: "AI training",
+      audience: "Executives, managers, operational teams",
+      description:
+        "Business AI workshops, useful prompting, responsible automation and practical team adoption.",
+    },
   },
   {
     path: "/es/auditoria-ia",
@@ -111,6 +153,13 @@ const routes = [
     description:
       "Auditoría IA para pymes y equipos: diagnóstico de procesos, priorización ROI, roadmap 30/60/90 días y recomendaciones prácticas.",
     alternates: auditAlternates,
+    service: {
+      name: "Auditoria IA para empresas",
+      serviceType: "AI audit",
+      audience: "Pymes, directivos, empresas en crecimiento",
+      description:
+        "Diagnostico de procesos, priorizacion ROI, roadmap IA 30/60/90 dias y recomendaciones practicas.",
+    },
   },
   {
     path: "/es/automatizacion-comercial",
@@ -119,6 +168,13 @@ const routes = [
     description:
       "Automatice procesos comerciales con IA: scoring de leads, enriquecimiento, mensajes personalizados, CRM y seguimiento.",
     alternates: automationAlternates,
+    service: {
+      name: "Automatizacion comercial IA",
+      serviceType: "AI sales automation",
+      audience: "Equipos comerciales, directivos, pymes",
+      description:
+        "Scoring de leads, enriquecimiento, borradores personalizados, seguimiento CRM y validacion humana.",
+    },
   },
   {
     path: "/es/formacion-ia",
@@ -127,6 +183,13 @@ const routes = [
     description:
       "Formación IA para directivos y equipos: casos de uso, prompting útil, automatización responsable y adopción concreta.",
     alternates: trainingAlternates,
+    service: {
+      name: "Formacion IA para empresas",
+      serviceType: "AI training",
+      audience: "Directivos, managers, equipos operativos",
+      description:
+        "Talleres IA por rol, prompting util, automatizacion responsable y adopcion practica por equipos.",
+    },
   },
   {
     path: "/work",
@@ -196,6 +259,37 @@ function buildHead(route) {
     )
     .join("\n");
 
+  const routeServiceSchema = route.service
+    ? `
+    <script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${canonical}#service`,
+      name: route.service.name,
+      serviceType: route.service.serviceType,
+      description: route.service.description,
+      url: canonical,
+      provider: {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Abel SALAH",
+      },
+      areaServed: [
+        { "@type": "Country", name: "France" },
+        { "@type": "Place", name: "Europe" },
+        { "@type": "Place", name: "Remote" },
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: route.service.audience,
+      },
+      potentialAction: {
+        "@type": "ReserveAction",
+        target: "https://tidycal.com/skill-lms/abel-rdv",
+      },
+    })}</script>`
+    : "";
+
   return `    <title>${escapeHtml(route.title)}</title>
     <meta name="description" content="${escapeHtml(route.description)}" />
     <meta name="author" content="Abel SALAH" />
@@ -211,7 +305,7 @@ ${alternates}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(route.title)}" />
     <meta name="twitter:description" content="${escapeHtml(route.description)}" />
-    <meta name="twitter:image" content="${ogImage}" />`;
+    <meta name="twitter:image" content="${ogImage}" />${routeServiceSchema}`;
 }
 
 function applyRouteHead(baseHtml, route) {
