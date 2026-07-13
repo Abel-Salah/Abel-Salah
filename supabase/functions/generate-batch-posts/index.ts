@@ -24,6 +24,30 @@ type ExistingPost = {
   slug: string;
 };
 
+const normalizeTitle = (title: string) =>
+  title.trim().toLocaleLowerCase("fr-FR").replace(/\s+/g, " ");
+
+function validateTopics(input: unknown): string[] {
+  const topics = Array.isArray(input) ? input : DEFAULT_TOPICS;
+
+  if (topics.length < 1 || topics.length > 10) {
+    throw new Error("topics must contain between 1 and 10 items");
+  }
+
+  return topics.map((topic) => {
+    if (typeof topic !== "string") {
+      throw new Error("topics must only contain strings");
+    }
+
+    const trimmed = topic.trim();
+    if (trimmed.length < 20 || trimmed.length > 160) {
+      throw new Error("each topic must contain between 20 and 160 characters");
+    }
+
+    return trimmed;
+  });
+}
+
 async function generateArticle(
   topic: string,
   existingTitles: string,
@@ -122,7 +146,8 @@ serve(async (req) => {
   }
 
   try {
-    const { topics = DEFAULT_TOPICS } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const topics = validateTopics(body.topics);
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -141,6 +166,9 @@ serve(async (req) => {
     const knownPosts = (existingPosts || []) as ExistingPost[];
     let existingTitles = knownPosts.map((post) => post.title).join(", ");
     const existingSlugs = new Set(knownPosts.map((post) => post.slug));
+    const existingNormalizedTitles = new Set(
+      knownPosts.map((post) => normalizeTitle(post.title))
+    );
 
     const results: { topic: string; success: boolean; title?: string; error?: string }[] = [];
 
@@ -148,6 +176,10 @@ serve(async (req) => {
       try {
         console.log(`Generating article for: ${topic}`);
         const article = await generateArticle(topic, existingTitles, lovableApiKey, today);
+
+        if (existingNormalizedTitles.has(normalizeTitle(article.title))) {
+          throw new Error(`Duplicate generated title refused: ${article.title}`);
+        }
 
         // Deduplicate slug
         if (existingSlugs.has(article.slug)) {
@@ -173,6 +205,7 @@ serve(async (req) => {
         if (insertError) throw new Error(insertError.message);
 
         existingTitles += `, ${article.title}`;
+        existingNormalizedTitles.add(normalizeTitle(article.title));
         existingSlugs.add(article.slug);
         results.push({ topic, success: true, title: article.title });
         console.log(`✅ Generated: ${article.title}`);

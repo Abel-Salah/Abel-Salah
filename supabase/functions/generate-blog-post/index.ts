@@ -16,6 +16,9 @@ type ExistingPost = {
   slug: string;
 };
 
+const normalizeTitle = (title: string) =>
+  title.trim().toLocaleLowerCase("fr-FR").replace(/\s+/g, " ");
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -208,6 +211,16 @@ Regles :
     const article = validateGeneratedArticle(
       JSON.parse(toolCall.function.arguments)
     );
+
+    if (knownPosts.some((post) => normalizeTitle(post.title) === normalizeTitle(article.title))) {
+      return new Response(
+        JSON.stringify({ error: `Duplicate generated title refused: ${article.title}` }),
+        {
+          status: 409,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
 
     // Check for duplicate slug
     const { data: existingSlug } = await supabase

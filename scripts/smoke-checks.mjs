@@ -56,6 +56,9 @@ expectIncludes("src/pages/BlogPost.tsx", "rehypeSanitize", "Markdown sanitizer")
 expectIncludes("src/pages/BlogPost.tsx", "ReactMarkdown", "Markdown renderer");
 expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "HTML tags are not allowed", "generated article HTML validation");
 expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "Unsafe URL protocols are not allowed", "generated article URL protocol validation");
+expectIncludes("supabase/functions/generate-blog-post/index.ts", "Duplicate generated title refused", "single article duplicate title guard");
+expectIncludes("supabase/functions/generate-batch-posts/index.ts", "topics must contain between 1 and 10 items", "batch topic limit");
+expectIncludes("supabase/functions/generate-batch-posts/index.ts", "Duplicate generated title refused", "batch duplicate title guard");
 expectIncludes("src/pages/AdminOpportunities.tsx", "noindex", "admin noindex");
 expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
 expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");
