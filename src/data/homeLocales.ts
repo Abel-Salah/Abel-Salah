@@ -35,6 +35,7 @@ export const homeContent = {
     portraitAlt: "Abel SALAH, consultant IA pour entreprises",
     closeIntroLabel: "Fermer la vidéo d'introduction",
     servicesLabel: "Services",
+    serviceCta: "En savoir plus",
     beforeAfterLabel: "Avant / Avec l'IA",
     beforeAfterTitleTop: "Ce qui change",
     beforeAfterTitleBottom: "sur le terrain /",
@@ -117,6 +118,7 @@ export const homeContent = {
     portraitAlt: "Abel SALAH, AI consultant for business",
     closeIntroLabel: "Close the introduction video",
     servicesLabel: "Services",
+    serviceCta: "Learn more",
     beforeAfterLabel: "Before / With AI",
     beforeAfterTitleTop: "What changes",
     beforeAfterTitleBottom: "in real work /",
@@ -152,7 +154,7 @@ export const homeContent = {
       {
         number: "01",
         title: "AI Audit",
-        href: "/audit-ia",
+        href: "/en/ai-audit",
         icon: BrainCircuit,
         text: "Identify the AI use cases that truly fit your teams, your data, and your business model.",
         bullets: ["Operational diagnosis", "ROI prioritization", "30/60/90-day roadmap"],
@@ -160,7 +162,7 @@ export const homeContent = {
       {
         number: "02",
         title: "Automation",
-        href: "/automatisation-commerciale",
+        href: "/en/sales-automation",
         icon: Workflow,
         text: "Turn repetitive work into reliable workflows: prospecting, CRM, follow-ups, and reporting.",
         bullets: ["Lead scoring", "Sales sequences", "CRM operations"],
@@ -168,7 +170,7 @@ export const homeContent = {
       {
         number: "03",
         title: "AI Training",
-        href: "/formation-ia",
+        href: "/en/ai-training",
         icon: Bot,
         text: "Train executives, managers, and teams to use AI with method, adoption, and business clarity.",
         bullets: ["Business workshops", "Useful prompting", "Change management"],
@@ -199,6 +201,7 @@ export const homeContent = {
     portraitAlt: "Abel SALAH, consultor IA para empresas",
     closeIntroLabel: "Cerrar el vídeo de introducción",
     servicesLabel: "Servicios",
+    serviceCta: "Saber más",
     beforeAfterLabel: "Antes / Con IA",
     beforeAfterTitleTop: "Lo que cambia",
     beforeAfterTitleBottom: "en el terreno /",
@@ -234,7 +237,7 @@ export const homeContent = {
       {
         number: "01",
         title: "Auditoría IA",
-        href: "/audit-ia",
+        href: "/es/auditoria-ia",
         icon: BrainCircuit,
         text: "Identificar los casos de uso de IA que encajan con tus equipos, tus datos y tu negocio.",
         bullets: ["Diagnóstico operativo", "Priorización ROI", "Roadmap 30/60/90 días"],
@@ -242,7 +245,7 @@ export const homeContent = {
       {
         number: "02",
         title: "Automatización",
-        href: "/automatisation-commerciale",
+        href: "/es/automatizacion-comercial",
         icon: Workflow,
         text: "Convertir tareas repetitivas en flujos fiables: prospección, CRM, seguimientos e informes.",
         bullets: ["Scoring de leads", "Secuencias comerciales", "Operaciones CRM"],
@@ -250,7 +253,7 @@ export const homeContent = {
       {
         number: "03",
         title: "Formación IA",
-        href: "/formation-ia",
+        href: "/es/formacion-ia",
         icon: Bot,
         text: "Formar a directivos, managers y equipos para usar la IA con método, adopción y claridad.",
         bullets: ["Talleres de negocio", "Prompts útiles", "Gestión del cambio"],

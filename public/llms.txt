@@ -27,6 +27,8 @@ Abel SALAH es consultor de inteligencia artificial para pymes, empresas en creci
 - **Audit IA** — https://abelsalah.fr/audit-ia : diagnostic des processus, priorisation ROI, feuille de route 30/60/90 jours.
 - **Automatisation commerciale IA** — https://abelsalah.fr/automatisation-commerciale : scoring leads, CRM, prospection, brouillons personnalisés avec validation humaine.
 - **Formation IA** — https://abelsalah.fr/formation-ia : ateliers dirigeants et équipes, prompting utile, adoption métier et gouvernance responsable.
+- English pillar pages: https://abelsalah.fr/en/ai-audit, https://abelsalah.fr/en/sales-automation, https://abelsalah.fr/en/ai-training.
+- Spanish pillar pages: https://abelsalah.fr/es/auditoria-ia, https://abelsalah.fr/es/automatizacion-comercial, https://abelsalah.fr/es/formacion-ia.
 
 ## Résultats et chiffres clés
 

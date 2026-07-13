@@ -9,6 +9,42 @@ interface OfferPageProps {
   slug: OfferSlug;
 }
 
+const labels = {
+  fr: {
+    home: "Accueil",
+    method: "Méthode",
+    methodTitle: ["Simple.", "Mesurable."],
+    step: "Etape",
+    proof: "Preuve et prudence",
+    related: "Pages liées",
+    questions: "Questions",
+    finalTitle: "Vous voulez cadrer le sujet ?",
+    finalCta: "Réserver un appel",
+  },
+  en: {
+    home: "Home",
+    method: "Method",
+    methodTitle: ["Simple.", "Measurable."],
+    step: "Step",
+    proof: "Proof and context",
+    related: "Related pages",
+    questions: "Questions",
+    finalTitle: "Want to frame the topic?",
+    finalCta: "Book a call",
+  },
+  es: {
+    home: "Inicio",
+    method: "Método",
+    methodTitle: ["Simple.", "Medible."],
+    step: "Paso",
+    proof: "Prueba y contexto",
+    related: "Páginas relacionadas",
+    questions: "Preguntas",
+    finalTitle: "¿Quieres enmarcar el tema?",
+    finalCta: "Reservar una llamada",
+  },
+} as const;
+
 const OfferPage = ({ slug }: OfferPageProps) => {
   const offer = offerPages[slug];
 
@@ -17,6 +53,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
   }
 
   const Icon = offer.icon;
+  const copy = labels[offer.lang];
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -36,8 +73,9 @@ const OfferPage = ({ slug }: OfferPageProps) => {
         title={offer.seoTitle}
         description={offer.seoDescription}
         canonical={offer.path}
+        lang={offer.lang}
         breadcrumbs={[
-          { name: "Accueil", path: "/" },
+          { name: copy.home, path: offer.lang === "fr" ? "/" : `/${offer.lang}` },
           { name: offer.title, path: offer.path },
         ]}
         jsonLd={faqSchema}
@@ -91,12 +129,12 @@ const OfferPage = ({ slug }: OfferPageProps) => {
         <div className="container mx-auto grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Méthode
+              {copy.method}
             </span>
             <h2 className="heading-display mt-6 text-5xl uppercase leading-none md:text-7xl">
-              Simple.
+              {copy.methodTitle[0]}
               <br />
-              Mesurable.
+              {copy.methodTitle[1]}
             </h2>
           </div>
           <div className="divide-y divide-border border-y border-border lg:col-span-8">
@@ -105,7 +143,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
                 <CheckCircle2 className="mt-1 h-6 w-6 flex-none text-primary" />
                 <div>
                   <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    Etape {index + 1}
+                    {copy.step} {index + 1}
                   </span>
                   <p className="mt-3 text-xl leading-relaxed">{step}</p>
                 </div>
@@ -119,13 +157,13 @@ const OfferPage = ({ slug }: OfferPageProps) => {
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="border border-primary/40 bg-primary/5 p-8 lg:col-span-7">
             <span className="text-xs uppercase tracking-[0.2em] text-primary">
-              Preuve et prudence
+              {copy.proof}
             </span>
             <p className="mt-6 text-xl leading-relaxed">{offer.proof}</p>
           </div>
           <div className="border border-border p-8 lg:col-span-5">
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Pages liées
+              {copy.related}
             </span>
             <div className="mt-6 space-y-4">
               {offer.related.map((item) => (
@@ -146,7 +184,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
       <section className="container mx-auto border-t border-border py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <h2 className="heading-display text-5xl uppercase leading-none lg:col-span-4">
-            Questions
+            {copy.questions}
           </h2>
           <div className="space-y-8 lg:col-span-8">
             {offer.faq.map((item) => (
@@ -163,7 +201,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
 
       <section className="container mx-auto border-t border-border py-20 text-center">
         <h2 className="heading-display text-5xl md:text-7xl">
-          Vous voulez cadrer le sujet ?
+          {copy.finalTitle}
         </h2>
         <a
           href={TIDYCAL_BOOKING_URL}
@@ -171,7 +209,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
           rel="noopener noreferrer"
           className="mt-10 inline-flex items-center gap-4 rounded-full bg-primary px-9 py-5 text-lg font-semibold text-primary-foreground hover:gap-6 transition-all"
         >
-          Réserver un appel
+          {copy.finalCta}
           <ArrowRight className="h-5 w-5" />
         </a>
       </section>

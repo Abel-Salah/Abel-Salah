@@ -51,6 +51,12 @@ const App = () => (
             <Route path="/audit-ia" element={<OfferPage slug="audit-ia" />} />
             <Route path="/automatisation-commerciale" element={<OfferPage slug="automatisation-commerciale" />} />
             <Route path="/formation-ia" element={<OfferPage slug="formation-ia" />} />
+            <Route path="/en/ai-audit" element={<OfferPage slug="ai-audit" />} />
+            <Route path="/en/sales-automation" element={<OfferPage slug="sales-automation" />} />
+            <Route path="/en/ai-training" element={<OfferPage slug="ai-training" />} />
+            <Route path="/es/auditoria-ia" element={<OfferPage slug="auditoria-ia" />} />
+            <Route path="/es/automatizacion-comercial" element={<OfferPage slug="automatizacion-comercial" />} />
+            <Route path="/es/formacion-ia" element={<OfferPage slug="formacion-ia" />} />
             <Route path="/styleguide" element={<Styleguide />} />
             <Route path="/admin/opportunities" element={<AdminOpportunities />} />
             <Route path="*" element={<NotFound />} />

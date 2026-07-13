@@ -11,6 +11,8 @@ Key pages:
 - AI audit: https://abelsalah.fr/audit-ia
 - Sales automation: https://abelsalah.fr/automatisation-commerciale
 - AI training: https://abelsalah.fr/formation-ia
+- English AI audit: https://abelsalah.fr/en/ai-audit
+- Spanish AI audit: https://abelsalah.fr/es/auditoria-ia
 - Blog: https://abelsalah.fr/blog
 - Contact: https://abelsalah.fr/contact
 

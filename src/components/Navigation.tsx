@@ -16,7 +16,7 @@ const navLabels = {
   ],
   en: [
     { href: "/en", label: "Home" },
-    { href: "/audit-ia", label: "AI Audit" },
+    { href: "/en/ai-audit", label: "AI Audit" },
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
@@ -24,7 +24,7 @@ const navLabels = {
   ],
   es: [
     { href: "/es", label: "Inicio" },
-    { href: "/audit-ia", label: "Auditoría IA" },
+    { href: "/es/auditoria-ia", label: "Auditoría IA" },
     { href: "/work", label: "Proyectos" },
     { href: "/about", label: "Sobre mí" },
     { href: "/blog", label: "Blog" },
@@ -37,6 +37,12 @@ const languageLinks = [
   { href: "/en", label: "EN", locale: "en" },
   { href: "/es", label: "ES", locale: "es" },
 ] as const;
+
+const cvLabels = {
+  fr: "Télécharger le CV",
+  en: "Download CV",
+  es: "Descargar CV",
+} as const;
 
 const Navigation = () => {
   const location = useLocation();
@@ -106,7 +112,7 @@ const Navigation = () => {
             className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
           >
             <Download className="h-4 w-4" />
-            Download CV
+            {cvLabels[locale]}
           </a>
 
           {/* Mobile Hamburger Button */}

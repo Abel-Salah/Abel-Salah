@@ -19,6 +19,12 @@ const STATIC_PAGES = [
   { loc: "/audit-ia", priority: "0.9", changefreq: "monthly" },
   { loc: "/automatisation-commerciale", priority: "0.9", changefreq: "monthly" },
   { loc: "/formation-ia", priority: "0.9", changefreq: "monthly" },
+  { loc: "/en/ai-audit", priority: "0.8", changefreq: "monthly" },
+  { loc: "/en/sales-automation", priority: "0.8", changefreq: "monthly" },
+  { loc: "/en/ai-training", priority: "0.8", changefreq: "monthly" },
+  { loc: "/es/auditoria-ia", priority: "0.8", changefreq: "monthly" },
+  { loc: "/es/automatizacion-comercial", priority: "0.8", changefreq: "monthly" },
+  { loc: "/es/formacion-ia", priority: "0.8", changefreq: "monthly" },
 ];
 
 const DOMAIN = "https://abelsalah.fr";
