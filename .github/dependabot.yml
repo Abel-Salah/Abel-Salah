@@ -42,6 +42,9 @@ updates:
       - dependency-name: react-dom
         update-types:
           - version-update:semver-major
+      - dependency-name: lucide-react
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
