@@ -60,6 +60,8 @@ expectIncludes("supabase/functions/generate-blog-post/index.ts", "Duplicate gene
 expectIncludes("supabase/functions/generate-batch-posts/index.ts", "topics must contain between 1 and 10 items", "batch topic limit");
 expectIncludes("supabase/functions/generate-batch-posts/index.ts", "Duplicate generated title refused", "batch duplicate title guard");
 expectIncludes("src/pages/AdminOpportunities.tsx", "noindex", "admin noindex");
+expectIncludes("src/pages/AdminOpportunities.tsx", "sessionStorage", "admin token session storage");
+expectNotIncludes("src/pages/AdminOpportunities.tsx", "localStorage", "persistent admin token storage");
 expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
 expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");
 expectIncludes("public/llms.txt", tidyCalUrl, "TidyCal in LLM context");

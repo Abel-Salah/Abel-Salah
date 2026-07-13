@@ -91,7 +91,7 @@ const getStatusTone = (status: string) => {
 
 const AdminOpportunities = () => {
   const [token, setToken] = useState(
-    () => localStorage.getItem(tokenStorageKey) ?? ""
+    () => sessionStorage.getItem(tokenStorageKey) ?? ""
   );
   const [status, setStatus] = useState("all");
   const [loading, setLoading] = useState(false);
@@ -133,7 +133,7 @@ const AdminOpportunities = () => {
     setLoading(true);
 
     try {
-      localStorage.setItem(tokenStorageKey, token);
+      sessionStorage.setItem(tokenStorageKey, token);
       const data = await callAdmin<{ opportunities: Opportunity[] }>({
         action: "list",
         status: status === "all" ? undefined : status,

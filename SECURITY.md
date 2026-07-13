@@ -51,3 +51,4 @@ For Supabase changes, also review:
 - Edge Functions that write data keep `verify_jwt = true`.
 - Admin-only functions require `OPPORTUNITY_ADMIN_TOKEN` or a stronger auth layer.
 - No function sends job applications or outreach messages automatically.
+- The Opportunity Agent dashboard must not persist the admin token in `localStorage`; session-only browser storage is the current baseline.
