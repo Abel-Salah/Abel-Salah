@@ -6,7 +6,10 @@
 npm run lint
 npm run build
 npm audit --audit-level=moderate
+npm run verify
 ```
+
+`npm run verify` regroupe les controles minimums attendus avant un push ou une pull request.
 
 ## Etat connu
 
@@ -16,6 +19,13 @@ Au dernier controle :
 - `npm run build` passe.
 - Le bundle principal est sous le seuil d'avertissement Vite grace au code splitting par routes.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
+
+## GitHub
+
+- La CI GitHub Actions execute `npm run verify` sur `main` et sur les pull requests.
+- Dependabot surveille les dependances npm et GitHub Actions chaque lundi matin.
+- Le template de pull request rappelle les controles SEO, Supabase et secrets.
+- Si GitHub Actions retourne `The job was not started because an Actions budget is preventing further use`, le code peut etre sain mais le budget Actions doit etre debloque cote GitHub avant d'obtenir un run vert.
 
 ## Tests manuels recommandes
 

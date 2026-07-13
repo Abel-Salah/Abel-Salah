@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: Europe/Paris
+    open-pull-requests-limit: 5
+    groups:
+      vite-tooling:
+        patterns:
+          - vite
+          - "@vitejs/*"
+          - eslint
+          - typescript
+          - typescript-eslint
+      react-ui:
+        patterns:
+          - react
+          - react-dom
+          - "@radix-ui/*"
+    labels:
+      - dependencies
+      - automated
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:15"
+      timezone: Europe/Paris
+    labels:
+      - dependencies
+      - ci

@@ -66,6 +66,7 @@ npm run build      # build production
 npm run build:dev  # build en mode development
 npm run lint       # ESLint
 npm run preview    # preview du build
+npm run verify     # lint + build + audit moderate
 npm audit          # audit dependances
 ```
 
@@ -74,6 +75,7 @@ Etat observe au dernier audit documentaire :
 - `npm run lint` passe sans warning.
 - `npm run build` passe.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
+- GitHub Actions execute `npm run verify` sur `main` et les pull requests quand le budget Actions GitHub est actif.
 
 ## Routes publiques
 
