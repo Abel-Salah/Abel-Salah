@@ -25,6 +25,8 @@ Au dernier controle :
 - La CI GitHub Actions execute `npm run verify` sur `main` et sur les pull requests.
 - Dependabot surveille les dependances npm et GitHub Actions chaque lundi matin.
 - Le template de pull request rappelle les controles SEO, Supabase et secrets.
+- `CODEOWNERS` assigne les zones sensibles a `@Abel-Salah`.
+- [SECURITY.md](../SECURITY.md) documente le signalement prive et les regles de secrets.
 - Si GitHub Actions retourne `The job was not started because an Actions budget is preventing further use`, le code peut etre sain mais le budget Actions doit etre debloque cote GitHub avant d'obtenir un run vert.
 
 ## Tests manuels recommandes
