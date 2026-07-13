@@ -1,0 +1,35 @@
+{
+  "rewrites": [
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/audit-ia", "destination": "/audit-ia/index.html" },
+    { "source": "/automatisation-commerciale", "destination": "/automatisation-commerciale/index.html" },
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/ecosystem", "destination": "/ecosystem/index.html" },
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/en/ai-audit", "destination": "/en/ai-audit/index.html" },
+    { "source": "/en/ai-training", "destination": "/en/ai-training/index.html" },
+    { "source": "/en/sales-automation", "destination": "/en/sales-automation/index.html" },
+    { "source": "/es", "destination": "/es/index.html" },
+    { "source": "/es/auditoria-ia", "destination": "/es/auditoria-ia/index.html" },
+    { "source": "/es/automatizacion-comercial", "destination": "/es/automatizacion-comercial/index.html" },
+    { "source": "/es/formacion-ia", "destination": "/es/formacion-ia/index.html" },
+    { "source": "/formation-ia", "destination": "/formation-ia/index.html" },
+    { "source": "/work", "destination": "/work/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(about|audit-ia|automatisation-commerciale|blog|contact|ecosystem|formation-ia|work)",
+      "headers": [{ "key": "Content-Type", "value": "text/html; charset=utf-8" }]
+    },
+    {
+      "source": "/en/(.*)",
+      "headers": [{ "key": "Content-Type", "value": "text/html; charset=utf-8" }]
+    },
+    {
+      "source": "/es/(.*)",
+      "headers": [{ "key": "Content-Type", "value": "text/html; charset=utf-8" }]
+    }
+  ]
+}
