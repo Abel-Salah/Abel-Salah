@@ -220,28 +220,10 @@ function applyRouteHead(baseHtml, route) {
 }
 
 const baseHtml = await readFile(baseIndexPath, "utf8");
-const parentRoutes = new Set(
-  routes
-    .map((route) => route.path)
-    .filter((routePath) =>
-      routes.some(
-        (candidate) =>
-          candidate.path !== routePath && candidate.path.startsWith(`${routePath}/`)
-      )
-    )
-);
-
 for (const route of routes) {
   const html = applyRouteHead(baseHtml, route);
   if (route.path === "/") {
     await writeFile(baseIndexPath, html);
-    continue;
-  }
-
-  if (!parentRoutes.has(route.path)) {
-    const exactPath = path.join(distDir, route.path.replace(/^\//, ""));
-    await mkdir(path.dirname(exactPath), { recursive: true });
-    await writeFile(exactPath, html);
     continue;
   }
 
