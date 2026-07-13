@@ -65,3 +65,10 @@ updates:
     labels:
       - dependencies
       - ci
+    ignore:
+      - dependency-name: actions/checkout
+        update-types:
+          - version-update:semver-major
+      - dependency-name: actions/setup-node
+        update-types:
+          - version-update:semver-major
