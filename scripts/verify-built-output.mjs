@@ -61,11 +61,16 @@ expect(existsSync(distDir), "dist directory does not exist; run npm run build fi
 if (existsSync(distDir)) {
   const sitemap = read("sitemap.xml");
   const robots = read("robots.txt");
+  const headers = read("_headers");
   const redirects = read("_redirects");
   const llms = read("llms.txt");
   const ai = read("ai.txt");
   const builtText = readTree(distDir);
 
+  expectIncludes(headers, "X-Content-Type-Options: nosniff", "nosniff security header");
+  expectIncludes(headers, "X-Frame-Options: DENY", "frame protection header");
+  expectIncludes(headers, "Referrer-Policy: strict-origin-when-cross-origin", "referrer policy header");
+  expectIncludes(headers, "Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()", "permissions policy header");
   expectIncludes(robots, "Sitemap: https://abelsalah.fr/sitemap.xml", "robots sitemap directive");
   expectIncludes(robots, "Disallow: /admin/", "admin robots block");
   expectIncludes(robots, "Disallow: /styleguide", "styleguide robots block");
