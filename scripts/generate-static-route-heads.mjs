@@ -1,0 +1,253 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const siteUrl = "https://abelsalah.fr";
+const distDir = path.resolve("dist");
+const baseIndexPath = path.join(distDir, "index.html");
+const ogImage =
+  "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/390e6aa2-6998-4951-8b6c-23a48e10b181";
+
+const homeAlternates = [
+  { hrefLang: "fr", path: "/" },
+  { hrefLang: "en", path: "/en" },
+  { hrefLang: "es", path: "/es" },
+];
+
+const auditAlternates = [
+  { hrefLang: "fr", path: "/audit-ia" },
+  { hrefLang: "en", path: "/en/ai-audit" },
+  { hrefLang: "es", path: "/es/auditoria-ia" },
+];
+
+const automationAlternates = [
+  { hrefLang: "fr", path: "/automatisation-commerciale" },
+  { hrefLang: "en", path: "/en/sales-automation" },
+  { hrefLang: "es", path: "/es/automatizacion-comercial" },
+];
+
+const trainingAlternates = [
+  { hrefLang: "fr", path: "/formation-ia" },
+  { hrefLang: "en", path: "/en/ai-training" },
+  { hrefLang: "es", path: "/es/formacion-ia" },
+];
+
+const routes = [
+  {
+    path: "/",
+    lang: "fr",
+    title: "Expert IA pour Entreprises | Audit IA — Abel SALAH",
+    description:
+      "Audit IA pour PME & ETI. Identifiez les bons cas d'usage, automatisez vos processus et construisez une feuille de route IA réaliste.",
+    alternates: homeAlternates,
+  },
+  {
+    path: "/en",
+    lang: "en",
+    title: "AI Consultant for Business | AI Audit — Abel SALAH",
+    description:
+      "AI audit for SMEs and growing companies. Identify practical use cases, automate workflows, and build a realistic AI roadmap.",
+    alternates: homeAlternates,
+  },
+  {
+    path: "/es",
+    lang: "es",
+    title: "Consultor IA para Empresas | Auditoría IA — Abel SALAH",
+    description:
+      "Auditoría IA para pymes y empresas en crecimiento. Identifique casos de uso, automatice procesos y construya una hoja de ruta realista.",
+    alternates: homeAlternates,
+  },
+  {
+    path: "/audit-ia",
+    lang: "fr",
+    title: "Audit IA Entreprise | Identifier les bons cas d'usage — Abel SALAH",
+    description:
+      "Audit IA pour PME et ETI : diagnostic des processus, priorisation ROI, feuille de route 30/60/90 jours et recommandations actionnables.",
+    alternates: auditAlternates,
+  },
+  {
+    path: "/automatisation-commerciale",
+    lang: "fr",
+    title: "Automatisation Commerciale IA | CRM, Prospection, Scoring — Abel SALAH",
+    description:
+      "Automatisez votre prospection commerciale avec l'IA : scoring leads, enrichissement, messages personnalisés, CRM et suivi des opportunités.",
+    alternates: automationAlternates,
+  },
+  {
+    path: "/formation-ia",
+    lang: "fr",
+    title: "Formation IA Entreprise | Dirigeants, Managers, Equipes — Abel SALAH",
+    description:
+      "Formation IA pour dirigeants et équipes : cas d'usage métier, prompting utile, automatisation responsable et adoption concrète.",
+    alternates: trainingAlternates,
+  },
+  {
+    path: "/en/ai-audit",
+    lang: "en",
+    title: "AI Audit for Business | Practical Use Cases — Abel SALAH",
+    description:
+      "AI audit for SMEs and growing companies: workflow diagnosis, ROI prioritization, 30/60/90-day roadmap and practical recommendations.",
+    alternates: auditAlternates,
+  },
+  {
+    path: "/en/sales-automation",
+    lang: "en",
+    title: "AI Sales Automation | CRM, Prospecting, Lead Scoring — Abel SALAH",
+    description:
+      "Automate sales workflows with AI: lead scoring, enrichment, personalized drafts, CRM follow-up and opportunity tracking.",
+    alternates: automationAlternates,
+  },
+  {
+    path: "/en/ai-training",
+    lang: "en",
+    title: "AI Training for Business | Executives, Managers, Teams — Abel SALAH",
+    description:
+      "AI training for executives and teams: business use cases, useful prompting, responsible automation and practical adoption.",
+    alternates: trainingAlternates,
+  },
+  {
+    path: "/es/auditoria-ia",
+    lang: "es",
+    title: "Auditoría IA Empresa | Casos de Uso Reales — Abel SALAH",
+    description:
+      "Auditoría IA para pymes y equipos: diagnóstico de procesos, priorización ROI, roadmap 30/60/90 días y recomendaciones prácticas.",
+    alternates: auditAlternates,
+  },
+  {
+    path: "/es/automatizacion-comercial",
+    lang: "es",
+    title: "Automatización Comercial IA | CRM, Prospección, Scoring — Abel SALAH",
+    description:
+      "Automatice procesos comerciales con IA: scoring de leads, enriquecimiento, mensajes personalizados, CRM y seguimiento.",
+    alternates: automationAlternates,
+  },
+  {
+    path: "/es/formacion-ia",
+    lang: "es",
+    title: "Formación IA Empresa | Directivos, Managers, Equipos — Abel SALAH",
+    description:
+      "Formación IA para directivos y equipos: casos de uso, prompting útil, automatización responsable y adopción concreta.",
+    alternates: trainingAlternates,
+  },
+  {
+    path: "/work",
+    lang: "fr",
+    title: "Réalisations IA & Business Cases — Abel SALAH",
+    description:
+      "Cas concrets d'IA en entreprise : automatisation commerciale, LMS, acquisition, scoring leads et transformation opérationnelle.",
+  },
+  {
+    path: "/about",
+    lang: "fr",
+    title: "À propos d'Abel SALAH | Consultant IA & Business",
+    description:
+      "Parcours d'Abel SALAH, consultant IA pour PME, ETI et dirigeants avec 16 ans d'expérience commerciale et digitale.",
+  },
+  {
+    path: "/ecosystem",
+    lang: "fr",
+    title: "Écosystème IA & Produits — Abel SALAH",
+    description:
+      "Découvrez les produits IA construits par Abel SALAH : SCALLUP, SKILL LMS, Formateurs.pro et Immo Montpellier.",
+  },
+  {
+    path: "/blog",
+    lang: "fr",
+    title: "Blog IA Entreprise | Guides & Cas Concrets — Abel SALAH",
+    description:
+      "Guides pratiques et cas concrets pour intégrer l'intelligence artificielle en entreprise, automatiser les processus et former les équipes.",
+  },
+  {
+    path: "/contact",
+    lang: "fr",
+    title: "Prendre RDV Expert IA | Audit Gratuit — Abel SALAH",
+    description:
+      "Réservez votre audit IA gratuit avec Abel SALAH. Réponse sous 24h, accompagnement personnalisé pour PME et ETI.",
+  },
+];
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function stripManagedHead(html) {
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/i, "")
+    .replace(/<meta\s+name="description"[\s\S]*?>/gi, "")
+    .replace(/<meta\s+name="author"[\s\S]*?>/gi, "")
+    .replace(/<meta\s+name="keywords"[\s\S]*?>/gi, "")
+    .replace(/<meta\s+property="og:[\s\S]*?>/gi, "")
+    .replace(/<meta\s+name="twitter:[\s\S]*?>/gi, "")
+    .replace(/<link\s+rel="canonical"[\s\S]*?>/gi, "")
+    .replace(/<link\s+rel="alternate"[\s\S]*?>/gi, "");
+}
+
+function buildHead(route) {
+  const canonical = `${siteUrl}${route.path === "/" ? "" : route.path}`;
+  const xDefaultPath = route.alternates?.[0]?.path ?? route.path;
+  const xDefaultHref = `${siteUrl}${xDefaultPath === "/" ? "" : xDefaultPath}`;
+  const alternates = (route.alternates ?? [{ hrefLang: route.lang, path: route.path }])
+    .map(
+      (alternate) =>
+        `    <link rel="alternate" hreflang="${alternate.hrefLang}" href="${siteUrl}${alternate.path === "/" ? "" : alternate.path}" />`
+    )
+    .join("\n");
+
+  return `    <title>${escapeHtml(route.title)}</title>
+    <meta name="description" content="${escapeHtml(route.description)}" />
+    <meta name="author" content="Abel SALAH" />
+    <link rel="canonical" href="${canonical}" />
+${alternates}
+    <link rel="alternate" hreflang="x-default" href="${xDefaultHref}" />
+    <meta property="og:title" content="${escapeHtml(route.title)}" />
+    <meta property="og:description" content="${escapeHtml(route.description)}" />
+    <meta property="og:url" content="${canonical}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="${ogImage}" />
+    <meta property="og:locale" content="${route.lang === "en" ? "en_US" : route.lang === "es" ? "es_ES" : "fr_FR"}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(route.title)}" />
+    <meta name="twitter:description" content="${escapeHtml(route.description)}" />
+    <meta name="twitter:image" content="${ogImage}" />`;
+}
+
+function applyRouteHead(baseHtml, route) {
+  const html = stripManagedHead(baseHtml).replace(/<html\s+lang="[^"]*"/i, `<html lang="${route.lang}"`);
+  return html.replace(/(<meta\s+name="viewport"[\s\S]*?>)/i, `$1\n${buildHead(route)}`);
+}
+
+const baseHtml = await readFile(baseIndexPath, "utf8");
+const parentRoutes = new Set(
+  routes
+    .map((route) => route.path)
+    .filter((routePath) =>
+      routes.some(
+        (candidate) =>
+          candidate.path !== routePath && candidate.path.startsWith(`${routePath}/`)
+      )
+    )
+);
+
+for (const route of routes) {
+  const html = applyRouteHead(baseHtml, route);
+  if (route.path === "/") {
+    await writeFile(baseIndexPath, html);
+    continue;
+  }
+
+  if (!parentRoutes.has(route.path)) {
+    const exactPath = path.join(distDir, route.path.replace(/^\//, ""));
+    await mkdir(path.dirname(exactPath), { recursive: true });
+    await writeFile(exactPath, html);
+    continue;
+  }
+
+  const routeDir = path.join(distDir, route.path.replace(/^\//, ""));
+  await mkdir(routeDir, { recursive: true });
+  await writeFile(path.join(routeDir, "index.html"), html);
+}
+
+console.log(`Generated static SEO heads for ${routes.length} routes.`);
