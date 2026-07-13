@@ -4,6 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { offerPages, type OfferSlug } from "@/data/offerPages";
+import { trackConversionEvent } from "@/lib/conversionEvents";
 
 interface OfferPageProps {
   slug: OfferSlug;
@@ -208,6 +209,10 @@ const OfferPage = ({ slug }: OfferPageProps) => {
           href={TIDYCAL_BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            trackConversionEvent("offer_cta_click", offer.path, TIDYCAL_BOOKING_URL);
+            trackConversionEvent("book_call_click", `offer_${offer.path}`, TIDYCAL_BOOKING_URL);
+          }}
           className="mt-10 inline-flex items-center gap-4 rounded-full bg-primary px-9 py-5 text-lg font-semibold text-primary-foreground hover:gap-6 transition-all"
         >
           {copy.finalCta}

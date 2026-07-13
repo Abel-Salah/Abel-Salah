@@ -24,6 +24,15 @@ Au dernier controle :
 - Le bundle principal est sous le seuil d'avertissement Vite grace au code splitting par routes.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
 
+## Conversion
+
+Les clics principaux de reservation emettent des evenements internes via [src/lib/conversionEvents.ts](../src/lib/conversionEvents.ts) :
+
+- `book_call_click` pour les CTA TidyCal ;
+- `offer_cta_click` pour les CTA des pages offres.
+
+La v1 stocke les 50 derniers evenements dans `localStorage` et emet un `CustomEvent` navigateur `abel:conversion`. Aucun outil tiers n'est charge par defaut.
+
 ## GitHub
 
 - La CI GitHub Actions execute `npm run verify` sur `main` et sur les pull requests.

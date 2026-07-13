@@ -49,6 +49,8 @@ const publicRoutes = [
 ];
 
 expectIncludes("src/data/homeLocales.ts", tidyCalUrl, "central TidyCal URL");
+expectIncludes("src/lib/conversionEvents.ts", "book_call_click", "booking conversion event");
+expectIncludes("src/lib/conversionEvents.ts", "offer_cta_click", "offer conversion event");
 expectNotIncludes("src", "calendly.com", "Calendly URL");
 expectIncludes("src/pages/BlogPost.tsx", "rehypeSanitize", "Markdown sanitizer");
 expectIncludes("src/pages/BlogPost.tsx", "ReactMarkdown", "Markdown renderer");

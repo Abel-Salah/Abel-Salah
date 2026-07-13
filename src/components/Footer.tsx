@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
+import { trackConversionEvent } from "@/lib/conversionEvents";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -90,6 +91,9 @@ const Footer = () => {
                   href={TIDYCAL_BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackConversionEvent("book_call_click", "footer", TIDYCAL_BOOKING_URL)
+                  }
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
                   Prendre rendez-vous →

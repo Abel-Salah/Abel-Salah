@@ -10,6 +10,7 @@ import {
   type HomeLocale,
   TIDYCAL_BOOKING_URL,
 } from "@/data/homeLocales";
+import { trackConversionEvent } from "@/lib/conversionEvents";
 
 interface IndexProps {
   locale?: HomeLocale;
@@ -80,6 +81,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   href={TIDYCAL_BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackConversionEvent("book_call_click", `home_hero_${locale}`, TIDYCAL_BOOKING_URL)
+                  }
                   className="inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
 
                   {content.primaryCta}
@@ -134,6 +138,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               href={TIDYCAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackConversionEvent("book_call_click", `home_intro_card_${locale}`, TIDYCAL_BOOKING_URL)
+              }
               className="block transition-transform hover:-translate-y-1"
             >
               <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
@@ -384,6 +391,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               href={TIDYCAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackConversionEvent("book_call_click", `home_final_${locale}`, TIDYCAL_BOOKING_URL)
+              }
               className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
 
               {content.finalCta}
