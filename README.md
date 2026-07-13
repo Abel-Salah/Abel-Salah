@@ -18,7 +18,7 @@ Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente le
 
 ## Prerequis
 
-- Node.js 20+ recommande
+- Node.js 22+ recommande
 - npm
 - Un projet Supabase si les articles generes ou les Edge Functions sont utilises
 
