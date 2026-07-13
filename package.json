@@ -12,7 +12,7 @@
     "verify": "npm run lint && npm run build && npm audit --audit-level=moderate"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.10.0",
+    "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-accordion": "^1.2.16",
     "@radix-ui/react-alert-dialog": "^1.1.19",
     "@radix-ui/react-aspect-ratio": "^1.1.11",
@@ -49,7 +49,7 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.25.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.462.0",
+    "lucide-react": "^0.577.0",
     "next-themes": "^0.4.6",
     "react": "^18.3.1",
     "react-day-picker": "^10.0.1",
@@ -61,7 +61,7 @@
     "react-router-dom": "^6.30.4",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "sonner": "^1.7.4",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.9",
