@@ -28,6 +28,13 @@ function expectNotIncludes(path, unexpected, label = unexpected) {
 }
 
 const tidyCalUrl = "https://tidycal.com/skill-lms/abel-rdv";
+const sourceText = readTree("src");
+const forbiddenClaimPatterns = [
+  /\b(?:résultat|resultat|gain|roi|pipeline|conversion|croissance)s?\s+garanti(?:e|s)?\b/i,
+  /\b(?:guaranteed|guarantee)\s+(?:result|roi|growth|conversion|pipeline)s?\b/i,
+  /\b(?:resultado|ganancia|roi|pipeline|conversion|crecimiento)s?\s+garantizado(?:s|a|as)?\b/i,
+  /\b(?:candidature|message|email|relance)s?\s+automatique(?:s)?\s+sans\s+validation\b/i,
+];
 const publicRoutes = [
   "/",
   "/en",
@@ -67,6 +74,15 @@ expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
 expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");
 expectIncludes("public/llms.txt", tidyCalUrl, "TidyCal in LLM context");
 expectIncludes("public/ai.txt", tidyCalUrl, "TidyCal in AI context");
+expectIncludes("public/llms.txt", "Ne pas présenter les chiffres comme des garanties", "LLM anti-guarantee guidance");
+expectIncludes("public/ai.txt", "not universal guarantees", "AI citation guidance");
+expectIncludes("src/data/homeLocales.ts", "Preuves & méthode", "home proof section");
+expectNotIncludes("src", "sans validation humaine", "unsafe no-review claim");
+for (const pattern of forbiddenClaimPatterns) {
+  if (pattern.test(sourceText)) {
+    failures.push(`src: forbidden absolute claim pattern ${pattern}`);
+  }
+}
 expectIncludes("supabase/config.toml", "[functions.generate-blog-post]\nverify_jwt = true", "blog generation JWT");
 expectIncludes("supabase/config.toml", "[functions.manage-opportunities]\nverify_jwt = true", "opportunity admin JWT");
 expectIncludes("supabase/functions/draft-job-outreach/index.ts", 'status: "pending_review"', "draft human review status");

@@ -193,6 +193,55 @@ const Index = ({ locale = "fr" }: IndexProps) => {
 
       <section className="py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5"
+            >
+              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+                {content.proofLabel}
+              </span>
+              <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+                {content.proofTitleTop}
+                <br />
+                {content.proofTitleBottom}
+              </h2>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                {content.proofIntro}
+              </p>
+            </motion.div>
+
+            <div className="divide-y divide-border border-y border-border lg:col-span-7">
+              {content.proofItems.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  className="grid gap-6 py-8 md:grid-cols-[120px_1fr]"
+                >
+                  <span className="heading-display text-5xl text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-2xl font-semibold">{item.title}</h3>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-28 px-4 md:px-6 border-t border-border">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

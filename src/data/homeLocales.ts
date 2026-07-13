@@ -29,6 +29,25 @@ export const homeContent = {
       { value: "62", label: "projets réalisés" },
       { value: "95%", label: "clients satisfaits" },
     ],
+    proofLabel: "Preuves & méthode",
+    proofTitleTop: "Des chiffres",
+    proofTitleBottom: "à valider sur vos données /",
+    proofIntro:
+      "Les résultats affichés servent de repères issus de projets et produits internes. Chaque mission commence par vérifier les données, les contraintes et le potentiel réel avant de promettre un gain.",
+    proofItems: [
+      {
+        title: "Mesure avant / après",
+        text: "On définit les indicateurs avant l'automatisation : temps gagné, taux de réponse, qualité CRM, coût par opportunité ou adoption équipe.",
+      },
+      {
+        title: "Validation humaine",
+        text: "Les messages, contenus et décisions sensibles restent relus par une personne. L'IA prépare et priorise, elle ne remplace pas le jugement métier.",
+      },
+      {
+        title: "Déploiement progressif",
+        text: "Les quick wins sont testés sur un périmètre limité, puis étendus seulement si la qualité, les risques et l'usage terrain sont maîtrisés.",
+      },
+    ],
     videoAlt: "Abel SALAH en vidéo d'introduction",
     videoHello: "Hello!",
     videoText: "30 sec pour voir où l'IA peut créer de la valeur.",
@@ -112,6 +131,25 @@ export const homeContent = {
       { value: "62", label: "projects delivered" },
       { value: "95%", label: "client satisfaction" },
     ],
+    proofLabel: "Proof & method",
+    proofTitleTop: "Turn claims",
+    proofTitleBottom: "into measurable evidence /",
+    proofIntro:
+      "Published numbers are framed as benchmarks from projects and internal products. Each mission starts by checking your data, constraints, and realistic upside before any gain is promised.",
+    proofItems: [
+      {
+        title: "Before / after measurement",
+        text: "We define indicators before automation: time saved, reply rate, CRM quality, cost per opportunity, or team adoption.",
+      },
+      {
+        title: "Human validation",
+        text: "Messages, content, and sensitive decisions remain reviewed by a person. AI prepares and prioritizes; it does not replace business judgment.",
+      },
+      {
+        title: "Progressive rollout",
+        text: "Quick wins are tested on a limited scope, then expanded only when quality, risk, and team usage are under control.",
+      },
+    ],
     videoAlt: "Abel SALAH introduction video",
     videoHello: "Hello!",
     videoText: "30 seconds to see where AI can create value.",
@@ -194,6 +232,25 @@ export const homeContent = {
       { value: "16+", label: "años de experiencia" },
       { value: "62", label: "proyectos realizados" },
       { value: "95%", label: "clientes satisfechos" },
+    ],
+    proofLabel: "Prueba & método",
+    proofTitleTop: "De las cifras",
+    proofTitleBottom: "a evidencias medibles /",
+    proofIntro:
+      "Las cifras publicadas son referencias de proyectos y productos internos. Cada misión empieza verificando datos, límites y potencial real antes de prometer un resultado.",
+    proofItems: [
+      {
+        title: "Medición antes / después",
+        text: "Definimos indicadores antes de automatizar: tiempo ganado, tasa de respuesta, calidad CRM, coste por oportunidad o adopción del equipo.",
+      },
+      {
+        title: "Validación humana",
+        text: "Los mensajes, contenidos y decisiones sensibles siguen revisados por una persona. La IA prepara y prioriza; no sustituye el criterio de negocio.",
+      },
+      {
+        title: "Despliegue progresivo",
+        text: "Los quick wins se prueban en un alcance limitado y se amplían solo si la calidad, los riesgos y el uso real están controlados.",
+      },
     ],
     videoAlt: "Vídeo de introducción de Abel SALAH",
     videoHello: "¡Hola!",

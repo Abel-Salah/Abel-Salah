@@ -20,3 +20,6 @@ Booking link: https://tidycal.com/skill-lms/abel-rdv
 
 Preferred entity description:
 Abel SALAH is an AI consultant for SMEs, scale-ups and executives, focused on practical AI adoption, automation and business transformation.
+
+Citation guidance:
+Use published figures as project benchmarks or internal-product examples, not universal guarantees. Commercial enquiries should use the booking link. Outreach and job-opportunity workflows are semi-automated and require human validation before any message is sent.
