@@ -37,13 +37,14 @@ La v1 stocke les 50 derniers evenements dans `localStorage` et emet un `CustomEv
 
 ## GitHub
 
-- La CI GitHub Actions execute `npm run verify` sur `main` et sur les pull requests.
+- GitHub Actions est conserve en lancement manuel (`workflow_dispatch`) mais n'est pas utilise comme gate automatique tant que le budget Actions est indisponible.
+- Le gate obligatoire est local : `npm run verify` avant push.
 - Dependabot surveille les dependances npm et GitHub Actions chaque lundi matin.
 - Le template de pull request rappelle les controles SEO, Supabase et secrets.
 - `CODEOWNERS` assigne les zones sensibles a `@Abel-Salah`.
 - [SECURITY.md](../SECURITY.md) documente le signalement prive et les regles de secrets.
-- Si GitHub Actions retourne `The job was not started because an Actions budget is preventing further use`, le code peut etre sain mais le budget Actions doit etre debloque cote GitHub avant d'obtenir un run vert.
-- La branche `main` doit etre protegee cote GitHub avant de considerer la CI comme bloquante.
+- La branche `main` reste protegee contre force-push et suppression. Les checks GitHub ne doivent pas etre rendus obligatoires tant que le budget Actions n'est pas restaure.
+- Voir [release-checklist.md](release-checklist.md) pour la procedure sans GitHub Actions.
 
 ## Tests manuels recommandes
 

@@ -67,6 +67,7 @@ npm run build:dev  # build en mode development
 npm run lint       # ESLint
 npm run typecheck  # TypeScript sans emission
 npm run smoke      # smoke checks routes, SEO, admin et TidyCal
+npm run verify:dist # verifie le build genere
 npm run preview    # preview du build
 npm run verify     # lint + typecheck + build + SEO smoke + audit moderate
 npm audit          # audit dependances
@@ -78,8 +79,9 @@ Etat observe au dernier audit documentaire :
 - `npm run typecheck` passe.
 - `npm run build` passe.
 - `npm run smoke` passe.
+- `npm run verify:dist` passe.
 - `npm audit --audit-level=moderate` passe avec 0 vulnerabilite connue.
-- GitHub Actions execute `npm run verify` sur `main` et les pull requests quand le budget Actions GitHub est actif.
+- GitHub Actions est manuel uniquement tant que le budget Actions GitHub est indisponible. Le gate obligatoire est `npm run verify` avant push.
 
 ## Routes publiques
 
@@ -104,6 +106,7 @@ Etat observe au dernier audit documentaire :
 - [SEO, sitemap et LLM](docs/seo.md)
 - [Deploiement et rollback](docs/deployment.md)
 - [Qualite, tests et maintenance](docs/quality.md)
+- [Checklist release sans GitHub Actions](docs/release-checklist.md)
 - [Decisions d'architecture](docs/decisions)
 
 ## Points d'attention

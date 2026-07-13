@@ -20,16 +20,15 @@ Source de verite actuelle :
 
 - Lovable peut publier le projet depuis GitHub.
 - [vercel.json](../vercel.json) et [public/_redirects](../public/_redirects) documentent les rewrites statiques utiles aux hebergeurs compatibles.
-- GitHub Actions execute `npm run verify` quand le budget Actions du compte est actif.
+- GitHub Actions n'est pas un gate automatique tant que le budget Actions est indisponible. Le workflow CI reste lancable manuellement via `workflow_dispatch`.
+- Le gate obligatoire avant push est local : `npm run verify`.
 - Le domaine public attendu est `https://abelsalah.fr`.
 
 ## Checklist avant mise en production
 
 1. `git status --short` propre ou changements volontairement stages.
 2. `npm run verify`.
-3. CI GitHub verte si le budget Actions est actif.
-4. Branche `main` protegee avant de rendre les checks obligatoires.
-5. Verification manuelle des routes principales :
+3. Verification manuelle des routes principales :
    - `/`
    - `/en`
    - `/es`
@@ -38,8 +37,10 @@ Source de verite actuelle :
    - `/contact`
    - `/blog`
    - `/ecosystem`
-6. Verification du lien TidyCal.
-7. Verification de `robots.txt`, `sitemap.xml`, `llms.txt` et `ai.txt`.
+4. Verification du lien TidyCal.
+5. Verification de `robots.txt`, `sitemap.xml`, `llms.txt` et `ai.txt`.
+
+Voir aussi [release-checklist.md](release-checklist.md).
 
 ## Rollback
 
