@@ -17,6 +17,10 @@ const labels = {
     methodTitle: ["Simple.", "Mesurable."],
     step: "Etape",
     proof: "Preuve et prudence",
+    cases: "Cas typiques",
+    casesTitle: "Situations réelles.",
+    context: "Contexte",
+    evidence: "Preuve à collecter",
     related: "Pages liées",
     questions: "Questions",
     finalTitle: "Vous voulez cadrer le sujet ?",
@@ -28,6 +32,10 @@ const labels = {
     methodTitle: ["Simple.", "Measurable."],
     step: "Step",
     proof: "Proof and context",
+    cases: "Typical cases",
+    casesTitle: "Real situations.",
+    context: "Context",
+    evidence: "Evidence to collect",
     related: "Related pages",
     questions: "Questions",
     finalTitle: "Want to frame the topic?",
@@ -39,6 +47,10 @@ const labels = {
     methodTitle: ["Simple.", "Medible."],
     step: "Paso",
     proof: "Prueba y contexto",
+    cases: "Casos típicos",
+    casesTitle: "Situaciones reales.",
+    context: "Contexto",
+    evidence: "Prueba a recopilar",
     related: "Páginas relacionadas",
     questions: "Preguntas",
     finalTitle: "¿Quieres enmarcar el tema?",
@@ -179,6 +191,46 @@ const OfferPage = ({ slug }: OfferPageProps) => {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto border-t border-border py-20">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              {copy.cases}
+            </span>
+            <h2 className="heading-display mt-6 text-5xl uppercase leading-none md:text-7xl">
+              {copy.casesTitle}
+            </h2>
+          </div>
+          <div className="grid gap-5 lg:col-span-8">
+            {offer.cases.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="border border-border bg-card/25 p-7"
+              >
+                <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-5 text-2xl font-semibold">{item.title}</h3>
+                <p className="mt-5 text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                  {copy.context}
+                </p>
+                <p className="mt-3 text-lg leading-relaxed">{item.context}</p>
+                <p className="mt-6 text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                  {copy.evidence}
+                </p>
+                <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
+                  {item.evidence}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

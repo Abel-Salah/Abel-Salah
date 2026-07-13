@@ -43,6 +43,18 @@ export const offerPages = {
     ],
     proof:
       "Les gains annoncés sont cadrés comme des objectifs ou ordres de grandeur issus de projets internes et doivent être validés avec vos données réelles.",
+    cases: [
+      {
+        title: "Cadrage dirigeant",
+        context: "PME avec plusieurs idées IA mais peu de priorisation.",
+        evidence: "Sortie attendue : carte des cas d'usage, critères de décision et premiers quick wins mesurables.",
+      },
+      {
+        title: "Processus commercial",
+        context: "Equipe qui collecte des leads mais manque de scoring et de suivi.",
+        evidence: "Sortie attendue : backlog IA priorisé selon impact, effort, risque et données disponibles.",
+      },
+    ],
     related: [
       { label: "Automatisation commerciale", href: "/automatisation-commerciale" },
       { label: "Formation IA", href: "/formation-ia" },
@@ -84,6 +96,18 @@ export const offerPages = {
     ],
     proof:
       "Les exemples de conversion ou de pipeline sont des repères de projets, pas des garanties. La performance dépend de l'offre, du marché et de la qualité des données.",
+    cases: [
+      {
+        title: "Scoring leads",
+        context: "Prospects entrants nombreux mais priorisation manuelle et CRM incomplet.",
+        evidence: "Indicateurs à suivre : taux de réponse, délai de relance, complétude CRM et qualité des opportunités.",
+      },
+      {
+        title: "Brouillons personnalisés",
+        context: "Messages commerciaux préparés par IA puis relus avant envoi.",
+        evidence: "Garde-fou : aucun message ne part sans validation humaine et chaque séquence garde une trace CRM.",
+      },
+    ],
     related: [
       { label: "Audit IA", href: "/audit-ia" },
       { label: "Formation IA", href: "/formation-ia" },
@@ -125,6 +149,18 @@ export const offerPages = {
     ],
     proof:
       "L'objectif est l'adoption mesurable : usages réellement repris par les équipes, temps gagné et qualité contrôlée dans les processus concernés.",
+    cases: [
+      {
+        title: "Atelier dirigeants",
+        context: "Direction qui veut comprendre les risques, les priorités et les usages IA réalistes.",
+        evidence: "Sortie attendue : matrice de priorisation, règles d'usage et prochaine expérimentation cadrée.",
+      },
+      {
+        title: "Equipe opérationnelle",
+        context: "Managers et équipes qui testent déjà des outils IA sans méthode partagée.",
+        evidence: "Indicateurs à suivre : réutilisation des prompts, temps gagné et qualité des livrables produits.",
+      },
+    ],
     related: [
       { label: "Audit IA", href: "/audit-ia" },
       { label: "Automatisation commerciale", href: "/automatisation-commerciale" },
@@ -162,6 +198,18 @@ export const offerPages = {
     method: ["Executive goals interview", "Sales, operations, training or support workflow review", "Prioritized recommendations"],
     proof:
       "Expected gains are framed as objectives or benchmarks from internal projects and must be validated against your own data.",
+    cases: [
+      {
+        title: "Executive framing",
+        context: "SME with several AI ideas but limited prioritization.",
+        evidence: "Expected output: use-case map, decision criteria, and measurable quick wins.",
+      },
+      {
+        title: "Sales workflow review",
+        context: "Team collecting leads but missing scoring and follow-up structure.",
+        evidence: "Expected output: AI backlog prioritized by impact, effort, risk, and data readiness.",
+      },
+    ],
     related: [
       { label: "Sales automation", href: "/en/sales-automation" },
       { label: "AI training", href: "/en/ai-training" },
@@ -187,6 +235,18 @@ export const offerPages = {
     method: ["Define offer, ICP, sectors and qualification criteria", "Design sourcing, scoring, drafting and validation workflow", "Set up tracking and anti-spam rules"],
     proof:
       "Conversion and pipeline examples are project benchmarks, not guarantees. Performance depends on offer, market and data quality.",
+    cases: [
+      {
+        title: "Lead scoring",
+        context: "High inbound volume with manual prioritization and incomplete CRM data.",
+        evidence: "Metrics to monitor: reply rate, follow-up delay, CRM completeness, and opportunity quality.",
+      },
+      {
+        title: "Personalized drafts",
+        context: "AI prepares sales drafts that are reviewed before sending.",
+        evidence: "Guardrail: no message is sent without human validation and every sequence keeps a CRM trace.",
+      },
+    ],
     related: [
       { label: "AI audit", href: "/en/ai-audit" },
       { label: "AI training", href: "/en/ai-training" },
@@ -212,6 +272,18 @@ export const offerPages = {
     method: ["Assess current maturity and tools", "Run short workshops with real company cases", "Turn learning into operational routines"],
     proof:
       "The goal is measurable adoption: real usage by teams, time saved and quality controlled in the relevant workflows.",
+    cases: [
+      {
+        title: "Executive workshop",
+        context: "Leadership team needs to understand risks, priorities, and realistic AI use cases.",
+        evidence: "Expected output: prioritization matrix, usage rules, and a framed next experiment.",
+      },
+      {
+        title: "Operational team",
+        context: "Managers and teams already testing AI tools without a shared method.",
+        evidence: "Metrics to monitor: prompt reuse, time saved, and quality of produced deliverables.",
+      },
+    ],
     related: [
       { label: "AI audit", href: "/en/ai-audit" },
       { label: "Sales automation", href: "/en/sales-automation" },
@@ -237,6 +309,18 @@ export const offerPages = {
     method: ["Entrevista de objetivos", "Análisis de workflows comerciales, operativos o formativos", "Recomendaciones priorizadas"],
     proof:
       "Los resultados esperados se presentan como objetivos o referencias de proyectos y deben validarse con datos reales.",
+    cases: [
+      {
+        title: "Alineación directiva",
+        context: "Pyme con varias ideas IA pero poca priorización.",
+        evidence: "Salida esperada: mapa de casos de uso, criterios de decisión y quick wins medibles.",
+      },
+      {
+        title: "Proceso comercial",
+        context: "Equipo que capta leads pero carece de scoring y seguimiento estructurado.",
+        evidence: "Salida esperada: backlog IA priorizado por impacto, esfuerzo, riesgo y datos disponibles.",
+      },
+    ],
     related: [
       { label: "Automatización comercial", href: "/es/automatizacion-comercial" },
       { label: "Formación IA", href: "/es/formacion-ia" },
@@ -262,6 +346,18 @@ export const offerPages = {
     method: ["Definir oferta, ICP, sectores y criterios", "Diseñar sourcing, scoring, borradores y validación", "Configurar seguimiento y reglas anti-spam"],
     proof:
       "Los ejemplos de conversión o pipeline son referencias, no garantías. Dependen de la oferta, mercado y calidad de datos.",
+    cases: [
+      {
+        title: "Scoring de leads",
+        context: "Muchos prospectos entrantes con priorización manual y CRM incompleto.",
+        evidence: "Métricas a seguir: tasa de respuesta, plazo de seguimiento, calidad CRM y calidad de oportunidades.",
+      },
+      {
+        title: "Borradores personalizados",
+        context: "La IA prepara mensajes comerciales que una persona revisa antes de enviar.",
+        evidence: "Regla: ningún mensaje sale sin validación humana y cada secuencia conserva trazabilidad CRM.",
+      },
+    ],
     related: [
       { label: "Auditoría IA", href: "/es/auditoria-ia" },
       { label: "Formación IA", href: "/es/formacion-ia" },
@@ -287,6 +383,18 @@ export const offerPages = {
     method: ["Diagnóstico de madurez y herramientas", "Talleres con casos reales", "Seguimiento para convertir aprendizaje en rutinas"],
     proof:
       "El objetivo es una adopción medible: usos reales, tiempo ganado y calidad controlada en los procesos afectados.",
+    cases: [
+      {
+        title: "Taller directivo",
+        context: "Equipo directivo que necesita entender riesgos, prioridades y casos IA realistas.",
+        evidence: "Salida esperada: matriz de priorización, reglas de uso y próximo experimento definido.",
+      },
+      {
+        title: "Equipo operativo",
+        context: "Managers y equipos ya prueban herramientas IA sin método compartido.",
+        evidence: "Métricas a seguir: reutilización de prompts, tiempo ganado y calidad de los entregables.",
+      },
+    ],
     related: [
       { label: "Auditoría IA", href: "/es/auditoria-ia" },
       { label: "Automatización comercial", href: "/es/automatizacion-comercial" },

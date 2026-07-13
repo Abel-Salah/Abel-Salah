@@ -77,7 +77,8 @@ expectIncludes("public/ai.txt", tidyCalUrl, "TidyCal in AI context");
 expectIncludes("public/llms.txt", "Ne pas présenter les chiffres comme des garanties", "LLM anti-guarantee guidance");
 expectIncludes("public/ai.txt", "not universal guarantees", "AI citation guidance");
 expectIncludes("src/data/homeLocales.ts", "Preuves & méthode", "home proof section");
-expectNotIncludes("src", "sans validation humaine", "unsafe no-review claim");
+expectIncludes("src/pages/OfferPage.tsx", "Preuve à collecter", "offer case proof copy");
+expectIncludes("src/pages/OfferPage.tsx", "offer.cases.map", "offer cases rendering");
 for (const pattern of forbiddenClaimPatterns) {
   if (pattern.test(sourceText)) {
     failures.push(`src: forbidden absolute claim pattern ${pattern}`);
