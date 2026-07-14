@@ -102,6 +102,7 @@ if (existsSync(distDir)) {
     expectIncludes(html, `<link rel="canonical" href="${canonical}" />`, `canonical for ${route.path}`);
     expectIncludes(html, '<meta property="og:image"', `Open Graph image for ${route.path}`);
     expectIncludes(html, '<meta name="twitter:card" content="summary_large_image" />', `Twitter card for ${route.path}`);
+    expectIncludes(html, '"@type":"SiteNavigationElement"', `SiteNavigationElement JSON-LD for ${route.path}`);
     expectIncludes(sitemap, `<loc>${sitemapUrlFor(route.path)}</loc>`, `sitemap entry for ${route.path}`);
 
     if (serviceRoutes.has(route.path)) {

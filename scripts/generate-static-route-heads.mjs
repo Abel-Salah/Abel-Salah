@@ -31,6 +31,36 @@ const trainingAlternates = [
   { hrefLang: "es", path: "/es/formacion-ia" },
 ];
 
+const navigationByLang = {
+  fr: [
+    { name: "Accueil", path: "/" },
+    { name: "Audit IA", path: "/audit-ia" },
+    { name: "Automatisation commerciale", path: "/automatisation-commerciale" },
+    { name: "Formation IA", path: "/formation-ia" },
+    { name: "Realisations", path: "/work" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
+  ],
+  en: [
+    { name: "Home", path: "/en" },
+    { name: "AI Audit", path: "/en/ai-audit" },
+    { name: "Sales Automation", path: "/en/sales-automation" },
+    { name: "AI Training", path: "/en/ai-training" },
+    { name: "Work", path: "/work" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
+  ],
+  es: [
+    { name: "Inicio", path: "/es" },
+    { name: "Auditoria IA", path: "/es/auditoria-ia" },
+    { name: "Automatizacion comercial", path: "/es/automatizacion-comercial" },
+    { name: "Formacion IA", path: "/es/formacion-ia" },
+    { name: "Proyectos", path: "/work" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contacto", path: "/contact" },
+  ],
+};
+
 const routes = [
   {
     path: "/",
@@ -258,6 +288,16 @@ function buildHead(route) {
         `    <link rel="alternate" hreflang="${alternate.hrefLang}" href="${siteUrl}${alternate.path === "/" ? "" : alternate.path}" />`
     )
     .join("\n");
+  const navigationSchema = `
+    <script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SiteNavigationElement",
+      "@id": `${siteUrl}${route.path === "/" ? "" : route.path}#navigation`,
+      name: navigationByLang[route.lang].map((item) => item.name),
+      url: navigationByLang[route.lang].map(
+        (item) => `${siteUrl}${item.path === "/" ? "" : item.path}`
+      ),
+    })}</script>`;
 
   const routeServiceSchema = route.service
     ? `
@@ -305,7 +345,7 @@ ${alternates}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(route.title)}" />
     <meta name="twitter:description" content="${escapeHtml(route.description)}" />
-    <meta name="twitter:image" content="${ogImage}" />${routeServiceSchema}`;
+    <meta name="twitter:image" content="${ogImage}" />${navigationSchema}${routeServiceSchema}`;
 }
 
 function applyRouteHead(baseHtml, route) {
