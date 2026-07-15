@@ -1,61 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import type { BlogPost } from "@/data/blogPosts";
-
-interface GeneratedPost {
-  id: string;
-  slug: string;
-  title: string;
-  meta_title: string;
-  meta_description: string;
-  date: string;
-  read_time: string;
-  tags: string[];
-  excerpt: string;
-  content: { title: string; content: string[] }[];
-  article_type: string;
-}
-
-function mapToBlogPost(post: GeneratedPost): BlogPost {
-  return {
-    slug: post.slug,
-    title: post.title,
-    metaTitle: post.meta_title,
-    metaDescription: post.meta_description,
-    date: post.date,
-    readTime: post.read_time,
-    tags: post.tags,
-    excerpt: post.excerpt,
-    content: post.content,
-  };
-}
+import {
+  getPublishedGeneratedPostBySlug,
+  listPublishedGeneratedBlogPosts,
+} from "@/services/generatedBlogPosts";
 
 export function useGeneratedBlogPosts() {
   return useQuery({
     queryKey: ["generated-blog-posts"],
-    queryFn: async (): Promise<BlogPost[]> => {
-      const { data, error } = await supabase
-        .from("generated_blog_posts")
-        .select("*")
-        .eq("published", true)
-        .order("date", { ascending: false });
-
-      if (error) throw error;
-      return (data || []).map((post) => mapToBlogPost(post as unknown as GeneratedPost));
-    },
+    queryFn: listPublishedGeneratedBlogPosts,
   });
 }
 
 export async function getGeneratedPostBySlug(
   slug: string
-): Promise<BlogPost | null> {
-  const { data, error } = await supabase
-    .from("generated_blog_posts")
-    .select("*")
-    .eq("slug", slug)
-    .eq("published", true)
-    .maybeSingle();
-
-  if (error || !data) return null;
-  return mapToBlogPost(data as unknown as GeneratedPost);
+){
+  return getPublishedGeneratedPostBySlug(slug);
 }

@@ -6,57 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import SEOHead from "@/components/SEOHead";
-import { supabase } from "@/integrations/supabase/client";
-
-type Score = {
-  score: number;
-  relevance: number | null;
-  urgency: number | null;
-  budget_potential: number | null;
-  response_probability: number | null;
-  fit_summary: string;
-  strengths: string[];
-  risks: string[];
-  suggested_angle: string | null;
-};
-
-type Draft = {
-  id: string;
-  subject: string | null;
-  rationale: string | null;
-  message: string;
-  linkedin_message: string | null;
-  email_message: string | null;
-  short_message: string | null;
-  application_message: string | null;
-  follow_up_plan: Array<{ delay_days: number; message: string }>;
-  cv_url: string | null;
-  profile_url: string;
-  status: string;
-};
-
-type Application = {
-  id: string;
-  status: string;
-  applied_at: string | null;
-  next_follow_up_at: string | null;
-  notes: string | null;
-};
-
-type Opportunity = {
-  id: string;
-  title: string;
-  company: string | null;
-  url: string;
-  description: string | null;
-  location: string | null;
-  remote: boolean;
-  discovered_at: string;
-  status: string;
-  job_scores: Score[];
-  job_outreach_drafts: Draft[];
-  job_applications: Application[];
-};
+import {
+  createOrUpdateOpportunityApplication,
+  listOpportunities,
+  updateOpportunityDraftStatus,
+  updateOpportunityDraftText,
+  type Opportunity,
+} from "@/services/opportunityAdmin";
 
 const tokenStorageKey = "abel-opportunity-admin-token";
 
@@ -107,39 +63,13 @@ const AdminOpportunities = () => {
   const selectedScore = selected?.job_scores?.[0];
   const selectedApplication = selected?.job_applications?.[0];
 
-  const callAdmin = useCallback(
-    async <T,>(body: Record<string, unknown>) => {
-      const { data, error } = await supabase.functions.invoke<T>(
-        "manage-opportunities",
-        {
-          body,
-          headers: {
-            "x-opportunity-admin-token": token,
-          },
-        }
-      );
-
-      if (error) {
-        throw error;
-      }
-
-      return data;
-    },
-    [token]
-  );
-
   const loadOpportunities = useCallback(async () => {
     if (!token) return;
     setLoading(true);
 
     try {
       sessionStorage.setItem(tokenStorageKey, token);
-      const data = await callAdmin<{ opportunities: Opportunity[] }>({
-        action: "list",
-        status: status === "all" ? undefined : status,
-        limit: 80,
-      });
-      const next = data?.opportunities ?? [];
+      const next = await listOpportunities(token, status);
       setOpportunities(next);
       setSelectedId((current) => current ?? next[0]?.id ?? null);
     } catch (error) {
@@ -149,7 +79,7 @@ const AdminOpportunities = () => {
     } finally {
       setLoading(false);
     }
-  }, [callAdmin, status, token]);
+  }, [status, token]);
 
   const clearAdminSession = () => {
     sessionStorage.removeItem(tokenStorageKey);
@@ -163,12 +93,7 @@ const AdminOpportunities = () => {
   const updateDraftText = async () => {
     if (!selectedDraft) return;
 
-    await callAdmin({
-      action: "update_draft",
-      draftId: selectedDraft.id,
-      message: draftText,
-      linkedinMessage: draftText,
-    });
+    await updateOpportunityDraftText(token, selectedDraft.id, draftText);
     toast.success("Brouillon mis a jour");
     await loadOpportunities();
   };
@@ -176,11 +101,7 @@ const AdminOpportunities = () => {
   const updateDraftStatus = async (nextStatus: "approved" | "rejected") => {
     if (!selectedDraft) return;
 
-    await callAdmin({
-      action: "update_draft_status",
-      draftId: selectedDraft.id,
-      status: nextStatus,
-    });
+    await updateOpportunityDraftStatus(token, selectedDraft.id, nextStatus);
     toast.success(nextStatus === "approved" ? "Brouillon valide" : "Brouillon refuse");
     await loadOpportunities();
   };
@@ -188,13 +109,7 @@ const AdminOpportunities = () => {
   const markSent = async () => {
     if (!selected || !selectedDraft) return;
 
-    await callAdmin({
-      action: "create_or_update_application",
-      opportunityId: selected.id,
-      draftId: selectedDraft.id,
-      status: "sent",
-      notes: "Marque envoye depuis le dashboard admin.",
-    });
+    await createOrUpdateOpportunityApplication(token, selected.id, selectedDraft.id);
     toast.success("Candidature marquee comme envoyee");
     await loadOpportunities();
   };
