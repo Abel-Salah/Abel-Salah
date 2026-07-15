@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Download, Menu, X, Linkedin, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
+import { cvCanonicalByLocale } from "@/data/cvLocales";
 
 const navLabels = {
   fr: [
@@ -106,14 +106,13 @@ const Navigation = () => {
             ))}
           </div>
 
-          <a
-            href={cvAsset.url}
-            download
+          <Link
+            to={cvCanonicalByLocale[locale]}
             className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
           >
             <Download className="h-4 w-4" />
             {cvLabels[locale]}
-          </a>
+          </Link>
 
           {/* Mobile Hamburger Button */}
           <button
@@ -160,6 +159,14 @@ const Navigation = () => {
                   </motion.li>
                 ))}
               </ul>
+              <Link
+                to={cvCanonicalByLocale[locale]}
+                onClick={closeMenu}
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+              >
+                <Download className="h-4 w-4" />
+                {cvLabels[locale]}
+              </Link>
               <div className="mt-6 flex items-center gap-2 border-t border-border pt-6">
                 {languageLinks.map((item) => (
                   <Link

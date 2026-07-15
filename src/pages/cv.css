@@ -1,0 +1,500 @@
+/* CV Abel Salah — implémentation fidèle du design "CV Abel Salah.dc.html"
+   (option 2b : fond clair, marine + bleu #0f1cfe, format A4 794×1123px). */
+
+.cv-page {
+  background: #e8e6e1;
+  padding: 128px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  overflow-x: auto;
+}
+
+.cv-toolbar {
+  width: 794px;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cv-print-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #0f1cfe;
+  color: #ffffff;
+  font: 500 13px/1 "Inter", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.cv-print-button:hover {
+  opacity: 0.9;
+}
+
+.cv-sheet {
+  flex: none;
+  width: 794px;
+  height: 1123px;
+  background: #ffffff;
+  color: #0f1f3d;
+  font-family: "Inter", system-ui, sans-serif;
+  /* Le design source n'a pas de reset CSS : on neutralise l'interligne 1.5
+     du preflight Tailwind pour retrouver les métriques d'origine. */
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 48px 36px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 14px rgba(15, 31, 61, 0.15);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cv-sheet a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-sheet a:hover {
+  opacity: 0.8;
+}
+
+.cv-sheet--p2 {
+  gap: 26px;
+}
+
+/* ---- Page 1 : en-tête ---- */
+
+.cv-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: -44px -48px 0;
+  padding: 44px 48px 24px;
+  background: linear-gradient(180deg, #e9ecf3 0%, #f7f8fb 62%, #ffffff 100%);
+}
+
+.cv-header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-kicker {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #0f1cfe;
+  font-weight: 500;
+}
+
+.cv-header-main .cv-kicker {
+  margin-bottom: 8px;
+}
+
+.cv-name {
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+}
+
+.cv-tagline {
+  font-size: 13px;
+  color: #5b6880;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.cv-photo {
+  flex: none;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(15, 28, 254, 0.35);
+  box-shadow: 0 0 0 6px rgba(15, 28, 254, 0.08);
+}
+
+.cv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-qr {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.cv-qr img {
+  width: 70px;
+  height: 70px;
+  display: block;
+  border: 1px solid rgba(15, 31, 61, 0.18);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 4px;
+  box-sizing: content-box;
+}
+
+.cv-qr a {
+  font-size: 9.5px;
+  color: #5b6880;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 20px;
+  padding: 10px 0;
+  font-size: 11.5px;
+  color: #43526e;
+  background:
+    linear-gradient(90deg, transparent, rgba(15, 31, 61, 0.18) 48px, rgba(15, 31, 61, 0.18) calc(100% - 48px), transparent) top / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent, rgba(15, 31, 61, 0.18) 48px, rgba(15, 31, 61, 0.18) calc(100% - 48px), transparent) bottom / 100% 1px no-repeat;
+}
+
+/* ---- Page 1 : corps deux colonnes ---- */
+
+.cv-body {
+  display: grid;
+  grid-template-columns: 1fr 236px;
+  gap: 32px;
+  /* Le design source (marges 24px, interlignes 1.6, gaps 18/22px) déborde de
+     ~64px de la feuille A4 avec les métriques réelles d'Inter — son viewer
+     masquait le dépassement via overflow:hidden. Les espacements verticaux
+     sont légèrement resserrés ici pour tenir dans les 1123px, sans toucher
+     aux tailles de texte ni à la hiérarchie. */
+  margin-top: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.cv-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.cv-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-section-title::before {
+  content: "";
+  width: 16px;
+  height: 2px;
+  background: #0f1cfe;
+}
+
+.cv-section-title span {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0f1cfe;
+  font-weight: 500;
+}
+
+.cv-profile p {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #2b3a57;
+}
+
+.cv-experience {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cv-xp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cv-xp-role {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cv-xp-dates {
+  font-size: 11px;
+  color: #5b6880;
+  white-space: nowrap;
+}
+
+.cv-xp-sub {
+  font-size: 11.5px;
+  color: #0f1cfe;
+  margin: 2px 0 6px;
+}
+
+.cv-xp ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #2b3a57;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ---- Page 1 : colonne latérale ---- */
+
+.cv-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #ecedf1;
+  border-radius: 8px;
+  padding: 18px 16px;
+}
+
+.cv-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cv-skills > .cv-kicker {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+}
+
+.cv-skill-name {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.cv-skill-desc {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #5b6880;
+}
+
+.cv-side-section .cv-section-title {
+  margin-bottom: 10px;
+}
+
+.cv-langs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #2b3a57;
+}
+
+.cv-lang-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cv-lang-row span:last-child {
+  color: #5b6880;
+}
+
+.cv-side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #2b3a57;
+}
+
+.cv-side-item-title {
+  font-weight: 500;
+}
+
+.cv-side-item-sub {
+  color: #5b6880;
+  font-size: 11px;
+}
+
+.cv-sheet-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 10px;
+  color: #8b95a8;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---- Page 2 ---- */
+
+.cv-header-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin: -44px -48px 0;
+  padding: 24px 48px 16px;
+  background: linear-gradient(180deg, #e9ecf3 0%, #f7f8fb 62%, #ffffff 100%);
+}
+
+.cv-header-compact .cv-name-sm {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cv-header-compact .cv-kicker {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+}
+
+.cv-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.cv-highlight {
+  background: #ecedf1;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.cv-highlight-figure {
+  font-size: 22px;
+  font-weight: 500;
+  color: #0f1cfe;
+}
+
+.cv-highlight-figure span {
+  font-size: 12px;
+  color: #5b6880;
+}
+
+.cv-highlight-title {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 8px 0 5px;
+}
+
+.cv-highlight-desc {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #5b6880;
+}
+
+.cv-tools-intro {
+  font-size: 11px;
+  color: #5b6880;
+  margin: 6px 0 14px;
+}
+
+.cv-tool-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cv-tool-group-label {
+  font-size: 11px;
+  color: #8b95a8;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.cv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid rgba(15, 31, 61, 0.18);
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: #2b3a57;
+}
+
+.cv-chip img {
+  width: 14px;
+  height: 14px;
+}
+
+.cv-clients {
+  margin-top: 12px;
+}
+
+.cv-client-chip {
+  padding: 8px 14px;
+  background: #ecedf1;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #0f1f3d;
+}
+
+.cv-paragraph {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #2b3a57;
+}
+
+.cv-paragraph--muted {
+  color: #5b6880;
+}
+
+/* ---- Impression ---- */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  nav,
+  footer,
+  .cv-toolbar {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  .cv-page {
+    background: #ffffff;
+    padding: 0;
+    gap: 0;
+    display: block;
+    overflow: visible;
+  }
+
+  .cv-sheet {
+    border: 0;
+    box-shadow: none;
+    margin: 0 auto;
+    break-after: page;
+  }
+
+  .cv-sheet:last-child {
+    break-after: auto;
+  }
+}

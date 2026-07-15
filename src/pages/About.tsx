@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Linkedin, Youtube, ArrowUpRight, Download } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
-import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
 
 const services = [
 "Audit & stratégie IA pour dirigeants",
@@ -234,20 +233,19 @@ const About = () => {
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
             </a>
-            <a
-              href={cvAsset.url}
-              download
+            <Link
+              to="/cv"
               className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <Download className="w-8 h-8 text-primary" />
                 <div>
                   <p className="text-2xl text-foreground group-hover:text-primary transition-colors">CV</p>
-                  <p className="text-sm text-muted-foreground">Télécharger mon CV consultant IA (PDF)</p>
+                  <p className="text-sm text-muted-foreground">Télécharger mon CV consultant IA</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
-            </a>
+            </Link>
           </div>
         </motion.div>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ArrowRight, Download, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
+import { cvCanonicalByLocale } from "@/data/cvLocales";
 import {
   homeAlternates,
   homeContent,
@@ -57,9 +57,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 </div>
                 <h1 className="heading-display text-[clamp(4.5rem,13vw,13rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
                   {content.heroTop}
+                  <span className="text-primary"> *</span>
                   <br />
                   {content.heroBottom}
-                  <span className="text-primary"> *</span>
                 </h1>
               </motion.div>
 
@@ -90,14 +90,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </a>
 
-                <a
-                  href={cvAsset.url}
-                  download
+                <Link
+                  to={cvCanonicalByLocale[locale]}
                   className="inline-flex items-center gap-3 rounded-full border border-white/10 px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
 
                   <Download className="w-4 h-4" />
                   {content.cvCta}
-                </a>
+                </Link>
               </motion.div>
             </div>
           </div>

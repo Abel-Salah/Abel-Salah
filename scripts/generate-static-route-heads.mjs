@@ -31,6 +31,12 @@ const trainingAlternates = [
   { hrefLang: "es", path: "/es/formacion-ia" },
 ];
 
+const cvAlternates = [
+  { hrefLang: "fr", path: "/cv" },
+  { hrefLang: "en", path: "/en/cv" },
+  { hrefLang: "es", path: "/es/cv" },
+];
+
 const navigationByLang = {
   fr: [
     { name: "Accueil", path: "/" },
@@ -255,6 +261,30 @@ const routes = [
     title: "Prendre RDV Expert IA | Audit Gratuit — Abel SALAH",
     description:
       "Réservez votre audit IA gratuit avec Abel SALAH. Réponse sous 24h, accompagnement personnalisé pour PME et ETI.",
+  },
+  {
+    path: "/cv",
+    lang: "fr",
+    title: "CV Abel Salah | Consultant IA & AI Transformation Lead",
+    description:
+      "CV d'Abel Salah, consultant IA et AI Transformation Lead : GenAI, automatisation, copilotes IA, formation et adoption métier. Plus de 60 projets B2B menés.",
+    alternates: cvAlternates,
+  },
+  {
+    path: "/en/cv",
+    lang: "en",
+    title: "Resume Abel Salah | AI Consultant & AI Transformation Lead",
+    description:
+      "Resume of Abel Salah, AI consultant and AI Transformation Lead: GenAI, automation, AI copilots, training and business adoption. 60+ B2B projects delivered.",
+    alternates: cvAlternates,
+  },
+  {
+    path: "/es/cv",
+    lang: "es",
+    title: "CV Abel Salah | Consultor IA & AI Transformation Lead",
+    description:
+      "CV de Abel Salah, consultor IA y AI Transformation Lead: GenAI, automatización, copilotos IA, formación y adopción operativa. Más de 60 proyectos B2B realizados.",
+    alternates: cvAlternates,
   },
 ];
 

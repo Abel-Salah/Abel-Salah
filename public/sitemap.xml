@@ -58,6 +58,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/cv</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/cv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/cv" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/en/cv</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/cv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/cv" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/cv</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/cv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/cv" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/audit-ia</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/audit-ia" />
     <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/ai-audit" />

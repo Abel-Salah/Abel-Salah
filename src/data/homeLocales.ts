@@ -23,7 +23,7 @@ export const homeContent = {
     intro:
       "J'aide les entreprises à intégrer l'IA là où elle crée vraiment de la valeur : ventes, opérations, formation et stratégie.",
     primaryCta: "Réserver un audit IA",
-    cvCta: "Télécharger mon CV (PDF)",
+    cvCta: "Télécharger mon CV",
     stats: [
       { value: "16+", label: "ans d'expérience" },
       { value: "62", label: "projets réalisés" },
@@ -125,7 +125,7 @@ export const homeContent = {
     intro:
       "I help companies integrate AI where it actually creates value: sales, operations, training, and strategy.",
     primaryCta: "Book an AI audit",
-    cvCta: "Download my CV (PDF)",
+    cvCta: "Download my CV",
     stats: [
       { value: "16+", label: "years of experience" },
       { value: "62", label: "projects delivered" },
@@ -227,7 +227,7 @@ export const homeContent = {
     intro:
       "Ayudo a las empresas a integrar la IA donde realmente crea valor: ventas, operaciones, formación y estrategia.",
     primaryCta: "Reservar una auditoría IA",
-    cvCta: "Descargar mi CV (PDF)",
+    cvCta: "Descargar mi CV",
     stats: [
       { value: "16+", label: "años de experiencia" },
       { value: "62", label: "proyectos realizados" },

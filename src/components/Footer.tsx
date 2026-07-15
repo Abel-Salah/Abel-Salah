@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
-import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";
+import { cvCanonicalByLocale } from "@/data/cvLocales";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { trackConversionEvent } from "@/lib/conversionEvents";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { pathname } = useLocation();
+  const locale = pathname.startsWith("/en") ? "en" : pathname.startsWith("/es") ? "es" : "fr";
 
   const navLinks = [
     { to: "/", label: "Accueil" },
@@ -98,15 +100,14 @@ const Footer = () => {
                 >
                   Prendre rendez-vous →
                 </a>
-                <a
-                  href={cvAsset.url}
-                  download
+                <Link
+                  to={cvCanonicalByLocale[locale]}
                   className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors text-lg font-medium group"
                 >
                   <Download className="w-4 h-4" />
                   Télécharger mon CV
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                </a>
+                </Link>
                 <p className="text-muted-foreground">France</p>
               </div>
             </motion.div>

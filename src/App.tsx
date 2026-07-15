@@ -20,6 +20,7 @@ const Ecosystem = lazy(() => import("./pages/Ecosystem"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminOpportunities = lazy(() => import("./pages/AdminOpportunities"));
 const OfferPage = lazy(() => import("./pages/OfferPage"));
+const CV = lazy(() => import("./pages/CV"));
 
 const queryClient = new QueryClient();
 const routeFallback = (
@@ -48,6 +49,9 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/ecosystem" element={<Ecosystem />} />
+            <Route path="/cv" element={<CV locale="fr" />} />
+            <Route path="/en/cv" element={<CV locale="en" />} />
+            <Route path="/es/cv" element={<CV locale="es" />} />
             <Route path="/audit-ia" element={<OfferPage slug="audit-ia" />} />
             <Route path="/automatisation-commerciale" element={<OfferPage slug="automatisation-commerciale" />} />
             <Route path="/formation-ia" element={<OfferPage slug="formation-ia" />} />
