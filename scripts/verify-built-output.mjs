@@ -27,6 +27,12 @@ const publicRoutes = [
   { path: "/cv", file: "cv/index.html", lang: "fr", title: "CV Abel SALAH" },
   { path: "/en/cv", file: "en/cv/index.html", lang: "en", title: "Resume Abel SALAH" },
   { path: "/es/cv", file: "es/cv/index.html", lang: "es", title: "CV Abel SALAH" },
+  { path: "/en/work", file: "en/work/index.html", lang: "en", title: "AI Work" },
+  { path: "/es/work", file: "es/work/index.html", lang: "es", title: "Proyectos IA" },
+  { path: "/en/about", file: "en/about/index.html", lang: "en", title: "About Abel SALAH" },
+  { path: "/es/about", file: "es/about/index.html", lang: "es", title: "Sobre Abel SALAH" },
+  { path: "/en/contact", file: "en/contact/index.html", lang: "en", title: "Book an AI Expert" },
+  { path: "/es/contact", file: "es/contact/index.html", lang: "es", title: "Reservar Cita Experto IA" },
 ];
 
 const serviceRoutes = new Set([

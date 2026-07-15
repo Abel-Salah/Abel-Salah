@@ -1,53 +1,23 @@
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
 import SEOHead from "@/components/SEOHead";
+import { workAlternates, workCanonicalByLocale, workLocales, type PageLocale } from "@/data/workLocales";
 
-const projects = [
-  {
-    number: "01",
-    title: "IA & performance commerciale retail",
-    context: "Réseau de 3 magasins, 28 collaborateurs, CA 4.8M €",
-    action: "Outils IA pour le scoring client, prévision de stocks et optimisation des ventes",
-    result: "+25 % rentabilité",
-  },
-  {
-    number: "02",
-    title: "Automatisation de l'acquisition B2B",
-    context: "Startup sans équipe commerciale structurée",
-    action: "Pipeline automatisé : scraping, scoring par IA, séquences d'emailing intelligentes",
-    result: "500+ leads / mois",
-  },
-  {
-    number: "03",
-    title: "Plateforme de formation augmentée par l'IA",
-    context: "Former des équipes commerciales à grande échelle",
-    action: "Création d'un LMS avec parcours adaptatifs générés par IA",
-    result: "3 villes, 95 % complétion",
-  },
-  {
-    number: "04",
-    title: "IA pour le e-commerce : recommandation & conversion",
-    context: "Site e-commerce avec taux de conversion faible",
-    action: "Moteur de recommandation IA et optimisation du tunnel de vente",
-    result: "+60 % conversion",
-  },
-  {
-    number: "05",
-    title: "Stratégie data & CRM intelligent",
-    context: "Données clients dispersées, pas de vision unifiée",
-    action: "Centralisation CRM IA (HubSpot), segmentation automatique, scoring prédictif",
-    result: "Cycle de vente -40 %",
-  },
-];
+const Work = ({ locale = "fr" }: { locale?: PageLocale }) => {
+  const t = workLocales[locale];
 
-const Work = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Résultats IA en Entreprise | +40% Conversion — Abel SALAH"
-        description="Découvrez 5 cas concrets d'IA en entreprise : +40% conversion, pipeline x5, cycle de vente -40%. Résultats mesurables par Abel SALAH, expert IA."
-        canonical="/work"
-        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Réalisations", path: "/work" }]}
+        title={t.seoTitle}
+        description={t.seoDescription}
+        canonical={workCanonicalByLocale[locale]}
+        lang={locale}
+        alternates={workAlternates}
+        breadcrumbs={[
+          { name: t.breadcrumbHome, path: locale === "fr" ? "/" : `/${locale}` },
+          { name: t.breadcrumbSelf, path: workCanonicalByLocale[locale] },
+        ]}
       />
       <div className="container mx-auto">
         {/* Header */}
@@ -58,18 +28,15 @@ const Work = () => {
           className="mb-20"
         >
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
-            Réalisations
+            {t.title}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            Des missions concrètes où l'IA a créé un impact mesurable.
-            Stratégie, exécution, résultats.
-          </p>
+          <p className="text-xl text-muted-foreground max-w-2xl">{t.intro}</p>
         </motion.div>
 
         {/* Projects */}
         <div>
-          {projects.map((project, index) => (
-            <ProjectCard key={project.number} {...project} index={index} />
+          {t.projects.map((project, index) => (
+            <ProjectCard key={project.number} {...project} labels={t.cardLabels} index={index} />
           ))}
         </div>
 
@@ -81,11 +48,10 @@ const Work = () => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20 text-center"
         >
-          <p className="text-2xl text-muted-foreground mb-4">
-            Envie d'un cas d'usage similaire ?
-          </p>
+          <p className="text-2xl text-muted-foreground mb-4">{t.ctaLine}</p>
           <p className="heading-display text-4xl md:text-5xl">
-            Créons <span className="text-primary">le vôtre.</span>
+            {t.ctaPre}
+            <span className="text-primary">{t.ctaHighlight}</span>
           </p>
         </motion.div>
       </div>

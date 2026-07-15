@@ -35,21 +35,93 @@
   </url>
   <url>
     <loc>https://abelsalah.fr/work</loc>
-    <lastmod>2026-02-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/work" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/work" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/work" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/work" />
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abelsalah.fr/about</loc>
-    <lastmod>2026-02-26</lastmod>
+    <loc>https://abelsalah.fr/en/work</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/work" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/work" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/work" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/work" />
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/es/work</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/work" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/work" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/work" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/work" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/about" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/about" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/about" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/contact</loc>
-    <lastmod>2026-02-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/contact" />
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/contact" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/contact" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://abelsalah.fr/ecosystem</loc>

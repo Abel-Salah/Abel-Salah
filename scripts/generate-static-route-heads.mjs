@@ -37,6 +37,24 @@ const cvAlternates = [
   { hrefLang: "es", path: "/es/cv" },
 ];
 
+const workAlternates = [
+  { hrefLang: "fr", path: "/work" },
+  { hrefLang: "en", path: "/en/work" },
+  { hrefLang: "es", path: "/es/work" },
+];
+
+const aboutAlternates = [
+  { hrefLang: "fr", path: "/about" },
+  { hrefLang: "en", path: "/en/about" },
+  { hrefLang: "es", path: "/es/about" },
+];
+
+const contactAlternates = [
+  { hrefLang: "fr", path: "/contact" },
+  { hrefLang: "en", path: "/en/contact" },
+  { hrefLang: "es", path: "/es/contact" },
+];
+
 const navigationByLang = {
   fr: [
     { name: "Accueil", path: "/" },
@@ -52,18 +70,18 @@ const navigationByLang = {
     { name: "AI Audit", path: "/en/ai-audit" },
     { name: "Sales Automation", path: "/en/sales-automation" },
     { name: "AI Training", path: "/en/ai-training" },
-    { name: "Work", path: "/work" },
+    { name: "Work", path: "/en/work" },
     { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
+    { name: "Contact", path: "/en/contact" },
   ],
   es: [
     { name: "Inicio", path: "/es" },
     { name: "Auditoria IA", path: "/es/auditoria-ia" },
     { name: "Automatizacion comercial", path: "/es/automatizacion-comercial" },
     { name: "Formacion IA", path: "/es/formacion-ia" },
-    { name: "Proyectos", path: "/work" },
+    { name: "Proyectos", path: "/es/work" },
     { name: "Blog", path: "/blog" },
-    { name: "Contacto", path: "/contact" },
+    { name: "Contacto", path: "/es/contact" },
   ],
 };
 
@@ -233,6 +251,23 @@ const routes = [
     title: "Réalisations IA & Business Cases — Abel SALAH",
     description:
       "Cas concrets d'IA en entreprise : automatisation commerciale, LMS, acquisition, scoring leads et transformation opérationnelle.",
+    alternates: workAlternates,
+  },
+  {
+    path: "/en/work",
+    lang: "en",
+    title: "AI Work & Business Cases — Abel SALAH",
+    description:
+      "Real-world AI business cases: sales automation, LMS, acquisition, lead scoring and operational transformation.",
+    alternates: workAlternates,
+  },
+  {
+    path: "/es/work",
+    lang: "es",
+    title: "Proyectos IA & Casos de Negocio — Abel SALAH",
+    description:
+      "Casos reales de IA en empresa: automatización comercial, LMS, captación, scoring de leads y transformación operativa.",
+    alternates: workAlternates,
   },
   {
     path: "/about",
@@ -240,6 +275,23 @@ const routes = [
     title: "À propos d'Abel SALAH | Consultant IA & Business",
     description:
       "Parcours d'Abel SALAH, consultant IA pour PME, ETI et dirigeants avec 16 ans d'expérience commerciale et digitale.",
+    alternates: aboutAlternates,
+  },
+  {
+    path: "/en/about",
+    lang: "en",
+    title: "About Abel SALAH | AI & Business Consultant",
+    description:
+      "The story of Abel SALAH, AI consultant for SMEs, mid-caps and executives with 16 years of sales and digital experience.",
+    alternates: aboutAlternates,
+  },
+  {
+    path: "/es/about",
+    lang: "es",
+    title: "Sobre Abel SALAH | Consultor IA & Negocio",
+    description:
+      "Trayectoria de Abel SALAH, consultor IA para pymes y directivos con 16 años de experiencia comercial y digital.",
+    alternates: aboutAlternates,
   },
   {
     path: "/ecosystem",
@@ -261,6 +313,23 @@ const routes = [
     title: "Prendre RDV Expert IA | Audit Gratuit — Abel SALAH",
     description:
       "Réservez votre audit IA gratuit avec Abel SALAH. Réponse sous 24h, accompagnement personnalisé pour PME et ETI.",
+    alternates: contactAlternates,
+  },
+  {
+    path: "/en/contact",
+    lang: "en",
+    title: "Book an AI Expert | Free Audit — Abel SALAH",
+    description:
+      "Book your free AI audit with Abel SALAH. Response within 24h, personalised support for SMEs and mid-caps.",
+    alternates: contactAlternates,
+  },
+  {
+    path: "/es/contact",
+    lang: "es",
+    title: "Reservar Cita Experto IA | Auditoría Gratuita — Abel SALAH",
+    description:
+      "Reserve su auditoría IA gratuita con Abel SALAH. Respuesta en 24 h, acompañamiento personalizado para pymes.",
+    alternates: contactAlternates,
   },
   {
     path: "/cv",

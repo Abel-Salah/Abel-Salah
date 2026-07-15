@@ -6,10 +6,13 @@ interface ProjectCardProps {
   context: string;
   action: string;
   result: string;
+  labels?: { context: string; action: string; result: string };
   index: number;
 }
 
-const ProjectCard = ({ number, title, context, action, result, index }: ProjectCardProps) => {
+const defaultLabels = { context: "Contexte", action: "Action", result: "Résultat" };
+
+const ProjectCard = ({ number, title, context, action, result, labels = defaultLabels, index }: ProjectCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -33,21 +36,21 @@ const ProjectCard = ({ number, title, context, action, result, index }: ProjectC
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-lg">
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
-                Contexte
+                {labels.context}
               </span>
               <p className="text-foreground">{context}</p>
             </div>
             
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
-                Action
+                {labels.action}
               </span>
               <p className="text-foreground">{action}</p>
             </div>
             
             <div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
-                Résultat
+                {labels.result}
               </span>
               <p className="text-primary font-semibold text-xl">{result}</p>
             </div>

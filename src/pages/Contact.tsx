@@ -2,15 +2,24 @@ import { motion } from "framer-motion";
 import { Linkedin, Youtube } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
+import { contactAlternates, contactCanonicalByLocale, contactLocales } from "@/data/contactLocales";
+import type { PageLocale } from "@/data/workLocales";
 
-const Contact = () => {
+const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
+  const t = contactLocales[locale];
+
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Prendre RDV Expert IA | Audit Gratuit — Abel SALAH"
-        description="Réservez votre audit IA gratuit avec Abel SALAH. Réponse sous 24h, accompagnement personnalisé pour PME et ETI. Prenez rendez-vous en ligne."
-        canonical="/contact"
-        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Contact", path: "/contact" }]}
+        title={t.seoTitle}
+        description={t.seoDescription}
+        canonical={contactCanonicalByLocale[locale]}
+        lang={locale}
+        alternates={contactAlternates}
+        breadcrumbs={[
+          { name: t.breadcrumbHome, path: locale === "fr" ? "/" : `/${locale}` },
+          { name: t.breadcrumbSelf, path: contactCanonicalByLocale[locale] },
+        ]}
       />
       <div className="container mx-auto">
         {/* Header */}
@@ -21,11 +30,9 @@ const Contact = () => {
           className="mb-20"
         >
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
-            Contact
+            {t.title}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            Un projet en tête ? Réservez un créneau directement dans mon agenda.
-          </p>
+          <p className="text-xl text-muted-foreground max-w-2xl">{t.intro}</p>
         </motion.div>
 
         <div className="grid grid-cols-12 gap-16">
@@ -42,7 +49,7 @@ const Contact = () => {
                 width="100%"
                 height="100%"
                 frameBorder="0"
-                title="TidyCal - Prendre RDV avec Abel SALAH"
+                title={t.iframeTitle}
                 className="w-full h-full"
               />
             </div>
@@ -58,36 +65,36 @@ const Contact = () => {
             <div className="space-y-12">
               <div>
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Temps de réponse
+                  {t.responseTimeTitle}
                 </span>
-                <p className="text-2xl text-foreground">Sous 24 heures</p>
+                <p className="text-2xl text-foreground">{t.responseTimeValue}</p>
               </div>
 
               <div>
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Comment ça se passe
+                  {t.howTitle}
                 </span>
                 <ul className="space-y-2 text-lg text-muted-foreground">
-                  <li>• Choisissez un créneau</li>
-                  <li>• Appel découverte de 30 min</li>
-                  <li>• Proposition sous 48h</li>
+                  {t.howSteps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
                 </ul>
               </div>
 
               <div className="border-t border-border pt-12">
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Pas encore prêt ?
+                  {t.notReadyTitle}
                 </span>
                 <p className="text-lg text-foreground">
-                  Pas de souci. Réservez quand même.
+                  {t.notReadyLine}
                   <br />
-                  <span className="text-primary">Discutons simplement.</span>
+                  <span className="text-primary">{t.notReadyHighlight}</span>
                 </p>
               </div>
 
               <div className="border-t border-border pt-12">
                 <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
-                  Suivez-moi
+                  {t.followTitle}
                 </span>
                 <div className="flex items-center gap-4">
                   <a

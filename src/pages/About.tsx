@@ -3,38 +3,25 @@ import { Link } from "react-router-dom";
 import { Linkedin, Youtube, ArrowUpRight, Download } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
+import { aboutAlternates, aboutCanonicalByLocale, aboutLocales } from "@/data/aboutLocales";
+import { cvCanonicalByLocale } from "@/data/cvLocales";
+import type { PageLocale } from "@/data/workLocales";
 
-const services = [
-"Audit & stratégie IA pour dirigeants",
-"Automatisation des processus commerciaux",
-"Intégration d'outils IA (CRM, vente, marketing)",
-"Accompagnement à la transformation digitale",
-"Stratégie data & acquisition client",
-"Déploiement de solutions IA sur mesure"];
+const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
+  const t = aboutLocales[locale];
 
-
-const clients = [
-"Dirigeants & CEO",
-"Directeurs commerciaux & marketing",
-"Responsables opérations",
-"DSI & CTO",
-"PME, ETI & grands groupes"];
-
-
-const certifications = [
-"Master Commerce International",
-"Certifications Google (Ads, Analytics)",
-"Partenaire HubSpot"];
-
-
-const About = () => {
   return (
     <main className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-6">
       <SEOHead
-        title="Abel SALAH | Expert IA — 16 Ans, 62 Projets Déployés"
-        description="Ancien directeur commercial, aujourd'hui expert IA. Audit gratuit, automatisation et stratégie data pour PME & ETI. 62 projets déployés avec succès."
-        canonical="/about"
-        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "À propos", path: "/about" }]}
+        title={t.seoTitle}
+        description={t.seoDescription}
+        canonical={aboutCanonicalByLocale[locale]}
+        lang={locale}
+        alternates={aboutAlternates}
+        breadcrumbs={[
+          { name: t.breadcrumbHome, path: locale === "fr" ? "/" : `/${locale}` },
+          { name: t.breadcrumbSelf, path: aboutCanonicalByLocale[locale] },
+        ]}
       />
 
       <div className="container mx-auto">
@@ -46,7 +33,7 @@ const About = () => {
           className="mb-20">
 
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
-            À propos
+            {t.title}
           </h1>
         </motion.div>
 
@@ -66,8 +53,7 @@ const About = () => {
               className="relative p-4">
 
               <img
-
-                alt="Abel SALAH — Expert IA & Consultant en Entreprise"
+                alt={t.photoAlt}
                 className="w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-500"
                 src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp"
                 width={1024}
@@ -79,30 +65,19 @@ const About = () => {
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
             </motion.div>
             <p className="text-sm text-muted-foreground mt-6 uppercase tracking-wider">
-              France
+              {t.location}
             </p>
           </div>
 
           {/* Text */}
           <div className="lg:col-span-8">
             <p className="text-3xl md:text-4xl leading-relaxed text-foreground mb-8">
-              Je ne vends pas de la technologie.
+              {t.statementLine1}
               <br />
-              <span className="text-primary">
-                Je crée de la valeur business avec l'IA.
-              </span>
+              <span className="text-primary">{t.statementHighlight}</span>
             </p>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">Avant de devenir consultant IA, j'ai dirigé des équipes commerciales, géré un CA de 4.8M d'euros, et fondé plusieurs entreprises dans le digital. Cette expérience terrain me permet de comprendre les vrais enjeux des dirigeants — pas seulement la tech, mais le business.
-
-
-
-
-            </p>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Après 16 ans d'expérience dans le développement commercial et la 
-              transformation digitale, j'ai compris une chose : l'IA n'est utile que 
-              si elle sert une stratégie claire. Le reste, c'est du bruit.
-            </p>
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">{t.paragraph1}</p>
+            <p className="text-xl text-muted-foreground leading-relaxed">{t.paragraph2}</p>
           </div>
         </motion.div>
 
@@ -117,10 +92,10 @@ const About = () => {
             className="col-span-12 md:col-span-6">
 
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-              Services
+              {t.servicesTitle}
             </span>
             <ul className="space-y-4">
-              {services.map((service, index) =>
+              {t.services.map((service, index) =>
               <motion.li
                 key={service}
                 initial={{ opacity: 0, x: -20 }}
@@ -144,10 +119,10 @@ const About = () => {
             className="col-span-12 md:col-span-6">
 
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-              Avec qui je travaille
+              {t.clientsTitle}
             </span>
             <ul className="space-y-4">
-              {clients.map((client, index) =>
+              {t.clients.map((client, index) =>
               <motion.li
                 key={client}
                 initial={{ opacity: 0, x: -20 }}
@@ -172,10 +147,10 @@ const About = () => {
             viewport={{ once: true }}>
 
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-              Reconnaissance
+              {t.recognitionTitle}
             </span>
             <ul className="space-y-4">
-              {certifications.map((cert, index) =>
+              {t.certifications.map((cert, index) =>
               <motion.li
                 key={cert}
                 initial={{ opacity: 0, x: -20 }}
@@ -200,7 +175,7 @@ const About = () => {
           className="border-t border-border pt-20 mt-20">
 
           <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-            Retrouvez-moi
+            {t.findMeTitle}
           </span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <a
@@ -213,7 +188,7 @@ const About = () => {
                 <Linkedin className="w-8 h-8 text-primary" />
                 <div>
                   <p className="text-2xl text-foreground group-hover:text-primary transition-colors">LinkedIn</p>
-                  <p className="text-sm text-muted-foreground">Mon réseau & expertise B2B</p>
+                  <p className="text-sm text-muted-foreground">{t.linkedinSub}</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
@@ -228,20 +203,20 @@ const About = () => {
                 <Youtube className="w-8 h-8 text-primary" />
                 <div>
                   <p className="text-2xl text-foreground group-hover:text-primary transition-colors">YouTube</p>
-                  <p className="text-sm text-muted-foreground">Vidéos & retours d'expérience IA</p>
+                  <p className="text-sm text-muted-foreground">{t.youtubeSub}</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
             </a>
             <Link
-              to="/cv"
+              to={cvCanonicalByLocale[locale]}
               className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <Download className="w-8 h-8 text-primary" />
                 <div>
-                  <p className="text-2xl text-foreground group-hover:text-primary transition-colors">CV</p>
-                  <p className="text-sm text-muted-foreground">Télécharger mon CV consultant IA</p>
+                  <p className="text-2xl text-foreground group-hover:text-primary transition-colors">{t.cvTitle}</p>
+                  <p className="text-sm text-muted-foreground">{t.cvSub}</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
@@ -258,10 +233,12 @@ const About = () => {
           className="border-t border-border pt-20 mt-20">
 
           <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-            Ce que je construis
+            {t.buildingTitle}
           </span>
           <p className="text-2xl md:text-3xl text-foreground leading-snug mb-12 max-w-3xl">
-            Je ne théorise pas l'IA — <span className="text-primary">je la construis et je l'opère</span>. 4 produits live, en production.
+            {t.buildingPre}
+            <span className="text-primary">{t.buildingHighlight}</span>
+            {t.buildingPost}
           </p>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
             {ventures.map((v) => (
@@ -276,7 +253,7 @@ const About = () => {
             to="/ecosystem"
             className="inline-flex items-center gap-2 text-lg text-foreground hover:text-primary transition-colors group story-link"
           >
-            Voir l'écosystème
+            {t.ecosystemLink}
             <ArrowUpRight className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
@@ -290,12 +267,12 @@ const About = () => {
           className="border-t border-border pt-20 mt-20">
 
           <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
-            Philosophie
+            {t.philosophyTitle}
           </span>
           <blockquote className="heading-display text-4xl md:text-6xl leading-tight">
-            "L'IA mal déployée coûte cher.
+            {t.quoteLine1}
             <br />
-            <span className="text-primary">L'IA bien déployée change tout."</span>
+            <span className="text-primary">{t.quoteLine2}</span>
           </blockquote>
         </motion.div>
       </div>

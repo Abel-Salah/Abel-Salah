@@ -43,9 +43,15 @@ const App = () => (
             <Route path="/" element={<Index locale="fr" />} />
             <Route path="/en" element={<Index locale="en" />} />
             <Route path="/es" element={<Index locale="es" />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/work" element={<Work locale="fr" />} />
+            <Route path="/en/work" element={<Work locale="en" />} />
+            <Route path="/es/work" element={<Work locale="es" />} />
+            <Route path="/about" element={<About locale="fr" />} />
+            <Route path="/en/about" element={<About locale="en" />} />
+            <Route path="/es/about" element={<About locale="es" />} />
+            <Route path="/contact" element={<Contact locale="fr" />} />
+            <Route path="/en/contact" element={<Contact locale="en" />} />
+            <Route path="/es/contact" element={<Contact locale="es" />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/ecosystem" element={<Ecosystem />} />

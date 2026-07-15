@@ -17,18 +17,18 @@ const navLabels = {
   en: [
     { href: "/en", label: "Home" },
     { href: "/en/ai-audit", label: "AI Audit" },
-    { href: "/work", label: "Work" },
-    { href: "/about", label: "About" },
+    { href: "/en/work", label: "Work" },
+    { href: "/en/about", label: "About" },
     { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+    { href: "/en/contact", label: "Contact" },
   ],
   es: [
     { href: "/es", label: "Inicio" },
     { href: "/es/auditoria-ia", label: "Auditoría IA" },
-    { href: "/work", label: "Proyectos" },
-    { href: "/about", label: "Sobre mí" },
+    { href: "/es/work", label: "Proyectos" },
+    { href: "/es/about", label: "Sobre mí" },
     { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contacto" },
+    { href: "/es/contact", label: "Contacto" },
   ],
 } as const;
 
