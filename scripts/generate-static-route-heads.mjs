@@ -61,6 +61,12 @@ const ecosystemAlternates = [
   { hrefLang: "es", path: "/es/ecosystem" },
 ];
 
+const productsAlternates = [
+  { hrefLang: "fr", path: "/produits" },
+  { hrefLang: "en", path: "/en/products" },
+  { hrefLang: "es", path: "/es/productos" },
+];
+
 const navigationByLang = {
   fr: [
     { name: "Accueil", path: "/" },
@@ -302,26 +308,50 @@ const routes = [
   {
     path: "/ecosystem",
     lang: "fr",
-    title: "Écosystème IA & Produits — Abel SALAH",
+    title: "Écosystème IA : Outils & Expertises — Abel SALAH",
     description:
-      "Découvrez les produits IA construits par Abel SALAH : SCALLUP, SKILL LMS, Formateurs.pro et Immo Montpellier.",
+      "La stack IA d'Abel SALAH : Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Outils maîtrisés en production et expertises mobilisées sur chaque projet.",
     alternates: ecosystemAlternates,
   },
   {
     path: "/en/ecosystem",
     lang: "en",
-    title: "AI Ecosystem & Products — Abel SALAH",
+    title: "AI Ecosystem: Tools & Expertise — Abel SALAH",
     description:
-      "Discover the AI products built by Abel SALAH: SCALLUP, SKILL LMS, Formateurs.pro and Immo Montpellier.",
+      "Abel SALAH's AI stack: Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Tools mastered in production and expertise applied to every project.",
     alternates: ecosystemAlternates,
   },
   {
     path: "/es/ecosystem",
     lang: "es",
-    title: "Ecosistema IA & Productos — Abel SALAH",
+    title: "Ecosistema IA: Herramientas & Experiencia — Abel SALAH",
     description:
-      "Descubra los productos IA construidos por Abel SALAH: SCALLUP, SKILL LMS, Formateurs.pro e Immo Montpellier.",
+      "El stack IA de Abel SALAH: Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Herramientas dominadas en producción y experiencia aplicada en cada proyecto.",
     alternates: ecosystemAlternates,
+  },
+  {
+    path: "/produits",
+    lang: "fr",
+    title: "Produits IA & Start-ups | 4 Projets Live — Abel SALAH",
+    description:
+      "4 produits IA conçus et opérés : SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Preuve d'exécution par Abel SALAH, expert IA.",
+    alternates: productsAlternates,
+  },
+  {
+    path: "/en/products",
+    lang: "en",
+    title: "AI Products & Start-ups | 4 Live Projects — Abel SALAH",
+    description:
+      "4 AI products designed and operated: SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Proof of execution by Abel SALAH, AI expert.",
+    alternates: productsAlternates,
+  },
+  {
+    path: "/es/productos",
+    lang: "es",
+    title: "Productos IA & Start-ups | 4 Proyectos Live — Abel SALAH",
+    description:
+      "4 productos IA diseñados y operados: SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Prueba de ejecución de Abel SALAH, experto en IA.",
+    alternates: productsAlternates,
   },
   {
     path: "/blog",

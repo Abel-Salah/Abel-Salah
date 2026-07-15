@@ -21,6 +21,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminOpportunities = lazy(() => import("./pages/AdminOpportunities"));
 const OfferPage = lazy(() => import("./pages/OfferPage"));
 const CV = lazy(() => import("./pages/CV"));
+const Products = lazy(() => import("./pages/Products"));
 
 const queryClient = new QueryClient();
 const routeFallback = (
@@ -55,6 +56,9 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/ecosystem" element={<Ecosystem locale="fr" />} />
+            <Route path="/produits" element={<Products locale="fr" />} />
+            <Route path="/en/products" element={<Products locale="en" />} />
+            <Route path="/es/productos" element={<Products locale="es" />} />
             <Route path="/en/ecosystem" element={<Ecosystem locale="en" />} />
             <Route path="/es/ecosystem" element={<Ecosystem locale="es" />} />
             <Route path="/cv" element={<CV locale="fr" />} />

@@ -35,6 +35,9 @@ const publicRoutes = [
   { path: "/es/contact", file: "es/contact/index.html", lang: "es", title: "Reservar Cita Experto IA" },
   { path: "/en/ecosystem", file: "en/ecosystem/index.html", lang: "en", title: "AI Ecosystem" },
   { path: "/es/ecosystem", file: "es/ecosystem/index.html", lang: "es", title: "Ecosistema IA" },
+  { path: "/produits", file: "produits/index.html", lang: "fr", title: "Produits IA" },
+  { path: "/en/products", file: "en/products/index.html", lang: "en", title: "AI Products" },
+  { path: "/es/productos", file: "es/productos/index.html", lang: "es", title: "Productos IA" },
 ];
 
 const serviceRoutes = new Set([

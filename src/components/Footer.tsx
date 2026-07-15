@@ -15,6 +15,7 @@ const Footer = () => {
     { to: "/work", label: "Réalisations" },
     { to: "/about", label: "À propos" },
     { to: "/ecosystem", label: "Écosystème" },
+    { to: "/produits", label: "Produits" },
     { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
   ];

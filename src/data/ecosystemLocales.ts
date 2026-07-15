@@ -1,12 +1,5 @@
 import type { PageLocale } from "@/data/workLocales";
 
-interface VentureText {
-  tagline: string;
-  pitch: string;
-  proof: string;
-  metrics: { value: string; label: string }[];
-}
-
 export interface EcosystemContent {
   seoTitle: string;
   seoDescription: string;
@@ -17,10 +10,14 @@ export interface EcosystemContent {
   statementLine1: string;
   statementHighlight: string;
   intro: string;
-  proofLabel: string;
+  toolGroups: { label: string; desc: string }[];
+  expertiseTitle: string;
+  expertises: { name: string; desc: string }[];
+  productsTitle: string;
+  productsText: string;
+  productsLink: string;
   ctaLine: string;
   ctaLink: string;
-  ventures: Record<string, VentureText>;
 }
 
 export const ecosystemAlternates = [
@@ -37,189 +34,120 @@ export const ecosystemCanonicalByLocale: Record<PageLocale, string> = {
 
 export const ecosystemLocales: Record<PageLocale, EcosystemContent> = {
   fr: {
-    seoTitle: "Produits IA & Start-ups | 4 Projets Live — Abel SALAH",
+    seoTitle: "Écosystème IA : Outils & Expertises — Abel SALAH",
     seoDescription:
-      "4 produits IA conçus et opérés : SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Preuve d'exécution par Abel SALAH, expert IA.",
+      "La stack IA d'Abel SALAH : Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Outils maîtrisés en production et expertises mobilisées sur chaque projet.",
     breadcrumbHome: "Accueil",
     breadcrumbSelf: "Écosystème",
-    eyebrow: "Preuves d'exécution",
+    eyebrow: "Stack & expertises",
     title: "Écosystème",
-    statementLine1: "Je ne théorise pas l'IA.",
-    statementHighlight: "Je la construis.",
+    statementLine1: "Les bons outils, au bon endroit.",
+    statementHighlight: "Maîtrisés en production, pas juste testés.",
     intro:
-      "Avant de déployer l'IA chez vous, je l'ai déployée chez moi. Voici les 4 produits que je conçois et opère — chacun est une preuve concrète d'une capacité que j'apporte ensuite à mes clients.",
-    proofLabel: "Ce que ça prouve",
-    ctaLine: "Vous voulez ce niveau d'exécution IA dans votre entreprise ?",
+      "Voici l'écosystème d'outils et d'expertises que je mobilise sur chaque mission : IA générative, automatisation, data & CRM, développement. Chaque outil est utilisé en production — sur mes propres produits comme chez mes clients.",
+    toolGroups: [
+      { label: "IA générative", desc: "Modèles et plateformes GenAI pour les copilotes, agents et contenus." },
+      { label: "Automatisation", desc: "Workflows no-code / low-code qui relient l'IA aux outils métier." },
+      { label: "Data & CRM", desc: "Centralisation, segmentation et exploitation de la donnée client." },
+      { label: "Développement & agents", desc: "RAG, agents IA et développement assisté par l'IA." },
+    ],
+    expertiseTitle: "Expertises",
+    expertises: [
+      {
+        name: "Stratégie IA & transformation",
+        desc: "Diagnostic, roadmap, gouvernance IA, priorisation des cas d'usage, conduite du changement.",
+      },
+      {
+        name: "Automatisation & copilotes IA",
+        desc: "Agents IA, workflows no-code, intégrations CRM et API.",
+      },
+      {
+        name: "Formation & adoption",
+        desc: "Formation des équipes, accompagnement dirigeants, e-learning et routines d'adoption terrain.",
+      },
+    ],
+    productsTitle: "Construits avec cette stack",
+    productsText: "4 produits live, en production — la preuve que cette stack tient la route à l'échelle.",
+    productsLink: "Voir les produits",
+    ctaLine: "Vous voulez cette stack au service de votre entreprise ?",
     ctaLink: "Parlons-en",
-    ventures: {
-      "scallup.fr": {
-        tagline: "L'agent IA qui prospecte, relance et vend.",
-        pitch:
-          "Plateforme SaaS où un agent IA exécute les actions commerciales en pilote automatique : prospection multicanale, relances, appels, marketing, SEO, devis et pilotage. Intégré nativement aux outils métier.",
-        proof: "Concevoir et opérer un produit SaaS IA B2B à l'échelle, de la stratégie au revenu.",
-        metrics: [
-          { value: "500+", label: "PME utilisatrices" },
-          { value: "4.9/5", label: "Note moyenne" },
-          { value: "OPCO", label: "Finançable" },
-        ],
-      },
-      "skill-lms.fr": {
-        tagline: "Le LMS Qualiopi nouvelle génération.",
-        pitch:
-          "Plateforme tout-en-un pour organismes de formation : création de parcours, suivi apprenants, automatisation des conventions et convocations, centralisation des preuves Qualiopi, pilotage par IA.",
-        proof: "Maîtriser les plateformes métier complexes et la conformité réglementaire (Qualiopi).",
-        metrics: [
-          { value: "Qualiopi", label: "Conformité native" },
-          { value: "Tout-en-un", label: "Formations + LMS + preuves" },
-          { value: "IA", label: "Relances & pilotage" },
-        ],
-      },
-      "formateurs.pro": {
-        tagline: "Le plus grand annuaire de formateurs certifiés de France.",
-        pitch:
-          "Annuaire construit à partir de sources officielles (Pappers, INFOGREFFE, data.gouv.fr, France Compétences). Réseau connecté à SKILL LMS pour fluidifier la mise en relation entreprises ↔ formateurs.",
-        proof: "Data engineering, SEO programmatique et écosystèmes produits connectés.",
-        metrics: [
-          { value: "50 000+", label: "Formateurs référencés" },
-          { value: "9 000+", label: "Certifiés Qualiopi" },
-          { value: "98 %", label: "Profils vérifiés" },
-        ],
-      },
-      "immomontpellier.com": {
-        tagline: "Le premier chasseur IA immobilier de Montpellier.",
-        pitch:
-          "L'IA scanne 8 sources en continu (SeLoger, Leboncoin, Bien'ici, PAP…), envoie des alertes en moins d'1h, et un chasseur local prend le relais pour visiter et négocier jusqu'à la signature notariée.",
-        proof: "Appliquer l'IA verticalement (scraping, scoring, matching) à un secteur traditionnel.",
-        metrics: [
-          { value: "8", label: "Sources scannées 24/7" },
-          { value: "<1h", label: "Délai d'alerte" },
-          { value: "250+", label: "Acquéreurs accompagnés" },
-        ],
-      },
-    },
   },
   en: {
-    seoTitle: "AI Products & Start-ups | 4 Live Projects — Abel SALAH",
+    seoTitle: "AI Ecosystem: Tools & Expertise — Abel SALAH",
     seoDescription:
-      "4 AI products designed and operated: SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Proof of execution by Abel SALAH, AI expert.",
+      "Abel SALAH's AI stack: Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Tools mastered in production and expertise applied to every project.",
     breadcrumbHome: "Home",
     breadcrumbSelf: "Ecosystem",
-    eyebrow: "Proof of execution",
+    eyebrow: "Stack & expertise",
     title: "Ecosystem",
-    statementLine1: "I don't theorise about AI.",
-    statementHighlight: "I build it.",
+    statementLine1: "The right tools, in the right place.",
+    statementHighlight: "Mastered in production, not just tried out.",
     intro:
-      "Before deploying AI in your company, I deployed it in mine. Here are the 4 products I design and operate — each one is concrete proof of a capability I then bring to my clients.",
-    proofLabel: "What it proves",
-    ctaLine: "Want this level of AI execution in your company?",
+      "Here is the ecosystem of tools and expertise I bring to every engagement: generative AI, automation, data & CRM, development. Every tool is used in production — on my own products as well as with my clients.",
+    toolGroups: [
+      { label: "Generative AI", desc: "GenAI models and platforms for copilots, agents and content." },
+      { label: "Automation", desc: "No-code / low-code workflows connecting AI to business tools." },
+      { label: "Data & CRM", desc: "Centralising, segmenting and activating customer data." },
+      { label: "Development & agents", desc: "RAG, AI agents and AI-assisted development." },
+    ],
+    expertiseTitle: "Expertise",
+    expertises: [
+      {
+        name: "AI strategy & transformation",
+        desc: "Assessment, roadmap, AI governance, use-case prioritisation, change management.",
+      },
+      {
+        name: "Automation & AI copilots",
+        desc: "AI agents, no-code workflows, CRM and API integrations.",
+      },
+      {
+        name: "Training & adoption",
+        desc: "Team training, executive coaching, e-learning and practical adoption routines.",
+      },
+    ],
+    productsTitle: "Built with this stack",
+    productsText: "4 live products in production — proof that this stack holds up at scale.",
+    productsLink: "See the products",
+    ctaLine: "Want this stack working for your company?",
     ctaLink: "Let's talk",
-    ventures: {
-      "scallup.fr": {
-        tagline: "The AI agent that prospects, follows up and sells.",
-        pitch:
-          "SaaS platform where an AI agent runs sales actions on autopilot: multichannel prospecting, follow-ups, calls, marketing, SEO, quotes and reporting. Natively integrated with business tools.",
-        proof: "Designing and operating a B2B AI SaaS product at scale, from strategy to revenue.",
-        metrics: [
-          { value: "500+", label: "SME users" },
-          { value: "4.9/5", label: "Average rating" },
-          { value: "OPCO", label: "Funding eligible" },
-        ],
-      },
-      "skill-lms.fr": {
-        tagline: "The next-generation Qualiopi LMS.",
-        pitch:
-          "All-in-one platform for training organisations: course creation, learner tracking, automated agreements and invitations, centralised Qualiopi evidence, AI-driven management.",
-        proof: "Mastering complex business platforms and regulatory compliance (Qualiopi).",
-        metrics: [
-          { value: "Qualiopi", label: "Native compliance" },
-          { value: "All-in-one", label: "Courses + LMS + evidence" },
-          { value: "AI", label: "Follow-ups & management" },
-        ],
-      },
-      "formateurs.pro": {
-        tagline: "France's largest directory of certified trainers.",
-        pitch:
-          "Directory built from official sources (Pappers, INFOGREFFE, data.gouv.fr, France Compétences). Network connected to SKILL LMS to streamline matching between companies and trainers.",
-        proof: "Data engineering, programmatic SEO and connected product ecosystems.",
-        metrics: [
-          { value: "50,000+", label: "Listed trainers" },
-          { value: "9,000+", label: "Qualiopi certified" },
-          { value: "98%", label: "Verified profiles" },
-        ],
-      },
-      "immomontpellier.com": {
-        tagline: "Montpellier's first AI property hunter.",
-        pitch:
-          "The AI scans 8 sources continuously (SeLoger, Leboncoin, Bien'ici, PAP…), sends alerts in under an hour, and a local hunter takes over to visit and negotiate through to the notarised signature.",
-        proof: "Applying AI vertically (scraping, scoring, matching) to a traditional industry.",
-        metrics: [
-          { value: "8", label: "Sources scanned 24/7" },
-          { value: "<1h", label: "Alert time" },
-          { value: "250+", label: "Buyers supported" },
-        ],
-      },
-    },
   },
   es: {
-    seoTitle: "Productos IA & Start-ups | 4 Proyectos Live — Abel SALAH",
+    seoTitle: "Ecosistema IA: Herramientas & Experiencia — Abel SALAH",
     seoDescription:
-      "4 productos IA diseñados y operados: SCALLUP, SKILL LMS, Formateurs.pro, Immo Montpellier. Prueba de ejecución de Abel SALAH, experto en IA.",
+      "El stack IA de Abel SALAH: Anthropic Claude, OpenAI, Gemini, Make, n8n, HubSpot, Supabase… Herramientas dominadas en producción y experiencia aplicada en cada proyecto.",
     breadcrumbHome: "Inicio",
     breadcrumbSelf: "Ecosistema",
-    eyebrow: "Pruebas de ejecución",
+    eyebrow: "Stack & experiencia",
     title: "Ecosistema",
-    statementLine1: "No teorizo sobre la IA.",
-    statementHighlight: "La construyo.",
+    statementLine1: "Las herramientas adecuadas, en el lugar adecuado.",
+    statementHighlight: "Dominadas en producción, no solo probadas.",
     intro:
-      "Antes de desplegar la IA en tu empresa, la desplegué en la mía. Estos son los 4 productos que diseño y opero — cada uno es una prueba concreta de una capacidad que luego aporto a mis clientes.",
-    proofLabel: "Lo que demuestra",
-    ctaLine: "¿Quieres este nivel de ejecución IA en tu empresa?",
+      "Este es el ecosistema de herramientas y experiencia que aplico en cada misión: IA generativa, automatización, data & CRM, desarrollo. Cada herramienta se usa en producción — en mis propios productos y con mis clientes.",
+    toolGroups: [
+      { label: "IA generativa", desc: "Modelos y plataformas GenAI para copilotos, agentes y contenidos." },
+      { label: "Automatización", desc: "Workflows no-code / low-code que conectan la IA con las herramientas de negocio." },
+      { label: "Data & CRM", desc: "Centralización, segmentación y activación de los datos de clientes." },
+      { label: "Desarrollo & agentes", desc: "RAG, agentes IA y desarrollo asistido por IA." },
+    ],
+    expertiseTitle: "Experiencia",
+    expertises: [
+      {
+        name: "Estrategia IA y transformación",
+        desc: "Diagnóstico, roadmap, gobernanza IA, priorización de casos de uso, gestión del cambio.",
+      },
+      {
+        name: "Automatización y copilotos IA",
+        desc: "Agentes IA, workflows no-code, integraciones CRM y API.",
+      },
+      {
+        name: "Formación y adopción",
+        desc: "Formación de equipos, acompañamiento de directivos, e-learning y rutinas de adopción real.",
+      },
+    ],
+    productsTitle: "Construidos con este stack",
+    productsText: "4 productos live en producción — la prueba de que este stack funciona a escala.",
+    productsLink: "Ver los productos",
+    ctaLine: "¿Quieres este stack al servicio de tu empresa?",
     ctaLink: "Hablemos",
-    ventures: {
-      "scallup.fr": {
-        tagline: "El agente IA que prospecta, hace seguimiento y vende.",
-        pitch:
-          "Plataforma SaaS donde un agente IA ejecuta las acciones comerciales en piloto automático: prospección multicanal, seguimientos, llamadas, marketing, SEO, presupuestos y gestión. Integrado de forma nativa con las herramientas de negocio.",
-        proof: "Diseñar y operar un producto SaaS IA B2B a escala, de la estrategia al ingreso.",
-        metrics: [
-          { value: "500+", label: "Pymes usuarias" },
-          { value: "4,9/5", label: "Nota media" },
-          { value: "OPCO", label: "Financiable" },
-        ],
-      },
-      "skill-lms.fr": {
-        tagline: "El LMS Qualiopi de nueva generación.",
-        pitch:
-          "Plataforma todo en uno para organismos de formación: creación de itinerarios, seguimiento de alumnos, automatización de convenios y convocatorias, centralización de evidencias Qualiopi, gestión con IA.",
-        proof: "Dominar plataformas de negocio complejas y la conformidad regulatoria (Qualiopi).",
-        metrics: [
-          { value: "Qualiopi", label: "Conformidad nativa" },
-          { value: "Todo en uno", label: "Formaciones + LMS + evidencias" },
-          { value: "IA", label: "Seguimientos y gestión" },
-        ],
-      },
-      "formateurs.pro": {
-        tagline: "El mayor directorio de formadores certificados de Francia.",
-        pitch:
-          "Directorio construido a partir de fuentes oficiales (Pappers, INFOGREFFE, data.gouv.fr, France Compétences). Red conectada a SKILL LMS para agilizar la conexión entre empresas y formadores.",
-        proof: "Data engineering, SEO programático y ecosistemas de producto conectados.",
-        metrics: [
-          { value: "50 000+", label: "Formadores referenciados" },
-          { value: "9 000+", label: "Certificados Qualiopi" },
-          { value: "98 %", label: "Perfiles verificados" },
-        ],
-      },
-      "immomontpellier.com": {
-        tagline: "El primer cazador inmobiliario IA de Montpellier.",
-        pitch:
-          "La IA escanea 8 fuentes en continuo (SeLoger, Leboncoin, Bien'ici, PAP…), envía alertas en menos de 1 h, y un cazador local toma el relevo para visitar y negociar hasta la firma notarial.",
-        proof: "Aplicar la IA verticalmente (scraping, scoring, matching) a un sector tradicional.",
-        metrics: [
-          { value: "8", label: "Fuentes escaneadas 24/7" },
-          { value: "<1h", label: "Tiempo de alerta" },
-          { value: "250+", label: "Compradores acompañados" },
-        ],
-      },
-    },
   },
 };
