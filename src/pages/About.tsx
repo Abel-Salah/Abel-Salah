@@ -5,6 +5,7 @@ import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
 import { aboutAlternates, aboutCanonicalByLocale, aboutLocales } from "@/data/aboutLocales";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
+import { ecosystemCanonicalByLocale } from "@/data/ecosystemLocales";
 import type { PageLocale } from "@/data/workLocales";
 
 const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
@@ -250,7 +251,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
             ))}
           </ul>
           <Link
-            to="/ecosystem"
+            to={ecosystemCanonicalByLocale[locale]}
             className="inline-flex items-center gap-2 text-lg text-foreground hover:text-primary transition-colors group story-link"
           >
             {t.ecosystemLink}

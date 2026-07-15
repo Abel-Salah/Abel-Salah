@@ -55,6 +55,12 @@ const contactAlternates = [
   { hrefLang: "es", path: "/es/contact" },
 ];
 
+const ecosystemAlternates = [
+  { hrefLang: "fr", path: "/ecosystem" },
+  { hrefLang: "en", path: "/en/ecosystem" },
+  { hrefLang: "es", path: "/es/ecosystem" },
+];
+
 const navigationByLang = {
   fr: [
     { name: "Accueil", path: "/" },
@@ -299,6 +305,23 @@ const routes = [
     title: "Écosystème IA & Produits — Abel SALAH",
     description:
       "Découvrez les produits IA construits par Abel SALAH : SCALLUP, SKILL LMS, Formateurs.pro et Immo Montpellier.",
+    alternates: ecosystemAlternates,
+  },
+  {
+    path: "/en/ecosystem",
+    lang: "en",
+    title: "AI Ecosystem & Products — Abel SALAH",
+    description:
+      "Discover the AI products built by Abel SALAH: SCALLUP, SKILL LMS, Formateurs.pro and Immo Montpellier.",
+    alternates: ecosystemAlternates,
+  },
+  {
+    path: "/es/ecosystem",
+    lang: "es",
+    title: "Ecosistema IA & Productos — Abel SALAH",
+    description:
+      "Descubra los productos IA construidos por Abel SALAH: SCALLUP, SKILL LMS, Formateurs.pro e Immo Montpellier.",
+    alternates: ecosystemAlternates,
   },
   {
     path: "/blog",

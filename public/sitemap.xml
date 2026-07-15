@@ -125,9 +125,33 @@
   </url>
   <url>
     <loc>https://abelsalah.fr/ecosystem</loc>
-    <lastmod>2026-02-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/ecosystem" />
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/en/ecosystem</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/ecosystem" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/ecosystem</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/ecosystem" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://abelsalah.fr/cv</loc>
