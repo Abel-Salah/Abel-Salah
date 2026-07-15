@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Linkedin, Youtube, ArrowUpRight, Download } from "lucide-react";
-import liamPortrait from "@/assets/liam-fletcher-portrait.jpg";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
 import cvAsset from "@/assets/cv-abel-salah-consultant-ia.pdf.asset.json";

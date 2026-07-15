@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, useSpring } from "framer-motion";
 
 const ScrollGradient = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
   const springY = useSpring(0, { stiffness: 30, damping: 20 });
   const springX = useSpring(0, { stiffness: 30, damping: 20 });
 
@@ -15,7 +13,6 @@ const ScrollGradient = () => {
         requestAnimationFrame(() => {
           const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
           const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-          setScrollProgress(progress);
 
           const yPos = progress * 80 - 20;
           const xPos = Math.sin(progress * Math.PI * 2) * 15;
