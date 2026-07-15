@@ -24,9 +24,9 @@ const publicRoutes = [
   { path: "/work", file: "work/index.html", lang: "fr", title: "Réalisations IA" },
   { path: "/about", file: "about/index.html", lang: "fr", title: "À propos d'Abel SALAH" },
   { path: "/ecosystem", file: "ecosystem/index.html", lang: "fr", title: "Écosystème IA" },
-  { path: "/cv", file: "cv/index.html", lang: "fr", title: "CV Abel Salah" },
-  { path: "/en/cv", file: "en/cv/index.html", lang: "en", title: "Resume Abel Salah" },
-  { path: "/es/cv", file: "es/cv/index.html", lang: "es", title: "CV Abel Salah" },
+  { path: "/cv", file: "cv/index.html", lang: "fr", title: "CV Abel SALAH" },
+  { path: "/en/cv", file: "en/cv/index.html", lang: "en", title: "Resume Abel SALAH" },
+  { path: "/es/cv", file: "es/cv/index.html", lang: "es", title: "CV Abel SALAH" },
 ];
 
 const serviceRoutes = new Set([

@@ -265,25 +265,25 @@ const routes = [
   {
     path: "/cv",
     lang: "fr",
-    title: "CV Abel Salah | Consultant IA & AI Transformation Lead",
+    title: "CV Abel SALAH | Consultant IA & AI Transformation Lead",
     description:
-      "CV d'Abel Salah, consultant IA et AI Transformation Lead : GenAI, automatisation, copilotes IA, formation et adoption métier. Plus de 60 projets B2B menés.",
+      "CV d'Abel SALAH, consultant IA et AI Transformation Lead : GenAI, automatisation, copilotes IA, formation et adoption métier. Plus de 60 projets B2B menés.",
     alternates: cvAlternates,
   },
   {
     path: "/en/cv",
     lang: "en",
-    title: "Resume Abel Salah | AI Consultant & AI Transformation Lead",
+    title: "Resume Abel SALAH | AI Consultant & AI Transformation Lead",
     description:
-      "Resume of Abel Salah, AI consultant and AI Transformation Lead: GenAI, automation, AI copilots, training and business adoption. 60+ B2B projects delivered.",
+      "Resume of Abel SALAH, AI consultant and AI Transformation Lead: GenAI, automation, AI copilots, training and business adoption. 60+ B2B projects delivered.",
     alternates: cvAlternates,
   },
   {
     path: "/es/cv",
     lang: "es",
-    title: "CV Abel Salah | Consultor IA & AI Transformation Lead",
+    title: "CV Abel SALAH | Consultor IA & AI Transformation Lead",
     description:
-      "CV de Abel Salah, consultor IA y AI Transformation Lead: GenAI, automatización, copilotos IA, formación y adopción operativa. Más de 60 proyectos B2B realizados.",
+      "CV de Abel SALAH, consultor IA y AI Transformation Lead: GenAI, automatización, copilotos IA, formación y adopción operativa. Más de 60 proyectos B2B realizados.",
     alternates: cvAlternates,
   },
 ];

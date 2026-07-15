@@ -15,10 +15,9 @@ import openaiIcon from "@/assets/cv/icons/openai.svg";
 import perplexityIcon from "@/assets/cv/icons/perplexity.svg";
 import supabaseIcon from "@/assets/cv/icons/supabase.svg";
 import zapierIcon from "@/assets/cv/icons/zapier.svg";
+import photoAbel from "@/assets/cv/photo-abel-salah.webp";
 import qrAbelsalah from "@/assets/cv/qr-abelsalah.svg";
 import "./cv.css";
-
-const photoAbel = "/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp";
 
 const toolGroups: { name: string; icon?: string }[][] = [
   [
@@ -74,7 +73,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
         <div className="cv-header">
           <div className="cv-header-main">
             <div className="cv-kicker">{t.kicker}</div>
-            <div className="cv-name">Abel Salah</div>
+            <div className="cv-name">Abel SALAH</div>
             <div className="cv-tagline">
               {t.taglineLine1}
               <br />
@@ -82,7 +81,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
             </div>
           </div>
           <div className="cv-photo">
-            <img src={photoAbel} alt="Abel Salah" width={104} height={104} />
+            <img src={photoAbel} alt="Abel SALAH" width={104} height={104} />
           </div>
           <div className="cv-qr">
             <img src={qrAbelsalah} alt="QR abelsalah.fr" width={70} height={70} />
@@ -197,7 +196,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
       {/* Page 2 */}
       <article className="cv-sheet cv-sheet--p2" aria-label={t.page2Aria}>
         <div className="cv-header-compact">
-          <div className="cv-name-sm">Abel Salah</div>
+          <div className="cv-name-sm">Abel SALAH</div>
           <div className="cv-kicker">{t.kicker}</div>
         </div>
 
