@@ -15,7 +15,6 @@
     "verify": "npm run lint && npm run typecheck && npm run build && node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke && npm audit --audit-level=moderate"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-accordion": "^1.2.16",
     "@radix-ui/react-alert-dialog": "^1.1.19",
     "@radix-ui/react-aspect-ratio": "^1.1.11",
@@ -48,7 +47,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "date-fns": "^4.4.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.42.2",
     "input-otp": "^1.4.2",
@@ -67,12 +65,10 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.1.2",
-    "zod": "^4.4.3"
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^26.1.1",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
