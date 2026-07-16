@@ -117,7 +117,7 @@ serve(async (req) => {
 
     const { data: posts, error } = await supabase
       .from("generated_blog_posts")
-      .select("slug, date")
+      .select("slug, date, lang")
       .eq("published", true)
       .order("date", { ascending: false });
 
@@ -157,10 +157,12 @@ serve(async (req) => {
     }
 
     // Dynamic blog posts from database
+    const blogBaseByLang: Record<string, string> = { fr: "/blog", en: "/en/blog", es: "/es/blog" };
     for (const post of posts || []) {
       if (staticBlogSlugs.includes(post.slug)) continue;
+      const blogBase = blogBaseByLang[post.lang as string] ?? "/blog";
       xml += `  <url>\n`;
-      xml += `    <loc>${DOMAIN}/blog/${post.slug}</loc>\n`;
+      xml += `    <loc>${DOMAIN}${blogBase}/${post.slug}</loc>\n`;
       xml += `    <lastmod>${post.date}</lastmod>\n`;
       xml += `    <changefreq>monthly</changefreq>\n`;
       xml += `    <priority>0.7</priority>\n`;

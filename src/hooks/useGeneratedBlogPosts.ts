@@ -4,16 +4,16 @@ import {
   listPublishedGeneratedBlogPosts,
 } from "@/services/generatedBlogPosts";
 
-export function useGeneratedBlogPosts(enabled = true) {
+export function useGeneratedBlogPosts(lang = "fr") {
   return useQuery({
-    queryKey: ["generated-blog-posts"],
-    queryFn: listPublishedGeneratedBlogPosts,
-    enabled,
+    queryKey: ["generated-blog-posts", lang],
+    queryFn: () => listPublishedGeneratedBlogPosts(lang),
   });
 }
 
 export async function getGeneratedPostBySlug(
-  slug: string
+  slug: string,
+  lang = "fr"
 ){
-  return getPublishedGeneratedPostBySlug(slug);
+  return getPublishedGeneratedPostBySlug(slug, lang);
 }

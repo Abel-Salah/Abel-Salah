@@ -16,6 +16,35 @@ type ExistingPost = {
   slug: string;
 };
 
+const SUPPORTED_LANGS = ["fr", "en", "es"] as const;
+type Lang = (typeof SUPPORTED_LANGS)[number];
+
+const LANG_CONFIG: Record<Lang, { label: string; keywords: string; promoKeywords: string }> = {
+  fr: {
+    label: "francais",
+    keywords: "expert IA entreprise, automatisation IA, audit IA, intelligence artificielle PME, deploiement IA",
+    promoKeywords: "expert IA entreprise, consultant IA, audit IA, automatisation IA, Abel SALAH",
+  },
+  en: {
+    label: "anglais (English)",
+    keywords: "business AI expert, AI automation, AI audit, artificial intelligence for SMEs, AI deployment",
+    promoKeywords: "business AI expert, AI consultant, AI audit, AI automation, Abel SALAH",
+  },
+  es: {
+    label: "espagnol (espanol de Espana)",
+    keywords: "experto IA empresa, automatizacion IA, auditoria IA, inteligencia artificial pymes, despliegue IA",
+    promoKeywords: "experto IA empresa, consultor IA, auditoria IA, automatizacion IA, Abel SALAH",
+  },
+};
+
+function validateLang(input: unknown): Lang {
+  const lang = typeof input === "string" ? input : "fr";
+  if (!SUPPORTED_LANGS.includes(lang as Lang)) {
+    throw new Error(`lang must be one of: ${SUPPORTED_LANGS.join(", ")}`);
+  }
+  return lang as Lang;
+}
+
 const normalizeTitle = (title: string) =>
   title.trim().toLocaleLowerCase("fr-FR").replace(/\s+/g, " ");
 
@@ -25,7 +54,10 @@ serve(async (req) => {
   }
 
   try {
-    const { type = "actionnable" } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const type = body.type ?? "actionnable";
+    const lang = validateLang(body.lang);
+    const langConfig = LANG_CONFIG[lang];
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -37,6 +69,7 @@ serve(async (req) => {
     const { data: existingPosts } = await supabase
       .from("generated_blog_posts")
       .select("title, slug")
+      .eq("lang", lang)
       .order("created_at", { ascending: false })
       .limit(50);
 
@@ -47,7 +80,7 @@ serve(async (req) => {
 
     const systemPrompt =
       type === "promotion"
-        ? `Tu es un redacteur SEO expert. Redige un article de blog SEO en francais qui met en avant l'expertise d'Abel SALAH, consultant expert IA.
+        ? `Tu es un redacteur SEO expert. Redige un article de blog SEO integralement en ${langConfig.label} (titre, slug, tags, meta et contenu inclus) qui met en avant l'expertise d'Abel SALAH, consultant expert IA.
 
 Contexte sur Abel SALAH :
 - 16 ans d'experience en strategie digitale et IA
@@ -63,11 +96,11 @@ Regles :
 - Paragraphes courts, listes numerotees quand pertinent
 - 600-800 mots
 - Tonalite professionnelle, concrete, pas de jargon inutile
-- Mots-cles SEO : expert IA entreprise, consultant IA, audit IA, automatisation IA, Abel SALAH
+- Mots-cles SEO : ${langConfig.promoKeywords}
 - CTA direct vers la page contact en fin d'article
 - Date de publication : ${today}
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`
-        : `Tu es un redacteur SEO expert. Redige un article de blog SEO en francais, hyper concret et actionnable sur l'IA en entreprise.
+        : `Tu es un redacteur SEO expert. Redige un article de blog SEO integralement en ${langConfig.label} (titre, slug, tags, meta et contenu inclus), hyper concret et actionnable sur l'IA en entreprise.
 
 Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres concrets.
 
@@ -76,7 +109,7 @@ Regles :
 - Paragraphes courts, listes numerotees
 - 600-800 mots
 - Tonalite professionnelle, concrete, pas de jargon inutile
-- Mots-cles SEO : expert IA entreprise, automatisation IA, audit IA, intelligence artificielle PME, deploiement IA
+- Mots-cles SEO : ${langConfig.keywords}
 - CTA implicite vers Abel SALAH en fin d'article (mentionner qu'un expert peut accompagner)
 - Date de publication : ${today}
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`;
@@ -247,6 +280,7 @@ Regles :
         excerpt: article.excerpt,
         content: article.sections,
         article_type: type,
+        lang,
         published: true,
       })
       .select()
@@ -260,7 +294,7 @@ Regles :
       });
     }
 
-    console.log(`Article generated: ${article.title} (${type})`);
+    console.log(`Article generated: ${article.title} (${type}, ${lang})`);
 
     return new Response(JSON.stringify({ success: true, post: inserted }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

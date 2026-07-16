@@ -33,14 +33,14 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
     next: staticIndex >= 0 && staticIndex < staticPosts.length - 1 ? staticPosts[staticIndex + 1] : null,
   };
 
-  // Sinon, article généré (français uniquement)
+  // Sinon, article généré dans la langue courante
   const { data: generatedPost, isLoading } = useQuery({
-    queryKey: ["generated-post", slug],
-    queryFn: () => getGeneratedPostBySlug(slug!),
-    enabled: !staticPost && !!slug && locale === "fr",
+    queryKey: ["generated-post", locale, slug],
+    queryFn: () => getGeneratedPostBySlug(slug!, locale),
+    enabled: !staticPost && !!slug,
   });
 
-  const post = staticPost || (locale === "fr" ? generatedPost : undefined);
+  const post = staticPost || generatedPost;
 
   if (isLoading && !staticPost) {
     return (

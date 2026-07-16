@@ -15,11 +15,10 @@ import type { PageLocale } from "@/data/workLocales";
 const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
   const t = blogUILocales[locale];
   const blogBase = blogCanonicalByLocale[locale];
-  // Les articles générés (Supabase) n'existent qu'en français.
-  const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts(locale === "fr");
+  const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts(locale);
 
   const allPosts = useMemo(() => {
-    const merged = [...getStaticPostsByLocale(locale), ...(locale === "fr" ? generatedPosts : [])];
+    const merged = [...getStaticPostsByLocale(locale), ...generatedPosts];
     merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return merged;
   }, [generatedPosts, locale]);

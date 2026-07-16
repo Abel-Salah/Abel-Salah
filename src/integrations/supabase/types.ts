@@ -22,6 +22,7 @@ export type Database = {
           date: string
           excerpt: string
           id: string
+          lang: string
           meta_description: string
           meta_title: string
           published: boolean
@@ -37,6 +38,7 @@ export type Database = {
           date?: string
           excerpt: string
           id?: string
+          lang?: string
           meta_description: string
           meta_title: string
           published?: boolean
@@ -52,6 +54,7 @@ export type Database = {
           date?: string
           excerpt?: string
           id?: string
+          lang?: string
           meta_description?: string
           meta_title?: string
           published?: boolean
