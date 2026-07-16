@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Printer } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { cvAlternates, cvCanonicalByLocale, cvLocales, type CVLocale } from "@/data/cvLocales";
@@ -47,11 +48,31 @@ const toolGroups: { name: string; icon?: string }[][] = [
   ],
 ];
 
+const SHEET_WIDTH = 794;
+const SHEET_HEIGHT = 1123;
+
 const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
   const t = cvLocales[locale];
+  // La feuille A4 est a taille fixe ; on la reduit a l'echelle du conteneur
+  // sur les petites fenetres (l'impression reste a taille reelle).
+  const pageRef = useRef<HTMLElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = pageRef.current;
+    if (!el) return;
+    const compute = () => setScale(Math.min(1, (el.clientWidth - 24) / SHEET_WIDTH));
+    compute();
+    const observer = new ResizeObserver(compute);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const boxStyle = { width: SHEET_WIDTH * scale, height: SHEET_HEIGHT * scale };
+  const sheetStyle = scale < 1 ? { transform: `scale(${scale})` } : undefined;
 
   return (
-    <main className="cv-page">
+    <main ref={pageRef} className="cv-page">
       <SEOHead
         title={t.seoTitle}
         description={t.seoDescription}
@@ -61,7 +82,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
         alternates={cvAlternates}
       />
 
-      <div className="cv-toolbar">
+      <div className="cv-toolbar" style={{ width: boxStyle.width }}>
         <button type="button" className="cv-print-button" onClick={() => window.print()}>
           <Printer size={15} aria-hidden="true" />
           {t.printLabel}
@@ -69,7 +90,8 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
       </div>
 
       {/* Page 1 */}
-      <article className="cv-sheet" aria-label={t.page1Aria}>
+      <div className="cv-sheet-box" style={boxStyle}>
+      <article className="cv-sheet" style={sheetStyle} aria-label={t.page1Aria}>
         <div className="cv-header">
           <div className="cv-header-main">
             <div className="cv-kicker">{t.kicker}</div>
@@ -192,9 +214,11 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
           <span>{t.page1Label}</span>
         </div>
       </article>
+      </div>
 
       {/* Page 2 */}
-      <article className="cv-sheet cv-sheet--p2" aria-label={t.page2Aria}>
+      <div className="cv-sheet-box" style={boxStyle}>
+      <article className="cv-sheet cv-sheet--p2" style={sheetStyle} aria-label={t.page2Aria}>
         <div className="cv-header-compact">
           <div className="cv-name-sm">Abel SALAH</div>
           <div className="cv-kicker">{t.kicker}</div>
@@ -274,6 +298,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
           <span>{t.page2Label}</span>
         </div>
       </article>
+      </div>
     </main>
   );
 };

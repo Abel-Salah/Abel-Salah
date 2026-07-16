@@ -3,12 +3,17 @@
 
 .cv-page {
   background: #e8e6e1;
-  padding: 128px 24px 64px;
+  padding: 128px 12px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  overflow-x: auto;
+}
+
+/* Boite a l'echelle : reserve l'encombrement reel de la feuille reduite */
+.cv-sheet-box {
+  flex: none;
+  overflow: hidden;
 }
 
 .cv-toolbar {
@@ -37,6 +42,7 @@
 
 .cv-sheet {
   flex: none;
+  transform-origin: top left;
   width: 794px;
   height: 1123px;
   background: #ffffff;
@@ -487,14 +493,22 @@
     overflow: visible;
   }
 
+  .cv-sheet-box {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible;
+    break-after: page;
+  }
+
+  .cv-sheet-box:last-child {
+    break-after: auto;
+  }
+
   .cv-sheet {
     border: 0;
     box-shadow: none;
     margin: 0 auto;
+    transform: none !important;
     break-after: page;
-  }
-
-  .cv-sheet:last-child {
-    break-after: auto;
   }
 }
