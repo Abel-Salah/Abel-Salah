@@ -7,50 +7,68 @@ import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import SEOHead from "@/components/SEOHead";
-import { getPostBySlug, getAdjacentPosts } from "@/data/blogPosts";
+import {
+  blogCanonicalByLocale,
+  blogUILocales,
+  getArticleAlternates,
+  getStaticPostsByLocale,
+} from "@/data/blogLocales";
+import { contactCanonicalByLocale } from "@/data/contactLocales";
 import { getGeneratedPostBySlug } from "@/hooks/useGeneratedBlogPosts";
+import type { PageLocale } from "@/data/workLocales";
 
 const SITE_URL = "https://abelsalah.fr";
 
-const BlogPost = () => {
+const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
   const { slug } = useParams<{ slug: string }>();
+  const t = blogUILocales[locale];
+  const blogBase = blogCanonicalByLocale[locale];
+  const staticPosts = getStaticPostsByLocale(locale);
 
-  // Try static first
-  const staticPost = slug ? getPostBySlug(slug) : undefined;
-  const adjacent = slug ? getAdjacentPosts(slug) : { previous: null, next: null };
+  // Article de fond dans la langue courante
+  const staticPost = slug ? staticPosts.find((post) => post.slug === slug) : undefined;
+  const staticIndex = slug ? staticPosts.findIndex((post) => post.slug === slug) : -1;
+  const adjacent = {
+    previous: staticIndex > 0 ? staticPosts[staticIndex - 1] : null,
+    next: staticIndex >= 0 && staticIndex < staticPosts.length - 1 ? staticPosts[staticIndex + 1] : null,
+  };
 
-  // If not static, try generated
+  // Sinon, article généré (français uniquement)
   const { data: generatedPost, isLoading } = useQuery({
     queryKey: ["generated-post", slug],
     queryFn: () => getGeneratedPostBySlug(slug!),
-    enabled: !staticPost && !!slug,
+    enabled: !staticPost && !!slug && locale === "fr",
   });
 
-  const post = staticPost || generatedPost;
+  const post = staticPost || (locale === "fr" ? generatedPost : undefined);
 
   if (isLoading && !staticPost) {
     return (
       <main className="min-h-screen bg-background pt-24 pb-16">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
-          Chargement de l'article...
+          {t.loadingArticle}
         </div>
       </main>
     );
   }
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <Navigate to={blogBase} replace />;
+
+  const articleAlternates = staticPost ? getArticleAlternates(post.slug, locale) : undefined;
 
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
       <SEOHead
         title={post.metaTitle}
         description={post.metaDescription}
-        canonical={`/blog/${post.slug}`}
+        canonical={`${blogBase}/${post.slug}`}
         ogType="article"
+        lang={locale}
+        alternates={articleAlternates}
         breadcrumbs={[
-          { name: "Accueil", path: "/" },
-          { name: "Blog", path: "/blog" },
-          { name: post.title, path: `/blog/${post.slug}` },
+          { name: t.breadcrumbHome, path: locale === "fr" ? "/" : `/${locale}` },
+          { name: t.breadcrumbSelf, path: blogBase },
+          { name: post.title, path: `${blogBase}/${post.slug}` },
         ]}
       />
       <Helmet>
@@ -84,7 +102,7 @@ const BlogPost = () => {
                 url: "https://storage.googleapis.com/gpt-engineer-file-uploads/yFKPGRyIVtelP0DcFywODGT5Ywu2/social-images/social-1771719056921-ABEL_SALAH.webp",
               },
             },
-            mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+            mainEntityOfPage: `${SITE_URL}${blogBase}/${post.slug}`,
           })}
         </script>
       </Helmet>
@@ -98,11 +116,11 @@ const BlogPost = () => {
           className="mb-10"
         >
           <Link
-            to="/blog"
+            to={blogBase}
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Retour au blog
+            {t.backToBlog}
           </Link>
         </motion.div>
 
@@ -116,7 +134,7 @@ const BlogPost = () => {
           <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
-              {new Date(post.date).toLocaleDateString("fr-FR", {
+              {new Date(post.date).toLocaleDateString(t.dateLocale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -201,18 +219,13 @@ const BlogPost = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-16 p-8 rounded-lg border border-primary/30 bg-primary/5 text-center"
         >
-          <h3 className="text-xl font-bold mb-3">
-            Prêt à intégrer l'IA dans votre entreprise ?
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            Discutons de vos enjeux et identifions ensemble les meilleures
-            opportunités IA pour votre activité.
-          </p>
+          <h3 className="text-xl font-bold mb-3">{t.ctaTitle}</h3>
+          <p className="text-muted-foreground mb-6">{t.ctaText}</p>
           <Link
-            to="/contact"
+            to={contactCanonicalByLocale[locale]}
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
           >
-            Prendre rendez-vous
+            {t.ctaButton}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
@@ -222,11 +235,11 @@ const BlogPost = () => {
           <nav className="mt-12 pt-8 border-t border-border flex justify-between gap-4">
             {adjacent.previous ? (
               <Link
-                to={`/blog/${adjacent.previous.slug}`}
+                to={`${blogBase}/${adjacent.previous.slug}`}
                 className="group flex-1 text-left"
               >
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                  Précédent
+                  {t.previousLabel}
                 </span>
                 <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
                   {adjacent.previous.title}
@@ -237,11 +250,11 @@ const BlogPost = () => {
             )}
             {adjacent.next ? (
               <Link
-                to={`/blog/${adjacent.next.slug}`}
+                to={`${blogBase}/${adjacent.next.slug}`}
                 className="group flex-1 text-right"
               >
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                  Suivant
+                  {t.nextLabel}
                 </span>
                 <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
                   {adjacent.next.title}

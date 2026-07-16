@@ -2,26 +2,40 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { blogPosts } from "@/data/blogPosts";
+import {
+  blogAlternates,
+  blogCanonicalByLocale,
+  blogUILocales,
+  getStaticPostsByLocale,
+} from "@/data/blogLocales";
 import { useGeneratedBlogPosts } from "@/hooks/useGeneratedBlogPosts";
 import { useMemo } from "react";
+import type { PageLocale } from "@/data/workLocales";
 
-const Blog = () => {
-  const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts();
+const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
+  const t = blogUILocales[locale];
+  const blogBase = blogCanonicalByLocale[locale];
+  // Les articles générés (Supabase) n'existent qu'en français.
+  const { data: generatedPosts = [], isLoading } = useGeneratedBlogPosts(locale === "fr");
 
   const allPosts = useMemo(() => {
-    const merged = [...blogPosts, ...generatedPosts];
+    const merged = [...getStaticPostsByLocale(locale), ...(locale === "fr" ? generatedPosts : [])];
     merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return merged;
-  }, [generatedPosts]);
+  }, [generatedPosts, locale]);
 
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
       <SEOHead
-        title="Blog IA Entreprise 2026 | Guides Pratiques — Abel SALAH"
-        description="Guides pratiques IA entreprise 2026 : audit, automatisation, stratégie data et cas concrets. Articles par Abel SALAH, expert IA certifié."
-        canonical="/blog"
-        breadcrumbs={[{ name: "Accueil", path: "/" }, { name: "Blog", path: "/blog" }]}
+        title={t.seoTitle}
+        description={t.seoDescription}
+        canonical={blogBase}
+        lang={locale}
+        alternates={blogAlternates}
+        breadcrumbs={[
+          { name: t.breadcrumbHome, path: locale === "fr" ? "/" : `/${locale}` },
+          { name: t.breadcrumbSelf, path: blogBase },
+        ]}
       />
 
       <div className="container mx-auto px-4 md:px-6">
@@ -32,16 +46,14 @@ const Blog = () => {
           className="max-w-3xl mb-16"
         >
           <h1 className="heading-display text-4xl md:text-6xl mb-6">
-            Blog <span className="text-primary">IA Entreprise</span>
+            {t.titlePre}
+            <span className="text-primary">{t.titleHighlight}</span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Guides pratiques, cas concrets et analyses stratégiques pour intégrer
-            l'intelligence artificielle dans votre entreprise.
-          </p>
+          <p className="text-lg text-muted-foreground">{t.intro}</p>
         </motion.div>
 
         {isLoading && (
-          <div className="text-center text-muted-foreground mb-8">Chargement des articles...</div>
+          <div className="text-center text-muted-foreground mb-8">{t.loading}</div>
         )}
 
         <div className="grid gap-8 md:gap-12">
@@ -53,12 +65,12 @@ const Blog = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <Link to={`/blog/${post.slug}`} className="block">
+              <Link to={`${blogBase}/${post.slug}`} className="block">
                 <div className="border border-border rounded-lg p-6 md:p-8 hover:border-primary/50 transition-colors">
                   <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
                       <Calendar className="w-4 h-4" />
-                      {new Date(post.date).toLocaleDateString("fr-FR", {
+                      {new Date(post.date).toLocaleDateString(t.dateLocale, {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
@@ -90,7 +102,7 @@ const Blog = () => {
                       ))}
                     </div>
                     <span className="inline-flex items-center gap-1 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      Lire <ArrowRight className="w-4 h-4" />
+                      {t.readLabel} <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </div>

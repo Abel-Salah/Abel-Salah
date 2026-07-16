@@ -67,6 +67,8 @@ const publicRoutes = [
   "/produits",
   "/en/products",
   "/es/productos",
+  "/en/blog",
+  "/es/blog",
 ];
 
 expectIncludes("src/data/homeLocales.ts", tidyCalUrl, "central TidyCal URL");

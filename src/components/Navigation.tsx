@@ -19,7 +19,7 @@ const navLabels = {
     { href: "/en/ai-audit", label: "AI Audit" },
     { href: "/en/work", label: "Work" },
     { href: "/en/about", label: "About" },
-    { href: "/blog", label: "Blog" },
+    { href: "/en/blog", label: "Blog" },
     { href: "/en/contact", label: "Contact" },
   ],
   es: [
@@ -27,7 +27,7 @@ const navLabels = {
     { href: "/es/auditoria-ia", label: "Auditoría IA" },
     { href: "/es/work", label: "Proyectos" },
     { href: "/es/about", label: "Sobre mí" },
-    { href: "/blog", label: "Blog" },
+    { href: "/es/blog", label: "Blog" },
     { href: "/es/contact", label: "Contacto" },
   ],
 } as const;

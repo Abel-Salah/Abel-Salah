@@ -53,8 +53,12 @@ const App = () => (
             <Route path="/contact" element={<Contact locale="fr" />} />
             <Route path="/en/contact" element={<Contact locale="en" />} />
             <Route path="/es/contact" element={<Contact locale="es" />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/blog" element={<Blog locale="fr" />} />
+            <Route path="/en/blog" element={<Blog locale="en" />} />
+            <Route path="/es/blog" element={<Blog locale="es" />} />
+            <Route path="/blog/:slug" element={<BlogPost locale="fr" />} />
+            <Route path="/en/blog/:slug" element={<BlogPost locale="en" />} />
+            <Route path="/es/blog/:slug" element={<BlogPost locale="es" />} />
             <Route path="/ecosystem" element={<Ecosystem locale="fr" />} />
             <Route path="/produits" element={<Products locale="fr" />} />
             <Route path="/en/products" element={<Products locale="en" />} />

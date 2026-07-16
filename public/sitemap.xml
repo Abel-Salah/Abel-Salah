@@ -305,38 +305,182 @@
   </url>
   <url>
     <loc>https://abelsalah.fr/blog</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog" />
     <lastmod>2026-02-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog" />
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/why-hire-an-ai-expert-for-your-business" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/por-que-contratar-un-experto-ia-empresa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/en/blog/why-hire-an-ai-expert-for-your-business</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/why-hire-an-ai-expert-for-your-business" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/por-que-contratar-un-experto-ia-empresa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog/por-que-contratar-un-experto-ia-empresa</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/why-hire-an-ai-expert-for-your-business" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/por-que-contratar-un-experto-ia-empresa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/pourquoi-faire-appel-expert-ia-entreprise" />
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-audit-where-to-start" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/auditoria-ia-empresa-por-donde-empezar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
     <lastmod>2026-02-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/en/blog/business-ai-audit-where-to-start</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-audit-where-to-start" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/auditoria-ia-empresa-por-donde-empezar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog/auditoria-ia-empresa-por-donde-empezar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-audit-where-to-start" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/auditoria-ia-empresa-por-donde-empezar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/audit-ia-entreprise-par-ou-commencer" />
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-automation-for-smes-practical-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/automatizacion-ia-pymes-guia-practica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
     <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/en/blog/ai-automation-for-smes-practical-guide</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-automation-for-smes-practical-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/automatizacion-ia-pymes-guia-practica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog/automatizacion-ia-pymes-guia-practica</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-automation-for-smes-practical-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/automatizacion-ia-pymes-guia-practica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/automatisation-ia-pme-guide-pratique" />
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-for-sales-teams-real-world-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/ia-fuerza-de-ventas-casos-reales" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
     <lastmod>2026-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abelsalah.fr/en/blog/ai-for-sales-teams-real-world-cases</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-for-sales-teams-real-world-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/ia-fuerza-de-ventas-casos-reales" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog/ia-fuerza-de-ventas-casos-reales</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/ai-for-sales-teams-real-world-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/ia-fuerza-de-ventas-casos-reales" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/ia-force-de-vente-cas-concrets" />
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://abelsalah.fr/blog/strategie-ia-entreprise-2026</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-strategy-2026-priorities" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/estrategia-ia-empresa-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
     <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/en/blog/business-ai-strategy-2026-priorities</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-strategy-2026-priorities" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/estrategia-ia-empresa-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://abelsalah.fr/es/blog/estrategia-ia-empresa-2026</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abelsalah.fr/en/blog/business-ai-strategy-2026-priorities" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://abelsalah.fr/es/blog/estrategia-ia-empresa-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abelsalah.fr/blog/strategie-ia-entreprise-2026" />
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

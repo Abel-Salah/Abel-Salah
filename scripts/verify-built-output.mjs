@@ -38,6 +38,8 @@ const publicRoutes = [
   { path: "/produits", file: "produits/index.html", lang: "fr", title: "Produits IA" },
   { path: "/en/products", file: "en/products/index.html", lang: "en", title: "AI Products" },
   { path: "/es/productos", file: "es/productos/index.html", lang: "es", title: "Productos IA" },
+  { path: "/en/blog", file: "en/blog/index.html", lang: "en", title: "Business AI Blog" },
+  { path: "/es/blog", file: "es/blog/index.html", lang: "es", title: "Blog IA Empresa" },
 ];
 
 const serviceRoutes = new Set([

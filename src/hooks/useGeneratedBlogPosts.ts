@@ -4,10 +4,11 @@ import {
   listPublishedGeneratedBlogPosts,
 } from "@/services/generatedBlogPosts";
 
-export function useGeneratedBlogPosts() {
+export function useGeneratedBlogPosts(enabled = true) {
   return useQuery({
     queryKey: ["generated-blog-posts"],
     queryFn: listPublishedGeneratedBlogPosts,
+    enabled,
   });
 }
 

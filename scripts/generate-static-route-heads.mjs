@@ -61,6 +61,12 @@ const ecosystemAlternates = [
   { hrefLang: "es", path: "/es/ecosystem" },
 ];
 
+const blogAlternates = [
+  { hrefLang: "fr", path: "/blog" },
+  { hrefLang: "en", path: "/en/blog" },
+  { hrefLang: "es", path: "/es/blog" },
+];
+
 const productsAlternates = [
   { hrefLang: "fr", path: "/produits" },
   { hrefLang: "en", path: "/en/products" },
@@ -83,7 +89,7 @@ const navigationByLang = {
     { name: "Sales Automation", path: "/en/sales-automation" },
     { name: "AI Training", path: "/en/ai-training" },
     { name: "Work", path: "/en/work" },
-    { name: "Blog", path: "/blog" },
+    { name: "Blog", path: "/en/blog" },
     { name: "Contact", path: "/en/contact" },
   ],
   es: [
@@ -92,7 +98,7 @@ const navigationByLang = {
     { name: "Automatizacion comercial", path: "/es/automatizacion-comercial" },
     { name: "Formacion IA", path: "/es/formacion-ia" },
     { name: "Proyectos", path: "/es/work" },
-    { name: "Blog", path: "/blog" },
+    { name: "Blog", path: "/es/blog" },
     { name: "Contacto", path: "/es/contact" },
   ],
 };
@@ -359,6 +365,23 @@ const routes = [
     title: "Blog IA Entreprise | Guides & Cas Concrets — Abel SALAH",
     description:
       "Guides pratiques et cas concrets pour intégrer l'intelligence artificielle en entreprise, automatiser les processus et former les équipes.",
+    alternates: blogAlternates,
+  },
+  {
+    path: "/en/blog",
+    lang: "en",
+    title: "Business AI Blog | Practical Guides & Real Cases — Abel SALAH",
+    description:
+      "Practical guides and real-world cases to bring artificial intelligence into your company, automate processes and train your teams.",
+    alternates: blogAlternates,
+  },
+  {
+    path: "/es/blog",
+    lang: "es",
+    title: "Blog IA Empresa | Guías Prácticas & Casos Reales — Abel SALAH",
+    description:
+      "Guías prácticas y casos reales para integrar la inteligencia artificial en la empresa, automatizar procesos y formar a los equipos.",
+    alternates: blogAlternates,
   },
   {
     path: "/contact",
