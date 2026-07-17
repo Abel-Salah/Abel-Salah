@@ -42,6 +42,25 @@ const publicRoutes = [
   { path: "/es/blog", file: "es/blog/index.html", lang: "es", title: "Blog IA Empresa" },
 ];
 
+// Articles de fond pré-rendus (synchro avec blogSlugAlternates dans src/data/blogLocales.ts)
+const articleRoutes = [
+  { path: "/blog/pourquoi-faire-appel-expert-ia-entreprise", lang: "fr" },
+  { path: "/blog/audit-ia-entreprise-par-ou-commencer", lang: "fr" },
+  { path: "/blog/automatisation-ia-pme-guide-pratique", lang: "fr" },
+  { path: "/blog/ia-force-de-vente-cas-concrets", lang: "fr" },
+  { path: "/blog/strategie-ia-entreprise-2026", lang: "fr" },
+  { path: "/en/blog/why-hire-an-ai-expert-for-your-business", lang: "en" },
+  { path: "/en/blog/business-ai-audit-where-to-start", lang: "en" },
+  { path: "/en/blog/ai-automation-for-smes-practical-guide", lang: "en" },
+  { path: "/en/blog/ai-for-sales-teams-real-world-cases", lang: "en" },
+  { path: "/en/blog/business-ai-strategy-2026-priorities", lang: "en" },
+  { path: "/es/blog/por-que-contratar-un-experto-ia-empresa", lang: "es" },
+  { path: "/es/blog/auditoria-ia-empresa-por-donde-empezar", lang: "es" },
+  { path: "/es/blog/automatizacion-ia-pymes-guia-practica", lang: "es" },
+  { path: "/es/blog/ia-fuerza-de-ventas-casos-reales", lang: "es" },
+  { path: "/es/blog/estrategia-ia-empresa-2026", lang: "es" },
+];
+
 const serviceRoutes = new Set([
   "/audit-ia",
   "/automatisation-commerciale",
@@ -121,6 +140,10 @@ if (existsSync(distDir)) {
     expectIncludes(html, '"@type":"SiteNavigationElement"', `SiteNavigationElement JSON-LD for ${route.path}`);
     expectIncludes(sitemap, `<loc>${sitemapUrlFor(route.path)}</loc>`, `sitemap entry for ${route.path}`);
 
+    // Contenu pré-rendu : le corps doit être présent sans JavaScript
+    expect(!html.includes('<div id="root"></div>'), `prerendered body missing (empty #root) for ${route.path}`);
+    expectIncludes(html, "<h1", `prerendered <h1> for ${route.path}`);
+
     if (serviceRoutes.has(route.path)) {
       expectIncludes(html, '"@type":"Service"', `Service JSON-LD for ${route.path}`);
       expectIncludes(html, '"potentialAction":{"@type":"ReserveAction"', `ReserveAction JSON-LD for ${route.path}`);
@@ -130,6 +153,28 @@ if (existsSync(distDir)) {
     if (route.path !== "/" && !["/en", "/es"].includes(route.path)) {
       expectIncludes(redirects, `${route.path} /${route.path.slice(1)}.html 200`, `_redirects entry for ${route.path}`);
     }
+  }
+
+  for (const article of articleRoutes) {
+    const relative = article.path.slice(1);
+    const dirFile = `${relative}/index.html`;
+    const flatFile = `${relative}.html`;
+    expect(existsSync(path.join(distDir, dirFile)), `missing article file: ${dirFile}`);
+    expect(existsSync(path.join(distDir, flatFile)), `missing article file: ${flatFile}`);
+    if (!existsSync(path.join(distDir, dirFile))) continue;
+
+    const html = read(dirFile);
+    expectIncludes(html, `<html lang="${article.lang}"`, `html lang for ${article.path}`);
+    expectIncludes(html, `rel="canonical" href="${canonicalFor(article.path)}"`, `canonical for ${article.path}`);
+    expectIncludes(html, '"@type":"Article"', `Article JSON-LD for ${article.path}`);
+    expectIncludes(html, '"@type":"BreadcrumbList"', `BreadcrumbList JSON-LD for ${article.path}`);
+    expectIncludes(html, 'hreflang="fr"', `FR hreflang for ${article.path}`);
+    expectIncludes(html, 'hreflang="en"', `EN hreflang for ${article.path}`);
+    expectIncludes(html, 'hreflang="es"', `ES hreflang for ${article.path}`);
+    expect(!html.includes('<div id="root"></div>'), `prerendered body missing (empty #root) for ${article.path}`);
+    expectIncludes(html, "<h1", `prerendered <h1> for ${article.path}`);
+    expectIncludes(sitemap, `<loc>${sitemapUrlFor(article.path)}</loc>`, `sitemap entry for ${article.path}`);
+    expectIncludes(redirects, `${article.path} /${relative}.html 200`, `_redirects entry for ${article.path}`);
   }
 
   for (const route of ["/", "/en", "/es"]) {
@@ -149,4 +194,6 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Built output verified (${publicRoutes.length} routes + SEO/conversion invariants).`);
+console.log(
+  `Built output verified (${publicRoutes.length} routes + ${articleRoutes.length} prerendered articles + SEO/conversion invariants).`
+);

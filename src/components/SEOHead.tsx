@@ -28,6 +28,10 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const fullCanonical = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
   const ogLocale = lang === "en" ? "en_US" : lang === "es" ? "es_ES" : "fr_FR";
+  // x-default = version FR (premier alternate), comme dans les heads statiques
+  const xDefaultHref = alternates?.length
+    ? `${SITE_URL}${alternates[0].path === "/" ? "" : alternates[0].path}`
+    : SITE_URL;
 
   const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     "@context": "https://schema.org",
@@ -59,7 +63,7 @@ const SEOHead = ({
       ) : (
         <link rel="alternate" hrefLang={lang} href={fullCanonical} />
       )}
-      <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+      <link rel="alternate" hrefLang="x-default" href={xDefaultHref} />
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

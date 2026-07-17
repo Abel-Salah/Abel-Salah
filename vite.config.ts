@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -17,15 +17,18 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
-      output: {
-        manualChunks: {
-          react: ["react", "react-dom", "react-router-dom"],
-          motion: ["framer-motion"],
-          ui: ["@radix-ui/react-slot", "@radix-ui/react-toast", "@radix-ui/react-tooltip"],
-          supabase: ["@supabase/supabase-js"],
-          markdown: ["react-markdown", "remark-gfm", "rehype-sanitize"],
-        },
-      },
+      // manualChunks est incompatible avec le build SSR (bundle unique pour le pré-rendu)
+      output: isSsrBuild
+        ? {}
+        : {
+            manualChunks: {
+              react: ["react", "react-dom", "react-router-dom"],
+              motion: ["framer-motion"],
+              ui: ["@radix-ui/react-slot", "@radix-ui/react-toast", "@radix-ui/react-tooltip"],
+              supabase: ["@supabase/supabase-js"],
+              markdown: ["react-markdown", "remark-gfm", "rehype-sanitize"],
+            },
+          },
     },
   },
 }));

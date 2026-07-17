@@ -30,17 +30,18 @@ const routeFallback = (
   </main>
 );
 
-const App = () => (
+/* Tout sauf le routeur : le client l'enveloppe dans BrowserRouter,
+   le pré-rendu au build (src/entry-prerender.tsx) dans StaticRouter. */
+export const AppShell = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <ScrollGradient />
-        <Navigation />
-        <Suspense fallback={routeFallback}>
-          <Routes>
+      <ScrollToTop />
+      <ScrollGradient />
+      <Navigation />
+      <Suspense fallback={routeFallback}>
+        <Routes>
             <Route path="/" element={<Index locale="fr" />} />
             <Route path="/en" element={<Index locale="en" />} />
             <Route path="/es" element={<Index locale="es" />} />
@@ -81,11 +82,16 @@ const App = () => (
             <Route path="/admin/opportunities" element={<AdminOpportunities />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
-        <Footer />
-      </BrowserRouter>
+      </Suspense>
+      <Footer />
     </TooltipProvider>
   </QueryClientProvider>
+);
+
+const App = () => (
+  <BrowserRouter>
+    <AppShell />
+  </BrowserRouter>
 );
 
 export default App;

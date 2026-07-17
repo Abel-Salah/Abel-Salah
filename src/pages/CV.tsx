@@ -95,7 +95,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
         <div className="cv-header">
           <div className="cv-header-main">
             <div className="cv-kicker">{t.kicker}</div>
-            <div className="cv-name">Abel SALAH</div>
+            <h1 className="cv-name">Abel SALAH</h1>
             <div className="cv-tagline">
               {t.taglineLine1}
               <br />
