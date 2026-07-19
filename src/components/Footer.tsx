@@ -2,24 +2,108 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
+import { workCanonicalByLocale } from "@/data/workLocales";
+import { aboutCanonicalByLocale } from "@/data/aboutLocales";
+import { ecosystemCanonicalByLocale } from "@/data/ecosystemLocales";
+import { productsCanonicalByLocale } from "@/data/productsLocales";
+import { blogCanonicalByLocale } from "@/data/blogLocales";
+import { contactCanonicalByLocale } from "@/data/contactLocales";
 import { locationLinks } from "@/data/locationLocales";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { trackConversionEvent } from "@/lib/conversionEvents";
+import type { PageLocale } from "@/data/workLocales";
+
+const homeCanonicalByLocale: Record<PageLocale, string> = { fr: "/", en: "/en", es: "/es" };
+
+interface FooterUIContent {
+  navHeader: string;
+  contactHeader: string;
+  socialHeader: string;
+  bookCta: string;
+  downloadCv: string;
+  roundCtaLine1: string;
+  roundCtaLine2: string;
+  copyright: string;
+  taglineHighlight: string;
+  taglineRest: string;
+}
+
+const footerUILocales: Record<PageLocale, FooterUIContent> = {
+  fr: {
+    navHeader: "Navigation",
+    contactHeader: "Me contacter",
+    socialHeader: "Suivez-moi",
+    bookCta: "Prendre rendez-vous →",
+    downloadCv: "Télécharger mon CV",
+    roundCtaLine1: "Parlons-",
+    roundCtaLine2: "en",
+    copyright: "Tous droits réservés.",
+    taglineHighlight: "L'IA au service",
+    taglineRest: "de votre entreprise.",
+  },
+  en: {
+    navHeader: "Navigation",
+    contactHeader: "Get in touch",
+    socialHeader: "Follow me",
+    bookCta: "Book a call →",
+    downloadCv: "Download my CV",
+    roundCtaLine1: "Let's",
+    roundCtaLine2: "talk",
+    copyright: "All rights reserved.",
+    taglineHighlight: "AI in service",
+    taglineRest: "of your business.",
+  },
+  es: {
+    navHeader: "Navegación",
+    contactHeader: "Contactar",
+    socialHeader: "Sígueme",
+    bookCta: "Reservar una cita →",
+    downloadCv: "Descargar mi CV",
+    roundCtaLine1: "Hable-",
+    roundCtaLine2: "mos",
+    copyright: "Todos los derechos reservados.",
+    taglineHighlight: "La IA al servicio",
+    taglineRest: "de tu empresa.",
+  },
+};
+
+const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
+  fr: [
+    { to: homeCanonicalByLocale.fr, label: "Accueil" },
+    { to: workCanonicalByLocale.fr, label: "Réalisations" },
+    { to: aboutCanonicalByLocale.fr, label: "À propos" },
+    { to: ecosystemCanonicalByLocale.fr, label: "Écosystème" },
+    { to: productsCanonicalByLocale.fr, label: "Produits" },
+    { to: blogCanonicalByLocale.fr, label: "Blog" },
+    { to: contactCanonicalByLocale.fr, label: "Contact" },
+  ],
+  en: [
+    { to: homeCanonicalByLocale.en, label: "Home" },
+    { to: workCanonicalByLocale.en, label: "Work" },
+    { to: aboutCanonicalByLocale.en, label: "About" },
+    { to: ecosystemCanonicalByLocale.en, label: "Ecosystem" },
+    { to: productsCanonicalByLocale.en, label: "Products" },
+    { to: blogCanonicalByLocale.en, label: "Blog" },
+    { to: contactCanonicalByLocale.en, label: "Contact" },
+  ],
+  es: [
+    { to: homeCanonicalByLocale.es, label: "Inicio" },
+    { to: workCanonicalByLocale.es, label: "Proyectos" },
+    { to: aboutCanonicalByLocale.es, label: "Sobre mí" },
+    { to: ecosystemCanonicalByLocale.es, label: "Ecosistema" },
+    { to: productsCanonicalByLocale.es, label: "Productos" },
+    { to: blogCanonicalByLocale.es, label: "Blog" },
+    { to: contactCanonicalByLocale.es, label: "Contacto" },
+  ],
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { pathname } = useLocation();
-  const locale = pathname.startsWith("/en") ? "en" : pathname.startsWith("/es") ? "es" : "fr";
+  const locale: PageLocale = pathname.startsWith("/en") ? "en" : pathname.startsWith("/es") ? "es" : "fr";
 
-  const navLinks = [
-    { to: "/", label: "Accueil" },
-    { to: "/work", label: "Réalisations" },
-    { to: "/about", label: "À propos" },
-    { to: "/ecosystem", label: "Écosystème" },
-    { to: "/produits", label: "Produits" },
-    { to: "/blog", label: "Blog" },
-    { to: "/contact", label: "Contact" },
-  ];
+  const navLinks = footerNavLabels[locale];
+  const t = footerUILocales[locale];
 
   const socialLinks = [
     { href: "https://www.linkedin.com/in/abel-salah/", label: "LinkedIn" },
@@ -63,7 +147,7 @@ const Footer = () => {
               className="md:col-span-3"
             >
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
-                Navigation
+                {t.navHeader}
               </h3>
               <ul className="space-y-4">
                 {navLinks.map((link) => (
@@ -88,7 +172,7 @@ const Footer = () => {
               className="md:col-span-4"
             >
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
-                Me contacter
+                {t.contactHeader}
               </h3>
               <div className="space-y-4">
                 <a
@@ -100,14 +184,14 @@ const Footer = () => {
                   }
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium story-link inline-block"
                 >
-                  Prendre rendez-vous →
+                  {t.bookCta}
                 </a>
                 <Link
                   to={cvCanonicalByLocale[locale]}
                   className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors text-lg font-medium group"
                 >
                   <Download className="w-4 h-4" />
-                  Télécharger mon CV
+                  {t.downloadCv}
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                 </Link>
                 <p className="text-muted-foreground">
@@ -139,7 +223,7 @@ const Footer = () => {
               className="md:col-span-3"
             >
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
-                Suivez-moi
+                {t.socialHeader}
               </h3>
               <ul className="space-y-4">
                 {socialLinks.map((link) => (
@@ -167,11 +251,11 @@ const Footer = () => {
               className="md:col-span-2 flex justify-center md:justify-end"
             >
               <Link
-                to="/contact"
+                to={contactCanonicalByLocale[locale]}
                 className="inline-flex items-center justify-center w-28 h-28 md:w-32 md:h-32 bg-primary text-primary-foreground rounded-full hover:scale-105 transition-transform group"
               >
                 <span className="text-xs font-semibold uppercase tracking-wider text-center leading-tight">
-                  Parlons-<br />en
+                  {t.roundCtaLine1}<br />{t.roundCtaLine2}
                 </span>
               </Link>
             </motion.div>
@@ -186,10 +270,10 @@ const Footer = () => {
             className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4"
           >
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Abel SALAH. Tous droits réservés.
+              © {currentYear} Abel SALAH. {t.copyright}
             </p>
             <p className="text-sm text-muted-foreground">
-              <span className="text-primary">L'IA au service</span> de votre entreprise.
+              <span className="text-primary">{t.taglineHighlight}</span> {t.taglineRest}
             </p>
           </motion.div>
         </div>

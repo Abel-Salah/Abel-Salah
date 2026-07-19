@@ -191,7 +191,7 @@ serve(async (req) => {
 
     const today = new Date().toISOString().split("T")[0];
 
-    // Get existing titles
+    // Get existing titles for this language (dedup titles is per-lang)
     const { data: existingPosts } = await supabase
       .from("generated_blog_posts")
       .select("title, slug")
@@ -201,10 +201,19 @@ serve(async (req) => {
 
     const knownPosts = (existingPosts || []) as ExistingPost[];
     let existingTitles = knownPosts.map((post) => post.title).join(", ");
-    const existingSlugs = new Set(knownPosts.map((post) => post.slug));
     const existingNormalizedTitles = new Set(
       knownPosts.map((post) => normalizeTitle(post.title))
     );
+
+    /* slug est UNIQUE au niveau de toute la table (pas par langue) : le
+       set de dédup doit couvrir toutes les langues, sinon un slug généré
+       en double d'un article existant dans une AUTRE langue échoue à
+       l'insert au lieu d'être suffixé. */
+    const { data: existingSlugRows } = await supabase
+      .from("generated_blog_posts")
+      .select("slug")
+      .limit(1000);
+    const existingSlugs = new Set((existingSlugRows || []).map((row) => row.slug as string));
 
     const results: { topic: string; success: boolean; title?: string; error?: string }[] = [];
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Download, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
+import { workCanonicalByLocale } from "@/data/workLocales";
 import {
   homeAlternates,
   homeContent,
@@ -406,7 +407,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             className="mt-12">
 
             <Link
-              to="/work"
+              to={workCanonicalByLocale[locale]}
               className="inline-flex items-center gap-4 text-lg font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-all group">
 
               {content.workCta}

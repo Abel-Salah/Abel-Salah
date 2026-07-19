@@ -509,6 +509,9 @@
     box-shadow: none;
     margin: 0 auto;
     transform: none !important;
-    break-after: page;
+    /* Le saut de page se gère uniquement sur .cv-sheet-box (avec le reset
+       :last-child) : le dupliquer ici forçait un saut après la dernière
+       page, au risque d'une page blanche en fin de PDF sur certains
+       navigateurs. */
   }
 }
