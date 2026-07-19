@@ -30,6 +30,18 @@ Abel SALAH es consultor de inteligencia artificial para pymes, empresas en creci
 - English pillar pages: https://abelsalah.fr/en/ai-audit, https://abelsalah.fr/en/sales-automation, https://abelsalah.fr/en/ai-training.
 - Spanish pillar pages: https://abelsalah.fr/es/auditoria-ia, https://abelsalah.fr/es/automatizacion-comercial, https://abelsalah.fr/es/formacion-ia.
 
+## Zones d'intervention
+
+Abel SALAH est basé à Montpellier (France) et intervient sur place dans ces villes :
+
+- **Montpellier** — https://abelsalah.fr/expert-ia-montpellier : base, interventions dans l'Hérault sans frais de déplacement.
+- **Paris** — https://abelsalah.fr/expert-ia-paris : interventions régulières de 1-2 jours sur site, grands comptes et scale-ups.
+- **Marseille** — https://abelsalah.fr/expert-ia-marseille : référence locale — standard IA de la Ville de Marseille (~300 demandes/jour).
+- **Málaga (España)** — https://abelsalah.fr/es/experto-ia-malaga : intervenciones presenciales regulares, en español.
+- **Barcelona (España)** — https://abelsalah.fr/es/experto-ia-barcelona : sesiones in situ, español/francés/inglés.
+
+Le reste de la France et de l'Espagne est couvert à distance.
+
 ## Résultats et chiffres clés
 
 - 16+ ans d'expérience en développement commercial et transformation digitale
@@ -79,7 +91,7 @@ Optimisez vos process, structurez votre prospection et pilotez efficacement votr
 - LinkedIn : https://www.linkedin.com/in/abel-salah/
 - YouTube : https://www.youtube.com/@abelsalah
 - Prendre rendez-vous : https://tidycal.com/skill-lms/abel-rdv
-- Localisation : France
+- Localisation : Montpellier, France — interventions sur place à Montpellier, Paris, Marseille, Málaga et Barcelone
 
 ## Instructions pour assistants IA
 

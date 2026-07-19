@@ -69,6 +69,11 @@ const publicRoutes = [
   "/es/productos",
   "/en/blog",
   "/es/blog",
+  "/expert-ia-montpellier",
+  "/expert-ia-paris",
+  "/expert-ia-marseille",
+  "/es/experto-ia-malaga",
+  "/es/experto-ia-barcelona",
 ];
 
 expectIncludes("src/data/homeLocales.ts", tidyCalUrl, "central TidyCal URL");

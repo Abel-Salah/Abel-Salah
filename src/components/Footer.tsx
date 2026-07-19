@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
+import { locationLinks } from "@/data/locationLocales";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { trackConversionEvent } from "@/lib/conversionEvents";
 
@@ -109,7 +110,23 @@ const Footer = () => {
                   Télécharger mon CV
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                 </Link>
-                <p className="text-muted-foreground">France</p>
+                <p className="text-muted-foreground">
+                  {locale === "es"
+                    ? "Base en Montpellier — Francia y España"
+                    : locale === "en"
+                      ? "Based in Montpellier — France & Spain"
+                      : "Basé à Montpellier — France & Espagne"}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {locationLinks.map((location, index) => (
+                    <span key={location.path}>
+                      {index > 0 && " · "}
+                      <Link to={location.path} className="hover:text-primary transition-colors">
+                        {location.city}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
               </div>
             </motion.div>
 

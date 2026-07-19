@@ -22,6 +22,7 @@ const AdminOpportunities = lazy(() => import("./pages/AdminOpportunities"));
 const OfferPage = lazy(() => import("./pages/OfferPage"));
 const CV = lazy(() => import("./pages/CV"));
 const Products = lazy(() => import("./pages/Products"));
+const Location = lazy(() => import("./pages/Location"));
 
 const queryClient = new QueryClient();
 const routeFallback = (
@@ -78,6 +79,11 @@ export const AppShell = () => (
             <Route path="/es/auditoria-ia" element={<OfferPage slug="auditoria-ia" />} />
             <Route path="/es/automatizacion-comercial" element={<OfferPage slug="automatizacion-comercial" />} />
             <Route path="/es/formacion-ia" element={<OfferPage slug="formacion-ia" />} />
+            <Route path="/expert-ia-montpellier" element={<Location slug="expert-ia-montpellier" />} />
+            <Route path="/expert-ia-paris" element={<Location slug="expert-ia-paris" />} />
+            <Route path="/expert-ia-marseille" element={<Location slug="expert-ia-marseille" />} />
+            <Route path="/es/experto-ia-malaga" element={<Location slug="experto-ia-malaga" />} />
+            <Route path="/es/experto-ia-barcelona" element={<Location slug="experto-ia-barcelona" />} />
             <Route path="/styleguide" element={<Styleguide />} />
             <Route path="/admin/opportunities" element={<AdminOpportunities />} />
             <Route path="*" element={<NotFound />} />

@@ -40,7 +40,21 @@ const publicRoutes = [
   { path: "/es/productos", file: "es/productos/index.html", lang: "es", title: "Productos IA" },
   { path: "/en/blog", file: "en/blog/index.html", lang: "en", title: "Business AI Blog" },
   { path: "/es/blog", file: "es/blog/index.html", lang: "es", title: "Blog IA Empresa" },
+  { path: "/expert-ia-montpellier", file: "expert-ia-montpellier/index.html", lang: "fr", title: "Expert IA à Montpellier" },
+  { path: "/expert-ia-paris", file: "expert-ia-paris/index.html", lang: "fr", title: "Expert IA à Paris" },
+  { path: "/expert-ia-marseille", file: "expert-ia-marseille/index.html", lang: "fr", title: "Expert IA à Marseille" },
+  { path: "/es/experto-ia-malaga", file: "es/experto-ia-malaga/index.html", lang: "es", title: "Experto en IA en Málaga" },
+  { path: "/es/experto-ia-barcelona", file: "es/experto-ia-barcelona/index.html", lang: "es", title: "Experto en IA en Barcelona" },
 ];
+
+// Pages locales : leur head statique doit embarquer les JSON-LD de la page
+const locationRoutes = new Set([
+  "/expert-ia-montpellier",
+  "/expert-ia-paris",
+  "/expert-ia-marseille",
+  "/es/experto-ia-malaga",
+  "/es/experto-ia-barcelona",
+]);
 
 // Articles de fond pré-rendus (synchro avec blogSlugAlternates dans src/data/blogLocales.ts)
 const articleRoutes = [
@@ -148,6 +162,13 @@ if (existsSync(distDir)) {
       expectIncludes(html, '"@type":"Service"', `Service JSON-LD for ${route.path}`);
       expectIncludes(html, '"potentialAction":{"@type":"ReserveAction"', `ReserveAction JSON-LD for ${route.path}`);
       expectIncludes(html, "https://tidycal.com/skill-lms/abel-rdv", `booking action for ${route.path}`);
+    }
+
+    if (locationRoutes.has(route.path)) {
+      expectIncludes(html, '"@type":"ProfessionalService"', `ProfessionalService JSON-LD for ${route.path}`);
+      expectIncludes(html, '"@type":"FAQPage"', `FAQPage JSON-LD for ${route.path}`);
+      expectIncludes(html, '"@type":"BreadcrumbList"', `BreadcrumbList JSON-LD for ${route.path}`);
+      expectIncludes(html, '"areaServed"', `areaServed JSON-LD for ${route.path}`);
     }
 
     if (route.path !== "/" && !["/en", "/es"].includes(route.path)) {

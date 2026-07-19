@@ -84,13 +84,19 @@ function targetFiles(routePath) {
 }
 
 /* 1. Les routes publiques : les fichiers avec heads statiques existent déjà,
-   on y injecte seulement le corps rendu. */
+   on y injecte le corps rendu — et, pour les routes marquées injectHelmetSchemas
+   (pages locales), les JSON-LD produits par la page elle-même
+   (ProfessionalService, FAQPage, BreadcrumbList), invisibles sinon sans JS. */
 for (const route of routes) {
-  const { body } = await renderPage(route.path);
+  const { body, helmet } = await renderPage(route.path);
   const files = route.path === "/" ? ["index.html"] : targetFiles(route.path);
+  const helmetSchemas = route.injectHelmetSchemas ? helmet.script.toString() : "";
   for (const file of files) {
     const filePath = path.join(distDir, file);
-    const current = await readFile(filePath, "utf8");
+    let current = await readFile(filePath, "utf8");
+    if (helmetSchemas) {
+      current = current.replace("</head>", `${helmetSchemas}</head>`);
+    }
     await writeFile(filePath, injectBody(current, body, route.path));
   }
 }

@@ -401,6 +401,50 @@ export const routes = [
       "Reserve su auditoría IA gratuita con Abel SALAH. Respuesta en 24 h, acompañamiento personalizado para pymes.",
     alternates: contactAlternates,
   },
+  /* Pages locales : pas d'alternates (contenu propre à chaque ville) ;
+     injectHelmetSchemas fait recopier par prerender-routes.mjs les JSON-LD
+     produits par la page (ProfessionalService, FAQPage, BreadcrumbList)
+     dans le head statique, pour les crawlers sans JavaScript. */
+  {
+    path: "/expert-ia-montpellier",
+    lang: "fr",
+    title: "Expert IA à Montpellier | Audit, Automatisation, Formation — Abel SALAH",
+    description:
+      "Consultant IA basé à Montpellier : audit IA, automatisation des processus et formation des équipes, sur place dans vos locaux. Audit découverte gratuit.",
+    injectHelmetSchemas: true,
+  },
+  {
+    path: "/expert-ia-paris",
+    lang: "fr",
+    title: "Expert IA à Paris | Audit, Automatisation, Formation — Abel SALAH",
+    description:
+      "Consultant IA intervenant régulièrement à Paris : audit IA, automatisation et formation pour grands comptes, scale-ups et PME. Formats denses sur 1 à 2 jours sur site.",
+    injectHelmetSchemas: true,
+  },
+  {
+    path: "/expert-ia-marseille",
+    lang: "fr",
+    title: "Expert IA à Marseille | Audit, Automatisation, Formation — Abel SALAH",
+    description:
+      "Consultant IA à Marseille et en région Sud : audit IA, automatisation et formation. Référence locale : le standard IA de la Ville de Marseille, 300 demandes par jour.",
+    injectHelmetSchemas: true,
+  },
+  {
+    path: "/es/experto-ia-malaga",
+    lang: "es",
+    title: "Experto en IA en Málaga | Auditoría, Automatización, Formación — Abel SALAH",
+    description:
+      "Consultor de IA en Málaga: auditoría IA, automatización de procesos y formación de equipos, directamente en español. Eje Francia–España, auditoría inicial gratuita.",
+    injectHelmetSchemas: true,
+  },
+  {
+    path: "/es/experto-ia-barcelona",
+    lang: "es",
+    title: "Experto en IA en Barcelona | Auditoría, Automatización, Formación — Abel SALAH",
+    description:
+      "Consultor de IA en Barcelona: auditoría IA, automatización comercial y formación de equipos en español, francés o inglés. Auditoría inicial gratuita para pymes y scale-ups.",
+    injectHelmetSchemas: true,
+  },
   {
     path: "/cv",
     lang: "fr",
