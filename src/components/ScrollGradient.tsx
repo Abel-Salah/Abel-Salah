@@ -34,7 +34,7 @@ const ScrollGradient = () => {
 
   return (
     <motion.div
-      className="fixed inset-0 pointer-events-none z-0"
+      className="fixed inset-0 pointer-events-none z-0 print:hidden"
       style={{
         x: springX.get() ? springX : 0,
         y: springY.get() ? springY : 0,
