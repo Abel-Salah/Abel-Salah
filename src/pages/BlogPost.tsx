@@ -37,7 +37,9 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
   const { data: generatedPost, isLoading } = useQuery({
     queryKey: ["generated-post", locale, slug],
     queryFn: () => getGeneratedPostBySlug(slug!, locale),
-    enabled: !staticPost && !!slug,
+    // !staticPost suffit déjà en pratique (seuls des articles statiques sont
+    // pré-rendus) ; !SSR documente explicitement l'intention pour le SSR.
+    enabled: !staticPost && !!slug && !import.meta.env.SSR,
   });
 
   const post = staticPost || generatedPost;

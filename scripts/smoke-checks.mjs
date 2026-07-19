@@ -122,6 +122,13 @@ for (const route of publicRoutes.filter((route) => route !== "/")) {
   expectIncludes("public/_redirects", `${route} `, `_redirects route ${route}`);
 }
 
+/* vercel.json a dérivé silencieusement par le passé (aucun check ne le
+   couvrait) : il faut le même garde-fou que _redirects pour ne plus jamais
+   le laisser décrocher des routes réelles. */
+for (const route of publicRoutes.filter((route) => route !== "/")) {
+  expectIncludes("vercel.json", `"source": "${route}"`, `vercel.json rewrite for ${route}`);
+}
+
 if (failures.length > 0) {
   console.error("Smoke checks failed:");
   for (const failure of failures) {

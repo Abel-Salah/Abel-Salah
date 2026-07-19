@@ -124,6 +124,8 @@ if (existsSync(distDir)) {
   const robots = read("robots.txt");
   const headers = read("_headers");
   const redirects = read("_redirects");
+  // vercel.json vit à la racine du repo (convention Vercel), pas dans public/dist
+  const vercelConfig = readFileSync("vercel.json", "utf8");
   const llms = read("llms.txt");
   const ai = read("ai.txt");
   const builtText = readTree(distDir);
@@ -196,6 +198,7 @@ if (existsSync(distDir)) {
     expectIncludes(html, "<h1", `prerendered <h1> for ${article.path}`);
     expectIncludes(sitemap, `<loc>${sitemapUrlFor(article.path)}</loc>`, `sitemap entry for ${article.path}`);
     expectIncludes(redirects, `${article.path} /${relative}.html 200`, `_redirects entry for ${article.path}`);
+    expectIncludes(vercelConfig, `"source": "${article.path}"`, `vercel.json rewrite for ${article.path}`);
   }
 
   for (const route of ["/", "/en", "/es"]) {
