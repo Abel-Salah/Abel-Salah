@@ -205,15 +205,14 @@ serve(async (req) => {
       knownPosts.map((post) => normalizeTitle(post.title))
     );
 
-    /* slug est UNIQUE au niveau de toute la table (pas par langue) : le
-       set de dédup doit couvrir toutes les langues, sinon un slug généré
-       en double d'un article existant dans une AUTRE langue échoue à
-       l'insert au lieu d'être suffixé. */
-    const { data: existingSlugRows } = await supabase
-      .from("generated_blog_posts")
-      .select("slug")
-      .limit(1000);
-    const existingSlugs = new Set((existingSlugRows || []).map((row) => row.slug as string));
+    /* slug est UNIQUE au niveau de toute la table (pas par langue), et la
+       table peut dépasser n'importe quelle limite de page : on vérifie
+       chaque slug généré par une requête exacte (.eq, indexée par la
+       contrainte UNIQUE) juste avant l'insert, comme le fait déjà
+       generate-blog-post/index.ts pour l'article unique. `generatedSlugs`
+       couvre en plus les collisions DANS le même lot, avant qu'elles ne
+       soient insérées en base. */
+    const generatedSlugs = new Set<string>();
 
     const results: { topic: string; success: boolean; title?: string; error?: string }[] = [];
 
@@ -226,9 +225,18 @@ serve(async (req) => {
           throw new Error(`Duplicate generated title refused: ${article.title}`);
         }
 
-        // Deduplicate slug
-        if (existingSlugs.has(article.slug)) {
+        // Deduplicate slug : collision dans ce lot, ou déjà en base (toutes langues confondues)
+        if (generatedSlugs.has(article.slug)) {
           article.slug = `${article.slug}-${Date.now().toString(36)}`;
+        } else {
+          const { data: existingSlug } = await supabase
+            .from("generated_blog_posts")
+            .select("id")
+            .eq("slug", article.slug)
+            .maybeSingle();
+          if (existingSlug) {
+            article.slug = `${article.slug}-${Date.now().toString(36)}`;
+          }
         }
 
         const { error: insertError } = await supabase
@@ -252,7 +260,7 @@ serve(async (req) => {
 
         existingTitles += `, ${article.title}`;
         existingNormalizedTitles.add(normalizeTitle(article.title));
-        existingSlugs.add(article.slug);
+        generatedSlugs.add(article.slug);
         results.push({ topic, success: true, title: article.title });
         console.log(`✅ Generated: ${article.title}`);
       } catch (err) {
