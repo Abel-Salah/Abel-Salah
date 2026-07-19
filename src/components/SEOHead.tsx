@@ -28,10 +28,12 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const fullCanonical = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
   const ogLocale = lang === "en" ? "en_US" : lang === "es" ? "es_ES" : "fr_FR";
-  // x-default = version FR (premier alternate), comme dans les heads statiques
+  /* x-default = version FR (premier alternate) quand la page a des variantes
+     de langue ; sinon la page elle-même (pas de version alternative à
+     préférer), cohérent avec le hreflang="self" émis juste en dessous. */
   const xDefaultHref = alternates?.length
     ? `${SITE_URL}${alternates[0].path === "/" ? "" : alternates[0].path}`
-    : SITE_URL;
+    : fullCanonical;
 
   const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     "@context": "https://schema.org",

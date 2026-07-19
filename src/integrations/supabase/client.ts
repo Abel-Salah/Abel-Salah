@@ -2,11 +2,16 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-/* Valeurs de repli : le pré-rendu au build peut tourner sans env Supabase
-   (createClient jette sinon dès l'import). Les requêtes échouent alors
-   proprement et les fallbacks statiques des pages s'appliquent. */
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "placeholder-key";
+/* Valeurs de repli réservées au bundle SSR (prérendu au build, exécuté en
+   Node) : sans elles, createClient jette dès l'import si l'env Supabase est
+   absente, et le build échoue. Le bundle navigateur, lui, ne doit jamais
+   recevoir de repli silencieux — si l'env manque en production, l'échec
+   doit rester bruyant plutôt que de pointer discrètement vers un projet
+   Supabase inexistant. */
+const SUPABASE_URL =
+  import.meta.env.VITE_SUPABASE_URL || (import.meta.env.SSR ? "https://placeholder.supabase.co" : undefined);
+const SUPABASE_PUBLISHABLE_KEY =
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || (import.meta.env.SSR ? "placeholder-key" : undefined);
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
