@@ -56,7 +56,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 key={venture.domain}
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.05 }}
+                transition={{ duration: 0.4, delay: index * 0.03 }}
                 viewport={{ once: true, margin: "-100px" }}
                 className="border-t border-border py-20 md:py-28"
               >
@@ -150,7 +150,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-12 text-center"
         >

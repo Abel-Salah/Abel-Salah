@@ -96,7 +96,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
               key={group.label}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
+              transition={{ duration: 0.4, delay: groupIndex * 0.05 }}
               viewport={{ once: true }}
               className="border-t border-border py-16"
             >
@@ -130,7 +130,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-4"
         >
@@ -151,7 +151,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20"
         >
@@ -183,7 +183,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20 text-center"
         >

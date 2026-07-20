@@ -124,7 +124,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
               key={outcome}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
+              transition={{ duration: 0.35, delay: index * 0.04 }}
               viewport={{ once: true }}
               className="min-h-[220px] border border-border bg-card/30 p-7"
             >
@@ -211,7 +211,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
                 key={item.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: index * 0.08 }}
+                transition={{ duration: 0.35, delay: index * 0.04 }}
                 viewport={{ once: true }}
                 className="border border-border bg-card/25 p-7"
               >

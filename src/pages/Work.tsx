@@ -44,7 +44,7 @@ const Work = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20 text-center"
         >

@@ -83,12 +83,14 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
         </motion.div>
 
         {/* Services & Clients Grid */}
-        <div className="grid grid-cols-12 gap-8 border-t border-border pt-20">
+        {/* grid-cols-12 sans override mobile : les 11 gaps fixes entre colonnes
+            restaient incompressibles même à colonnes nulles → débordement horizontal. */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-border pt-20">
           {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="col-span-12 md:col-span-6">
 
@@ -101,7 +103,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 key={service}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
                 viewport={{ once: true }}
                 className="text-2xl text-foreground hover:text-primary transition-colors cursor-default">
 
@@ -115,7 +117,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.08 }}
             viewport={{ once: true }}
             className="col-span-12 md:col-span-6">
 
@@ -128,7 +130,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 key={client}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
                 viewport={{ once: true }}
                 className="text-2xl text-foreground hover:text-primary transition-colors cursor-default">
 
@@ -144,7 +146,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}>
 
             <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
@@ -156,7 +158,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 key={cert}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
                 viewport={{ once: true }}
                 className="text-2xl text-foreground hover:text-primary transition-colors cursor-default">
 
@@ -171,7 +173,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 
@@ -229,7 +231,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 
@@ -263,7 +265,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 

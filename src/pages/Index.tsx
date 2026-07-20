@@ -175,7 +175,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
               viewport={{ once: true }}
               className="text-center">
 
@@ -197,7 +197,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
               className="lg:col-span-5"
             >
@@ -220,7 +220,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   key={item.title}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: index * 0.08 }}
+                  transition={{ duration: 0.35, delay: index * 0.04 }}
                   viewport={{ once: true }}
                   className="grid gap-6 py-8 md:grid-cols-[120px_1fr]"
                 >
@@ -245,7 +245,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="mb-16"
           >
@@ -265,7 +265,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 key={item.area}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 className="grid grid-cols-1 gap-8 py-10 md:grid-cols-12 md:items-start"
               >
@@ -304,7 +304,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="mb-20">
 
@@ -326,7 +326,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               key={service.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.12 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
               className="group min-h-[420px] border border-border bg-card/35 p-8 hover:border-primary/60 transition-colors">
                 <div className="flex items-center justify-between">
@@ -367,7 +367,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="mb-16">
 
@@ -387,7 +387,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 key={step}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.12 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 className="min-h-[260px] border-border p-8 md:border-r last:border-r-0"
               >
@@ -402,7 +402,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="mt-12">
 
@@ -423,7 +423,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="heading-display text-5xl md:text-7xl mb-12">
 
@@ -433,7 +433,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}>
 
             <a

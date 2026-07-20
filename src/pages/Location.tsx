@@ -96,7 +96,7 @@ const Location = ({ slug }: { slug: string }) => {
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           viewport={{ once: true }}
           className="mb-16"
         >
@@ -111,7 +111,7 @@ const Location = ({ slug }: { slug: string }) => {
                 <p className="text-muted-foreground leading-relaxed mb-4 flex-1">{service.text}</p>
                 <Link
                   to={service.to}
-                  className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:gap-2 transition-all"
+                  className="inline-flex items-center gap-1 py-2 text-sm text-primary font-medium hover:gap-2 transition-all"
                 >
                   {service.linkLabel}
                   <ArrowRight className="w-4 h-4" />
@@ -125,7 +125,7 @@ const Location = ({ slug }: { slug: string }) => {
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           viewport={{ once: true }}
           className="mb-16 max-w-3xl"
         >
@@ -153,7 +153,7 @@ const Location = ({ slug }: { slug: string }) => {
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           viewport={{ once: true }}
           className="mb-16"
         >
@@ -174,7 +174,7 @@ const Location = ({ slug }: { slug: string }) => {
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           viewport={{ once: true }}
           className="mb-16 max-w-3xl"
         >
@@ -193,7 +193,7 @@ const Location = ({ slug }: { slug: string }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           viewport={{ once: true }}
           className="p-8 md:p-12 rounded-lg border border-primary/30 bg-primary/5 text-center mb-16"
         >

@@ -33,15 +33,12 @@ const ScrollGradient = () => {
   }, [springY, springX]);
 
   return (
-    <motion.div
-      className="fixed inset-0 pointer-events-none z-0 print:hidden"
-      style={{
-        x: springX.get() ? springX : 0,
-        y: springY.get() ? springY : 0,
-        translateX: "-50%",
-        translateY: "-50%",
-      }}
-    >
+    /* Le centrage (-50%) doit s'appliquer au cercle lui-même, pas au
+       conteneur plein écran : appliqué au parent, il décalait tout le
+       calque hors cadre et provoquait un débordement horizontal sur mobile
+       (le cercle de 700px se retrouvait plaqué à gauche au lieu d'être
+       centré). overflow-hidden en garde-fou supplémentaire. */
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 print:hidden">
       <motion.div
         className="absolute w-[700px] h-[700px] left-1/2 top-1/2"
         style={{
@@ -49,9 +46,11 @@ const ScrollGradient = () => {
           filter: "blur(40px)",
           x: springX,
           y: springY,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
       />
-    </motion.div>
+    </div>
   );
 };
 

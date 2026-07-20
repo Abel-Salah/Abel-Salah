@@ -35,13 +35,17 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
           <p className="text-xl text-muted-foreground max-w-2xl">{t.intro}</p>
         </motion.div>
 
-        <div className="grid grid-cols-12 gap-16">
+        {/* grid-cols-12 non responsive : sur mobile, les 11 gaps de gap-16 (64px)
+            entre colonnes restent incompressibles même à colonnes nulles, ce qui
+            forçait un débordement horizontal de ~700px. Une seule colonne en
+            dessous de md supprime ces gaps internes. */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
           {/* Booking Embed */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="col-span-12 md:col-span-7"
+            className="col-span-12 md:col-span-7 min-w-0"
           >
             <div className="w-full rounded-lg overflow-hidden border border-border" style={{ height: "700px" }}>
               <iframe
@@ -50,7 +54,7 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 height="100%"
                 frameBorder="0"
                 title={t.iframeTitle}
-                className="w-full h-full"
+                className="w-full h-full max-w-full"
               />
             </div>
           </motion.div>
