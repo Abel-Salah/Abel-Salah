@@ -21,6 +21,7 @@ interface FooterUIContent {
   socialHeader: string;
   bookCta: string;
   downloadCv: string;
+  locationsLabel: string;
   roundCtaLine1: string;
   roundCtaLine2: string;
   copyright: string;
@@ -35,6 +36,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Suivez-moi",
     bookCta: "Prendre rendez-vous →",
     downloadCv: "Télécharger mon CV",
+    locationsLabel: "Zones d'intervention",
     roundCtaLine1: "Parlons-",
     roundCtaLine2: "en",
     copyright: "Tous droits réservés.",
@@ -47,6 +49,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Follow me",
     bookCta: "Book a call →",
     downloadCv: "Download my CV",
+    locationsLabel: "Service areas",
     roundCtaLine1: "Let's",
     roundCtaLine2: "talk",
     copyright: "All rights reserved.",
@@ -59,6 +62,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Sígueme",
     bookCta: "Reservar una cita →",
     downloadCv: "Descargar mi CV",
+    locationsLabel: "Zonas de intervención",
     roundCtaLine1: "Hable-",
     roundCtaLine2: "mos",
     copyright: "Todos los derechos reservados.",
@@ -182,35 +186,40 @@ const Footer = () => {
                   onClick={() =>
                     trackConversionEvent("book_call_click", "footer", TIDYCAL_BOOKING_URL)
                   }
-                  className="inline-block py-1.5 text-foreground hover:text-primary transition-colors text-lg font-medium story-link"
+                  className="block w-fit py-1.5 text-primary hover:text-primary/80 transition-colors text-xl font-semibold story-link"
                 >
                   {t.bookCta}
                 </a>
                 <Link
                   to={cvCanonicalByLocale[locale]}
-                  className="inline-flex items-center gap-2 py-1.5 text-foreground hover:text-primary transition-colors text-lg font-medium group"
+                  className="flex w-fit items-center gap-2 py-1.5 text-foreground hover:text-primary transition-colors text-lg font-medium group"
                 >
                   <Download className="w-4 h-4" />
                   {t.downloadCv}
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                 </Link>
-                <p className="text-muted-foreground">
-                  {locale === "es"
-                    ? "Base en Montpellier — Francia y España"
-                    : locale === "en"
-                      ? "Based in Montpellier — France & Spain"
-                      : "Basé à Montpellier — France & Espagne"}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {locationLinks.map((location, index) => (
-                    <span key={location.path}>
-                      {index > 0 && " · "}
-                      <Link to={location.path} className="hover:text-primary transition-colors">
-                        {location.city}
-                      </Link>
-                    </span>
-                  ))}
-                </p>
+                <div className="border-t border-border pt-4 mt-2">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                    {t.locationsLabel}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {locale === "es"
+                      ? "Base en Montpellier — Francia y España"
+                      : locale === "en"
+                        ? "Based in Montpellier — France & Spain"
+                        : "Basé à Montpellier — France & Espagne"}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {locationLinks.map((location, index) => (
+                      <span key={location.path}>
+                        {index > 0 && " · "}
+                        <Link to={location.path} className="hover:text-primary transition-colors">
+                          {location.city}
+                        </Link>
+                      </span>
+                    ))}
+                  </p>
+                </div>
               </div>
             </motion.div>
 
