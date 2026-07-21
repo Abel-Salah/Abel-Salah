@@ -5,7 +5,12 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  {
+    // supabase/functions/mcp est régénéré automatiquement par le plugin Vite
+    // @lovable.dev/mcp-js (bannière "AUTO-GENERATED... do not edit" en tête de
+    // fichier) : l'éditer ici serait écrasé au prochain build côté Lovable.
+    ignores: ["dist", "supabase/functions/mcp/**"],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
