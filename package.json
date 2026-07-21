@@ -15,6 +15,7 @@
     "verify": "npm run lint && npm run typecheck && npm run build && node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke && npm audit --audit-level=moderate"
   },
   "dependencies": {
+    "@lovable.dev/mcp-js": "^0.24.0",
     "@radix-ui/react-slot": "^1.3.0",
     "@radix-ui/react-toast": "^1.2.19",
     "@radix-ui/react-tooltip": "^1.2.12",
@@ -34,7 +35,8 @@
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
