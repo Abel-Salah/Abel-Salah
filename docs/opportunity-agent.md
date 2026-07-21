@@ -4,6 +4,8 @@
 
 L'Opportunity Agent aide Abel SALAH a detecter des missions pertinentes, les scorer et preparer des brouillons de prise de contact. Il ne postule pas automatiquement et n'envoie aucun message sans validation humaine.
 
+Le contenu de reference (profil, tarifs, modeles de message, plan de relance) a utiliser pour rediger ces brouillons est dans [`candidature-profile.md`](./candidature-profile.md).
+
 Le flux est volontairement semi-automatique pour proteger la reputation d'Abel, eviter le spam et respecter les conditions des plateformes.
 
 ## Architecture

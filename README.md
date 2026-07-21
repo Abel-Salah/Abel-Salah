@@ -103,6 +103,7 @@ Etat observe au dernier audit documentaire :
 - [Architecture technique](docs/architecture.md)
 - [Supabase et securite](docs/supabase.md)
 - [Opportunity Agent](docs/opportunity-agent.md)
+- [Profil de candidature / prospection](docs/candidature-profile.md)
 - [SEO, sitemap et LLM](docs/seo.md)
 - [Deploiement et rollback](docs/deployment.md)
 - [Qualite, tests et maintenance](docs/quality.md)
