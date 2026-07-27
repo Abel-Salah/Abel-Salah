@@ -10,7 +10,14 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger(), mcpPlugin()].filter(Boolean),
+  // Le plugin Lovable synchronise des fichiers Supabase ; il ne doit pas
+  // s'exécuter pendant un build de production, où ces fonctions sont
+  // versionnées et gérées par le projet.
+  plugins: [
+    react(),
+    mode === "development" && componentTagger(),
+    mode === "development" && mcpPlugin(),
+  ].filter(Boolean),
 
   resolve: {
     alias: {

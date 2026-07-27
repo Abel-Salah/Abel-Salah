@@ -1,52 +1,59 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*).html",
+      "destination": "/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/about",
-      "destination": "/about.html"
+      "destination": "/about/index.html"
     },
     {
       "source": "/audit-ia",
-      "destination": "/audit-ia.html"
+      "destination": "/audit-ia/index.html"
     },
     {
       "source": "/automatisation-commerciale",
-      "destination": "/automatisation-commerciale.html"
+      "destination": "/automatisation-commerciale/index.html"
     },
     {
       "source": "/blog",
-      "destination": "/blog.html"
+      "destination": "/blog/index.html"
     },
     {
       "source": "/blog/audit-ia-entreprise-par-ou-commencer",
-      "destination": "/blog/audit-ia-entreprise-par-ou-commencer.html"
+      "destination": "/blog/audit-ia-entreprise-par-ou-commencer/index.html"
     },
     {
       "source": "/blog/automatisation-ia-pme-guide-pratique",
-      "destination": "/blog/automatisation-ia-pme-guide-pratique.html"
+      "destination": "/blog/automatisation-ia-pme-guide-pratique/index.html"
     },
     {
       "source": "/blog/ia-force-de-vente-cas-concrets",
-      "destination": "/blog/ia-force-de-vente-cas-concrets.html"
+      "destination": "/blog/ia-force-de-vente-cas-concrets/index.html"
     },
     {
       "source": "/blog/pourquoi-faire-appel-expert-ia-entreprise",
-      "destination": "/blog/pourquoi-faire-appel-expert-ia-entreprise.html"
+      "destination": "/blog/pourquoi-faire-appel-expert-ia-entreprise/index.html"
     },
     {
       "source": "/blog/strategie-ia-entreprise-2026",
-      "destination": "/blog/strategie-ia-entreprise-2026.html"
+      "destination": "/blog/strategie-ia-entreprise-2026/index.html"
     },
     {
       "source": "/contact",
-      "destination": "/contact.html"
+      "destination": "/contact/index.html"
     },
     {
       "source": "/cv",
-      "destination": "/cv.html"
+      "destination": "/cv/index.html"
     },
     {
       "source": "/ecosystem",
-      "destination": "/ecosystem.html"
+      "destination": "/ecosystem/index.html"
     },
     {
       "source": "/en",
@@ -54,63 +61,63 @@
     },
     {
       "source": "/en/about",
-      "destination": "/en/about.html"
+      "destination": "/en/about/index.html"
     },
     {
       "source": "/en/ai-audit",
-      "destination": "/en/ai-audit.html"
+      "destination": "/en/ai-audit/index.html"
     },
     {
       "source": "/en/ai-training",
-      "destination": "/en/ai-training.html"
+      "destination": "/en/ai-training/index.html"
     },
     {
       "source": "/en/blog",
-      "destination": "/en/blog.html"
+      "destination": "/en/blog/index.html"
     },
     {
       "source": "/en/blog/ai-automation-for-smes-practical-guide",
-      "destination": "/en/blog/ai-automation-for-smes-practical-guide.html"
+      "destination": "/en/blog/ai-automation-for-smes-practical-guide/index.html"
     },
     {
       "source": "/en/blog/ai-for-sales-teams-real-world-cases",
-      "destination": "/en/blog/ai-for-sales-teams-real-world-cases.html"
+      "destination": "/en/blog/ai-for-sales-teams-real-world-cases/index.html"
     },
     {
       "source": "/en/blog/business-ai-audit-where-to-start",
-      "destination": "/en/blog/business-ai-audit-where-to-start.html"
+      "destination": "/en/blog/business-ai-audit-where-to-start/index.html"
     },
     {
       "source": "/en/blog/business-ai-strategy-2026-priorities",
-      "destination": "/en/blog/business-ai-strategy-2026-priorities.html"
+      "destination": "/en/blog/business-ai-strategy-2026-priorities/index.html"
     },
     {
       "source": "/en/blog/why-hire-an-ai-expert-for-your-business",
-      "destination": "/en/blog/why-hire-an-ai-expert-for-your-business.html"
+      "destination": "/en/blog/why-hire-an-ai-expert-for-your-business/index.html"
     },
     {
       "source": "/en/contact",
-      "destination": "/en/contact.html"
+      "destination": "/en/contact/index.html"
     },
     {
       "source": "/en/cv",
-      "destination": "/en/cv.html"
+      "destination": "/en/cv/index.html"
     },
     {
       "source": "/en/ecosystem",
-      "destination": "/en/ecosystem.html"
+      "destination": "/en/ecosystem/index.html"
     },
     {
       "source": "/en/products",
-      "destination": "/en/products.html"
+      "destination": "/en/products/index.html"
     },
     {
       "source": "/en/sales-automation",
-      "destination": "/en/sales-automation.html"
+      "destination": "/en/sales-automation/index.html"
     },
     {
       "source": "/en/work",
-      "destination": "/en/work.html"
+      "destination": "/en/work/index.html"
     },
     {
       "source": "/es",
@@ -118,100 +125,99 @@
     },
     {
       "source": "/es/about",
-      "destination": "/es/about.html"
+      "destination": "/es/about/index.html"
     },
     {
       "source": "/es/auditoria-ia",
-      "destination": "/es/auditoria-ia.html"
+      "destination": "/es/auditoria-ia/index.html"
     },
     {
       "source": "/es/automatizacion-comercial",
-      "destination": "/es/automatizacion-comercial.html"
+      "destination": "/es/automatizacion-comercial/index.html"
     },
     {
       "source": "/es/blog",
-      "destination": "/es/blog.html"
+      "destination": "/es/blog/index.html"
     },
     {
       "source": "/es/blog/auditoria-ia-empresa-por-donde-empezar",
-      "destination": "/es/blog/auditoria-ia-empresa-por-donde-empezar.html"
+      "destination": "/es/blog/auditoria-ia-empresa-por-donde-empezar/index.html"
     },
     {
       "source": "/es/blog/automatizacion-ia-pymes-guia-practica",
-      "destination": "/es/blog/automatizacion-ia-pymes-guia-practica.html"
+      "destination": "/es/blog/automatizacion-ia-pymes-guia-practica/index.html"
     },
     {
       "source": "/es/blog/estrategia-ia-empresa-2026",
-      "destination": "/es/blog/estrategia-ia-empresa-2026.html"
+      "destination": "/es/blog/estrategia-ia-empresa-2026/index.html"
     },
     {
       "source": "/es/blog/ia-fuerza-de-ventas-casos-reales",
-      "destination": "/es/blog/ia-fuerza-de-ventas-casos-reales.html"
+      "destination": "/es/blog/ia-fuerza-de-ventas-casos-reales/index.html"
     },
     {
       "source": "/es/blog/por-que-contratar-un-experto-ia-empresa",
-      "destination": "/es/blog/por-que-contratar-un-experto-ia-empresa.html"
+      "destination": "/es/blog/por-que-contratar-un-experto-ia-empresa/index.html"
     },
     {
       "source": "/es/contact",
-      "destination": "/es/contact.html"
+      "destination": "/es/contact/index.html"
     },
     {
       "source": "/es/cv",
-      "destination": "/es/cv.html"
+      "destination": "/es/cv/index.html"
     },
     {
       "source": "/es/ecosystem",
-      "destination": "/es/ecosystem.html"
+      "destination": "/es/ecosystem/index.html"
     },
     {
       "source": "/es/experto-ia-barcelona",
-      "destination": "/es/experto-ia-barcelona.html"
+      "destination": "/es/experto-ia-barcelona/index.html"
     },
     {
       "source": "/es/experto-ia-malaga",
-      "destination": "/es/experto-ia-malaga.html"
+      "destination": "/es/experto-ia-malaga/index.html"
     },
     {
       "source": "/es/formacion-ia",
-      "destination": "/es/formacion-ia.html"
+      "destination": "/es/formacion-ia/index.html"
     },
     {
       "source": "/es/productos",
-      "destination": "/es/productos.html"
+      "destination": "/es/productos/index.html"
     },
     {
       "source": "/es/work",
-      "destination": "/es/work.html"
+      "destination": "/es/work/index.html"
     },
     {
       "source": "/expert-ia-marseille",
-      "destination": "/expert-ia-marseille.html"
+      "destination": "/expert-ia-marseille/index.html"
     },
     {
       "source": "/expert-ia-montpellier",
-      "destination": "/expert-ia-montpellier.html"
+      "destination": "/expert-ia-montpellier/index.html"
     },
     {
       "source": "/expert-ia-paris",
-      "destination": "/expert-ia-paris.html"
+      "destination": "/expert-ia-paris/index.html"
     },
     {
       "source": "/formation-ia",
-      "destination": "/formation-ia.html"
+      "destination": "/formation-ia/index.html"
     },
     {
       "source": "/produits",
-      "destination": "/produits.html"
+      "destination": "/produits/index.html"
     },
     {
       "source": "/work",
-      "destination": "/work.html"
+      "destination": "/work/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/admin/(.*)",
       "destination": "/index.html"
     }
   ]
 }
-

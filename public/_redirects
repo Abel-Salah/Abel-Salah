@@ -50,4 +50,4 @@
 /formation-ia /formation-ia.html 200!
 /produits /produits.html 200!
 /work /work.html 200!
-/* /index.html 200
+/*.html /:splat 301!
