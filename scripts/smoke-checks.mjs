@@ -106,6 +106,12 @@ for (const pattern of forbiddenClaimPatterns) {
   }
 }
 expectIncludes("supabase/config.toml", "[functions.generate-blog-post]\nverify_jwt = true", "blog generation JWT");
+expectIncludes("supabase/config.toml", "[functions.run-atlas]\nverify_jwt = true", "Atlas JWT");
+expectIncludes("supabase/functions/run-atlas/index.ts", "business_development_scan", "Nova task type");
+expectIncludes("supabase/functions/run-atlas/index.ts", "google_search_console_audit", "Cléo task type");
+expectIncludes("supabase/functions/run-atlas/index.ts", "llm_visibility_audit", "Iris task type");
+expectIncludes("supabase/migrations/20260728090000_create_agent_registry.sql", "Atlas", "agent registry seed");
+expectIncludes("supabase/migrations/20260728090000_create_agent_registry.sql", "requires_human_approval", "human approval guard");
 expectIncludes("supabase/config.toml", "[functions.manage-opportunities]\nverify_jwt = true", "opportunity admin JWT");
 expectIncludes("supabase/functions/draft-job-outreach/index.ts", 'status: "pending_review"', "draft human review status");
 expectNotIncludes("supabase/functions", "sendEmail", "automatic email sending");

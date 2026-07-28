@@ -24,5 +24,8 @@ verify_jwt = true
 [functions.run-opportunity-daily]
 verify_jwt = true
 
+[functions.run-atlas]
+verify_jwt = true
+
 [functions.mcp]
 verify_jwt = false
