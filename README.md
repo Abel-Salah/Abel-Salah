@@ -5,7 +5,7 @@ Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente le
 ## Stack
 
 - Vite
-- React 18
+- React 19
 - TypeScript
 - React Router
 - Tailwind CSS
@@ -18,7 +18,7 @@ Site vitrine d'Abel SALAH, consultant IA pour entreprises. Le projet presente le
 
 ## Prerequis
 
-- Node.js 22+ recommande
+- Node.js 22.22+ requis
 - npm
 - Un projet Supabase si les articles generes ou les Edge Functions sont utilises
 

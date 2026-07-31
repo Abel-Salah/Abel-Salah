@@ -69,13 +69,31 @@ function injectBody(html, body, label) {
   return html.replace(ROOT_MARKER, `<div id="root">${body}</div>`);
 }
 
+// React 19 rend nativement title/meta/link dans le flux SSR au lieu de laisser
+// react-helmet-async les exposer via son contexte serveur. Les JSON-LD restent
+// à leur position dans le corps. On extrait donc les éléments de head du flux
+// avant d'injecter le corps pré-rendu, afin d'éviter les doublons et de garder
+// les schémas dans <head> comme avec React 18.
+const MANAGED_HEAD_ELEMENT =
+  /<title\b[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*\/?\s*>|<link\b[^>]*\/?\s*>|<script\b[^>]*type=(['"])application\/ld\+json\1[^>]*>[\s\S]*?<\/script>/gi;
+
+function splitRenderedHead(html) {
+  const elements = [];
+  const body = html.replace(MANAGED_HEAD_ELEMENT, (element) => {
+    elements.push(element);
+    return "";
+  });
+  return { body, head: elements.join("\n") };
+}
+
 async function renderPage(routePath) {
-  const { html, helmet } = await render(routePath);
-  const body = revealMotionStyles(html);
+  const { html } = await render(routePath);
+  const rendered = splitRenderedHead(html);
+  const body = revealMotionStyles(rendered.body);
   if (!body.includes("<h1")) {
     throw new Error(`${routePath}: aucun <h1> dans le rendu (fallback Suspense ou page vide ?)`);
   }
-  return { body, helmet };
+  return { body, head: rendered.head };
 }
 
 function targetFiles(routePath) {
@@ -88,9 +106,11 @@ function targetFiles(routePath) {
    (pages locales), les JSON-LD produits par la page elle-même
    (ProfessionalService, FAQPage, BreadcrumbList), invisibles sinon sans JS. */
 for (const route of routes) {
-  const { body, helmet } = await renderPage(route.path);
+  const { body, head } = await renderPage(route.path);
   const files = route.path === "/" ? ["index.html"] : targetFiles(route.path);
-  const helmetSchemas = route.injectHelmetSchemas ? helmet.script.toString() : "";
+  const helmetSchemas = route.injectHelmetSchemas
+    ? (head.match(/<script\b[^>]*type=(['"])application\/ld\+json\1[^>]*>[\s\S]*?<\/script>/gi) ?? []).join("")
+    : "";
   for (const file of files) {
     const filePath = path.join(distDir, file);
     let current = await readFile(filePath, "utf8");
@@ -108,11 +128,9 @@ const basePath = path.join(distDir, ".spa-base.html");
 const baseHtml = await readFile(basePath, "utf8");
 
 for (const article of articleRoutes) {
-  const { body, helmet } = await renderPage(article.path);
-  const head = [helmet.title, helmet.meta, helmet.link, helmet.script]
-    .map((part) => part.toString())
-    .filter(Boolean)
-    .join("\n    ")
+  const rendered = await renderPage(article.path);
+  const { body } = rendered;
+  const head = rendered.head
     // helmet sérialise la prop React telle quelle ; l'attribut HTML normalisé est en minuscules
     .replaceAll('hrefLang="', 'hreflang="');
   if (!head.includes("<title")) {

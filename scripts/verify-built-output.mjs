@@ -174,7 +174,7 @@ if (existsSync(distDir)) {
     }
 
     if (route.path !== "/" && !["/en", "/es"].includes(route.path)) {
-      expectIncludes(redirects, `${route.path} /${route.path.slice(1)}.html 200`, `_redirects entry for ${route.path}`);
+      expectIncludes(redirects, `${route.path} /${route.path.slice(1)}/index.html 200`, `_redirects entry for ${route.path}`);
     }
   }
 
@@ -197,7 +197,7 @@ if (existsSync(distDir)) {
     expect(!html.includes('<div id="root"></div>'), `prerendered body missing (empty #root) for ${article.path}`);
     expectIncludes(html, "<h1", `prerendered <h1> for ${article.path}`);
     expectIncludes(sitemap, `<loc>${sitemapUrlFor(article.path)}</loc>`, `sitemap entry for ${article.path}`);
-    expectIncludes(redirects, `${article.path} /${relative}.html 200`, `_redirects entry for ${article.path}`);
+    expectIncludes(redirects, `${article.path} /${relative}/index.html 200`, `_redirects entry for ${article.path}`);
     expectIncludes(vercelConfig, `"source": "${article.path}"`, `vercel.json rewrite for ${article.path}`);
   }
 

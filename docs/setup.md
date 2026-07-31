@@ -2,7 +2,7 @@
 
 ## Prerequis
 
-- Node.js 22+ recommande
+- Node.js 22.22+ requis
 - npm
 - Acces au projet Supabase si les articles generes doivent fonctionner
 

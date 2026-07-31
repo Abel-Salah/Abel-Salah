@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { cvCanonicalByLocale } from "@/data/cvLocales";

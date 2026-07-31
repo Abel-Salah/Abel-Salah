@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useState } from "react";
 import { ArrowRight, Download, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";

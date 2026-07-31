@@ -31,7 +31,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
         ? {}
         : {
             manualChunks: {
-              react: ["react", "react-dom", "react-router-dom"],
+              react: ["react", "react-dom", "react-router"],
               motion: ["framer-motion"],
               ui: ["@radix-ui/react-slot", "@radix-ui/react-toast", "@radix-ui/react-tooltip"],
               supabase: ["@supabase/supabase-js"],

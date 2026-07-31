@@ -3,7 +3,7 @@
    Ce module n'est jamais chargé côté client. */
 import { PassThrough } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router";
 import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import { AppShell } from "./App";
 

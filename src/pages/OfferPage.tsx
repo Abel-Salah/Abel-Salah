@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router";
 import SEOHead from "@/components/SEOHead";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { offerPages, type OfferSlug } from "@/data/offerPages";

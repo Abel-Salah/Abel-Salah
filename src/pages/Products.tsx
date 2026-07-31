@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
