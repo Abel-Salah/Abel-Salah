@@ -96,7 +96,7 @@ const BusinessCard = () => {
         </div>
 
         <div className="business-card-actions">
-          <a className="business-card-button business-card-button-primary" href={STRIPE_PAYMENT_LINKS.exchange} target="_blank" rel="noreferrer" onClick={() => trackConversionEvent("offer_cta_click", "business_card_exchange", STRIPE_PAYMENT_LINKS.exchange)}><PhoneCall /> Échange 30 min — 49 €</a>
+          <a className="business-card-button business-card-button-secondary" href={STRIPE_PAYMENT_LINKS.exchange} target="_blank" rel="noreferrer" onClick={() => trackConversionEvent("offer_cta_click", "business_card_exchange", STRIPE_PAYMENT_LINKS.exchange)}><PhoneCall /> Échange 30 min — 49 €</a>
           <a className="business-card-button business-card-button-youtube" href="https://www.youtube.com/@abelsalah" target="_blank" rel="noreferrer"><Download /> YouTube</a>
         </div>
 
