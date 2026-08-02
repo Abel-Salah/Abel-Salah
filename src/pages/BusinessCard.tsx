@@ -80,13 +80,13 @@ const BusinessCard = () => {
         </div>
 
         <p className="business-card-section-label">Choisir un accompagnement</p>
-        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={openOffer} onTouchEnd={openOffer} onClick={openOffer}>
+        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerDown={openOffer} onPointerUp={openOffer} onTouchStart={openOffer} onTouchEnd={openOffer} onClick={openOffer}>
           <span><strong>Audit &amp; accompagnement</strong><small>3 options disponibles</small></span><ArrowUpRight />
         </button>
         <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
-          <button type="button" role="tab" aria-selected={activeTab === "useful"} className={activeTab === "useful" ? "is-active" : ""} onClick={() => setActiveTab("useful")}>Liens utiles</button>
-          <button type="button" role="tab" aria-selected={activeTab === "about"} className={activeTab === "about" ? "is-active" : ""} onClick={() => setActiveTab("about")}>Qui suis-je ?</button>
-          <button type="button" role="tab" aria-selected={activeTab === "work"} className={activeTab === "work" ? "is-active" : ""} onClick={() => setActiveTab("work")}>Réalisations</button>
+          <button type="button" role="tab" aria-selected={activeTab === "useful"} className={activeTab === "useful" ? "is-active" : ""} onPointerDown={() => setActiveTab("useful")} onTouchStart={() => setActiveTab("useful")} onClick={() => setActiveTab("useful")}>Liens utiles</button>
+          <button type="button" role="tab" aria-selected={activeTab === "about"} className={activeTab === "about" ? "is-active" : ""} onPointerDown={() => setActiveTab("about")} onTouchStart={() => setActiveTab("about")} onClick={() => setActiveTab("about")}>Qui suis-je ?</button>
+          <button type="button" role="tab" aria-selected={activeTab === "work"} className={activeTab === "work" ? "is-active" : ""} onPointerDown={() => setActiveTab("work")} onTouchStart={() => setActiveTab("work")} onClick={() => setActiveTab("work")}>Réalisations</button>
         </div>
         {activeTab === "useful" && links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
         {activeTab === "about" && <div className="business-card-tab-panel"><strong>Un parcours commercial devenu digital.</strong><p>Après des études supérieures en commerce et une expérience comme directeur d’Intersport, j’ai choisi de bifurquer vers le digital, l’intelligence artificielle et l’accompagnement des entreprises.</p><p>Aujourd’hui, j’accompagne les entreprises autour de trois pôles d’expertise :</p><ul><li><strong>Audits</strong> pour identifier les priorités et les opportunités.</li><li><strong>Déploiements &amp; optimisations</strong> pour passer aux actions concrètes.</li><li><strong>Formation</strong> pour rendre les équipes autonomes.</li></ul></div>}
