@@ -75,6 +75,7 @@ const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   fr: [
     { to: homeCanonicalByLocale.fr, label: "Accueil" },
     { to: "/card", label: "Carte de visite" },
+    { to: "/outils", label: "Outils gratuits" },
     { to: workCanonicalByLocale.fr, label: "Réalisations" },
     { to: aboutCanonicalByLocale.fr, label: "À propos" },
     { to: ecosystemCanonicalByLocale.fr, label: "Écosystème" },
