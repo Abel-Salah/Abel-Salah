@@ -2,16 +2,11 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-/* Valeurs de repli réservées au bundle SSR (prérendu au build, exécuté en
-   Node) : sans elles, createClient jette dès l'import si l'env Supabase est
-   absente, et le build échoue. Le bundle navigateur, lui, ne doit jamais
-   recevoir de repli silencieux — si l'env manque en production, l'échec
-   doit rester bruyant plutôt que de pointer discrètement vers un projet
-   Supabase inexistant. */
-const SUPABASE_URL =
-  import.meta.env.VITE_SUPABASE_URL || (import.meta.env.SSR ? "https://placeholder.supabase.co" : undefined);
-const SUPABASE_PUBLISHABLE_KEY =
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || (import.meta.env.SSR ? "placeholder-key" : undefined);
+/* Supabase est optionnel pour les pages publiques. Un bundle produit sans
+   variables VITE_SUPABASE ne doit jamais empêcher React de s'hydrater : la
+   newsletter affichera simplement son état indisponible. */
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "placeholder-key";
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";

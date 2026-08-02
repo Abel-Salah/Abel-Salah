@@ -45,8 +45,12 @@ const BusinessCard = () => {
   const subscribe = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setNewsletterStatus("loading");
-    const { error } = await supabase.functions.invoke("subscribe-newsletter", { body: { email: newsletterEmail } });
-    setNewsletterStatus(error ? "error" : "success");
+    try {
+      const { error } = await supabase.functions.invoke("subscribe-newsletter", { body: { email: newsletterEmail } });
+      setNewsletterStatus(error ? "error" : "success");
+    } catch {
+      setNewsletterStatus("error");
+    }
   };
 
   return <main className="business-card-page">
