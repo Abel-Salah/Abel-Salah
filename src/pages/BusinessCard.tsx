@@ -15,6 +15,18 @@ const links = [
   { label: "SCALL’UP", badge: "Plateforme de prospection", href: "https://scallup.fr" },
 ];
 
+const projects = [
+  ["ImmoMontpellier.com", "https://immomontpellier.com"],
+  ["Formateurs.pro", "https://formateurs.pro"],
+  ["EnfantsProteges.fr", "https://enfantsproteges.fr"],
+  ["Goodlifeai.fr", "https://goodlifeai.fr"],
+  ["Encheres.pro", "https://encheres.pro"],
+  ["Locango.fr", "https://locango.fr"],
+  ["Solenza.eu", "https://solenza.eu"],
+  ["DermoAnalyse.fr", "https://dermoanalyse.fr"],
+  ["Algerstay.fr", "https://algerstay.fr"],
+] as const;
+
 const offers = [
   { id: "audit", label: "AUDIT ENTREPRISE", price: "29 €", description: "Analyse de votre entreprise, de votre site et de votre visibilité Google avec des axes d’amélioration concrets.", href: STRIPE_PAYMENT_LINKS.audit, cta: "Payer l’audit" },
   { id: "visio", label: "AUDIT + VISIO 30 MIN", price: "49 €", description: "L’audit écrit, puis 30 minutes d’échange en visioconférence pour répondre à vos questions.", href: STRIPE_PAYMENT_LINKS.exchange, cta: "Payer l’échange" },
@@ -78,7 +90,7 @@ const BusinessCard = () => {
         </div>
         {activeTab === "useful" && links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
         {activeTab === "about" && <div className="business-card-tab-panel"><strong>Un parcours commercial devenu digital.</strong><p>Après des études supérieures en commerce et une expérience comme directeur d’Intersport, j’ai choisi de bifurquer vers le digital, l’intelligence artificielle et l’accompagnement des entreprises.</p><p>Aujourd’hui, je conçois des solutions concrètes pour améliorer leur visibilité, leur organisation et leur développement commercial.</p></div>}
-        {activeTab === "work" && <a className="business-card-link ecosystem-link" href="/work"><span><b>→</b><strong>Voir mes réalisations</strong></span><ArrowUpRight /></a>}
+        {activeTab === "work" && <div className="business-card-projects">{projects.map(([label, href]) => <a key={href} className="business-card-link ecosystem-link" href={href} target="_blank" rel="noreferrer"><span><b>→</b><strong>{label}</strong></span><ArrowUpRight /></a>)}</div>}
 
         <h2>Développez votre expertise commerciale !</h2>
         <p className="business-card-newsletter">Abonnez-vous à notre newsletter et recevez<br />des conseils exclusifs et des stratégies<br />efficaces</p>
