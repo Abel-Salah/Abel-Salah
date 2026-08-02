@@ -34,19 +34,30 @@ const offers = [
 ];
 
 const serviceLinks = [
-  ["Corrections & optimisation du site", "Améliorer un site existant", "/contact"],
-  ["Déploiement IA & automatisations", "Passer de l’idée à un système concret", "/contact"],
-  ["Formation IA pour entreprises", "Faire monter les équipes en autonomie", "/contact"],
+  ["Corrections & optimisation du site", "Sur devis · améliorer un site existant", "/contact"],
+  ["Déploiement IA & automatisations", "Sur devis · passer de l’idée à un système concret", "/contact"],
+  ["Formation IA pour entreprises", "Sur devis · faire monter les équipes en autonomie", "/contact"],
 ] as const;
 
 const BusinessCard = () => {
   const [selectedOffer, setSelectedOffer] = useState<(typeof offers)[number] | null>(null);
+  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [serviceSubmitted, setServiceSubmitted] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [activeTab, setActiveTab] = useState<"services" | "useful" | "about" | "work">("services");
   const openOffer = () => setSelectedOffer(offers[0]);
   const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
+  const openService = (label: string) => { setSelectedService(label); setServiceSubmitted(false); };
+  const submitServiceRequest = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const subject = `Demande de devis — ${selectedService ?? "Service"}`;
+    const body = [`Service : ${selectedService ?? ""}`, `Nom : ${data.get("name") ?? ""}`, `Entreprise : ${data.get("company") ?? ""}`, `Email : ${data.get("email") ?? ""}`, `Budget indicatif : ${data.get("budget") ?? ""}`, "", `Besoin : ${data.get("need") ?? ""}`].join("\n");
+    window.location.href = `mailto:contact@abelsalah.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setServiceSubmitted(true);
+  };
 
   const subscribe = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,7 +102,7 @@ const BusinessCard = () => {
 
         <p className="business-card-section-label">Choisir un accompagnement</p>
         <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerDown={openOffer} onPointerUp={openOffer} onTouchStart={openOffer} onTouchEnd={openOffer} onClick={openOffer}>
-          <span><strong>Audit &amp; accompagnement</strong><small>3 options disponibles</small></span><ArrowUpRight />
+          <span><strong>Voir les offres d’accompagnement</strong><small>Audit, déploiement &amp; formation</small></span><ArrowUpRight />
         </button>
         <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
           <button type="button" role="tab" aria-selected={activeTab === "services"} className={activeTab === "services" ? "is-active" : ""} onPointerDown={() => setActiveTab("services")} onTouchStart={() => setActiveTab("services")} onClick={() => setActiveTab("services")}>Services</button>
@@ -99,7 +110,7 @@ const BusinessCard = () => {
           <button type="button" role="tab" aria-selected={activeTab === "about"} className={activeTab === "about" ? "is-active" : ""} onPointerDown={() => setActiveTab("about")} onTouchStart={() => setActiveTab("about")} onClick={() => setActiveTab("about")}>Qui suis-je ?</button>
           <button type="button" role="tab" aria-selected={activeTab === "work"} className={activeTab === "work" ? "is-active" : ""} onPointerDown={() => setActiveTab("work")} onTouchStart={() => setActiveTab("work")} onClick={() => setActiveTab("work")}>Réalisations</button>
         </div>
-        {activeTab === "services" && <div className="business-card-services">{offers.map((offer) => <a key={offer.id} className="business-card-service" href={offer.href} target="_blank" rel="noreferrer"><span><strong>{offer.label}</strong><small>{offer.price} · {offer.description}</small></span><ArrowUpRight /></a>)}{serviceLinks.map(([label, description, href]) => <a key={label} className="business-card-service" href={href}><span><strong>{label}</strong><small>{description}</small></span><ArrowUpRight /></a>)}</div>}
+        {activeTab === "services" && <div className="business-card-services">{offers.map((offer) => <a key={offer.id} className="business-card-service" href={offer.href} target="_blank" rel="noreferrer"><span><strong>{offer.label}</strong><small>{offer.price} · {offer.description}</small></span><ArrowUpRight /></a>)}{serviceLinks.map(([label, description]) => <button type="button" key={label} className="business-card-service" onClick={() => openService(label)}><span><strong>{label}</strong><small>{description}</small></span><ArrowUpRight /></button>)}</div>}
         {activeTab === "useful" && links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
         {activeTab === "about" && <div className="business-card-tab-panel"><strong>Un parcours commercial devenu digital.</strong><p>Après des études supérieures en commerce et une expérience comme directeur d’Intersport, j’ai choisi de bifurquer vers le digital, l’intelligence artificielle et l’accompagnement des entreprises.</p><p>Aujourd’hui, j’accompagne les entreprises autour de trois pôles d’expertise :</p><ul><li><strong>Audits</strong> pour identifier les priorités et les opportunités.</li><li><strong>Déploiements &amp; optimisations</strong> pour passer aux actions concrètes.</li><li><strong>Formation</strong> pour rendre les équipes autonomes.</li></ul></div>}
         {activeTab === "work" && <div className="business-card-projects">{projects.map(([label, href]) => <a key={href} className="business-card-link ecosystem-link" href={href} target="_blank" rel="noreferrer"><span><b>→</b><strong>{label}</strong></span><ArrowUpRight /></a>)}</div>}
@@ -116,6 +127,12 @@ const BusinessCard = () => {
           <h2 id="offer-title">Choisissez votre solution</h2>
           <div className="business-card-modal-offers">{offers.map((offer) => <div className="business-card-modal-offer" key={offer.id}><div><strong>{offer.label}</strong><b>{offer.price}</b><p>{offer.description}</p></div><a className="business-card-modal-cta" href={offer.href} target={offer.href.startsWith("http") ? "_blank" : undefined} rel={offer.href.startsWith("http") ? "noreferrer" : undefined} onClick={() => trackConversionEvent("offer_cta_click", `business_card_${offer.id}`, offer.href)}>{offer.cta} <ArrowUpRight /></a></div>)}</div>
           <p className="business-card-modal-note">Après paiement, vous recevrez les prochaines instructions par email.</p>
+        </section>
+      </div>}
+      {selectedService && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setSelectedService(null)}>
+        <section className="business-card-modal service-request-modal" role="dialog" aria-modal="true" aria-labelledby="service-request-title" onClick={(event) => event.stopPropagation()}>
+          <button type="button" className="business-card-modal-close" aria-label="Fermer" onClick={() => setSelectedService(null)}><X /></button>
+          {serviceSubmitted ? <><span className="business-card-modal-check"><Check /></span><h2 id="service-request-title">Demande préparée</h2><p className="newsletter-success">Votre email est prêt à être envoyé. Je vous répondrai rapidement avec un chiffrage précis et les prochaines étapes.</p></> : <><p className="business-card-modal-kicker">DEMANDE DE DEVIS</p><h2 id="service-request-title">{selectedService}</h2><p className="service-request-intro">Décrivez votre besoin. Je vous répondrai rapidement avec une proposition adaptée et un chiffrage précis.</p><form className="newsletter-form" onSubmit={submitServiceRequest}><label htmlFor="service-name">Nom</label><input id="service-name" name="name" required autoComplete="name" /><label htmlFor="service-company">Entreprise</label><input id="service-company" name="company" required autoComplete="organization" /><label htmlFor="service-email">Email professionnel</label><input id="service-email" name="email" type="email" required autoComplete="email" /><label htmlFor="service-budget">Budget indicatif <small>(facultatif)</small></label><input id="service-budget" name="budget" placeholder="Ex. 1 000 à 3 000 €" /><label htmlFor="service-need">Votre besoin</label><textarea id="service-need" name="need" required rows={4} placeholder="Objectif, contexte, délai…" /><button type="submit">Envoyer ma demande <ArrowUpRight /></button><small>Votre messagerie s’ouvrira avec les informations préremplies. Aucun paiement n’est demandé.</small></form></>}
         </section>
       </div>}
       {newsletterOpen && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setNewsletterOpen(false)}>
