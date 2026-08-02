@@ -21,7 +21,7 @@ Deno.serve(async (request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const resendKey = Deno.env.get("RESEND_API_KEY");
-    const fromEmail = Deno.env.get("NEWSLETTER_FROM_EMAIL") ?? "Abel SALAH <onboarding@resend.dev>";
+    const fromEmail = Deno.env.get("NEWSLETTER_FROM_EMAIL") ?? "Abel SALAH <newsletter@abelsalah.fr>";
     if (!supabaseUrl || !serviceRoleKey || !resendKey) {
       return json({ error: "Newsletter non configurée : secret d’envoi manquant" }, 503);
     }
