@@ -26,6 +26,7 @@ const BusinessCard = () => {
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [activeTab, setActiveTab] = useState<"useful" | "about" | "work">("useful");
   const openOffer = () => setSelectedOffer(offers[0]);
   const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
 
@@ -70,7 +71,14 @@ const BusinessCard = () => {
         <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={openOffer} onClick={openOffer}>
           <span><strong>Audit &amp; accompagnement</strong><small>3 options disponibles</small></span><ArrowUpRight />
         </button>
-        {links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
+        <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
+          <button type="button" role="tab" aria-selected={activeTab === "useful"} className={activeTab === "useful" ? "is-active" : ""} onClick={() => setActiveTab("useful")}>Liens utiles</button>
+          <button type="button" role="tab" aria-selected={activeTab === "about"} className={activeTab === "about" ? "is-active" : ""} onClick={() => setActiveTab("about")}>Qui suis-je ?</button>
+          <button type="button" role="tab" aria-selected={activeTab === "work"} className={activeTab === "work" ? "is-active" : ""} onClick={() => setActiveTab("work")}>Réalisations</button>
+        </div>
+        {activeTab === "useful" && links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
+        {activeTab === "about" && <div className="business-card-tab-panel"><strong>Consultant en entreprise et fondateur de SKILLCO.</strong><p>J’aide les entreprises à mieux utiliser l’intelligence artificielle, l’automatisation et leur présence digitale.</p></div>}
+        {activeTab === "work" && <a className="business-card-link ecosystem-link" href="/work"><span><b>→</b><strong>Voir mes réalisations</strong></span><ArrowUpRight /></a>}
 
         <h2>Développez votre expertise commerciale !</h2>
         <p className="business-card-newsletter">Abonnez-vous à notre newsletter et recevez<br />des conseils exclusifs et des stratégies<br />efficaces</p>
