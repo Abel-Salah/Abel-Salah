@@ -33,12 +33,18 @@ const offers = [
   { id: "coaching", label: "COACHING 1 MOIS", price: "299 €", description: "Un suivi concret pendant un mois pour mettre en place les actions et obtenir des réponses au fil de votre progression.", href: STRIPE_PAYMENT_LINKS.coaching, cta: "Payer le coaching" },
 ];
 
+const serviceLinks = [
+  ["Corrections & optimisation du site", "Améliorer un site existant", "/contact"],
+  ["Déploiement IA & automatisations", "Passer de l’idée à un système concret", "/contact"],
+  ["Formation IA pour entreprises", "Faire monter les équipes en autonomie", "/contact"],
+] as const;
+
 const BusinessCard = () => {
   const [selectedOffer, setSelectedOffer] = useState<(typeof offers)[number] | null>(null);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [activeTab, setActiveTab] = useState<"useful" | "about" | "work">("useful");
+  const [activeTab, setActiveTab] = useState<"services" | "useful" | "about" | "work">("services");
   const openOffer = () => setSelectedOffer(offers[0]);
   const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
 
@@ -88,10 +94,12 @@ const BusinessCard = () => {
           <span><strong>Audit &amp; accompagnement</strong><small>3 options disponibles</small></span><ArrowUpRight />
         </button>
         <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
+          <button type="button" role="tab" aria-selected={activeTab === "services"} className={activeTab === "services" ? "is-active" : ""} onPointerDown={() => setActiveTab("services")} onTouchStart={() => setActiveTab("services")} onClick={() => setActiveTab("services")}>Services</button>
           <button type="button" role="tab" aria-selected={activeTab === "useful"} className={activeTab === "useful" ? "is-active" : ""} onPointerDown={() => setActiveTab("useful")} onTouchStart={() => setActiveTab("useful")} onClick={() => setActiveTab("useful")}>Liens utiles</button>
           <button type="button" role="tab" aria-selected={activeTab === "about"} className={activeTab === "about" ? "is-active" : ""} onPointerDown={() => setActiveTab("about")} onTouchStart={() => setActiveTab("about")} onClick={() => setActiveTab("about")}>Qui suis-je ?</button>
           <button type="button" role="tab" aria-selected={activeTab === "work"} className={activeTab === "work" ? "is-active" : ""} onPointerDown={() => setActiveTab("work")} onTouchStart={() => setActiveTab("work")} onClick={() => setActiveTab("work")}>Réalisations</button>
         </div>
+        {activeTab === "services" && <div className="business-card-services">{offers.map((offer) => <a key={offer.id} className="business-card-service" href={offer.href} target="_blank" rel="noreferrer"><span><strong>{offer.label}</strong><small>{offer.price} · {offer.description}</small></span><ArrowUpRight /></a>)}{serviceLinks.map(([label, description, href]) => <a key={label} className="business-card-service" href={href}><span><strong>{label}</strong><small>{description}</small></span><ArrowUpRight /></a>)}</div>}
         {activeTab === "useful" && links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label === "SKILLCO" ? <>SKILL<span className="brand-accent">CO</span></> : link.label}</strong></span><ArrowUpRight /></a>)}
         {activeTab === "about" && <div className="business-card-tab-panel"><strong>Un parcours commercial devenu digital.</strong><p>Après des études supérieures en commerce et une expérience comme directeur d’Intersport, j’ai choisi de bifurquer vers le digital, l’intelligence artificielle et l’accompagnement des entreprises.</p><p>Aujourd’hui, j’accompagne les entreprises autour de trois pôles d’expertise :</p><ul><li><strong>Audits</strong> pour identifier les priorités et les opportunités.</li><li><strong>Déploiements &amp; optimisations</strong> pour passer aux actions concrètes.</li><li><strong>Formation</strong> pour rendre les équipes autonomes.</li></ul></div>}
         {activeTab === "work" && <div className="business-card-projects">{projects.map(([label, href]) => <a key={href} className="business-card-link ecosystem-link" href={href} target="_blank" rel="noreferrer"><span><b>→</b><strong>{label}</strong></span><ArrowUpRight /></a>)}</div>}
