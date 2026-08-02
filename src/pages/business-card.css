@@ -16,3 +16,5 @@
 
 .business-card-actions .business-card-button-primary{flex:1;min-width:0}.business-card-actions .business-card-button-youtube{flex:0 0 145px;min-width:0}
 @media (max-width:620px){.business-card-actions .business-card-button-youtube{flex-basis:32%}}
+
+.social-mail{background:#fff;border:2px solid #10213f}
