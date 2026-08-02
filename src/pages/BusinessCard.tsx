@@ -28,8 +28,8 @@ const projects = [
 ] as const;
 
 const offers = [
-  { id: "audit", label: "AUDIT ENTREPRISE", price: "29 €", description: "Analyse de votre entreprise, de votre site et de votre visibilité Google avec des axes d’amélioration concrets.", href: STRIPE_PAYMENT_LINKS.audit, cta: "Payer l’audit" },
-  { id: "visio", label: "AUDIT + VISIO 30 MIN", price: "49 €", description: "L’audit écrit, puis 30 minutes d’échange en visioconférence pour répondre à vos questions.", href: STRIPE_PAYMENT_LINKS.exchange, cta: "Payer l’échange" },
+  { id: "audit", label: "AUDIT EXPRESS ENTREPRISE", price: "29 €", description: "Un audit express de votre entreprise, de votre site et de votre visibilité Google, avec des axes d’amélioration concrets.", href: STRIPE_PAYMENT_LINKS.audit, cta: "Payer l’audit express" },
+  { id: "visio", label: "AUDIT EXPRESS + VISIO 30 MIN", price: "49 €", description: "L’audit express écrit, puis 30 minutes d’échange en visioconférence pour répondre à vos questions.", href: STRIPE_PAYMENT_LINKS.exchange, cta: "Payer l’audit + visio" },
   { id: "coaching", label: "COACHING 1 MOIS", price: "299 €", description: "Un suivi concret pendant un mois pour mettre en place les actions et obtenir des réponses au fil de votre progression.", href: STRIPE_PAYMENT_LINKS.coaching, cta: "Payer le coaching" },
 ];
 
