@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollGradient from "@/components/ScrollGradient";
 import Index from "./pages/Index";
 import BusinessCard from "./pages/BusinessCard";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
@@ -44,6 +45,7 @@ export const AppShell = () => {
       <Sonner />
       <ScrollToTop />
       <ScrollGradient />
+      <WhatsAppWidget />
       {!isBusinessCard && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>
