@@ -80,7 +80,7 @@ const BusinessCard = () => {
         </div>
 
         <p className="business-card-section-label">Choisir un accompagnement</p>
-        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={openOffer} onClick={openOffer}>
+        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={openOffer} onTouchEnd={openOffer} onClick={openOffer}>
           <span><strong>Audit &amp; accompagnement</strong><small>3 options disponibles</small></span><ArrowUpRight />
         </button>
         <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
