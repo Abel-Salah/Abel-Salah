@@ -212,6 +212,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 {content.proofIntro}
               </p>
+              <Link
+                to="/outils/calculateur-taches-manuelles"
+                onClick={() => trackConversionEvent("offer_cta_click", `manual_work_calculator_${locale}`, "/outils/calculateur-taches-manuelles")}
+                className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-6 py-4 font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+              >
+                Estimer maintenant <ArrowRight className="h-5 w-5" />
+              </Link>
             </motion.div>
 
             <div className="divide-y divide-border border-y border-border lg:col-span-7">

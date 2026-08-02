@@ -11,6 +11,7 @@ import ScrollGradient from "@/components/ScrollGradient";
 import Index from "./pages/Index";
 import BusinessCard from "./pages/BusinessCard";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import ManualWorkCalculator from "./pages/ManualWorkCalculator";
 
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
@@ -52,6 +53,7 @@ export const AppShell = () => {
             <Route path="/" element={<Index locale="fr" />} />
             <Route path="/carte-visite" element={<BusinessCard />} />
             <Route path="/card" element={<BusinessCard />} />
+            <Route path="/outils/calculateur-taches-manuelles" element={<ManualWorkCalculator />} />
             <Route path="/en" element={<Index locale="en" />} />
             <Route path="/es" element={<Index locale="es" />} />
             <Route path="/work" element={<Work locale="fr" />} />
