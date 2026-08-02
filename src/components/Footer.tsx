@@ -74,6 +74,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
 const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   fr: [
     { to: homeCanonicalByLocale.fr, label: "Accueil" },
+    { to: "/card", label: "Carte de visite" },
     { to: workCanonicalByLocale.fr, label: "Réalisations" },
     { to: aboutCanonicalByLocale.fr, label: "À propos" },
     { to: ecosystemCanonicalByLocale.fr, label: "Écosystème" },
@@ -83,6 +84,7 @@ const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   ],
   en: [
     { to: homeCanonicalByLocale.en, label: "Home" },
+    { to: "/card", label: "Digital card" },
     { to: workCanonicalByLocale.en, label: "Work" },
     { to: aboutCanonicalByLocale.en, label: "About" },
     { to: ecosystemCanonicalByLocale.en, label: "Ecosystem" },
@@ -92,6 +94,7 @@ const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   ],
   es: [
     { to: homeCanonicalByLocale.es, label: "Inicio" },
+    { to: "/card", label: "Tarjeta digital" },
     { to: workCanonicalByLocale.es, label: "Proyectos" },
     { to: aboutCanonicalByLocale.es, label: "Sobre mí" },
     { to: ecosystemCanonicalByLocale.es, label: "Ecosistema" },

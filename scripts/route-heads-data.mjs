@@ -446,6 +446,20 @@ export const routes = [
     injectHelmetSchemas: true,
   },
   {
+    path: "/card",
+    lang: "fr",
+    title: "Abel SALAH — Consultant IA et fondateur de SKILLCO",
+    description:
+      "Carte de visite professionnelle d’Abel SALAH, consultant IA et fondateur de SKILLCO.",
+  },
+  {
+    path: "/carte-visite",
+    lang: "fr",
+    title: "Abel SALAH — Consultant IA et fondateur de SKILLCO",
+    description:
+      "Carte de visite professionnelle d’Abel SALAH, consultant IA et fondateur de SKILLCO.",
+  },
+  {
     path: "/cv",
     lang: "fr",
     title: "CV Abel SALAH | Consultant IA & AI Transformation Lead",

@@ -2,13 +2,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import { lazy, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollGradient from "@/components/ScrollGradient";
 import Index from "./pages/Index";
+import BusinessCard from "./pages/BusinessCard";
 
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
@@ -33,17 +34,22 @@ const routeFallback = (
 
 /* Tout sauf le routeur : le client l'enveloppe dans BrowserRouter,
    le pré-rendu au build (src/entry-prerender.tsx) dans StaticRouter. */
-export const AppShell = () => (
-  <QueryClientProvider client={queryClient}>
+export const AppShell = () => {
+  const location = useLocation();
+  const isBusinessCard = location.pathname === "/carte-visite" || location.pathname === "/card";
+
+  return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <ScrollToTop />
       <ScrollGradient />
-      <Navigation />
+      {!isBusinessCard && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>
             <Route path="/" element={<Index locale="fr" />} />
+            <Route path="/carte-visite" element={<BusinessCard />} />
+            <Route path="/card" element={<BusinessCard />} />
             <Route path="/en" element={<Index locale="en" />} />
             <Route path="/es" element={<Index locale="es" />} />
             <Route path="/work" element={<Work locale="fr" />} />
@@ -91,8 +97,8 @@ export const AppShell = () => (
       </Suspense>
       <Footer />
     </TooltipProvider>
-  </QueryClientProvider>
-);
+  </QueryClientProvider>;
+};
 
 const App = () => (
   <BrowserRouter>

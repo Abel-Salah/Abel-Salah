@@ -1,0 +1,101 @@
+import { ArrowUpRight, BadgeCheck, Check, Download, Facebook, Linkedin, Mail, Music2, Phone, X, Youtube } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
+import { STRIPE_PAYMENT_LINKS } from "@/data/stripePaymentLinks";
+import { trackConversionEvent } from "@/lib/conversionEvents";
+import portrait from "@/assets/abel-salah-card-portrait.png";
+import cover from "@/assets/business-card-cover-v3.png";
+import { useState, type FormEvent } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import "./business-card.css";
+import "./business-card-enhancements.css";
+
+const links = [
+  { label: "SKILL & CO", badge: "Projets IA & formation", href: "https://skillco.fr" },
+  { label: "SKILL & LMS", badge: "Plateforme de formation", href: "https://skill-lms.com" },
+  { label: "SCALL’UP", badge: "Plateforme de prospection", href: "https://scallup.fr" },
+];
+
+const offers = [
+  { id: "audit", label: "AUDIT ENTREPRISE", price: "29 €", description: "Analyse de votre entreprise, de votre site et de votre visibilité Google avec des axes d’amélioration concrets.", href: STRIPE_PAYMENT_LINKS.audit, cta: "Payer l’audit" },
+  { id: "visio", label: "AUDIT + VISIO 30 MIN", price: "49 €", description: "L’audit écrit, puis 30 minutes d’échange en visioconférence pour répondre à vos questions.", href: STRIPE_PAYMENT_LINKS.exchange, cta: "Payer l’échange" },
+  { id: "coaching", label: "COACHING 1 MOIS", price: "299 €", description: "Un suivi concret pendant un mois pour mettre en place les actions et obtenir des réponses au fil de votre progression.", href: STRIPE_PAYMENT_LINKS.coaching, cta: "Payer le coaching" },
+];
+
+const BusinessCard = () => {
+  const [selectedOffer, setSelectedOffer] = useState<(typeof offers)[number] | null>(null);
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const subscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setNewsletterStatus("loading");
+    const { error } = await supabase.functions.invoke("subscribe-newsletter", { body: { email: newsletterEmail } });
+    setNewsletterStatus(error ? "error" : "success");
+  };
+
+  return <main className="business-card-page">
+    <SEOHead
+      title="Abel SALAH — Consultant IA et fondateur de SKILLCO"
+      description="La carte de visite professionnelle d’Abel SALAH, consultant IA et fondateur de SKILLCO."
+      canonical="/card"
+      lang="fr"
+    />
+    <article className="business-card">
+      <div className="business-card-banner" aria-hidden="true" style={{ backgroundImage: `url(${cover})` }} />
+      <div className="business-card-avatar-wrap">
+        <img src={portrait} alt="Abel SALAH" className="business-card-avatar" />
+      </div>
+
+      <div className="business-card-content">
+        <h1>Abel SALAH <BadgeCheck className="verified-badge" aria-label="Profil vérifié" /></h1>
+        <p className="business-card-role">Consultant en entreprise<br />et fondateur de <a href="https://skillco.fr">SKILLCO</a></p>
+
+        <div className="business-card-socials" aria-label="Réseaux sociaux">
+          <a className="social social-facebook" href="https://www.facebook.com/abelsalah" aria-label="Facebook"><Facebook /></a>
+          <a className="social social-linkedin" href="https://www.linkedin.com/in/abel-salah/" aria-label="LinkedIn"><Linkedin /></a>
+          <a className="social social-youtube" href="https://www.youtube.com/@abelsalah" aria-label="YouTube"><Youtube /></a>
+          <a className="social social-tiktok" href="https://www.tiktok.com/@abel.salah?_r=1&_t=ZN-98Y4D0yDha6" aria-label="TikTok"><Music2 /></a>
+          <a className="social social-mail" href="mailto:contact@abelsalah.fr" aria-label="Envoyer un email"><Mail /></a>
+        </div>
+
+        <div className="business-card-actions">
+          <a className="business-card-button business-card-button-primary" href={STRIPE_PAYMENT_LINKS.exchange} target="_blank" rel="noreferrer" onClick={() => trackConversionEvent("offer_cta_click", "business_card_exchange", STRIPE_PAYMENT_LINKS.exchange)}><Phone /> Échange 30 min — 49 €</a>
+          <a className="business-card-button business-card-button-youtube" href="https://www.youtube.com/@abelsalah" target="_blank" rel="noreferrer"><Download /> YouTube</a>
+        </div>
+
+        <p className="business-card-section-label">👉 Choisissez votre accompagnement</p>
+        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onClick={() => setSelectedOffer(offers[0])}>
+          <span><strong>🔎 AUDIT &amp; ACCOMPAGNEMENT</strong><small>3 solutions selon votre besoin</small></span><ArrowUpRight />
+        </button>
+        {links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label}</strong></span><ArrowUpRight /></a>)}
+
+        <h2>Développez votre expertise commerciale !</h2>
+        <p className="business-card-newsletter">Abonnez-vous à notre newsletter et recevez<br />des conseils exclusifs et des stratégies<br />efficaces</p>
+        <button type="button" className="business-card-newsletter-button" onClick={() => { setNewsletterOpen(true); setNewsletterStatus("idle"); }}><Mail /> Recevoir les conseils IA <ArrowUpRight /></button>
+      </div>
+      {selectedOffer && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setSelectedOffer(null)}>
+        <section className="business-card-modal" role="dialog" aria-modal="true" aria-labelledby="offer-title" onClick={(event) => event.stopPropagation()}>
+          <button type="button" className="business-card-modal-close" aria-label="Fermer" onClick={() => setSelectedOffer(null)}><X /></button>
+          <span className="business-card-modal-check"><Check /></span>
+          <p className="business-card-modal-kicker">ACCOMPAGNEMENT ABEL SALAH</p>
+          <h2 id="offer-title">Choisissez votre solution</h2>
+          <div className="business-card-modal-offers">{offers.map((offer) => <div className="business-card-modal-offer" key={offer.id}><div><strong>{offer.label}</strong><b>{offer.price}</b><p>{offer.description}</p></div><a className="business-card-modal-cta" href={offer.href} target={offer.href.startsWith("http") ? "_blank" : undefined} rel={offer.href.startsWith("http") ? "noreferrer" : undefined} onClick={() => trackConversionEvent("offer_cta_click", `business_card_${offer.id}`, offer.href)}>{offer.cta} <ArrowUpRight /></a></div>)}</div>
+          <p className="business-card-modal-note">Après paiement, vous recevrez les prochaines instructions par email.</p>
+        </section>
+      </div>}
+      {newsletterOpen && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setNewsletterOpen(false)}>
+        <section className="business-card-modal newsletter-modal" role="dialog" aria-modal="true" aria-labelledby="newsletter-title" onClick={(event) => event.stopPropagation()}>
+          <button type="button" className="business-card-modal-close" aria-label="Fermer" onClick={() => setNewsletterOpen(false)}><X /></button>
+          <span className="business-card-modal-check"><Mail /></span>
+          <p className="business-card-modal-kicker">CONSEILS IA &amp; BUSINESS</p>
+          <h2 id="newsletter-title">Recevez les conseils d’Abel</h2>
+          {newsletterStatus === "success" ? <p className="newsletter-success">Inscription confirmée. Un email de bienvenue vient de vous être envoyé.</p> : <form onSubmit={subscribe} className="newsletter-form"><label htmlFor="newsletter-email">Votre adresse email</label><input id="newsletter-email" type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="vous@entreprise.fr" autoComplete="email" /><button type="submit" disabled={newsletterStatus === "loading"}>{newsletterStatus === "loading" ? "Inscription…" : "Je m’inscris"}</button>{newsletterStatus === "error" && <p className="newsletter-error">L’inscription est momentanément indisponible. Réessayez dans quelques instants.</p>}<small>Conseils pratiques sur l’IA, l’automatisation et la visibilité digitale. Désinscription en un clic.</small></form>}
+        </section>
+      </div>}
+    </article>
+    <a className="business-card-review" href="mailto:contact@abelsalah.fr?subject=Mon%20retour">Laisser un avis</a>
+  </main>;
+};
+
+export default BusinessCard;
