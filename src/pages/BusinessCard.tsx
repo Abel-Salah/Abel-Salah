@@ -26,6 +26,8 @@ const BusinessCard = () => {
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const openOffer = () => setSelectedOffer(offers[0]);
+  const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
 
   const subscribe = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -65,14 +67,14 @@ const BusinessCard = () => {
         </div>
 
         <p className="business-card-section-label">👉 Choisissez votre accompagnement</p>
-        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={() => setSelectedOffer(offers[0])}>
+        <button type="button" className="business-card-link business-card-offer business-card-offer-trigger" onPointerUp={openOffer} onClick={openOffer}>
           <span><strong>🔎 AUDIT &amp; ACCOMPAGNEMENT</strong><small>3 solutions selon votre besoin</small></span><ArrowUpRight />
         </button>
         {links.map((link) => <a key={link.href} className="business-card-link ecosystem-link" href={link.href} target="_blank" rel="noreferrer" title={link.badge}><span><b>→</b><strong>{link.label}</strong></span><ArrowUpRight /></a>)}
 
         <h2>Développez votre expertise commerciale !</h2>
         <p className="business-card-newsletter">Abonnez-vous à notre newsletter et recevez<br />des conseils exclusifs et des stratégies<br />efficaces</p>
-        <button type="button" className="business-card-newsletter-button" onPointerUp={() => { setNewsletterOpen(true); setNewsletterStatus("idle"); }}><Mail /> Recevoir les conseils IA <ArrowUpRight /></button>
+        <button type="button" className="business-card-newsletter-button" onPointerUp={openNewsletter} onClick={openNewsletter}><Mail /> Recevoir les conseils IA <ArrowUpRight /></button>
       </div>
       {selectedOffer && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setSelectedOffer(null)}>
         <section className="business-card-modal" role="dialog" aria-modal="true" aria-labelledby="offer-title" onClick={(event) => event.stopPropagation()}>
