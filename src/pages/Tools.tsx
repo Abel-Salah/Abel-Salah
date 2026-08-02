@@ -1,4 +1,4 @@
-import { ArrowUpRight, BrainCircuit, Calculator, Gamepad2, MailCheck } from "lucide-react";
+import { ArrowUpRight, BrainCircuit, Calculator, Gamepad2, MailCheck, Gauge } from "lucide-react";
 import { Link } from "react-router";
 import SEOHead from "@/components/SEOHead";
 import { trackConversionEvent } from "@/lib/conversionEvents";
@@ -53,6 +53,16 @@ const Tools = () => (
       </div>
 
       <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <ToolCard
+          icon={Gauge}
+          eyebrow="Site web · 2 minutes"
+          title="Scorez votre site"
+          description="Évaluez l’expérience, le design, le contenu, la visibilité et la conversion de votre site."
+          href="/outils/score-site"
+          label="Calculer mon score"
+          internal
+          featured
+        />
         <ToolCard
           icon={Calculator}
           eyebrow="Entreprise · estimation indicative"
