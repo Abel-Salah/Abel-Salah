@@ -4,6 +4,7 @@ import {
   type GeneratedArticle,
   validateGeneratedArticle,
 } from "../_shared/blogArticleSchema.ts";
+import { callGeminiJson } from "../_shared/gemini.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -61,7 +62,6 @@ serve(async (req) => {
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY")!;
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
@@ -114,136 +114,10 @@ Regles :
 - Date de publication : ${today}
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`;
 
-    const response = await fetch(
-      "https://ai.gateway.lovable.dev/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${lovableApiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: systemPrompt },
-            {
-              role: "user",
-              content: `Genere un nouvel article de blog ${type === "promotion" ? "promotionnel sur Abel SALAH" : "actionnable sur l'IA en entreprise"}. Utilise l'outil generate_blog_post pour retourner l'article structure.`,
-            },
-          ],
-          tools: [
-            {
-              type: "function",
-              function: {
-                name: "generate_blog_post",
-                description:
-                  "Genere un article de blog SEO structure avec tous les champs necessaires.",
-                parameters: {
-                  type: "object",
-                  properties: {
-                    slug: {
-                      type: "string",
-                      description:
-                        "URL slug en kebab-case, sans accents, 4-8 mots. Ex: automatiser-prospection-ia-guide",
-                    },
-                    title: {
-                      type: "string",
-                      description: "Titre accrocheur, 50-70 caracteres",
-                    },
-                    metaTitle: {
-                      type: "string",
-                      description:
-                        "Meta title SEO < 60 chars, incluant 'Abel SALAH' ou 'Expert IA'",
-                    },
-                    metaDescription: {
-                      type: "string",
-                      description: "Meta description SEO < 160 chars",
-                    },
-                    readTime: {
-                      type: "string",
-                      description: "Temps de lecture estime. Ex: '6 min'",
-                    },
-                    tags: {
-                      type: "array",
-                      items: { type: "string" },
-                      description: "3-5 tags SEO pertinents",
-                    },
-                    excerpt: {
-                      type: "string",
-                      description:
-                        "Resume accrocheur de 1-2 phrases, 150-200 caracteres",
-                    },
-                    sections: {
-                      type: "array",
-                      items: {
-                        type: "object",
-                        properties: {
-                          title: { type: "string" },
-                          content: {
-                            type: "array",
-                            items: { type: "string" },
-                            description:
-                              "Paragraphes de la section. Utiliser **gras** pour les mots importants.",
-                          },
-                        },
-                        required: ["title", "content"],
-                        additionalProperties: false,
-                      },
-                      description: "4-5 sections H2 de l'article",
-                    },
-                  },
-                  required: [
-                    "slug",
-                    "title",
-                    "metaTitle",
-                    "metaDescription",
-                    "readTime",
-                    "tags",
-                    "excerpt",
-                    "sections",
-                  ],
-                  additionalProperties: false,
-                },
-              },
-            },
-          ],
-          tool_choice: {
-            type: "function",
-            function: { name: "generate_blog_post" },
-          },
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("AI Gateway error:", response.status, errorText);
-      return new Response(
-        JSON.stringify({ error: `AI Gateway error: ${response.status}` }),
-        {
-          status: response.status,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    const aiResult = await response.json();
-    const toolCall = aiResult.choices?.[0]?.message?.tool_calls?.[0];
-
-    if (!toolCall?.function?.arguments) {
-      console.error("No tool call in response:", JSON.stringify(aiResult));
-      return new Response(
-        JSON.stringify({ error: "AI did not return structured data" }),
-        {
-          status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    const article = validateGeneratedArticle(
-      JSON.parse(toolCall.function.arguments)
-    );
+    const article = validateGeneratedArticle(await callGeminiJson<GeneratedArticle>(
+      systemPrompt,
+      `Genere un nouvel article de blog ${type === "promotion" ? "promotionnel sur Abel SALAH" : "actionnable sur l'IA en entreprise"}. Retourne uniquement le JSON structure de l'article.`,
+    ));
 
     if (knownPosts.some((post) => normalizeTitle(post.title) === normalizeTitle(article.title))) {
       return new Response(

@@ -71,7 +71,7 @@ serve(async (req) => {
       getRequiredEnv("SUPABASE_URL"),
       getRequiredEnv("SUPABASE_SERVICE_ROLE_KEY")
     );
-    const lovableApiKey = getRequiredEnv("LOVABLE_API_KEY");
+    const geminiApiKey = getRequiredEnv("GEMINI_API_KEY");
 
     const { data: opportunities, error: opportunityError } = await supabase
       .from("job_opportunities")
@@ -89,7 +89,7 @@ serve(async (req) => {
     for (const opportunity of (opportunities ?? []) as Opportunity[]) {
       const score = validateScore(
         await callAiJson<OpportunityScore>(
-          lovableApiKey,
+          geminiApiKey,
           systemPrompt,
           JSON.stringify(opportunity, null, 2)
         )

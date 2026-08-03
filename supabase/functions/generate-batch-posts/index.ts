@@ -4,6 +4,7 @@ import {
   type GeneratedArticle,
   validateGeneratedArticle,
 } from "../_shared/blogArticleSchema.ts";
+import { callGeminiJson } from "../_shared/gemini.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -84,7 +85,6 @@ function validateTopics(input: unknown, lang: Lang): string[] {
 async function generateArticle(
   topic: string,
   existingTitles: string,
-  lovableApiKey: string,
   today: string,
   lang: Lang
 ): Promise<GeneratedArticle> {
@@ -102,76 +102,10 @@ Regles :
 - Date de publication : ${today}
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`;
 
-  const response = await fetch(
-    "https://ai.gateway.lovable.dev/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${lovableApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: systemPrompt },
-          {
-            role: "user",
-            content: `Genere un article de blog actionnable sur : "${topic}". Utilise l'outil generate_blog_post pour retourner l'article structure.`,
-          },
-        ],
-        tools: [
-          {
-            type: "function",
-            function: {
-              name: "generate_blog_post",
-              description: "Genere un article de blog SEO structure.",
-              parameters: {
-                type: "object",
-                properties: {
-                  slug: { type: "string", description: "URL slug en kebab-case, sans accents, 4-8 mots" },
-                  title: { type: "string", description: "Titre accrocheur, 50-70 caracteres" },
-                  metaTitle: { type: "string", description: "Meta title SEO < 60 chars" },
-                  metaDescription: { type: "string", description: "Meta description SEO < 160 chars" },
-                  readTime: { type: "string", description: "Temps de lecture. Ex: '6 min'" },
-                  tags: { type: "array", items: { type: "string" }, description: "3-5 tags SEO" },
-                  excerpt: { type: "string", description: "Resume 150-200 caracteres" },
-                  sections: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      properties: {
-                        title: { type: "string" },
-                        content: { type: "array", items: { type: "string" } },
-                      },
-                      required: ["title", "content"],
-                      additionalProperties: false,
-                    },
-                  },
-                },
-                required: ["slug", "title", "metaTitle", "metaDescription", "readTime", "tags", "excerpt", "sections"],
-                additionalProperties: false,
-              },
-            },
-          },
-        ],
-        tool_choice: { type: "function", function: { name: "generate_blog_post" } },
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`AI Gateway error ${response.status}: ${errorText}`);
-  }
-
-  const aiResult = await response.json();
-  const toolCall = aiResult.choices?.[0]?.message?.tool_calls?.[0];
-
-  if (!toolCall?.function?.arguments) {
-    throw new Error("AI did not return structured data");
-  }
-
-  return validateGeneratedArticle(JSON.parse(toolCall.function.arguments));
+  return validateGeneratedArticle(await callGeminiJson<GeneratedArticle>(
+    systemPrompt,
+    `Genere un article de blog actionnable sur : "${topic}". Retourne uniquement le JSON structure de l'article.`,
+  ));
 }
 
 serve(async (req) => {
@@ -186,7 +120,6 @@ serve(async (req) => {
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     const today = new Date().toISOString().split("T")[0];
@@ -219,7 +152,7 @@ serve(async (req) => {
     for (const topic of topics) {
       try {
         console.log(`Generating article for: ${topic}`);
-        const article = await generateArticle(topic, existingTitles, lovableApiKey, today, lang);
+        const article = await generateArticle(topic, existingTitles, today, lang);
 
         if (existingNormalizedTitles.has(normalizeTitle(article.title))) {
           throw new Error(`Duplicate generated title refused: ${article.title}`);

@@ -97,7 +97,7 @@ serve(async (req) => {
       getRequiredEnv("SUPABASE_URL"),
       getRequiredEnv("SUPABASE_SERVICE_ROLE_KEY")
     );
-    const lovableApiKey = getRequiredEnv("LOVABLE_API_KEY");
+    const geminiApiKey = getRequiredEnv("GEMINI_API_KEY");
     const cvUrl = Deno.env.get("ABEL_CV_URL") ?? null;
 
     const { data: existingDrafts, error: draftsError } = await supabase
@@ -159,7 +159,7 @@ serve(async (req) => {
 
       const draft = validateDraft(
         await callAiJson<OutreachDraft>(
-          lovableApiKey,
+          geminiApiKey,
           systemPrompt,
           JSON.stringify(
             {

@@ -5,8 +5,6 @@ export const corsHeaders = {
 };
 
 export const profileUrl = "https://abelsalah.fr";
-export const aiGatewayUrl = "https://ai.gateway.lovable.dev/v1/chat/completions";
-export const aiModel = "google/gemini-3-flash-preview";
 
 export type OpportunityScore = {
   score: number;
@@ -73,38 +71,10 @@ export const parseAiJson = <T>(content: string): T => {
 };
 
 export const callAiJson = async <T>(
-  lovableApiKey: string,
+  _unusedApiKey: string,
   systemPrompt: string,
   userPrompt: string
 ) => {
-  const response = await fetch(aiGatewayUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${lovableApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: aiModel,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-      response_format: { type: "json_object" },
-      temperature: 0.2,
-    }),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`AI Gateway error ${response.status}: ${errorText}`);
-  }
-
-  const result = await response.json();
-  const content = result.choices?.[0]?.message?.content;
-
-  if (!content) {
-    throw new Error("AI Gateway returned no JSON content");
-  }
-
-  return parseAiJson<T>(content);
+  const { callGeminiJson } = await import("./gemini.ts");
+  return callGeminiJson<T>(systemPrompt, userPrompt);
 };
