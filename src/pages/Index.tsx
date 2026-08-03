@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Download, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
@@ -18,8 +18,36 @@ interface IndexProps {
 }
 
 const Index = ({ locale = "fr" }: IndexProps) => {
-  const [showIntroCard, setShowIntroCard] = useState(true);
+  const [showIntroCard, setShowIntroCard] = useState(false);
   const content = homeContent[locale];
+
+  useEffect(() => {
+    if (sessionStorage.getItem("abel-intro-card-seen") === "true") return;
+
+    const showOnce = () => {
+      if (sessionStorage.getItem("abel-intro-card-seen") === "true") return;
+      sessionStorage.setItem("abel-intro-card-seen", "true");
+      setShowIntroCard(true);
+      window.removeEventListener("mouseleave", handleExitIntent);
+      window.removeEventListener("scroll", handleMobileScroll);
+    };
+
+    const handleExitIntent = (event: MouseEvent) => {
+      if (event.clientY <= 0 && window.innerWidth >= 768) showOnce();
+    };
+
+    const handleMobileScroll = () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (window.innerWidth < 768 && scrollableHeight > 0 && window.scrollY / scrollableHeight >= 0.5) showOnce();
+    };
+
+    window.addEventListener("mouseleave", handleExitIntent);
+    window.addEventListener("scroll", handleMobileScroll, { passive: true });
+    return () => {
+      window.removeEventListener("mouseleave", handleExitIntent);
+      window.removeEventListener("scroll", handleMobileScroll);
+    };
+  }, []);
 
   return (
     <main className="min-h-screen bg-background overflow-hidden">
