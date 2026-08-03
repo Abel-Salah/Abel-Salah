@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
-import { Download, Menu, X, Linkedin, Youtube } from "lucide-react";
+import { Download, Menu, X, Linkedin, Youtube, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { cvCanonicalByLocale } from "@/data/cvLocales";
@@ -47,6 +48,7 @@ const cvLabels = {
 const Navigation = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
   const locale = location.pathname.startsWith("/en")
     ? "en"
     : location.pathname.startsWith("/es")
@@ -56,6 +58,7 @@ const Navigation = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  const isLight = resolvedTheme === "light";
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
@@ -69,6 +72,10 @@ const Navigation = () => {
           >
             <span className="block h-5 w-5 rounded-tl-full rounded-br-full bg-current" />
           </Link>
+
+          <button type="button" onClick={() => setTheme(isLight ? "dark" : "light")} className="ml-auto mr-3 rounded-full border border-white/10 p-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary md:ml-0" aria-label={isLight ? "Activer le thème sombre" : "Activer le thème clair"} title={isLight ? "Thème sombre" : "Thème clair"}>
+            {isLight ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </button>
           
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8">
