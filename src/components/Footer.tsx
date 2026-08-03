@@ -86,6 +86,7 @@ const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   en: [
     { to: homeCanonicalByLocale.en, label: "Home" },
     { to: "/card", label: "Digital card" },
+    { to: "/outils", label: "Free tools" },
     { to: workCanonicalByLocale.en, label: "Work" },
     { to: aboutCanonicalByLocale.en, label: "About" },
     { to: ecosystemCanonicalByLocale.en, label: "Ecosystem" },
@@ -96,6 +97,7 @@ const footerNavLabels: Record<PageLocale, { to: string; label: string }[]> = {
   es: [
     { to: homeCanonicalByLocale.es, label: "Inicio" },
     { to: "/card", label: "Tarjeta digital" },
+    { to: "/outils", label: "Herramientas gratuitas" },
     { to: workCanonicalByLocale.es, label: "Proyectos" },
     { to: aboutCanonicalByLocale.es, label: "Sobre mí" },
     { to: ecosystemCanonicalByLocale.es, label: "Ecosistema" },
@@ -117,6 +119,7 @@ const Footer = () => {
   const socialLinks = [
     { href: "https://www.linkedin.com/in/abel-salah/", label: "LinkedIn" },
     { href: "https://www.youtube.com/@abelsalah", label: "YouTube" },
+    { href: "https://www.tiktok.com/@abel.salah", label: "TikTok" },
   ];
 
   return (
