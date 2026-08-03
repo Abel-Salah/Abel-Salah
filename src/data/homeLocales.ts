@@ -36,16 +36,16 @@ export const homeContent = {
       "Vos données et vos systèmes contiennent souvent des gains invisibles. Nous identifions les tâches manuelles, les frictions et les usages IA utiles avant de construire une feuille de route mesurable.",
     proofItems: [
       {
-        title: "Mesure avant / après",
-        text: "On définit les indicateurs avant l'automatisation : temps gagné, taux de réponse, qualité CRM, coût par opportunité ou adoption équipe.",
+        title: "Repérer les pertes de temps",
+        text: "Nous cartographions les tâches manuelles, les doublons et les points de friction qui ralentissent vos équipes au quotidien.",
       },
       {
-        title: "Validation humaine",
-        text: "Les messages, contenus et décisions sensibles restent relus par une personne. L'IA prépare et priorise, elle ne remplace pas le jugement métier.",
+        title: "Connecter les données aux bons usages",
+        text: "Nous sélectionnons les cas d'usage IA utiles et les relions à vos outils existants, avec des indicateurs avant et après.",
       },
       {
-        title: "Déploiement progressif",
-        text: "Les quick wins sont testés sur un périmètre limité, puis étendus seulement si la qualité, les risques et l'usage terrain sont maîtrisés.",
+        title: "Déployer et faire adopter",
+        text: "Nous déployons progressivement, formons les équipes et ajustons les workflows jusqu'à obtenir un usage fiable sur le terrain.",
       },
     ],
     videoAlt: "Abel SALAH en vidéo d'introduction",
@@ -138,16 +138,16 @@ export const homeContent = {
       "Your data and systems often contain invisible opportunities. We identify manual work, friction, and useful AI applications before building a measurable roadmap.",
     proofItems: [
       {
-        title: "Before / after measurement",
-        text: "We define indicators before automation: time saved, reply rate, CRM quality, cost per opportunity, or team adoption.",
+        title: "Find where time is lost",
+        text: "We map manual work, duplicated effort, and friction points that slow your teams down every day.",
       },
       {
-        title: "Human validation",
-        text: "Messages, content, and sensitive decisions remain reviewed by a person. AI prepares and prioritizes; it does not replace business judgment.",
+        title: "Connect data to useful AI",
+        text: "We select useful AI use cases and connect them to your existing tools, with indicators measured before and after.",
       },
       {
-        title: "Progressive rollout",
-        text: "Quick wins are tested on a limited scope, then expanded only when quality, risk, and team usage are under control.",
+        title: "Deploy and build adoption",
+        text: "We roll out progressively, train your teams, and refine workflows until usage is reliable in the field.",
       },
     ],
     videoAlt: "Abel SALAH introduction video",
@@ -240,16 +240,16 @@ export const homeContent = {
       "Tus datos y sistemas suelen contener oportunidades invisibles. Identificamos tareas manuales, fricciones y usos útiles de la IA antes de construir una hoja de ruta medible.",
     proofItems: [
       {
-        title: "Medición antes / después",
-        text: "Definimos indicadores antes de automatizar: tiempo ganado, tasa de respuesta, calidad CRM, coste por oportunidad o adopción del equipo.",
+        title: "Detectar dónde se pierde tiempo",
+        text: "Mapeamos tareas manuales, duplicidades y fricciones que ralentizan a tus equipos cada día.",
       },
       {
-        title: "Validación humana",
-        text: "Los mensajes, contenidos y decisiones sensibles siguen revisados por una persona. La IA prepara y prioriza; no sustituye el criterio de negocio.",
+        title: "Conectar datos con usos útiles de IA",
+        text: "Seleccionamos casos de uso útiles y los conectamos con tus herramientas, midiendo los indicadores antes y después.",
       },
       {
-        title: "Despliegue progresivo",
-        text: "Los quick wins se prueban en un alcance limitado y se amplían solo si la calidad, los riesgos y el uso real están controlados.",
+        title: "Desplegar y formar a los equipos",
+        text: "Desplegamos progresivamente, formamos a tus equipos y ajustamos los flujos hasta conseguir un uso fiable.",
       },
     ],
     videoAlt: "Vídeo de introducción de Abel SALAH",
