@@ -21,6 +21,7 @@ interface FooterUIContent {
   socialHeader: string;
   bookCta: string;
   downloadCv: string;
+  toolsCta: string;
   locationsLabel: string;
   roundCtaLine1: string;
   roundCtaLine2: string;
@@ -36,6 +37,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Suivez-moi",
     bookCta: "Prendre rendez-vous →",
     downloadCv: "Télécharger mon CV",
+    toolsCta: "Découvrir les outils gratuits →",
     locationsLabel: "Zones d'intervention",
     roundCtaLine1: "Parlons-",
     roundCtaLine2: "en",
@@ -49,6 +51,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Follow me",
     bookCta: "Book a call →",
     downloadCv: "Download my CV",
+    toolsCta: "Explore free tools →",
     locationsLabel: "Service areas",
     roundCtaLine1: "Let's",
     roundCtaLine2: "talk",
@@ -62,6 +65,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     socialHeader: "Sígueme",
     bookCta: "Reservar una cita →",
     downloadCv: "Descargar mi CV",
+    toolsCta: "Descubrir herramientas gratuitas →",
     locationsLabel: "Zonas de intervención",
     roundCtaLine1: "Hable-",
     roundCtaLine2: "mos",
@@ -217,6 +221,12 @@ const Footer = () => {
                   <Download className="w-4 h-4" />
                   {t.downloadCv}
                   <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                </Link>
+                <Link
+                  to="/outils"
+                  className="mt-2 inline-flex w-fit items-center rounded-full bg-primary px-5 py-3 text-base font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+                >
+                  {t.toolsCta}
                 </Link>
                 <div className="border-t border-border pt-4 mt-2">
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
