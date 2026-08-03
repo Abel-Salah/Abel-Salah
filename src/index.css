@@ -64,11 +64,21 @@
       linear-gradient(135deg, #030303 0%, #050712 45%, #020202 100%);
   }
 
+  .home-hero-ribbons {
+    background: repeating-linear-gradient(90deg, rgba(25, 89, 255, 0.15) 0px, rgba(25, 89, 255, 0.85) 70px, rgba(99, 161, 255, 0.9) 112px, rgba(0, 0, 0, 0.95) 150px);
+  }
+
   .light .home-hero-backdrop {
     background:
       radial-gradient(circle at 88% 12%, rgba(70, 130, 180, 0.24), transparent 42%),
       radial-gradient(circle at 50% 24%, rgba(255, 249, 145, 0.22), transparent 38%),
       linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #eef4ff 100%);
+  }
+
+  .light .home-hero-ribbons {
+    background: repeating-linear-gradient(90deg, rgba(121, 161, 255, 0.08) 0px, rgba(74, 126, 255, 0.34) 78px, rgba(171, 201, 255, 0.5) 126px, rgba(255, 255, 255, 0.16) 178px);
+    opacity: 0.78;
+    filter: blur(0.6px);
   }
 
   .intro-card-media {

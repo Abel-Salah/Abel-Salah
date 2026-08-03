@@ -39,7 +39,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             initial={{ x: 90, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1.4, ease: "easeOut" }}
-            className="h-full w-full bg-[repeating-linear-gradient(90deg,rgba(25,89,255,0.15)_0px,rgba(25,89,255,0.85)_70px,rgba(99,161,255,0.9)_112px,rgba(0,0,0,0.95)_150px)] shadow-[0_0_120px_rgba(37,99,235,0.45)]"
+            className="home-hero-ribbons h-full w-full shadow-[0_0_120px_rgba(37,99,235,0.45)]"
           />
         </div>
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
