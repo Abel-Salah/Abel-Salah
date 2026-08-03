@@ -10,6 +10,7 @@ const navLabels = {
   fr: [
     { href: "/", label: "Accueil" },
     { href: "/audit-ia", label: "Audit IA" },
+    { href: "/services", label: "Services" },
     { href: "/work", label: "Réalisations" },
     { href: "/about", label: "À propos" },
     { href: "/blog", label: "Blog" },

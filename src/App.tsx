@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import Services from "@/pages/Services";
 import { lazy, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -67,6 +68,7 @@ export const AppShell = () => {
             <Route path="/en/about" element={<About locale="en" />} />
             <Route path="/es/about" element={<About locale="es" />} />
             <Route path="/contact" element={<Contact locale="fr" />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/en/contact" element={<Contact locale="en" />} />
             <Route path="/es/contact" element={<Contact locale="es" />} />
             <Route path="/blog" element={<Blog locale="fr" />} />
