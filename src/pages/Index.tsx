@@ -204,7 +204,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
                 {content.proofLabel}
               </span>
-              <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+              <h2 className="heading-display text-4xl md:text-6xl uppercase leading-[0.9] tracking-[-0.045em]">
                 {content.proofTitleTop}
                 <br />
                 {content.proofTitleBottom}
