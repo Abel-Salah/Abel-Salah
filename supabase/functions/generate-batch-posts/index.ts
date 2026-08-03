@@ -253,7 +253,8 @@ serve(async (req) => {
             content: article.sections,
             article_type: "actionnable",
             lang,
-            published: true,
+            // Batch output is a draft until its facts, sources and claims are reviewed.
+            published: false,
           });
 
         if (insertError) throw new Error(insertError.message);

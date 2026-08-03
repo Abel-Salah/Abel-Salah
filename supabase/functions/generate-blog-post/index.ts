@@ -281,7 +281,8 @@ Regles :
         content: article.sections,
         article_type: type,
         lang,
-        published: true,
+        // Generated content must be reviewed before it becomes public.
+        published: false,
       })
       .select()
       .single();
