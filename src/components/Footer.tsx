@@ -112,6 +112,7 @@ const Footer = () => {
 
   const navLinks = footerNavLabels[locale];
   const t = footerUILocales[locale];
+  const nameLetters = "ABEL SALAH".split("");
 
   const socialLinks = [
     { href: "https://www.linkedin.com/in/abel-salah/", label: "LinkedIn" },
@@ -130,15 +131,27 @@ const Footer = () => {
 
       {/* Large Name - Hero Style */}
       <div className="relative w-full overflow-hidden py-16 md:py-24">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
+          aria-label="ABEL SALAH"
           className="heading-display text-[18vw] md:text-[14vw] leading-[0.85] text-center whitespace-nowrap"
         >
-          <span className="text-foreground">ABEL</span>
-          <span className="text-primary"> SALAH</span>
+          {nameLetters.map((letter, index) => (
+            <motion.span
+              key={`${letter}-${index}`}
+              initial={{ opacity: 0, y: "0.35em" }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay: index * 0.055, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className={index < 4 ? "text-foreground" : "text-primary"}
+              aria-hidden="true"
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </motion.span>
+          ))}
         </motion.h2>
       </div>
 
