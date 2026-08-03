@@ -5,8 +5,14 @@ import type { Database } from './types';
 /* Supabase est optionnel pour les pages publiques. Un bundle produit sans
    variables VITE_SUPABASE ne doit jamais empêcher React de s'hydrater : la
    newsletter affichera simplement son état indisponible. */
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "placeholder-key";
+// The public site must always use Abel's production project. Environment
+// variables remain supported for local overrides, but the previous machine
+// configuration pointed at a different Supabase project.
+const PRODUCTION_SUPABASE_URL = "https://pcjhrmwuqyxddyeikely.supabase.co";
+const PRODUCTION_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_vrmStrwMF79CSK4mzSak6Q_FUb6gscl";
+const configuredUrl = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_URL = configuredUrl?.includes("pcjhrmwuqyxddyeikely.supabase.co") ? configuredUrl : PRODUCTION_SUPABASE_URL;
+const SUPABASE_PUBLISHABLE_KEY = configuredUrl?.includes("pcjhrmwuqyxddyeikely.supabase.co") ? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY : PRODUCTION_SUPABASE_PUBLISHABLE_KEY;
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Gauge, Palette, Search, Target, Users } from "lucide-react";
 import { Link } from "react-router";
 import SEOHead from "@/components/SEOHead";
@@ -16,10 +16,46 @@ type Scores = Record<(typeof criteria)[number]["key"], number>;
 const initialScores: Scores = { experience: 3, design: 3, content: 3, visibility: 2, conversion: 2 };
 
 const SiteScore = () => {
+  const [url, setUrl] = useState("");
+  const [scanState, setScanState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [scanMessage, setScanMessage] = useState("");
+  const [scanScores, setScanScores] = useState<Record<string, number> | null>(null);
   const [scores, setScores] = useState<Scores>(initialScores);
   const total = useMemo(() => Object.values(scores).reduce((sum, value) => sum + value, 0), [scores]);
   const percentage = Math.round((total / 25) * 100);
   const level = percentage < 50 ? "Priorités à clarifier" : percentage < 75 ? "Base intéressante" : "Base solide à optimiser";
+
+  const scanSite = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    let target: URL;
+    try {
+      target = new URL(url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`);
+      if (!['http:', 'https:'].includes(target.protocol) || target.username || target.password || target.hostname === 'localhost' || target.hostname.endsWith('.local')) throw new Error();
+    } catch {
+      setScanState("error");
+      setScanMessage("Saisissez une URL publique valide, par exemple https://votre-site.fr.");
+      return;
+    }
+
+    setScanState("loading");
+    setScanMessage("");
+    try {
+      const endpoint = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
+      endpoint.searchParams.set("url", target.toString());
+      endpoint.searchParams.set("strategy", "mobile");
+      ["performance", "accessibility", "best-practices", "seo"].forEach((category) => endpoint.searchParams.append("category", category));
+      const response = await fetch(endpoint);
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error?.message || "L’analyse est temporairement indisponible.");
+      const categories = payload.lighthouseResult?.categories;
+      if (!categories) throw new Error("Le rapport reçu est incomplet.");
+      setScanScores(Object.fromEntries(Object.entries(categories).map(([key, value]) => [key, Math.round(((value as { score?: number }).score ?? 0) * 100)])));
+      setScanState("success");
+    } catch (error) {
+      setScanState("error");
+      setScanMessage(error instanceof Error && error.message.includes("Quota") ? "Le service d’analyse a atteint sa limite temporaire. Réessayez plus tard." : "Impossible d’analyser cette URL pour le moment. Vérifiez qu’elle est publique et accessible.");
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background px-4 pb-24 pt-32 text-foreground md:px-8">
@@ -30,6 +66,17 @@ const SiteScore = () => {
           <h1 className="heading-display text-5xl leading-[0.9] md:text-8xl">Quel est le vrai potentiel de votre site ?</h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">Notez votre site sur cinq critères. Vous obtiendrez un repère pour identifier les chantiers qui peuvent améliorer la compréhension, la confiance et les demandes entrantes.</p>
         </div>
+
+        <form onSubmit={scanSite} className="mt-10 max-w-3xl rounded-2xl border border-primary/25 bg-primary/5 p-6">
+          <label htmlFor="site-url" className="block text-sm font-semibold">Obtenir un scan automatique de votre site</label>
+          <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+            <input id="site-url" type="url" inputMode="url" placeholder="https://votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
+            <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? "Analyse…" : "Analyser le site"}<ArrowRight className="h-5 w-5" /></button>
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground">Analyse mobile PageSpeed : performance, accessibilité, bonnes pratiques et SEO. Aucun mot de passe n’est demandé.</p>
+          {scanMessage && <p role="alert" className="mt-3 text-sm text-destructive">{scanMessage}</p>}
+          {scanScores && <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">{Object.entries(scanScores).map(([key, value]) => <div key={key} className="rounded-xl border border-border bg-background p-3"><p className="text-xs capitalize text-muted-foreground">{key.replace("best-practices", "bonnes pratiques")}</p><p className="mt-1 text-2xl font-bold text-primary">{value}<span className="text-sm">/100</span></p></div>)}</div>}
+        </form>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_0.7fr] lg:items-start">
           <div className="space-y-8 border-y border-border py-8">
