@@ -30,10 +30,10 @@ export const homeContent = {
       { value: "95%", label: "clients satisfaits" },
     ],
     proofLabel: "Preuves & méthode",
-    proofTitleTop: "Des chiffres",
-    proofTitleBottom: "à valider sur vos données /",
+    proofTitleTop: "Connecter votre entreprise",
+    proofTitleBottom: "à l'IA pour créer de la valeur /",
     proofIntro:
-      "Les résultats affichés servent de repères issus de projets et produits internes. Chaque mission commence par vérifier les données, les contraintes et le potentiel réel avant de promettre un gain.",
+      "Vos données et vos systèmes contiennent souvent des gains invisibles. Nous identifions les tâches manuelles, les frictions et les usages IA utiles avant de construire une feuille de route mesurable.",
     proofItems: [
       {
         title: "Mesure avant / après",
@@ -132,10 +132,10 @@ export const homeContent = {
       { value: "95%", label: "client satisfaction" },
     ],
     proofLabel: "Proof & method",
-    proofTitleTop: "Turn claims",
-    proofTitleBottom: "into measurable evidence /",
+    proofTitleTop: "Connect your business",
+    proofTitleBottom: "to AI that creates value /",
     proofIntro:
-      "Published numbers are framed as benchmarks from projects and internal products. Each mission starts by checking your data, constraints, and realistic upside before any gain is promised.",
+      "Your data and systems often contain invisible opportunities. We identify manual work, friction, and useful AI applications before building a measurable roadmap.",
     proofItems: [
       {
         title: "Before / after measurement",
@@ -234,10 +234,10 @@ export const homeContent = {
       { value: "95%", label: "clientes satisfechos" },
     ],
     proofLabel: "Prueba & método",
-    proofTitleTop: "De las cifras",
-    proofTitleBottom: "a evidencias medibles /",
+    proofTitleTop: "Conecta tu empresa",
+    proofTitleBottom: "con una IA útil y medible /",
     proofIntro:
-      "Las cifras publicadas son referencias de proyectos y productos internos. Cada misión empieza verificando datos, límites y potencial real antes de prometer un resultado.",
+      "Tus datos y sistemas suelen contener oportunidades invisibles. Identificamos tareas manuales, fricciones y usos útiles de la IA antes de construir una hoja de ruta medible.",
     proofItems: [
       {
         title: "Medición antes / después",
