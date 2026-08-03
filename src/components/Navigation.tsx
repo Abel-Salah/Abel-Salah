@@ -63,7 +63,7 @@ const Navigation = () => {
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#111111]/85 px-5 py-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
+        <div className="flex items-center justify-between rounded-full border border-border bg-card/85 px-5 py-3 shadow-2xl shadow-black/10 backdrop-blur-xl">
           <Link
             to={locale === "fr" ? "/" : `/${locale}`}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -73,7 +73,7 @@ const Navigation = () => {
             <span className="block h-5 w-5 rounded-tl-full rounded-br-full bg-current" />
           </Link>
 
-          <button type="button" onClick={() => setTheme(isLight ? "dark" : "light")} className="ml-auto mr-3 rounded-full border border-white/10 p-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary md:ml-0" aria-label={isLight ? "Activer le thème sombre" : "Activer le thème clair"} title={isLight ? "Thème sombre" : "Thème clair"}>
+          <button type="button" onClick={() => setTheme(isLight ? "dark" : "light")} className="ml-auto mr-3 rounded-full border border-border p-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary md:ml-0" aria-label={isLight ? "Activer le thème sombre" : "Activer le thème clair"} title={isLight ? "Thème sombre" : "Thème clair"}>
             {isLight ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </button>
           
@@ -96,7 +96,7 @@ const Navigation = () => {
             ))}
           </ul>
 
-          <div className="hidden md:flex items-center rounded-full border border-white/10 p-1">
+          <div className="hidden md:flex items-center rounded-full border border-border p-1">
             {languageLinks.map((item) => (
               <Link
                 key={item.locale}
@@ -115,7 +115,7 @@ const Navigation = () => {
 
           <Link
             to={cvCanonicalByLocale[locale]}
-            className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
           >
             <Download className="h-4 w-4" />
             {cvLabels[locale]}
@@ -124,7 +124,7 @@ const Navigation = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden rounded-full border border-white/10 p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden rounded-full border border-border p-2 text-foreground hover:text-primary transition-colors"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -142,7 +142,7 @@ const Navigation = () => {
             transition={{ duration: 0.3 }}
             className="md:hidden overflow-hidden"
           >
-            <div className="mt-3 rounded-3xl border border-white/10 bg-[#111111]/95 px-5 py-6 shadow-2xl backdrop-blur-xl">
+            <div className="mt-3 rounded-3xl border border-border bg-card/95 px-5 py-6 shadow-2xl backdrop-blur-xl">
               <ul className="space-y-4">
                 {navItems.map((item, index) => (
                   <motion.li 
@@ -169,7 +169,7 @@ const Navigation = () => {
               <Link
                 to={cvCanonicalByLocale[locale]}
                 onClick={closeMenu}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
               >
                 <Download className="h-4 w-4" />
                 {cvLabels[locale]}
@@ -181,7 +181,7 @@ const Navigation = () => {
                     to={item.href}
                     onClick={closeMenu}
                     className={cn(
-                      "rounded-full border border-white/10 px-4 py-2 text-sm font-semibold transition-colors",
+                      "rounded-full border border-border px-4 py-2 text-sm font-semibold transition-colors",
                       locale === item.locale
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:text-foreground"

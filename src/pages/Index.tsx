@@ -33,7 +33,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
       />
 
       <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(39,91,255,0.45),transparent_32%),radial-gradient(circle_at_20%_20%,rgba(255,166,0,0.12),transparent_18%),linear-gradient(135deg,#030303_0%,#050712_45%,#020202_100%)]" />
+        <div className="home-hero-backdrop absolute inset-0" />
         <div className="absolute right-[-8vw] top-0 h-[72vh] w-[58vw] rotate-[-34deg] overflow-hidden opacity-90 blur-[0.2px]">
           <motion.div
             initial={{ x: 90, opacity: 0 }}
@@ -93,7 +93,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
 
                 <Link
                   to={cvCanonicalByLocale[locale]}
-                  className="inline-flex items-center gap-3 rounded-full border border-white/10 px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
+                  className="inline-flex items-center gap-3 rounded-full border border-border px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
 
                   <Download className="w-4 h-4" />
                   {content.cvCta}
@@ -124,13 +124,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="fixed bottom-6 right-6 z-40 hidden w-[260px] overflow-hidden rounded-3xl border border-white/10 bg-[#111111]/90 shadow-2xl shadow-black/50 backdrop-blur-xl md:block"
+            className="fixed bottom-6 right-6 z-40 hidden w-[260px] overflow-hidden rounded-3xl border border-border bg-card/90 shadow-2xl shadow-black/20 backdrop-blur-xl md:block"
           >
             <button
               type="button"
               aria-label={content.closeIntroLabel}
               onClick={() => setShowIntroCard(false)}
-              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white hover:bg-primary transition-colors"
+              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-foreground/70 text-background hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -143,7 +143,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               }
               className="block transition-transform hover:-translate-y-1"
             >
-              <div className="relative aspect-[9/12] bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.6),transparent_34%),linear-gradient(180deg,#151515,#050505)]">
+              <div className="intro-card-media relative aspect-[9/12]">
                 <img
                   src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp"
                   alt={content.videoAlt}
