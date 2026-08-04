@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Gauge, Palette, Search, Target, Users } from 
 import { Link } from "react-router";
 import SEOHead from "@/components/SEOHead";
 import { trackConversionEvent } from "@/lib/conversionEvents";
+import { supabase } from "@/integrations/supabase/client";
 
 const criteria = [
   { key: "experience", label: "Expérience utilisateur", question: "Un visiteur comprend-il quoi faire en moins de 10 secondes ?", icon: Users },
@@ -49,22 +50,18 @@ const SiteScore = () => {
     setScanState("loading");
     setScanMessage("");
     try {
-      const endpoint = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
-      endpoint.searchParams.set("url", target.toString());
-      endpoint.searchParams.set("strategy", "mobile");
-      ["performance", "accessibility", "best-practices", "seo"].forEach((category) => endpoint.searchParams.append("category", category));
-      const response = await fetch(endpoint);
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error?.message || "L’analyse est temporairement indisponible.");
-      const categories = payload.lighthouseResult?.categories;
-      if (!categories) throw new Error("Le rapport reçu est incomplet.");
-      setScanScores(Object.fromEntries(Object.entries(categories).map(([key, value]) => [key, Math.round(((value as { score?: number }).score ?? 0) * 100)])));
+      const { data, error } = await supabase.functions.invoke("score-site", { body: { url: target.toString() } });
+      if (error) throw new Error(error.message || "L’analyse est temporairement indisponible.");
+      if (!data?.success || !data.audit?.criteria) throw new Error(data?.error || "Le rapport reçu est incomplet.");
+      setScanScores(Object.fromEntries(data.audit.criteria.map((criterion: { key: string; score: number }) => [criterion.key, criterion.score * 10])));
       setScanState("success");
     } catch (error) {
       setScanState("error");
       const message = error instanceof Error ? error.message : "";
-      setScanMessage(message.includes("Quota") || message.includes("quota") || message.includes("429")
-        ? "Le quota PageSpeed du service est épuisé pour aujourd’hui. Ce n’est pas lié à votre site : l’administrateur doit réactiver ou augmenter le quota Google avant de relancer l’analyse."
+      setScanMessage(message.includes("FIRECRAWL_NOT_CONFIGURED")
+        ? "L’audit automatique est en cours de configuration. Le service n’est pas encore activé côté serveur."
+        : message.includes("FIRECRAWL_RATE_LIMIT") || message.includes("429")
+        ? "Le service d’audit a atteint sa limite temporaire. Réessayez plus tard."
         : "Impossible d’analyser cette URL pour le moment. Vérifiez qu’elle est publique et accessible.");
     }
   };
@@ -85,7 +82,7 @@ const SiteScore = () => {
             <input id="site-url" type="text" inputMode="url" autoComplete="url" placeholder="votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
             <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? "Analyse…" : "Analyser le site"}<ArrowRight className="h-5 w-5" /></button>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. Analyse mobile PageSpeed : performance, accessibilité, bonnes pratiques et SEO. Aucun mot de passe n’est demandé.</p>
+          <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. L’audit automatique analyse le contenu, la structure, le SEO, la conversion et la crédibilité. Aucun mot de passe n’est demandé.</p>
           {scanMessage && <p role="alert" className="mt-3 text-sm text-destructive">{scanMessage}</p>}
           {scanScores && <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">{Object.entries(scanScores).map(([key, value]) => <div key={key} className="rounded-xl border border-border bg-background p-3"><p className="text-xs capitalize text-muted-foreground">{key.replace("best-practices", "bonnes pratiques")}</p><p className="mt-1 text-2xl font-bold text-primary">{value}<span className="text-sm">/100</span></p></div>)}</div>}
         </form>
