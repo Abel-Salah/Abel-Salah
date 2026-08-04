@@ -1,5 +1,5 @@
 import { FormEvent, useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, Download, Gauge, Palette, Search, Target, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Download, Gauge, LoaderCircle, Palette, Search, Target, Users } from "lucide-react";
 import { Link } from "react-router";
 import SEOHead from "@/components/SEOHead";
 import { trackConversionEvent } from "@/lib/conversionEvents";
@@ -30,6 +30,8 @@ const normalizePublicUrl = (value: string) => {
 const SiteScore = () => {
   const [url, setUrl] = useState("");
   const [scanState, setScanState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [loadingStep, setLoadingStep] = useState(0);
+  const [scannedHost, setScannedHost] = useState("");
   const [scanMessage, setScanMessage] = useState("");
   const [scanReport, setScanReport] = useState<AuditReport | null>(null);
   const [scores, setScores] = useState<Scores>(initialScores);
@@ -44,6 +46,7 @@ const SiteScore = () => {
       const normalized = normalizePublicUrl(url);
       if (!normalized) throw new Error();
       target = normalized;
+      setScannedHost(target.hostname);
       if (!['http:', 'https:'].includes(target.protocol) || target.username || target.password || target.hostname === 'localhost' || target.hostname.endsWith('.local')) throw new Error();
     } catch {
       setScanState("error");
@@ -52,15 +55,20 @@ const SiteScore = () => {
     }
 
     setScanState("loading");
+    setLoadingStep(1);
     setScanMessage("");
     try {
+      const stepTimer = window.setInterval(() => setLoadingStep((step) => Math.min(step + 1, 3)), 3500);
       const { data, error } = await supabase.functions.invoke("score-site", { body: { url: target.toString() } });
+      window.clearInterval(stepTimer);
       if (error) throw new Error(error.message || "L’analyse est temporairement indisponible.");
       if (!data?.success || !data.audit?.criteria) throw new Error(data?.error || "Le rapport reçu est incomplet.");
       setScanReport({ ...data.audit, screenshot: data.screenshot ?? null });
+      setLoadingStep(3);
       setScores((current) => data.audit.criteria.reduce((next: Scores, criterion: AuditCriterion) => ({ ...next, [criterion.key]: Math.max(1, Math.min(5, Math.round(criterion.score / 2))) }), current));
       setScanState("success");
     } catch (error) {
+      setLoadingStep(0);
       setScanState("error");
       const message = error instanceof Error ? error.message : "";
       setScanMessage(message.includes("FIRECRAWL_NOT_CONFIGURED")
@@ -85,10 +93,11 @@ const SiteScore = () => {
           <label htmlFor="site-url" className="block text-sm font-semibold">Obtenir un scan automatique de votre site</label>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row">
             <input id="site-url" type="text" inputMode="url" autoComplete="url" placeholder="votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
-            <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? "Analyse…" : "Analyser le site"}<ArrowRight className="h-5 w-5" /></button>
+            <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Analyse en cours…</> : <>Analyser le site<ArrowRight className="h-5 w-5" /></>}</button>
           </div>
           <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. L’audit automatique analyse le contenu, la structure, le SEO, la conversion et la crédibilité. Aucun mot de passe n’est demandé.</p>
           {scanMessage && <p role="alert" className="mt-3 text-sm text-destructive">{scanMessage}</p>}
+          {scanState === "loading" && <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4" aria-live="polite"><div className="mb-3 flex items-center justify-between text-sm font-semibold"><span>Analyse de {scannedHost || "votre site"}</span><span className="text-primary">{loadingStep}/3</span></div><div className="h-2 overflow-hidden rounded-full bg-primary/10"><div className="h-full rounded-full bg-primary transition-all duration-700" style={{ width: `${Math.max(12, loadingStep * 33.33)}%` }} /></div><div className="mt-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-3"><span className={loadingStep >= 1 ? "font-semibold text-primary" : ""}>01 · Récupération du site</span><span className={loadingStep >= 2 ? "font-semibold text-primary" : ""}>02 · Analyse IA</span><span className={loadingStep >= 3 ? "font-semibold text-primary" : ""}>03 · Rapport final</span></div></div>}
           {scanReport && <div className="mt-6 rounded-2xl border border-border bg-background p-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Rapport automatique</p><p className="mt-1 text-2xl font-bold text-primary">{scanReport.overall * 10}/100</p></div><button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold"><Download className="h-4 w-4" /> Télécharger / imprimer en PDF</button></div><div className="mt-5 grid gap-3 sm:grid-cols-2">{scanReport.criteria.map((criterion) => <div key={criterion.key} className="rounded-xl border border-border p-3"><div className="flex items-center justify-between gap-3"><p className="font-semibold">{criterion.label}</p><strong className="text-primary">{criterion.score}/10</strong></div><p className="mt-2 text-sm text-muted-foreground">{criterion.evidence?.[0] ?? "Aucun élément vérifiable détecté."}</p></div>)}</div></div>}
         </form>
 
