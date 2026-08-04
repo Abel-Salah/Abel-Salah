@@ -15,6 +15,13 @@ const criteria = [
 type Scores = Record<(typeof criteria)[number]["key"], number>;
 const initialScores: Scores = { experience: 3, design: 3, content: 3, visibility: 2, conversion: 2 };
 
+const normalizePublicUrl = (value: string) => {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  return new URL(withProtocol);
+};
+
 const SiteScore = () => {
   const [url, setUrl] = useState("");
   const [scanState, setScanState] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -29,7 +36,9 @@ const SiteScore = () => {
     event.preventDefault();
     let target: URL;
     try {
-      target = new URL(url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`);
+      const normalized = normalizePublicUrl(url);
+      if (!normalized) throw new Error();
+      target = normalized;
       if (!['http:', 'https:'].includes(target.protocol) || target.username || target.password || target.hostname === 'localhost' || target.hostname.endsWith('.local')) throw new Error();
     } catch {
       setScanState("error");
@@ -53,7 +62,10 @@ const SiteScore = () => {
       setScanState("success");
     } catch (error) {
       setScanState("error");
-      setScanMessage(error instanceof Error && error.message.includes("Quota") ? "Le service d’analyse a atteint sa limite temporaire. Réessayez plus tard." : "Impossible d’analyser cette URL pour le moment. Vérifiez qu’elle est publique et accessible.");
+      const message = error instanceof Error ? error.message : "";
+      setScanMessage(message.includes("Quota") || message.includes("quota") || message.includes("429")
+        ? "Le quota PageSpeed du service est épuisé pour aujourd’hui. Ce n’est pas lié à votre site : l’administrateur doit réactiver ou augmenter le quota Google avant de relancer l’analyse."
+        : "Impossible d’analyser cette URL pour le moment. Vérifiez qu’elle est publique et accessible.");
     }
   };
 
@@ -70,10 +82,10 @@ const SiteScore = () => {
         <form onSubmit={scanSite} className="mt-10 max-w-3xl rounded-2xl border border-primary/25 bg-primary/5 p-6">
           <label htmlFor="site-url" className="block text-sm font-semibold">Obtenir un scan automatique de votre site</label>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-            <input id="site-url" type="url" inputMode="url" placeholder="https://votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
+            <input id="site-url" type="text" inputMode="url" autoComplete="url" placeholder="votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
             <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? "Analyse…" : "Analyser le site"}<ArrowRight className="h-5 w-5" /></button>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">Analyse mobile PageSpeed : performance, accessibilité, bonnes pratiques et SEO. Aucun mot de passe n’est demandé.</p>
+          <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. Analyse mobile PageSpeed : performance, accessibilité, bonnes pratiques et SEO. Aucun mot de passe n’est demandé.</p>
           {scanMessage && <p role="alert" className="mt-3 text-sm text-destructive">{scanMessage}</p>}
           {scanScores && <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">{Object.entries(scanScores).map(([key, value]) => <div key={key} className="rounded-xl border border-border bg-background p-3"><p className="text-xs capitalize text-muted-foreground">{key.replace("best-practices", "bonnes pratiques")}</p><p className="mt-1 text-2xl font-bold text-primary">{value}<span className="text-sm">/100</span></p></div>)}</div>}
         </form>
