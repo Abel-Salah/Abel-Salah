@@ -1,5 +1,5 @@
 import { FormEvent, useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, Gauge, Palette, Search, Target, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Download, Gauge, Palette, Search, Target, Users } from "lucide-react";
 import { Link } from "react-router";
 import SEOHead from "@/components/SEOHead";
 import { trackConversionEvent } from "@/lib/conversionEvents";
@@ -11,10 +11,14 @@ const criteria = [
   { key: "content", label: "Qualité du contenu", question: "Les offres, preuves et bénéfices sont-ils concrets ?", icon: CheckCircle2 },
   { key: "visibility", label: "Visibilité", question: "Le site répond-il aux recherches de vos clients ?", icon: Search },
   { key: "conversion", label: "Conversion", question: "Les appels à l’action et le contact sont-ils évidents ?", icon: Target },
+  { key: "credibility", label: "Crédibilité", question: "Les preuves et signaux de confiance rassurent-ils un prospect ?", icon: CheckCircle2 },
 ] as const;
 
 type Scores = Record<(typeof criteria)[number]["key"], number>;
-const initialScores: Scores = { experience: 3, design: 3, content: 3, visibility: 2, conversion: 2 };
+const initialScores: Scores = { experience: 3, design: 3, content: 3, visibility: 2, conversion: 2, credibility: 3 };
+
+type AuditCriterion = { key: string; label: string; score: number; evidence: string[]; recommendations: string[] };
+type AuditReport = { overall: number; criteria: AuditCriterion[]; priorities: string[]; limitations: string[]; screenshot?: string | null };
 
 const normalizePublicUrl = (value: string) => {
   const trimmed = value.trim();
@@ -27,10 +31,10 @@ const SiteScore = () => {
   const [url, setUrl] = useState("");
   const [scanState, setScanState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [scanMessage, setScanMessage] = useState("");
-  const [scanScores, setScanScores] = useState<Record<string, number> | null>(null);
+  const [scanReport, setScanReport] = useState<AuditReport | null>(null);
   const [scores, setScores] = useState<Scores>(initialScores);
   const total = useMemo(() => Object.values(scores).reduce((sum, value) => sum + value, 0), [scores]);
-  const percentage = Math.round((total / 25) * 100);
+  const percentage = Math.round((total / (criteria.length * 5)) * 100);
   const level = percentage < 50 ? "Priorités à clarifier" : percentage < 75 ? "Base intéressante" : "Base solide à optimiser";
 
   const scanSite = async (event: FormEvent<HTMLFormElement>) => {
@@ -53,7 +57,8 @@ const SiteScore = () => {
       const { data, error } = await supabase.functions.invoke("score-site", { body: { url: target.toString() } });
       if (error) throw new Error(error.message || "L’analyse est temporairement indisponible.");
       if (!data?.success || !data.audit?.criteria) throw new Error(data?.error || "Le rapport reçu est incomplet.");
-      setScanScores(Object.fromEntries(data.audit.criteria.map((criterion: { key: string; score: number }) => [criterion.key, criterion.score * 10])));
+      setScanReport({ ...data.audit, screenshot: data.screenshot ?? null });
+      setScores((current) => data.audit.criteria.reduce((next: Scores, criterion: AuditCriterion) => ({ ...next, [criterion.key]: Math.max(1, Math.min(5, Math.round(criterion.score / 2))) }), current));
       setScanState("success");
     } catch (error) {
       setScanState("error");
@@ -84,8 +89,10 @@ const SiteScore = () => {
           </div>
           <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. L’audit automatique analyse le contenu, la structure, le SEO, la conversion et la crédibilité. Aucun mot de passe n’est demandé.</p>
           {scanMessage && <p role="alert" className="mt-3 text-sm text-destructive">{scanMessage}</p>}
-          {scanScores && <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">{Object.entries(scanScores).map(([key, value]) => <div key={key} className="rounded-xl border border-border bg-background p-3"><p className="text-xs capitalize text-muted-foreground">{key.replace("best-practices", "bonnes pratiques")}</p><p className="mt-1 text-2xl font-bold text-primary">{value}<span className="text-sm">/100</span></p></div>)}</div>}
+          {scanReport && <div className="mt-6 rounded-2xl border border-border bg-background p-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Rapport automatique</p><p className="mt-1 text-2xl font-bold text-primary">{scanReport.overall * 10}/100</p></div><button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold"><Download className="h-4 w-4" /> Télécharger / imprimer en PDF</button></div><div className="mt-5 grid gap-3 sm:grid-cols-2">{scanReport.criteria.map((criterion) => <div key={criterion.key} className="rounded-xl border border-border p-3"><div className="flex items-center justify-between gap-3"><p className="font-semibold">{criterion.label}</p><strong className="text-primary">{criterion.score}/10</strong></div><p className="mt-2 text-sm text-muted-foreground">{criterion.evidence?.[0] ?? "Aucun élément vérifiable détecté."}</p></div>)}</div></div>}
         </form>
+
+        {scanReport && <section className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] print:block"><div className="space-y-6"><div className="rounded-2xl border border-border p-6"><h2 className="text-2xl font-bold">Ce qu’il faut corriger en priorité</h2><ol className="mt-5 space-y-3">{scanReport.priorities.map((priority, index) => <li key={`${priority}-${index}`} className="flex gap-3"><span className="font-bold text-primary">{index + 1}.</span><span>{priority}</span></li>)}</ol></div><div className="rounded-2xl border border-border p-6"><h2 className="text-2xl font-bold">Plan d’action détaillé</h2><div className="mt-5 space-y-6">{scanReport.criteria.map((criterion) => <article key={criterion.key}><h3 className="font-bold">{criterion.label} · {criterion.score}/10</h3><ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">{criterion.recommendations.map((recommendation, index) => <li key={`${recommendation}-${index}`}>{recommendation}</li>)}</ul></article>)}</div></div>{scanReport.limitations.length > 0 && <p className="text-sm text-muted-foreground"><strong>Limites :</strong> {scanReport.limitations.join(" ")}</p>}</div>{scanReport.screenshot && <figure className="rounded-2xl border border-border p-4"><figcaption className="mb-3 text-sm font-semibold">Capture de la page analysée</figcaption><img src={scanReport.screenshot} alt="Capture du site analysé" className="w-full rounded-xl border border-border" /></figure>}</section>}
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_0.7fr] lg:items-start">
           <div className="space-y-8 border-y border-border py-8">
