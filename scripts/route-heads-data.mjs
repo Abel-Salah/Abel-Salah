@@ -487,12 +487,12 @@ export const routes = [
 
 export function stripManagedHead(html) {
   return html
-    .replace(/<title>[\s\S]*?<\/title>/i, "")
-    .replace(/<meta\s+name="description"[\s\S]*?>/gi, "")
-    .replace(/<meta\s+name="author"[\s\S]*?>/gi, "")
-    .replace(/<meta\s+name="keywords"[\s\S]*?>/gi, "")
-    .replace(/<meta\s+property="og:[\s\S]*?>/gi, "")
-    .replace(/<meta\s+name="twitter:[\s\S]*?>/gi, "")
-    .replace(/<link\s+rel="canonical"[\s\S]*?>/gi, "")
-    .replace(/<link\s+rel="alternate"[\s\S]*?>/gi, "");
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, "")
+    .replace(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/gi, "")
+    .replace(/<meta\b(?=[^>]*\bname=["']author["'])[^>]*>/gi, "")
+    .replace(/<meta\b(?=[^>]*\bname=["']keywords["'])[^>]*>/gi, "")
+    .replace(/<meta\b(?=[^>]*\bproperty=["']og:[^"']+["'])[^>]*>/gi, "")
+    .replace(/<meta\b(?=[^>]*\bname=["']twitter:[^"']+["'])[^>]*>/gi, "")
+    .replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi, "")
+    .replace(/<link\b(?=[^>]*\brel=["']alternate["'])[^>]*>/gi, "");
 }
