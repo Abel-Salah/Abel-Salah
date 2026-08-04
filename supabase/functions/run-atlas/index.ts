@@ -34,7 +34,7 @@ serve(async (req) => {
       .from("agents")
       .select("id, slug, name")
       .eq("enabled", true)
-      .in("slug", ["atlas", "nova", "cleo", "iris"]);
+      .in("slug", ["atlas", "nova", "cleo", "iris", "plume"]);
     if (agentError) throw agentError;
 
     const bySlug = new Map(((agents ?? []) as Agent[]).map((agent) => [agent.slug, agent]));
@@ -52,6 +52,7 @@ serve(async (req) => {
       bySlug.get("nova") && task(bySlug.get("nova")!.id, "business_development_scan", "Détecter les opportunités et collaborations du jour", { limit: 20 }),
       bySlug.get("cleo") && task(bySlug.get("cleo")!.id, "google_search_console_audit", "Analyser les performances SEO Google", { requested: true }),
       bySlug.get("iris") && task(bySlug.get("iris")!.id, "llm_visibility_audit", "Auditer la visibilité d’Abel dans les moteurs IA", { requested: true }),
+      bySlug.get("plume") && task(bySlug.get("plume")!.id, "content_quality_review", "Préparer les prochaines actions de contenu SEO", { requested: true }),
     ].filter(Boolean).map((item) => ({ ...item, run_id: run.id }));
 
     const { data: tasks, error: taskError } = await supabase
