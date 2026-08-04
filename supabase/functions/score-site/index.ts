@@ -58,8 +58,10 @@ serve(async (req) => {
     if (!scrape.ok) return json({ error: scrape.status === 429 ? "FIRECRAWL_RATE_LIMIT" : "FIRECRAWL_ERROR", details: scrapePayload.error }, scrape.status);
 
     const data = scrapePayload.data ?? {};
-    const markdown = String(data.markdown ?? "").slice(0, 28000);
-    const html = String(data.html ?? "").slice(0, 18000);
+    // Keep the AI payload bounded: Firecrawl can return very large pages and
+    // the audit should remain reliable on the public endpoint.
+    const markdown = String(data.markdown ?? "").slice(0, 12000);
+    const html = String(data.html ?? "").slice(0, 8000);
     const links = Array.isArray(data.links) ? data.links.slice(0, 80) : [];
     const metadata = data.metadata ?? {};
 
@@ -73,6 +75,13 @@ serve(async (req) => {
     const message = error instanceof Error ? error.message : "UNKNOWN_ERROR";
     if (message === "URL_REQUIRED" || message === "PUBLIC_URL_REQUIRED") return json({ error: message }, 400);
     console.error("score-site error", error);
-    return json({ error: "AUDIT_UNAVAILABLE" }, 500);
+    const category = message.startsWith("Gemini API error 429")
+      ? "GEMINI_RATE_LIMIT"
+      : message.startsWith("Gemini API error")
+        ? "GEMINI_ERROR"
+        : message.includes("GEMINI_API_KEY")
+          ? "GEMINI_NOT_CONFIGURED"
+          : "AUDIT_UNAVAILABLE";
+    return json({ error: category }, 500);
   }
 });
