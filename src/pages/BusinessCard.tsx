@@ -2,8 +2,8 @@ import { ArrowUpRight, BadgeCheck, Check, Download, Facebook, Linkedin, Mail, Mu
 import SEOHead from "@/components/SEOHead";
 import { STRIPE_PAYMENT_LINKS } from "@/data/stripePaymentLinks";
 import { trackConversionEvent } from "@/lib/conversionEvents";
-import portrait from "@/assets/abel-salah-card-portrait.png";
-import cover from "@/assets/business-card-cover-v2.png";
+import portrait from "@/assets/abel-salah-card-portrait.webp";
+import cover from "@/assets/business-card-cover-v2.webp";
 import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import "./business-card.css";
