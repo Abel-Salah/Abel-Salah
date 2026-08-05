@@ -18,10 +18,10 @@ export const homeContent = {
       "Audit IA pour PME & ETI. Identifiez les bons cas d'usage, automatisez vos processus et construisez une feuille de route IA réaliste.",
     breadcrumb: "Accueil",
     eyebrow: "Consultant IA pour PME, ETI & dirigeants",
-    heroTop: "IA",
+    heroTop: "Expert IA",
     heroBottom: "Business",
     intro:
-      "J'aide les entreprises à intégrer l'IA là où elle crée vraiment de la valeur : ventes, opérations, formation et stratégie.",
+      "J'accompagne les entreprises dans leurs audits IA, leurs déploiements et la formation des équipes, avec des usages reliés aux ventes, aux opérations et à la stratégie.",
     primaryCta: "Réserver un audit IA",
     cvCta: "Télécharger mon CV",
     stats: [
