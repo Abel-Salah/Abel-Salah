@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .env
 supabase/.temp/
+.codebase-memory/
 
 # Editor directories and files
 .vscode/*
