@@ -1,3 +1,5 @@
+import homeFaq from "../src/data/homeFaq.json" with { type: "json" };
+
 /* Données SEO des routes publiques, partagées entre
    generate-static-route-heads.mjs (heads) et prerender-routes.mjs (corps HTML). */
 
@@ -101,6 +103,7 @@ export const routes = [
   {
     path: "/",
     lang: "fr",
+    faq: homeFaq.fr,
     title: "Expert IA pour Entreprises | Audit IA — Abel SALAH",
     description:
       "Audit IA pour PME & ETI. Identifiez les bons cas d'usage, automatisez vos processus et construisez une feuille de route IA réaliste.",
@@ -109,6 +112,7 @@ export const routes = [
   {
     path: "/en",
     lang: "en",
+    faq: homeFaq.en,
     title: "AI Consultant for Business | AI Audit — Abel SALAH",
     description:
       "AI audit for SMEs and growing companies. Identify practical use cases, automate workflows, and build a realistic AI roadmap.",
@@ -117,6 +121,7 @@ export const routes = [
   {
     path: "/es",
     lang: "es",
+    faq: homeFaq.es,
     title: "Consultor IA para Empresas | Auditoría IA — Abel SALAH",
     description:
       "Auditoría IA para pymes y empresas en crecimiento. Identifique casos de uso, automatice procesos y construya una hoja de ruta realista.",

@@ -21,15 +21,6 @@ const Index = ({ locale = "fr" }: IndexProps) => {
   const [showIntroCard, setShowIntroCard] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const content = homeContent[locale];
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: content.faq.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const ribbonsParallax = useTransform(scrollY, [0, 900], [0, 110]);
@@ -71,7 +62,6 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         lang={locale}
         alternates={homeAlternates}
         breadcrumbs={[{ name: content.breadcrumb, path: content.canonical }]}
-        jsonLd={faqSchema}
       />
 
       <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">

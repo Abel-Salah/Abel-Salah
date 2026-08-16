@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
+import { trackConversionEvent } from "@/lib/conversionEvents";
 import SEOHead from "@/components/SEOHead";
 import { ventures } from "@/data/ventures";
 import { productsAlternates, productsCanonicalByLocale, productsLocales } from "@/data/productsLocales";
@@ -139,6 +140,38 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
                       </span>
                       <p className="text-lg text-primary font-medium leading-snug">{text.proof}</p>
                     </div>
+
+                    {/* Solution SaaS */}
+                    {text.solution && (
+                      <div className="card-premium card-lift mt-2 p-6">
+                        <span className="label-mono text-xs uppercase tracking-[0.2em] text-primary block mb-3">
+                          {t.solutionLabel}
+                        </span>
+                        <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                          {text.solution.audience}
+                        </p>
+                        <ul className="space-y-2.5 mb-6">
+                          {text.solution.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-3 text-sm text-foreground">
+                              <Check className="mt-0.5 h-4 w-4 flex-none text-primary" aria-hidden="true" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                        <a
+                          href={venture.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() =>
+                            trackConversionEvent("offer_cta_click", `saas_${venture.domain}_${locale}`, venture.url)
+                          }
+                          className="cta-glow inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
+                        >
+                          {text.solution.ctaLabel}
+                          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.article>

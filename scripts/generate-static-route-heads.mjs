@@ -37,6 +37,19 @@ function buildHead(route) {
       ),
     })}</script>`;
 
+  const routeFaqSchema = route.faq
+    ? `
+    <script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: route.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    })}</script>`
+    : "";
+
   const routeServiceSchema = route.service
     ? `
     <script type="application/ld+json">${JSON.stringify({
@@ -83,7 +96,7 @@ ${alternates}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(route.title)}" />
     <meta name="twitter:description" content="${escapeHtml(route.description)}" />
-    <meta name="twitter:image" content="${ogImage}" />${navigationSchema}${routeServiceSchema}`;
+    <meta name="twitter:image" content="${ogImage}" />${navigationSchema}${routeServiceSchema}${routeFaqSchema}`;
 }
 
 function applyRouteHead(baseHtml, route) {

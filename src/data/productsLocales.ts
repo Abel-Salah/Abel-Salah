@@ -5,6 +5,11 @@ interface VentureText {
   pitch: string;
   proof: string;
   metrics: { value: string; label: string }[];
+  solution?: {
+    audience: string;
+    features: string[];
+    ctaLabel: string;
+  };
 }
 
 export interface ProductsContent {
@@ -18,6 +23,7 @@ export interface ProductsContent {
   statementHighlight: string;
   intro: string;
   proofLabel: string;
+  solutionLabel: string;
   ctaLine: string;
   ctaLink: string;
   ventures: Record<string, VentureText>;
@@ -49,11 +55,22 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
     intro:
       "Avant de déployer l'IA chez vous, je l'ai déployée chez moi. Voici les 4 produits que je conçois et opère — chacun est une preuve concrète d'une capacité que j'apporte ensuite à mes clients.",
     proofLabel: "Ce que ça prouve",
+    solutionLabel: "La solution en bref",
     ctaLine: "Vous voulez ce niveau d'exécution IA dans votre entreprise ?",
     ctaLink: "Parlons-en",
     ventures: {
       "scallup.fr": {
         tagline: "L'agent IA qui prospecte, relance et vend.",
+        solution: {
+          audience: "Pour les dirigeants et équipes commerciales de PME qui veulent un pipeline actif sans recruter de SDR.",
+          features: [
+            "Prospection multicanale en pilote automatique",
+            "Relances et suivi commercial gérés par l'agent IA",
+            "Devis, reporting et pilotage centralisés",
+            "Intégré à vos outils métier (CRM, email)",
+          ],
+          ctaLabel: "Découvrir scallup.fr",
+        },
         pitch:
           "Plateforme SaaS où un agent IA exécute les actions commerciales en pilote automatique : prospection multicanale, relances, appels, marketing, SEO, devis et pilotage. Intégré nativement aux outils métier.",
         proof: "Concevoir et opérer un produit SaaS IA B2B à l'échelle, de la stratégie au revenu.",
@@ -65,6 +82,16 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
       },
       "skill-lms.fr": {
         tagline: "Le LMS Qualiopi nouvelle génération.",
+        solution: {
+          audience: "Pour les organismes de formation et formateurs qui veulent créer, déployer et vendre leurs formations.",
+          features: [
+            "Création de parcours et déploiement en quelques clics",
+            "Espace communauté pour vos apprenants",
+            "Conventions, convocations et preuves Qualiopi automatisées",
+            "Suivi apprenants et pilotage par IA",
+          ],
+          ctaLabel: "Découvrir skill-lms.fr",
+        },
         pitch:
           "Plateforme tout-en-un pour organismes de formation : création de parcours, suivi apprenants, automatisation des conventions et convocations, centralisation des preuves Qualiopi, pilotage par IA.",
         proof: "Maîtriser les plateformes métier complexes et la conformité réglementaire (Qualiopi).",
@@ -111,11 +138,22 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
     intro:
       "Before deploying AI in your company, I deployed it in mine. Here are the 4 products I design and operate — each one is concrete proof of a capability I then bring to my clients.",
     proofLabel: "What it proves",
+    solutionLabel: "The product in short",
     ctaLine: "Want this level of AI execution in your company?",
     ctaLink: "Let's talk",
     ventures: {
       "scallup.fr": {
         tagline: "The AI agent that prospects, follows up and sells.",
+        solution: {
+          audience: "For SME executives and sales teams who want an active pipeline without hiring SDRs.",
+          features: [
+            "Multichannel prospecting on autopilot",
+            "Follow-ups and sales tracking handled by the AI agent",
+            "Quotes, reporting and steering in one place",
+            "Native integration with your tools (CRM, email)",
+          ],
+          ctaLabel: "Discover scallup.fr",
+        },
         pitch:
           "SaaS platform where an AI agent runs sales actions on autopilot: multichannel prospecting, follow-ups, calls, marketing, SEO, quotes and reporting. Natively integrated with business tools.",
         proof: "Designing and operating a B2B AI SaaS product at scale, from strategy to revenue.",
@@ -127,6 +165,16 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
       },
       "skill-lms.fr": {
         tagline: "The next-generation Qualiopi LMS.",
+        solution: {
+          audience: "For training organizations and trainers who want to create, deploy and sell their courses.",
+          features: [
+            "Course creation and deployment in a few clicks",
+            "Community space for your learners",
+            "Automated agreements, invitations and Qualiopi evidence",
+            "Learner tracking and AI-powered steering",
+          ],
+          ctaLabel: "Discover skill-lms.fr",
+        },
         pitch:
           "All-in-one platform for training organisations: course creation, learner tracking, automated agreements and invitations, centralised Qualiopi evidence, AI-driven management.",
         proof: "Mastering complex business platforms and regulatory compliance (Qualiopi).",
@@ -173,11 +221,22 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
     intro:
       "Antes de desplegar la IA en tu empresa, la desplegué en la mía. Estos son los 4 productos que diseño y opero — cada uno es una prueba concreta de una capacidad que luego aporto a mis clientes.",
     proofLabel: "Lo que demuestra",
+    solutionLabel: "La solución en breve",
     ctaLine: "¿Quieres este nivel de ejecución IA en tu empresa?",
     ctaLink: "Hablemos",
     ventures: {
       "scallup.fr": {
         tagline: "El agente IA que prospecta, hace seguimiento y vende.",
+        solution: {
+          audience: "Para directivos y equipos comerciales de pymes que quieren un pipeline activo sin contratar SDRs.",
+          features: [
+            "Prospección multicanal en piloto automático",
+            "Seguimientos y ventas gestionados por el agente IA",
+            "Presupuestos, informes y pilotaje centralizados",
+            "Integración nativa con tus herramientas (CRM, email)",
+          ],
+          ctaLabel: "Descubrir scallup.fr",
+        },
         pitch:
           "Plataforma SaaS donde un agente IA ejecuta las acciones comerciales en piloto automático: prospección multicanal, seguimientos, llamadas, marketing, SEO, presupuestos y gestión. Integrado de forma nativa con las herramientas de negocio.",
         proof: "Diseñar y operar un producto SaaS IA B2B a escala, de la estrategia al ingreso.",
@@ -189,6 +248,16 @@ export const productsLocales: Record<PageLocale, ProductsContent> = {
       },
       "skill-lms.fr": {
         tagline: "El LMS Qualiopi de nueva generación.",
+        solution: {
+          audience: "Para organismos de formación y formadores que quieren crear, desplegar y vender sus formaciones.",
+          features: [
+            "Creación de itinerarios y despliegue en pocos clics",
+            "Espacio de comunidad para tus alumnos",
+            "Convenios, convocatorias y evidencias Qualiopi automatizados",
+            "Seguimiento de alumnos y pilotaje con IA",
+          ],
+          ctaLabel: "Descubrir skill-lms.fr",
+        },
         pitch:
           "Plataforma todo en uno para organismos de formación: creación de itinerarios, seguimiento de alumnos, automatización de convenios y convocatorias, centralización de evidencias Qualiopi, gestión con IA.",
         proof: "Dominar plataformas de negocio complejas y la conformidad regulatoria (Qualiopi).",
