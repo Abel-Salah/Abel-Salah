@@ -29,6 +29,9 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
+          <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+            {t.eyebrow}
+          </span>
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-8">
             {t.title}
           </h1>

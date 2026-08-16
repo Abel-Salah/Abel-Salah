@@ -14,6 +14,7 @@ export interface WorkContent {
   breadcrumbHome: string;
   breadcrumbSelf: string;
   title: string;
+  eyebrow: string;
   intro: string;
   cardLabels: { context: string; action: string; result: string };
   projects: WorkProject[];
@@ -42,6 +43,7 @@ export const workLocales: Record<PageLocale, WorkContent> = {
     breadcrumbHome: "Accueil",
     breadcrumbSelf: "Réalisations",
     title: "Réalisations",
+    eyebrow: "Sélection de missions",
     intro: "Des missions concrètes où l'IA a créé un impact mesurable. Stratégie, exécution, résultats.",
     cardLabels: { context: "Contexte", action: "Action", result: "Résultat" },
     projects: [
@@ -92,6 +94,7 @@ export const workLocales: Record<PageLocale, WorkContent> = {
     breadcrumbHome: "Home",
     breadcrumbSelf: "Work",
     title: "Work",
+    eyebrow: "Selected work",
     intro: "Real-world engagements where AI created measurable impact. Strategy, execution, results.",
     cardLabels: { context: "Context", action: "Action", result: "Result" },
     projects: [
@@ -142,6 +145,7 @@ export const workLocales: Record<PageLocale, WorkContent> = {
     breadcrumbHome: "Inicio",
     breadcrumbSelf: "Proyectos",
     title: "Proyectos",
+    eyebrow: "Misiones seleccionadas",
     intro: "Misiones concretas donde la IA generó un impacto medible. Estrategia, ejecución, resultados.",
     cardLabels: { context: "Contexto", action: "Acción", result: "Resultado" },
     projects: [

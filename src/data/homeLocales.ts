@@ -86,6 +86,27 @@ export const homeContent = {
     workCta: "Voir toutes les réalisations",
     finalTitle: "Prêt à passer à l'action ?",
     finalCta: "Réservez un appel",
+    faqLabel: "FAQ",
+    faqTitleTop: "Questions",
+    faqTitleBottom: "fréquentes /",
+    faq: [
+      {
+        q: "Comment se déroule un audit IA ?",
+        a: "On démarre par un appel de 30 minutes, sans engagement, pour cadrer vos priorités. Ensuite : diagnostic opérationnel de vos processus, priorisation des cas d'usage par ROI, et une feuille de route 30/60/90 jours que vos équipes peuvent exécuter.",
+      },
+      {
+        q: "Pour quelles entreprises travaillez-vous ?",
+        a: "Des PME, ETI et dirigeants, dans des secteurs variés : retail, services B2B, industrie, formation. Les cas d'usage sont choisis selon vos équipes, vos données et vos outils — pas l'inverse.",
+      },
+      {
+        q: "Faut-il une équipe technique pour se lancer ?",
+        a: "Non. Je connecte l'IA à vos outils existants (CRM, emails, tableaux de bord) et je forme vos équipes à l'usage réel. L'objectif : des workflows fiables et adoptés sur le terrain.",
+      },
+      {
+        q: "Combien de temps avant les premiers résultats ?",
+        a: "La méthode est pensée pour aller vite : cadrer les bons usages, prototyper en quelques semaines, puis déployer progressivement avec des indicateurs mesurés avant / après.",
+      },
+    ],
     services: [
       {
         number: "01",
@@ -188,6 +209,27 @@ export const homeContent = {
     workCta: "View selected work",
     finalTitle: "Ready to move?",
     finalCta: "Book a call",
+    faqLabel: "FAQ",
+    faqTitleTop: "Common",
+    faqTitleBottom: "questions /",
+    faq: [
+      {
+        q: "How does an AI audit work?",
+        a: "We start with a free 30-minute call to frame your priorities. Then: an operational diagnosis of your processes, ROI-based prioritization of use cases, and a 30/60/90-day roadmap your teams can execute.",
+      },
+      {
+        q: "What kind of companies do you work with?",
+        a: "SMEs, scale-ups, and executives across retail, B2B services, industry, and training. Use cases are chosen to fit your teams, data, and tools — not the other way around.",
+      },
+      {
+        q: "Do we need a technical team to get started?",
+        a: "No. I connect AI to the tools you already use (CRM, email, dashboards) and train your teams for real-world usage. The goal: reliable workflows that actually get adopted.",
+      },
+      {
+        q: "How long before we see results?",
+        a: "The method is built for speed: frame the right use cases, prototype within weeks, then roll out progressively with indicators measured before and after.",
+      },
+    ],
     services: [
       {
         number: "01",
@@ -290,6 +332,27 @@ export const homeContent = {
     workCta: "Ver proyectos",
     finalTitle: "¿Listo para avanzar?",
     finalCta: "Reservar una llamada",
+    faqLabel: "FAQ",
+    faqTitleTop: "Preguntas",
+    faqTitleBottom: "frecuentes /",
+    faq: [
+      {
+        q: "¿Cómo se desarrolla una auditoría IA?",
+        a: "Empezamos con una llamada de 30 minutos, sin compromiso, para enmarcar tus prioridades. Después: diagnóstico operativo de tus procesos, priorización de casos de uso por ROI y una hoja de ruta 30/60/90 días que tus equipos pueden ejecutar.",
+      },
+      {
+        q: "¿Con qué tipo de empresas trabajas?",
+        a: "Pymes, empresas en crecimiento y directivos de sectores variados: retail, servicios B2B, industria, formación. Los casos de uso se eligen según tus equipos, tus datos y tus herramientas.",
+      },
+      {
+        q: "¿Hace falta un equipo técnico para empezar?",
+        a: "No. Conecto la IA con las herramientas que ya usas (CRM, email, cuadros de mando) y formo a tus equipos para el uso real. El objetivo: flujos fiables y adoptados de verdad.",
+      },
+      {
+        q: "¿Cuánto tiempo hasta ver resultados?",
+        a: "El método está pensado para ir rápido: definir los casos de uso, prototipar en pocas semanas y desplegar progresivamente con indicadores medidos antes y después.",
+      },
+    ],
     services: [
       {
         number: "01",

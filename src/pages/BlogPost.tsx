@@ -133,7 +133,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
+          <div className="label-mono flex flex-wrap items-center gap-4 mb-4 text-xs uppercase tracking-wider text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
               {new Date(post.date).toLocaleDateString(t.dateLocale, {
@@ -183,7 +183,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
                   rehypePlugins={[rehypeSanitize]}
                   components={{
                     p: ({ children }) => (
-                      <p className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                      <p className="text-[17px] md:text-lg leading-[1.75] text-muted-foreground mb-4 last:mb-0">
                         {children}
                       </p>
                     ),
@@ -203,7 +203,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
                       </ol>
                     ),
                     li: ({ children }) => (
-                      <li className="leading-relaxed">{children}</li>
+                      <li className="text-[17px] md:text-lg leading-[1.75]">{children}</li>
                     ),
                   }}
                 >

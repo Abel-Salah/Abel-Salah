@@ -65,7 +65,7 @@ const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
               className="group"
             >
               <Link to={`${blogBase}/${post.slug}`} className="block">
-                <div className="border border-border rounded-lg p-6 md:p-8 hover:border-primary/50 transition-colors">
+                <div className="card-lift border border-border rounded-lg p-6 md:p-8 hover:border-primary/50">
                   <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
                       <Calendar className="w-4 h-4" />

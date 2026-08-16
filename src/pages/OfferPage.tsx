@@ -126,7 +126,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: index * 0.04 }}
               viewport={{ once: true }}
-              className="min-h-[220px] border border-border bg-card/30 p-7"
+              className="card-lift min-h-[220px] border border-border bg-card/30 p-7"
             >
               <span className="heading-display text-5xl text-primary">
                 {String(index + 1).padStart(2, "0")}

@@ -6,6 +6,7 @@ export interface ContactContent {
   breadcrumbHome: string;
   breadcrumbSelf: string;
   title: string;
+  eyebrow: string;
   intro: string;
   iframeTitle: string;
   responseTimeTitle: string;
@@ -38,6 +39,7 @@ export const contactLocales: Record<PageLocale, ContactContent> = {
     breadcrumbHome: "Accueil",
     breadcrumbSelf: "Contact",
     title: "Contact",
+    eyebrow: "Parlons-en",
     intro: "Un projet en tête ? Réservez un créneau directement dans mon agenda.",
     iframeTitle: "TidyCal - Prendre RDV avec Abel SALAH",
     responseTimeTitle: "Temps de réponse",
@@ -56,6 +58,7 @@ export const contactLocales: Record<PageLocale, ContactContent> = {
     breadcrumbHome: "Home",
     breadcrumbSelf: "Contact",
     title: "Contact",
+    eyebrow: "Let's talk",
     intro: "Have a project in mind? Book a slot directly in my calendar.",
     iframeTitle: "TidyCal - Book a call with Abel SALAH",
     responseTimeTitle: "Response time",
@@ -74,6 +77,7 @@ export const contactLocales: Record<PageLocale, ContactContent> = {
     breadcrumbHome: "Inicio",
     breadcrumbSelf: "Contacto",
     title: "Contacto",
+    eyebrow: "Hablemos",
     intro: "¿Tienes un proyecto en mente? Reserva un hueco directamente en mi agenda.",
     iframeTitle: "TidyCal - Reservar cita con Abel SALAH",
     responseTimeTitle: "Tiempo de respuesta",

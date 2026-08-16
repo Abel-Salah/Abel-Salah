@@ -1,8 +1,9 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, Plus, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import StatCounter from "@/components/StatCounter";
 import { workCanonicalByLocale } from "@/data/workLocales";
 import {
   homeAlternates,
@@ -18,7 +19,17 @@ interface IndexProps {
 
 const Index = ({ locale = "fr" }: IndexProps) => {
   const [showIntroCard, setShowIntroCard] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const content = homeContent[locale];
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const ribbonsParallax = useTransform(scrollY, [0, 900], [0, 110]);
@@ -60,6 +71,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         lang={locale}
         alternates={homeAlternates}
         breadcrumbs={[{ name: content.breadcrumb, path: content.canonical }]}
+        jsonLd={faqSchema}
       />
 
       <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">
@@ -206,7 +218,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               className="text-center">
 
                 <span className="heading-display text-6xl md:text-8xl text-primary">
-                  {stat.value}
+                  <StatCounter value={stat.value} />
                 </span>
                 <p className="label-mono text-muted-foreground text-sm mt-3 uppercase tracking-wider">
                   {stat.label}
@@ -361,7 +373,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="group card-premium min-h-[420px] p-8 transition-colors">
+              className="group card-premium card-lift min-h-[420px] p-8">
                 <div className="flex items-center justify-between">
                   <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     ({service.number})
@@ -447,6 +459,75 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section-glow overflow-hidden py-28 px-4 md:px-6 border-t border-border">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}
+              className="lg:col-span-4"
+            >
+              <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+                {content.faqLabel}
+              </span>
+              <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+                {content.faqTitleTop}
+                <br />
+                <span className="heading-serif-accent">{content.faqTitleBottom}</span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="lg:col-span-8"
+            >
+              <div className="divide-y divide-border border-y border-border">
+                {content.faq.map((item, index) => (
+                  <div key={item.q}>
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                      aria-expanded={openFaq === index}
+                      className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg md:text-xl font-semibold text-foreground transition-colors hover:text-primary"
+                    >
+                      {item.q}
+                      <motion.span
+                        animate={{ rotate: openFaq === index ? 45 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="flex-none text-primary"
+                      >
+                        <Plus className="h-5 w-5" aria-hidden="true" />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {openFaq === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="overflow-hidden"
+                        >
+                          <p className="max-w-3xl pb-6 text-base md:text-lg leading-relaxed text-muted-foreground">
+                            {item.a}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

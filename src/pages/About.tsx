@@ -185,7 +185,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
               href="https://www.linkedin.com/in/abel-salah/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+              className="group card-lift border border-border hover:border-primary p-8 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <Linkedin className="w-8 h-8 text-primary" />
@@ -200,7 +200,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
               href="https://www.youtube.com/@abelsalah"
               target="_blank"
               rel="noopener noreferrer"
-              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+              className="group card-lift border border-border hover:border-primary p-8 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <Youtube className="w-8 h-8 text-primary" />
@@ -213,7 +213,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
             </a>
             <Link
               to={cvCanonicalByLocale[locale]}
-              className="group border border-border hover:border-primary transition-colors p-8 flex items-center justify-between"
+              className="group card-lift border border-border hover:border-primary p-8 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <Download className="w-8 h-8 text-primary" />
