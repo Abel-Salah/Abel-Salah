@@ -23,9 +23,9 @@ const Services = () => (
         transition={{ duration: 0.5 }}
         className="mb-16 max-w-4xl"
       >
-        <p className="mb-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">Ce que je propose</p>
+        <p className="mb-6 label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Ce que je propose</p>
         <h1 className="heading-display text-[clamp(3rem,10vw,9rem)] leading-[0.84] tracking-[-0.05em]">
-          Des services IA<br /><span className="text-primary">qui passent à l'action.</span>
+          Des services IA<br /><span className="heading-serif-accent text-primary">qui passent à l'action.</span>
         </h1>
         <p className="mt-10 max-w-2xl text-xl leading-relaxed text-muted-foreground">
           J'aide les dirigeants et les équipes à identifier les bons usages, déployer des systèmes utiles et faire adopter l'IA dans le travail réel.

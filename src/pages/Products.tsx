@@ -32,7 +32,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
             {t.eyebrow}
           </span>
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-12">
@@ -97,7 +97,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
                         href={venture.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
+                        className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
                       >
                         {venture.domain} ↗
                       </a>
@@ -134,7 +134,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
 
                     {/* Proof */}
                     <div className="pt-4">
-                      <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-2">
+                      <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-2">
                         {t.proofLabel}
                       </span>
                       <p className="text-lg text-primary font-medium leading-snug">{text.proof}</p>

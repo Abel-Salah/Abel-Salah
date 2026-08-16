@@ -75,7 +75,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
             {t.eyebrow}
           </span>
           <h1 className="heading-display text-[clamp(3rem,10vw,10rem)] leading-[0.85] mb-12">
@@ -134,7 +134,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-4"
         >
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-12">
+          <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-12">
             {t.expertiseTitle}
           </span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -155,7 +155,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20"
         >
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-8">
             {t.productsTitle}
           </span>
           <p className="text-2xl md:text-3xl text-foreground leading-snug mb-12 max-w-3xl">

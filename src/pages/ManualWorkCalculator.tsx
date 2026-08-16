@@ -47,7 +47,7 @@ const ManualWorkCalculator = () => {
           </div>
 
           <aside className="rounded-2xl border border-primary/30 bg-primary/5 p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Repère annuel</p>
+            <p className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Repère annuel</p>
             <p className="mt-5 text-6xl font-extrabold tracking-tight text-primary md:text-7xl">{formatEuro(estimate.annualCost)}</p>
             <p className="mt-3 text-muted-foreground">de temps mobilisé selon vos hypothèses</p>
             <div className="mt-8 grid grid-cols-2 gap-4 border-t border-border pt-6 text-sm">

@@ -116,7 +116,7 @@ const Navigation = () => {
             onClick={() =>
               trackConversionEvent("book_call_click", `nav_cta_${locale}`, TIDYCAL_BOOKING_URL)
             }
-            className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
+            className="cta-glow hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
           >
             {bookLabels[locale]}
             <ArrowRight className="h-4 w-4" />
@@ -175,7 +175,7 @@ const Navigation = () => {
                   trackConversionEvent("book_call_click", `nav_cta_mobile_${locale}`, TIDYCAL_BOOKING_URL);
                   closeMenu();
                 }}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
+                className="cta-glow mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
               >
                 {bookLabels[locale]}
                 <ArrowRight className="h-4 w-4" />

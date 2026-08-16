@@ -103,7 +103,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
           className="grid gap-12 lg:grid-cols-12 lg:items-end"
         >
           <div className="lg:col-span-8">
-            <span className="mb-6 inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="mb-6 inline-flex items-center gap-3 label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <Icon className="h-5 w-5 text-primary" />
               {offer.eyebrow}
             </span>
@@ -142,7 +142,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
       <section className="border-y border-border py-20">
         <div className="container mx-auto grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               {copy.method}
             </span>
             <h2 className="heading-display mt-6 text-5xl uppercase leading-none md:text-7xl">
@@ -156,7 +156,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
               <div key={step} className="flex gap-5 py-7">
                 <CheckCircle2 className="mt-1 h-6 w-6 flex-none text-primary" />
                 <div>
-                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     {copy.step} {index + 1}
                   </span>
                   <p className="mt-3 text-xl leading-relaxed">{step}</p>
@@ -170,13 +170,13 @@ const OfferPage = ({ slug }: OfferPageProps) => {
       <section className="container mx-auto py-20">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="border border-primary/40 bg-primary/5 p-8 lg:col-span-7">
-            <span className="text-xs uppercase tracking-[0.2em] text-primary">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-primary">
               {copy.proof}
             </span>
             <p className="mt-6 text-xl leading-relaxed">{offer.proof}</p>
           </div>
           <div className="border border-border p-8 lg:col-span-5">
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               {copy.related}
             </span>
             <div className="mt-6 space-y-4">
@@ -198,7 +198,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
       <section className="container mx-auto border-t border-border py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               {copy.cases}
             </span>
             <h2 className="heading-display mt-6 text-5xl uppercase leading-none md:text-7xl">
@@ -215,7 +215,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
                 viewport={{ once: true }}
                 className="border border-border bg-card/25 p-7"
               >
-                <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                <span className="label-mono text-xs uppercase tracking-[0.2em] text-primary">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold">{item.title}</h3>

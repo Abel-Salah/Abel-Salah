@@ -8,33 +8,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
+    /* Noirs teintés bleu (hue 228) : le fond "répond" au bleu primaire au
+       lieu du gris neutre 0% qui rendait le thème sombre plat et daté. */
+    --background: 228 30% 4%;
+    --foreground: 220 25% 97%;
+    --card: 228 25% 7%;
+    --card-foreground: 220 25% 97%;
+    --popover: 228 25% 7%;
+    --popover-foreground: 220 25% 97%;
     --primary: 237 99% 53%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --secondary: 228 20% 11%;
+    --secondary-foreground: 220 25% 97%;
+    --muted: 228 18% 15%;
+    --muted-foreground: 224 14% 68%;
     --accent: 237 99% 53%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
+    --border: 228 20% 14%;
+    --input: 228 20% 14%;
     --ring: 237 99% 53%;
     --radius: 8px;
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 98%;
+    --sidebar-background: 228 25% 7%;
+    --sidebar-foreground: 220 25% 97%;
     --sidebar-primary: 237 99% 53%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 15%;
+    --sidebar-accent: 228 20% 11%;
+    --sidebar-accent-foreground: 220 25% 97%;
+    --sidebar-border: 228 20% 14%;
     --sidebar-ring: 237 99% 53%;
   }
 
@@ -62,7 +64,7 @@
       linear-gradient(100deg, rgba(2, 2, 2, 0.78) 0%, rgba(2, 2, 2, 0.38) 36%, transparent 62%),
       radial-gradient(circle at 70% 18%, rgba(39, 91, 255, 0.45), transparent 32%),
       radial-gradient(circle at 20% 20%, rgba(255, 166, 0, 0.12), transparent 18%),
-      linear-gradient(135deg, #030303 0%, #050712 45%, #020202 100%);
+      linear-gradient(135deg, #04050c 0%, #060a1a 45%, #030409 100%);
   }
 
   .home-hero-ribbons {
@@ -115,7 +117,7 @@
   }
 
   .intro-card-media {
-    background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.6), transparent 34%), linear-gradient(180deg, #151515, #050505);
+    background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.6), transparent 34%), linear-gradient(180deg, #12151f, #05060d);
   }
 
   .light .intro-card-media {
@@ -141,8 +143,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
+    font-optical-sizing: auto;
     @apply tracking-tight;
   }
 
@@ -153,19 +156,77 @@
 
 @layer utilities {
   .heading-display {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
+    font-optical-sizing: auto;
     /* À taille display, un mot long ("Automatisation") peut dépasser la
        largeur mobile : on césure selon la langue de la page (hyphens)
        plutôt que de couper au caractère près, et overflow-wrap reste en
        ultime filet si aucun point de césure n'existe. */
     hyphens: auto;
+    /* Ne césurer que les mots réellement longs (≥ 8 lettres, ex.
+       "Automatisation") : les mots courts type "terrain" repassent
+       entiers à la ligne au lieu d'être coupés inutilement. */
+    hyphenate-limit-chars: 8 5 4;
+    -webkit-hyphenate-limit-before: 5;
+    -webkit-hyphenate-limit-after: 4;
     overflow-wrap: break-word;
     @apply text-foreground leading-[0.9] tracking-tighter;
   }
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Accent éditorial : serif italique en casse normale au milieu des titres
+     display uppercase — le contraste grotesque/serif de la direction 2026. */
+  .heading-serif-accent {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.015em;
+  }
+
+  /* Micro-labels techniques (eyebrows) en mono espacé. */
+  .label-mono {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-weight: 500;
+  }
+
+  /* Un mot en dégradé bleu → bleu clair dans un titre. */
+  .text-gradient-primary {
+    background: linear-gradient(100deg, hsl(var(--primary)) 10%, hsl(221 100% 72%) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* CTA principal : léger dégradé vertical + halo bleu. */
+  .cta-glow {
+    background-image: linear-gradient(180deg, hsl(239 95% 60%), hsl(var(--primary)) 55%, hsl(237 92% 46%));
+    box-shadow: 0 10px 32px -10px hsl(var(--primary) / 0.55);
+  }
+
+  /* Carte premium : fine bordure dégradée (blanc/bleu ~10%) sur fond card. */
+  .card-premium {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+      linear-gradient(150deg, hsl(var(--primary) / 0.4), hsl(var(--border) / 0.35) 45%, hsl(var(--primary) / 0.12)) border-box;
+  }
+
+  /* Halo radial bleu quasi imperceptible en tête de section sombre. */
+  .section-glow {
+    position: relative;
+  }
+
+  .section-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(640px circle at 82% -5%, hsl(var(--primary) / 0.08), transparent 62%);
   }
 
   .story-link {

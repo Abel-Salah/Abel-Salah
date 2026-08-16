@@ -86,9 +86,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="max-w-6xl">
-                <div className="mb-8 flex items-center gap-3 text-sm text-muted-foreground">
+                <div className="mb-8 flex items-center gap-3 text-muted-foreground">
                   <span className="h-3 w-3 rounded-full bg-[#ffa600] shadow-[0_0_28px_rgba(255,166,0,0.8)]" />
-                  <span>{content.eyebrow}</span>
+                  <span className="label-mono text-xs uppercase tracking-[0.18em]">{content.eyebrow}</span>
                 </div>
                 <h1 className="heading-display text-[clamp(3rem,12.5vw,11rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
                   {content.heroTop}
@@ -119,7 +119,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   onClick={() =>
                     trackConversionEvent("book_call_click", `home_hero_${locale}`, TIDYCAL_BOOKING_URL)
                   }
-                  className="inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
+                  className="cta-glow inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:gap-6 transition-all group">
 
                   {content.primaryCta}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -217,7 +217,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         </div>
       </section>
 
-      <section className="py-28 px-4 md:px-6 border-t border-border">
+      <section className="section-glow overflow-hidden py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <div className="grid gap-12 lg:grid-cols-12">
             <motion.div
@@ -227,13 +227,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               viewport={{ once: true }}
               className="lg:col-span-5"
             >
-              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+              <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
                 {content.proofLabel}
               </span>
               <h2 className="heading-display text-4xl md:text-7xl uppercase leading-[0.9] tracking-[-0.045em]">
                 {content.proofTitleTop}
                 <br />
-                {content.proofTitleBottom}
+                <span className="heading-serif-accent">{content.proofTitleBottom}</span>
               </h2>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 {content.proofIntro}
@@ -273,7 +273,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         </div>
       </section>
 
-      <section className="py-28 px-4 md:px-6 border-t border-border">
+      <section className="section-glow overflow-hidden py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -282,13 +282,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.beforeAfterLabel}
             </span>
             <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
               {content.beforeAfterTitleTop}
               <br />
-              {content.beforeAfterTitleBottom}
+              <span className="text-gradient-primary">{content.beforeAfterTitleBottom}</span>
             </h2>
           </motion.div>
 
@@ -303,14 +303,14 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 className="grid grid-cols-1 gap-8 py-10 md:grid-cols-12 md:items-start"
               >
                 <div className="md:col-span-3">
-                  <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                  <span className="label-mono text-xs uppercase tracking-[0.2em] text-primary">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-2xl font-semibold">{item.area}</h3>
                 </div>
                 <div className="grid gap-6 md:col-span-9 md:grid-cols-2">
                   <div className="border border-border bg-card/25 p-6">
-                    <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       {content.beforeAfterBefore}
                     </span>
                     <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -318,7 +318,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                     </p>
                   </div>
                   <div className="border border-primary/45 bg-primary/5 p-6">
-                    <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                    <span className="label-mono text-xs uppercase tracking-[0.2em] text-primary">
                       {content.beforeAfterAfter}
                     </span>
                     <p className="mt-5 text-lg leading-relaxed text-foreground">
@@ -332,7 +332,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         </div>
       </section>
 
-      <section className="py-28 px-4 md:px-6 border-t border-border">
+      <section className="section-glow overflow-hidden py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -341,13 +341,13 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             viewport={{ once: true }}
             className="mb-20">
 
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.servicesLabel}
             </span>
             <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
               {content.servicesTitleTop}
               <br />
-              {content.servicesTitleBottom}
+              <span className="heading-serif-accent">{content.servicesTitleBottom}</span>
             </h2>
           </motion.div>
 
@@ -361,9 +361,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="group min-h-[420px] border border-border bg-card/35 p-8 hover:border-primary/60 transition-colors">
+              className="group card-premium min-h-[420px] p-8 transition-colors">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     ({service.number})
                   </span>
                   <Icon className="h-8 w-8 text-primary" />
@@ -395,7 +395,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
         </div>
       </section>
 
-      <section className="py-32 px-4 md:px-6 border-t border-border">
+      <section className="section-glow overflow-hidden py-32 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -404,7 +404,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             viewport={{ once: true }}
             className="mb-16">
 
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+            <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.missionLabel}
             </span>
             <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
@@ -476,7 +476,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               onClick={() =>
                 trackConversionEvent("book_call_click", `home_final_${locale}`, TIDYCAL_BOOKING_URL)
               }
-              className="inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
+              className="cta-glow inline-flex items-center gap-4 text-xl font-semibold uppercase tracking-wider bg-primary text-primary-foreground px-12 py-6 rounded-lg hover:opacity-90 transition-opacity">
 
               {content.finalCta}
               <ArrowRight className="w-6 h-6" />
