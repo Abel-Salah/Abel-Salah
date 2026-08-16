@@ -101,6 +101,13 @@ export const navigationByLang = {
 
 export const routes = [
   {
+    path: "/formations",
+    lang: "fr",
+    title: "Formations & Coaching Business | Lancement, Développement — Abel SALAH",
+    description:
+      "Formations pour lancer et développer votre entreprise (commerce, digital, automatisations) et coaching mensuel. Zéro prérequis : vous rejoignez, vous appliquez, vous encaissez.",
+  },
+  {
     path: "/",
     lang: "fr",
     faq: homeFaq.fr,

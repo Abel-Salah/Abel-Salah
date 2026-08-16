@@ -91,6 +91,17 @@ const agentCopy: Record<AgentLocale, AgentCopy> = {
         ],
       },
       {
+        id: "launch",
+        icon: GraduationCap,
+        label: "Lancer ou développer mon business",
+        reply:
+          "J'ai des formations pour lancer et développer votre entreprise, plus un coaching mensuel — zéro prérequis.",
+        actions: [
+          { label: "Voir les formations", href: "/formations" },
+          { label: "Réserver un appel", href: TIDYCAL_BOOKING_URL, external: true, booking: true },
+        ],
+      },
+      {
         id: "direct",
         icon: MessageCircle,
         label: "Parler directement à Abel",

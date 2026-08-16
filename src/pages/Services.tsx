@@ -57,6 +57,21 @@ const Services = () => (
         })}
       </section>
 
+      <section className="card-premium card-lift mt-20 flex flex-col justify-between gap-6 p-8 md:flex-row md:items-center">
+        <div>
+          <p className="label-mono text-xs uppercase tracking-[0.2em] text-primary">Entrepreneur ou porteur de projet ?</p>
+          <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight">
+            Formations & coaching : lancement, développement, revenus.
+          </h2>
+        </div>
+        <Link
+          to="/formations"
+          className="inline-flex flex-none items-center gap-3 rounded-full border border-border px-6 py-3.5 font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+        >
+          Découvrir les formations <ArrowRight className="h-5 w-5" />
+        </Link>
+      </section>
+
       <section className="mt-20 flex flex-col justify-between gap-8 border-t border-border pt-10 md:flex-row md:items-end">
         <div>
           <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Vous ne savez pas par où commencer ?</p>
