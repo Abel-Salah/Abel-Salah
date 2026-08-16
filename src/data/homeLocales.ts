@@ -21,7 +21,7 @@ export const homeContent = {
     heroTop: "Expert IA",
     heroBottom: "Business",
     intro:
-      "J'accompagne les entreprises dans leurs audits IA, leurs déploiements et la formation des équipes, avec des usages reliés aux ventes, aux opérations et à la stratégie.",
+      "Audit, déploiement, formation : j'intègre l'IA là où elle crée de la valeur — ventes, opérations, stratégie.",
     primaryCta: "Réserver un audit IA",
     cvCta: "Télécharger mon CV",
     stats: [
@@ -30,8 +30,8 @@ export const homeContent = {
       { value: "95%", label: "clients satisfaits" },
     ],
     proofLabel: "Preuves & méthode",
-    proofTitleTop: "Connecter votre entreprise",
-    proofTitleBottom: "à l'IA pour créer de la valeur /",
+    proofTitleTop: "L'IA, là où elle",
+    proofTitleBottom: "crée de la valeur /",
     proofIntro:
       "Vos données et vos systèmes contiennent souvent des gains invisibles. Nous identifions les tâches manuelles, les frictions et les usages IA utiles avant de construire une feuille de route mesurable.",
     proofItems: [
@@ -77,7 +77,7 @@ export const homeContent = {
         after: "Des indicateurs actionnables, des alertes et une feuille de route IA pilotable.",
       },
     ],
-    servicesTitleTop: "Comment je peux",
+    servicesTitleTop: "Trois façons de",
     servicesTitleBottom: "vous aider /",
     missionLabel: "Rythme de mission",
     missionTitleTop: "De l'idée",
@@ -123,7 +123,7 @@ export const homeContent = {
     heroTop: "AI",
     heroBottom: "Business",
     intro:
-      "I help companies integrate AI where it actually creates value: sales, operations, training, and strategy.",
+      "Audit, deployment, training: I bring AI where it actually creates value — sales, operations, strategy.",
     primaryCta: "Book an AI audit",
     cvCta: "Download my CV",
     stats: [
@@ -132,8 +132,8 @@ export const homeContent = {
       { value: "95%", label: "client satisfaction" },
     ],
     proofLabel: "Proof & method",
-    proofTitleTop: "Connect your business",
-    proofTitleBottom: "to AI that creates value /",
+    proofTitleTop: "AI, where it",
+    proofTitleBottom: "creates value /",
     proofIntro:
       "Your data and systems often contain invisible opportunities. We identify manual work, friction, and useful AI applications before building a measurable roadmap.",
     proofItems: [
@@ -179,7 +179,7 @@ export const homeContent = {
         after: "Actionable indicators, alerts, and an AI roadmap your team can actually run.",
       },
     ],
-    servicesTitleTop: "How I can",
+    servicesTitleTop: "Three ways to",
     servicesTitleBottom: "help you /",
     missionLabel: "Mission rhythm",
     missionTitleTop: "From idea",
@@ -234,8 +234,8 @@ export const homeContent = {
       { value: "95%", label: "clientes satisfechos" },
     ],
     proofLabel: "Prueba & método",
-    proofTitleTop: "Conecta tu empresa",
-    proofTitleBottom: "con una IA útil y medible /",
+    proofTitleTop: "La IA, donde",
+    proofTitleBottom: "crea valor /",
     proofIntro:
       "Tus datos y sistemas suelen contener oportunidades invisibles. Identificamos tareas manuales, fricciones y usos útiles de la IA antes de construir una hoja de ruta medible.",
     proofItems: [
@@ -281,7 +281,7 @@ export const homeContent = {
         after: "Indicadores accionables, alertas y una hoja de ruta IA realmente pilotable.",
       },
     ],
-    servicesTitleTop: "Cómo puedo",
+    servicesTitleTop: "Tres formas de",
     servicesTitleBottom: "ayudarte /",
     missionLabel: "Ritmo de misión",
     missionTitleTop: "De la idea",

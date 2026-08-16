@@ -107,7 +107,7 @@ const OfferPage = ({ slug }: OfferPageProps) => {
               <Icon className="h-5 w-5 text-primary" />
               {offer.eyebrow}
             </span>
-            <h1 className="heading-display text-[clamp(3.8rem,10vw,10rem)] uppercase leading-[0.82] tracking-[-0.05em]">
+            <h1 className="heading-display text-[clamp(3rem,6.5vw,6rem)] uppercase leading-[0.82] tracking-[-0.05em]">
               {offer.title}
             </h1>
           </div>

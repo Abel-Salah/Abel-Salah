@@ -45,7 +45,7 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="col-span-12 md:col-span-7 min-w-0"
+            className="md:col-span-7 min-w-0"
           >
             <div className="w-full rounded-lg overflow-hidden border border-border" style={{ height: "700px" }}>
               <iframe
@@ -64,7 +64,7 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="col-span-12 md:col-span-5"
+            className="md:col-span-5"
           >
             <div className="space-y-12">
               <div>

@@ -11,7 +11,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollGradient from "@/components/ScrollGradient";
 import Index from "./pages/Index";
 import BusinessCard from "./pages/BusinessCard";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
+import ContactAgentWidget from "@/components/ContactAgentWidget";
 import ManualWorkCalculator from "./pages/ManualWorkCalculator";
 import Tools from "./pages/Tools";
 import SiteScore from "./pages/SiteScore";
@@ -49,7 +49,7 @@ export const AppShell = () => {
       <Sonner />
       <ScrollToTop />
       <ScrollGradient />
-      <WhatsAppWidget />
+      {!isBusinessCard && <ContactAgentWidget />}
       {!isBusinessCard && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>

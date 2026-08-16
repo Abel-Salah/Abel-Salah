@@ -145,7 +145,7 @@ const Footer = () => {
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
           aria-label="ABEL SALAH"
-          className="heading-display text-[18vw] md:text-[14vw] leading-[0.85] text-center whitespace-nowrap"
+          className="heading-display text-[17.5vw] md:text-[14vw] leading-[0.85] text-center whitespace-nowrap"
         >
           {nameLetters.map((letter, index) => (
             <motion.span

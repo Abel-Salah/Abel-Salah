@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
-import { Download, Menu, X, Linkedin, Youtube, Moon, Sun } from "lucide-react";
+import { ArrowRight, Menu, X, Linkedin, Youtube, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { cvCanonicalByLocale } from "@/data/cvLocales";
+import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
+import { trackConversionEvent } from "@/lib/conversionEvents";
 
 const navLabels = {
   fr: [
-    { href: "/", label: "Accueil" },
-    { href: "/audit-ia", label: "Audit IA" },
     { href: "/services", label: "Services" },
     { href: "/work", label: "Réalisations" },
     { href: "/about", label: "À propos" },
@@ -17,16 +16,12 @@ const navLabels = {
     { href: "/contact", label: "Contact" },
   ],
   en: [
-    { href: "/en", label: "Home" },
-    { href: "/en/ai-audit", label: "AI Audit" },
     { href: "/en/work", label: "Work" },
     { href: "/en/about", label: "About" },
     { href: "/en/blog", label: "Blog" },
     { href: "/en/contact", label: "Contact" },
   ],
   es: [
-    { href: "/es", label: "Inicio" },
-    { href: "/es/auditoria-ia", label: "Auditoría IA" },
     { href: "/es/work", label: "Proyectos" },
     { href: "/es/about", label: "Sobre mí" },
     { href: "/es/blog", label: "Blog" },
@@ -40,10 +35,10 @@ const languageLinks = [
   { href: "/es", label: "ES", locale: "es" },
 ] as const;
 
-const cvLabels = {
-  fr: "Télécharger le CV",
-  en: "Download CV",
-  es: "Descargar CV",
+const bookLabels = {
+  fr: "Réserver un audit IA",
+  en: "Book an AI audit",
+  es: "Reservar una auditoría IA",
 } as const;
 
 const Navigation = () => {
@@ -114,13 +109,18 @@ const Navigation = () => {
             ))}
           </div>
 
-          <Link
-            to={cvCanonicalByLocale[locale]}
-            className="hidden md:inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+          <a
+            href={TIDYCAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              trackConversionEvent("book_call_click", `nav_cta_${locale}`, TIDYCAL_BOOKING_URL)
+            }
+            className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
           >
-            <Download className="h-4 w-4" />
-            {cvLabels[locale]}
-          </Link>
+            {bookLabels[locale]}
+            <ArrowRight className="h-4 w-4" />
+          </a>
 
           {/* Mobile Hamburger Button */}
           <button
@@ -167,14 +167,19 @@ const Navigation = () => {
                   </motion.li>
                 ))}
               </ul>
-              <Link
-                to={cvCanonicalByLocale[locale]}
-                onClick={closeMenu}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+              <a
+                href={TIDYCAL_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackConversionEvent("book_call_click", `nav_cta_mobile_${locale}`, TIDYCAL_BOOKING_URL);
+                  closeMenu();
+                }}
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3"
               >
-                <Download className="h-4 w-4" />
-                {cvLabels[locale]}
-              </Link>
+                {bookLabels[locale]}
+                <ArrowRight className="h-4 w-4" />
+              </a>
               <div className="mt-6 flex items-center gap-2 border-t border-border pt-6">
                 {languageLinks.map((item) => (
                   <Link

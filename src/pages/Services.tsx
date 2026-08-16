@@ -24,7 +24,7 @@ const Services = () => (
         className="mb-16 max-w-4xl"
       >
         <p className="mb-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">Ce que je propose</p>
-        <h1 className="heading-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.84] tracking-[-0.05em]">
+        <h1 className="heading-display text-[clamp(3rem,10vw,9rem)] leading-[0.84] tracking-[-0.05em]">
           Des services IA<br /><span className="text-primary">qui passent à l'action.</span>
         </h1>
         <p className="mt-10 max-w-2xl text-xl leading-relaxed text-muted-foreground">

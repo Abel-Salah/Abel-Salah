@@ -112,7 +112,7 @@ const CV = ({ locale = "fr" }: { locale?: CVLocale }) => {
         </div>
 
         <div className="cv-contact">
-          <a href="tel:+33652858955">06 52 85 89 55</a>
+          <a href="tel:+33757598610">07 57 59 86 10</a>
           <a href="mailto:abel@skillco.fr">abel@skillco.fr</a>
           <a href="https://abelsalah.fr">abelsalah.fr</a>
           <a href="https://www.linkedin.com/in/abelsalah">LinkedIn · @AbelSalah</a>

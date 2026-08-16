@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Download, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { cvCanonicalByLocale } from "@/data/cvLocales";
 import { workCanonicalByLocale } from "@/data/workLocales";
 import {
   homeAlternates,
@@ -20,6 +19,9 @@ interface IndexProps {
 const Index = ({ locale = "fr" }: IndexProps) => {
   const [showIntroCard, setShowIntroCard] = useState(false);
   const content = homeContent[locale];
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const ribbonsParallax = useTransform(scrollY, [0, 900], [0, 110]);
 
   useEffect(() => {
     if (sessionStorage.getItem("abel-intro-card-seen") === "true") return;
@@ -62,14 +64,18 @@ const Index = ({ locale = "fr" }: IndexProps) => {
 
       <section className="relative min-h-screen px-4 md:px-6 pt-28 pb-12 overflow-hidden">
         <div className="home-hero-backdrop absolute inset-0" />
-        <div className="absolute right-[-8vw] top-0 h-[72vh] w-[58vw] rotate-[-34deg] overflow-hidden opacity-90 blur-[0.2px]">
+        <motion.div
+          style={{ y: prefersReducedMotion ? 0 : ribbonsParallax, rotate: -34 }}
+          className="absolute right-[-8vw] top-0 h-[72vh] w-[58vw] overflow-hidden opacity-90 blur-[0.2px]"
+        >
           <motion.div
             initial={{ x: 90, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1.4, ease: "easeOut" }}
             className="home-hero-ribbons h-full w-full shadow-[0_0_120px_rgba(37,99,235,0.45)]"
           />
-        </div>
+        </motion.div>
+        <div className="home-hero-grain pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
 
         <div className="container relative mx-auto min-h-[calc(100vh-8rem)]">
@@ -84,9 +90,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   <span className="h-3 w-3 rounded-full bg-[#ffa600] shadow-[0_0_28px_rgba(255,166,0,0.8)]" />
                   <span>{content.eyebrow}</span>
                 </div>
-                <h1 className="heading-display text-[clamp(4.5rem,13vw,13rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
+                <h1 className="heading-display text-[clamp(3rem,12.5vw,11rem)] uppercase leading-[0.76] tracking-[-0.07em] mb-8">
                   {content.heroTop}
-                  <span className="text-primary"> *</span>
+                  <span className="text-primary">{" *"}</span>
                   <br />
                   {content.heroBottom}
                 </h1>
@@ -118,14 +124,6 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   {content.primaryCta}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </a>
-
-                <Link
-                  to={cvCanonicalByLocale[locale]}
-                  className="inline-flex items-center gap-3 rounded-full border border-border px-6 py-4 text-sm font-medium text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">
-
-                  <Download className="w-4 h-4" />
-                  {content.cvCta}
-                </Link>
               </motion.div>
             </div>
           </div>
@@ -232,7 +230,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
                 {content.proofLabel}
               </span>
-              <h2 className="heading-display text-4xl md:text-6xl uppercase leading-[0.9] tracking-[-0.045em]">
+              <h2 className="heading-display text-4xl md:text-7xl uppercase leading-[0.9] tracking-[-0.045em]">
                 {content.proofTitleTop}
                 <br />
                 {content.proofTitleBottom}

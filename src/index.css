@@ -59,6 +59,7 @@
 
   .home-hero-backdrop {
     background:
+      linear-gradient(100deg, rgba(2, 2, 2, 0.78) 0%, rgba(2, 2, 2, 0.38) 36%, transparent 62%),
       radial-gradient(circle at 70% 18%, rgba(39, 91, 255, 0.45), transparent 32%),
       radial-gradient(circle at 20% 20%, rgba(255, 166, 0, 0.12), transparent 18%),
       linear-gradient(135deg, #030303 0%, #050712 45%, #020202 100%);
@@ -66,13 +67,45 @@
 
   .home-hero-ribbons {
     background: repeating-linear-gradient(90deg, rgba(25, 89, 255, 0.15) 0px, rgba(25, 89, 255, 0.85) 70px, rgba(99, 161, 255, 0.9) 112px, rgba(0, 0, 0, 0.95) 150px);
+    /* Dérive très lente des rubans (période du dégradé : 150px, donc
+       boucle invisible) pour donner de la vie au fond sans vidéo. */
+    animation: hero-ribbon-drift 55s linear infinite;
+  }
+
+  /* Grain par-dessus les dégradés du hero : casse le banding visible
+     des aplats CSS sur mobile et donne une texture de matière. */
+  .home-hero-grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.055;
+    mix-blend-mode: overlay;
+  }
+
+  @keyframes hero-ribbon-drift {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: 150px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-hero-ribbons {
+      animation: none;
+    }
   }
 
   .light .home-hero-backdrop {
     background:
+      linear-gradient(100deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.42) 38%, transparent 64%),
       radial-gradient(circle at 88% 12%, rgba(70, 130, 180, 0.24), transparent 42%),
       radial-gradient(circle at 50% 24%, rgba(255, 249, 145, 0.22), transparent 38%),
       linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #eef4ff 100%);
+  }
+
+  .light .home-hero-grain {
+    opacity: 0.035;
+    mix-blend-mode: multiply;
   }
 
   .light .home-hero-ribbons {
@@ -122,12 +155,12 @@
   .heading-display {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
-    /* Les tailles clamp() de ces titres ont un plancher élevé qui ne
-       descend plus avec la largeur d'écran sur mobile : sans ce filet,
-       un mot un peu long à cette taille dépasse le viewport au lieu de
-       passer à la ligne. */
+    /* À taille display, un mot long ("Automatisation") peut dépasser la
+       largeur mobile : on césure selon la langue de la page (hyphens)
+       plutôt que de couper au caractère près, et overflow-wrap reste en
+       ultime filet si aucun point de césure n'existe. */
+    hyphens: auto;
     overflow-wrap: break-word;
-    word-break: break-word;
     @apply text-foreground leading-[0.9] tracking-tighter;
   }
 
