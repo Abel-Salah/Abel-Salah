@@ -125,7 +125,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
                           <p className="heading-display text-2xl md:text-3xl text-primary">
                             {m.value}
                           </p>
-                          <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">
+                          <p className="label-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">
                             {m.label}
                           </p>
                         </div>

@@ -33,7 +33,7 @@ const CopyReveal = ({ before, after, className }: CopyRevealProps) => {
             <span className="text-muted-foreground line-through decoration-2">
               {before}
             </span>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground/50">
+            <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground/50">
               survolez
             </span>
           </motion.div>

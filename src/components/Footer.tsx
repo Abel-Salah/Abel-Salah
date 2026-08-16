@@ -175,7 +175,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="md:col-span-3"
             >
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
+              <h3 className="label-mono text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
                 {t.navHeader}
               </h3>
               <ul className="space-y-4">
@@ -200,7 +200,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="md:col-span-4"
             >
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
+              <h3 className="label-mono text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
                 {t.contactHeader}
               </h3>
               <div className="space-y-4">
@@ -230,7 +230,7 @@ const Footer = () => {
                   {t.toolsCta}
                 </Link>
                 <div className="border-t border-border pt-4 mt-2">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  <p className="label-mono text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                     {t.locationsLabel}
                   </p>
                   <p className="text-muted-foreground">
@@ -262,7 +262,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="md:col-span-3"
             >
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
+              <h3 className="label-mono text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-6">
                 {t.socialHeader}
               </h3>
               <ul className="space-y-4">

@@ -68,14 +68,14 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
           >
             <div className="space-y-12">
               <div>
-                <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
+                <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-4">
                   {t.responseTimeTitle}
                 </span>
                 <p className="text-2xl text-foreground">{t.responseTimeValue}</p>
               </div>
 
               <div>
-                <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
+                <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-4">
                   {t.howTitle}
                 </span>
                 <ul className="space-y-2 text-lg text-muted-foreground">
@@ -86,7 +86,7 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
               </div>
 
               <div className="border-t border-border pt-12">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
+                <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-4">
                   {t.notReadyTitle}
                 </span>
                 <p className="text-lg text-foreground">
@@ -97,7 +97,7 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
               </div>
 
               <div className="border-t border-border pt-12">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-4">
+                <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-4">
                   {t.followTitle}
                 </span>
                 <div className="flex items-center gap-4">

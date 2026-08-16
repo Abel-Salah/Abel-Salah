@@ -164,7 +164,7 @@ const Ecosystem = ({ locale = "fr" }: { locale?: PageLocale }) => {
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
             {ventures.map((v) => (
               <li key={v.domain} className="border-t border-border pt-4">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{v.number}</p>
+                <p className="label-mono text-xs text-muted-foreground uppercase tracking-wider mb-2">{v.number}</p>
                 <p className="text-lg md:text-xl text-foreground font-medium leading-tight">{v.name}</p>
                 <p className="text-xs text-muted-foreground mt-1">{v.domain}</p>
               </li>

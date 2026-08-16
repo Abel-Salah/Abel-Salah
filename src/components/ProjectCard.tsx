@@ -35,21 +35,21 @@ const ProjectCard = ({ number, title, context, action, result, labels = defaultL
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-lg">
             <div>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
+              <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-2">
                 {labels.context}
               </span>
               <p className="text-foreground">{context}</p>
             </div>
             
             <div>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
+              <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-2">
                 {labels.action}
               </span>
               <p className="text-foreground">{action}</p>
             </div>
             
             <div>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">
+              <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-2">
                 {labels.result}
               </span>
               <p className="text-primary font-semibold text-xl">{result}</p>

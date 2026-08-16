@@ -208,7 +208,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 <span className="heading-display text-6xl md:text-8xl text-primary">
                   {stat.value}
                 </span>
-                <p className="text-muted-foreground text-lg mt-2 uppercase tracking-wider">
+                <p className="label-mono text-muted-foreground text-sm mt-3 uppercase tracking-wider">
                   {stat.label}
                 </p>
               </motion.div>

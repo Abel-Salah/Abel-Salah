@@ -240,7 +240,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 to={`${blogBase}/${adjacent.previous.slug}`}
                 className="group flex-1 text-left"
               >
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                <span className="label-mono text-xs text-muted-foreground uppercase tracking-wider">
                   {t.previousLabel}
                 </span>
                 <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">
@@ -255,7 +255,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
                 to={`${blogBase}/${adjacent.next.slug}`}
                 className="group flex-1 text-right"
               >
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                <span className="label-mono text-xs text-muted-foreground uppercase tracking-wider">
                   {t.nextLabel}
                 </span>
                 <p className="text-sm font-medium group-hover:text-primary transition-colors mt-1">

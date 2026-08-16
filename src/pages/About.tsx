@@ -65,7 +65,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
 
               <div className="absolute inset-0 border-2 border-primary translate-x-4 translate-y-4 -z-10" />
             </motion.div>
-            <p className="text-sm text-muted-foreground mt-6 uppercase tracking-wider">
+            <p className="label-mono text-sm text-muted-foreground mt-6 uppercase tracking-wider">
               {t.location}
             </p>
           </div>
@@ -92,9 +92,9 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-6">
+            className="md:col-span-6">
 
-            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+            <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
               {t.servicesTitle}
             </span>
             <ul className="space-y-4">
@@ -119,9 +119,9 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.08 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-6">
+            className="md:col-span-6">
 
-            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+            <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
               {t.clientsTitle}
             </span>
             <ul className="space-y-4">
@@ -149,7 +149,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}>
 
-            <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+            <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
               {t.recognitionTitle}
             </span>
             <ul className="space-y-4">
@@ -177,7 +177,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 
-          <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
             {t.findMeTitle}
           </span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -235,7 +235,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 
-          <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
             {t.buildingTitle}
           </span>
           <p className="text-2xl md:text-3xl text-foreground leading-snug mb-12 max-w-3xl">
@@ -246,7 +246,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
             {ventures.map((v) => (
               <li key={v.domain} className="border-t border-border pt-4">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{v.number}</p>
+                <p className="label-mono text-xs text-muted-foreground uppercase tracking-wider mb-2">{v.number}</p>
                 <p className="text-lg md:text-xl text-foreground font-medium leading-tight">{v.name}</p>
                 <p className="text-xs text-muted-foreground mt-1">{v.domain}</p>
               </li>
@@ -269,7 +269,7 @@ const About = ({ locale = "fr" }: { locale?: PageLocale }) => {
           viewport={{ once: true }}
           className="border-t border-border pt-20 mt-20">
 
-          <span className="text-xs uppercase tracking-wider text-muted-foreground block mb-8">
+          <span className="label-mono text-xs uppercase tracking-wider text-muted-foreground block mb-8">
             {t.philosophyTitle}
           </span>
           <blockquote className="heading-display text-4xl md:text-6xl leading-tight">
