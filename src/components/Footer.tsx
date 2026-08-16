@@ -23,8 +23,7 @@ interface FooterUIContent {
   downloadCv: string;
   toolsCta: string;
   locationsLabel: string;
-  roundCtaLine1: string;
-  roundCtaLine2: string;
+  roundCta: string;
   copyright: string;
   taglineHighlight: string;
   taglineRest: string;
@@ -39,8 +38,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     downloadCv: "Télécharger mon CV",
     toolsCta: "Découvrir les outils gratuits →",
     locationsLabel: "Zones d'intervention",
-    roundCtaLine1: "Parlons-",
-    roundCtaLine2: "en",
+    roundCta: "Parlons-en",
     copyright: "Tous droits réservés.",
     taglineHighlight: "L'IA au service",
     taglineRest: "de votre entreprise.",
@@ -53,8 +51,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     downloadCv: "Download my CV",
     toolsCta: "Explore free tools →",
     locationsLabel: "Service areas",
-    roundCtaLine1: "Let's",
-    roundCtaLine2: "talk",
+    roundCta: "Let's talk",
     copyright: "All rights reserved.",
     taglineHighlight: "AI in service",
     taglineRest: "of your business.",
@@ -67,8 +64,7 @@ const footerUILocales: Record<PageLocale, FooterUIContent> = {
     downloadCv: "Descargar mi CV",
     toolsCta: "Descubrir herramientas gratuitas →",
     locationsLabel: "Zonas de intervención",
-    roundCtaLine1: "Hable-",
-    roundCtaLine2: "mos",
+    roundCta: "Hablemos",
     copyright: "Todos los derechos reservados.",
     taglineHighlight: "La IA al servicio",
     taglineRest: "de tu empresa.",
@@ -292,10 +288,29 @@ const Footer = () => {
             >
               <Link
                 to={contactCanonicalByLocale[locale]}
-                className="inline-flex items-center justify-center w-28 h-28 md:w-32 md:h-32 bg-primary text-primary-foreground rounded-full hover:scale-105 transition-transform group"
+                aria-label={t.roundCta}
+                className="group relative inline-flex h-32 w-32 items-center justify-center md:h-36 md:w-36"
               >
-                <span className="text-xs font-semibold uppercase tracking-wider text-center leading-tight">
-                  {t.roundCtaLine1}<br />{t.roundCtaLine2}
+                <svg
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                  className="footer-cta-spin absolute inset-0 h-full w-full text-muted-foreground transition-colors group-hover:text-foreground"
+                >
+                  <defs>
+                    <path
+                      id="footer-cta-circle"
+                      d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                      fill="none"
+                    />
+                  </defs>
+                  <text className="label-mono fill-current text-[8px] uppercase tracking-[0.2em]">
+                    <textPath href="#footer-cta-circle">
+                      {`${t.roundCta} • ${t.roundCta} • ${t.roundCta} • `}
+                    </textPath>
+                  </text>
+                </svg>
+                <span className="cta-glow flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110 md:h-20 md:w-20">
+                  <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>
             </motion.div>

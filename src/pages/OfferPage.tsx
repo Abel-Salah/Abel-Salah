@@ -25,6 +25,7 @@ const labels = {
     questions: "Questions",
     finalTitle: "Vous voulez cadrer le sujet ?",
     finalCta: "Réserver un appel",
+    finalNote: "Appel de 30 min · Gratuit · Sans engagement",
   },
   en: {
     home: "Home",
@@ -40,6 +41,7 @@ const labels = {
     questions: "Questions",
     finalTitle: "Want to frame the topic?",
     finalCta: "Book a call",
+    finalNote: "30-min call · Free · No commitment",
   },
   es: {
     home: "Inicio",
@@ -55,6 +57,7 @@ const labels = {
     questions: "Preguntas",
     finalTitle: "¿Quieres enmarcar el tema?",
     finalCta: "Reservar una llamada",
+    finalNote: "Llamada de 30 min · Gratis · Sin compromiso",
   },
 } as const;
 
@@ -270,6 +273,9 @@ const OfferPage = ({ slug }: OfferPageProps) => {
           {copy.finalCta}
           <ArrowRight className="h-5 w-5" />
         </a>
+        <p className="label-mono mt-5 text-xs uppercase tracking-wider text-muted-foreground">
+          {copy.finalNote}
+        </p>
       </section>
     </main>
   );

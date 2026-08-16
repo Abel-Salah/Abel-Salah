@@ -122,7 +122,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+                className="flex flex-col items-start gap-4">
 
                 <a
                   href={TIDYCAL_BOOKING_URL}
@@ -136,6 +136,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   {content.primaryCta}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </a>
+                <p className="label-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  {content.ctaNote}
+                </p>
               </motion.div>
             </div>
           </div>
@@ -562,6 +565,9 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               {content.finalCta}
               <ArrowRight className="w-6 h-6" />
             </a>
+            <p className="label-mono mt-5 text-xs uppercase tracking-wider text-muted-foreground">
+              {content.ctaNote}
+            </p>
           </motion.div>
         </div>
       </section>

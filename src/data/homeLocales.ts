@@ -23,6 +23,7 @@ export const homeContent = {
     intro:
       "Audit, déploiement, formation : j'intègre l'IA là où elle crée de la valeur — ventes, opérations, stratégie.",
     primaryCta: "Réserver un audit IA",
+    ctaNote: "Appel de 30 min · Gratuit · Sans engagement",
     cvCta: "Télécharger mon CV",
     stats: [
       { value: "16+", label: "ans d'expérience" },
@@ -146,6 +147,7 @@ export const homeContent = {
     intro:
       "Audit, deployment, training: I bring AI where it actually creates value — sales, operations, strategy.",
     primaryCta: "Book an AI audit",
+    ctaNote: "30-min call · Free · No commitment",
     cvCta: "Download my CV",
     stats: [
       { value: "16+", label: "years of experience" },
@@ -269,6 +271,7 @@ export const homeContent = {
     intro:
       "Ayudo a las empresas a integrar la IA donde realmente crea valor: ventas, operaciones, formación y estrategia.",
     primaryCta: "Reservar una auditoría IA",
+    ctaNote: "Llamada de 30 min · Gratis · Sin compromiso",
     cvCta: "Descargar mi CV",
     stats: [
       { value: "16+", label: "años de experiencia" },

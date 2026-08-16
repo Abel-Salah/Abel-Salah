@@ -82,6 +82,24 @@
     mix-blend-mode: overlay;
   }
 
+  /* Anneau de texte rotatif du CTA rond du footer. */
+  .footer-cta-spin {
+    animation: footer-cta-rotate 22s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes footer-cta-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-cta-spin {
+      animation: none;
+    }
+  }
+
   @keyframes hero-ribbon-drift {
     from {
       background-position-x: 0;
