@@ -25,3 +25,6 @@ supabase/.temp/
 *.njsproj
 *.sln
 *.sw?
+
+# Cache build des articles générés (refetch à chaque build)
+scripts/.generated-posts-cache.json

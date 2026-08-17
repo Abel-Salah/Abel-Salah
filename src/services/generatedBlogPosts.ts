@@ -1,5 +1,5 @@
 import type { BlogPost } from "@/data/blogPosts";
-import { supabase } from "@/integrations/supabase/client";
+import { contentSupabase } from "@/integrations/supabase/contentClient";
 
 type GeneratedPost = {
   id: string;
@@ -28,8 +28,34 @@ const mapToBlogPost = (post: GeneratedPost): BlogPost => ({
   content: post.content,
 });
 
+
+/* Au pré-rendu (SSR sans hydratation), aucun fetch ne part : les scripts de
+   build injectent les articles publiés dans globalThis.__GENERATED_POSTS__
+   pour que le HTML des articles soit complet sans JavaScript. */
+type InjectedPost = GeneratedPost & { lang?: string };
+
+function injectedPosts(): InjectedPost[] | null {
+  const store = (globalThis as { __GENERATED_POSTS__?: InjectedPost[] }).__GENERATED_POSTS__;
+  return Array.isArray(store) ? store : null;
+}
+
+export function getInjectedPostsByLang(lang = "fr"): BlogPost[] | undefined {
+  const store = injectedPosts();
+  if (!store) return undefined;
+  return store
+    .filter((post) => (post.lang ?? "fr") === lang)
+    .map((post) => mapToBlogPost(post));
+}
+
+export function getInjectedPostBySlug(slug: string, lang = "fr"): BlogPost | undefined {
+  const store = injectedPosts();
+  if (!store) return undefined;
+  const post = store.find((entry) => entry.slug === slug && (entry.lang ?? "fr") === lang);
+  return post ? mapToBlogPost(post) : undefined;
+}
+
 export async function listPublishedGeneratedBlogPosts(lang = "fr"): Promise<BlogPost[]> {
-  const { data, error } = await supabase
+  const { data, error } = await contentSupabase
     .from("generated_blog_posts")
     .select("*")
     .eq("published", true)
@@ -40,7 +66,7 @@ export async function listPublishedGeneratedBlogPosts(lang = "fr"): Promise<Blog
     // Colonne lang absente (migration pas encore appliquée) : les articles
     // existants sont tous en français.
     if (lang !== "fr") return [];
-    const fallback = await supabase
+    const fallback = await contentSupabase
       .from("generated_blog_posts")
       .select("*")
       .eq("published", true)
@@ -55,7 +81,7 @@ export async function getPublishedGeneratedPostBySlug(
   slug: string,
   lang = "fr"
 ): Promise<BlogPost | null> {
-  const { data, error } = await supabase
+  const { data, error } = await contentSupabase
     .from("generated_blog_posts")
     .select("*")
     .eq("slug", slug)
@@ -67,7 +93,7 @@ export async function getPublishedGeneratedPostBySlug(
     // Colonne lang absente (migration pas encore appliquée) : les articles
     // existants sont tous en français.
     if (lang !== "fr") return null;
-    const fallback = await supabase
+    const fallback = await contentSupabase
       .from("generated_blog_posts")
       .select("*")
       .eq("slug", slug)

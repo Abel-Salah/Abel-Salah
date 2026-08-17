@@ -12,6 +12,7 @@ export interface BlogUIContent {
   titleHighlight: string;
   intro: string;
   loading: string;
+  loadMore: string;
   readLabel: string;
   loadingArticle: string;
   backToBlog: string;
@@ -90,6 +91,7 @@ export const blogUILocales: Record<PageLocale, BlogUIContent> = {
     intro:
       "Guides pratiques, cas concrets et analyses stratégiques pour intégrer l'intelligence artificielle dans votre entreprise.",
     loading: "Chargement des articles...",
+    loadMore: "Voir plus d'articles",
     readLabel: "Lire",
     loadingArticle: "Chargement de l'article...",
     backToBlog: "Retour au blog",
@@ -112,6 +114,7 @@ export const blogUILocales: Record<PageLocale, BlogUIContent> = {
     intro:
       "Practical guides, real-world cases and strategic analysis to bring artificial intelligence into your company.",
     loading: "Loading articles...",
+    loadMore: "Load more articles",
     readLabel: "Read",
     loadingArticle: "Loading article...",
     backToBlog: "Back to blog",
@@ -133,6 +136,7 @@ export const blogUILocales: Record<PageLocale, BlogUIContent> = {
     intro:
       "Guías prácticas, casos reales y análisis estratégicos para integrar la inteligencia artificial en tu empresa.",
     loading: "Cargando artículos...",
+    loadMore: "Ver más artículos",
     readLabel: "Leer",
     loadingArticle: "Cargando el artículo...",
     backToBlog: "Volver al blog",

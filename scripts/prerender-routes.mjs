@@ -32,6 +32,24 @@ const { render, blogSlugAlternates, blogCanonicalByLocale } = await import(
   pathToFileURL(ssrEntryPath).href
 );
 
+/* Articles générés (base contenu Lovable) : mis en cache par
+   scripts/fetch-generated-posts.mjs. Injectés dans globalThis pour que le SSR
+   des pages /blog et /blog/:slug rende leur contenu sans fetch. */
+const generatedPostsCachePath = path.resolve("scripts/.generated-posts-cache.json");
+let generatedPosts = [];
+try {
+  generatedPosts = JSON.parse(await readFile(generatedPostsCachePath, "utf8"));
+} catch {
+  console.warn("Cache d'articles générés absent — lancer scripts/fetch-generated-posts.mjs d'abord.");
+}
+globalThis.__GENERATED_POSTS__ = generatedPosts;
+
+const generatedArticleRoutes = generatedPosts.map((post) => ({
+  lang: post.lang ?? "fr",
+  path: `${blogCanonicalByLocale[post.lang ?? "fr"] ?? "/blog"}/${post.slug}`,
+  date: post.date,
+}));
+
 const articleRoutes = blogSlugAlternates.flatMap((entry) =>
   ["fr", "en", "es"].map((lang) => ({
     lang,
@@ -127,7 +145,8 @@ for (const route of routes) {
 const basePath = path.join(distDir, ".spa-base.html");
 const baseHtml = await readFile(basePath, "utf8");
 
-for (const article of articleRoutes) {
+const allArticleRoutes = [...articleRoutes, ...generatedArticleRoutes];
+for (const article of allArticleRoutes) {
   const rendered = await renderPage(article.path);
   const { body } = rendered;
   const head = rendered.head
@@ -153,6 +172,55 @@ for (const article of articleRoutes) {
 
 await rm(basePath, { force: true });
 
+/* ---- Sitemap, flux RSS et _redirects générés depuis les routes réelles ---- */
+const SITE_URL = "https://abelsalah.fr";
+const xmlEscape = (value) =>
+  String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+const urlFor = (routePath) => `${SITE_URL}${routePath === "/" ? "/" : routePath}`;
+
+const sitemapEntries = [];
+for (const route of routes) {
+  const alternates = (route.alternates ?? [])
+    .map(
+      (alt) =>
+        `    <xhtml:link rel="alternate" hreflang="${alt.hrefLang}" href="${urlFor(alt.path)}" />`
+    )
+    .join("\n");
+  sitemapEntries.push(
+    `  <url>\n    <loc>${urlFor(route.path)}</loc>\n${alternates ? alternates + "\n" : ""}  </url>`
+  );
+}
+for (const article of allArticleRoutes) {
+  const lastmod = article.date ? `\n    <lastmod>${article.date}</lastmod>` : "";
+  sitemapEntries.push(`  <url>\n    <loc>${urlFor(article.path)}</loc>${lastmod}\n  </url>`);
+}
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset\n  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n  xmlns:xhtml="http://www.w3.org/1999/xhtml"\n>\n${sitemapEntries.join("\n")}\n</urlset>\n`;
+await writeFile(path.join(distDir, "sitemap.xml"), sitemapXml);
+
+const rssItems = generatedPosts
+  .filter((post) => (post.lang ?? "fr") === "fr")
+  .slice(0, 50)
+  .map((post) => {
+    const link = `${SITE_URL}/blog/${post.slug}`;
+    return `    <item>\n      <title>${xmlEscape(post.title)}</title>\n      <link>${link}</link>\n      <guid>${link}</guid>\n      <pubDate>${new Date(post.date).toUTCString()}</pubDate>\n      <description>${xmlEscape(post.meta_description ?? post.excerpt ?? "")}</description>\n    </item>`;
+  })
+  .join("\n");
+const rssXml = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Blog IA — Abel SALAH</title>\n    <link>${SITE_URL}/blog</link>\n    <description>Guides pratiques IA pour PME et ETI par Abel SALAH.</description>\n    <language>fr</language>\n${rssItems}\n  </channel>\n</rss>\n`;
+await writeFile(path.join(distDir, "rss.xml"), rssXml);
+
+const redirectsPath = path.join(distDir, "_redirects");
+let redirects = await readFile(redirectsPath, "utf8").catch(() => "");
+const generatedRedirects = generatedArticleRoutes
+  .map((article) => `${article.path} ${article.path}/index.html 200!`)
+  .join("\n");
+if (generatedRedirects) {
+  await writeFile(redirectsPath, `${redirects.trimEnd()}\n${generatedRedirects}\n`);
+}
+
 console.log(
-  `Prerendered ${routes.length + articleRoutes.length} pages (${routes.length} routes + ${articleRoutes.length} articles).`
+  `Sitemap: ${sitemapEntries.length} URLs — RSS: ${Math.min(50, generatedPosts.length)} items — redirects articles générés: ${generatedArticleRoutes.length}.`
+);
+
+console.log(
+  `Prerendered ${routes.length + allArticleRoutes.length} pages (${routes.length} routes + ${articleRoutes.length} static + ${generatedArticleRoutes.length} generated articles).`
 );

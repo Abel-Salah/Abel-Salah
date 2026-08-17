@@ -15,6 +15,7 @@ import {
 } from "@/data/blogLocales";
 import { contactCanonicalByLocale } from "@/data/contactLocales";
 import { getGeneratedPostBySlug } from "@/hooks/useGeneratedBlogPosts";
+import { getInjectedPostBySlug } from "@/services/generatedBlogPosts";
 import type { PageLocale } from "@/data/workLocales";
 
 const SITE_URL = "https://abelsalah.fr";
@@ -40,6 +41,7 @@ const BlogPost = ({ locale = "fr" }: { locale?: PageLocale }) => {
     // !staticPost suffit déjà en pratique (seuls des articles statiques sont
     // pré-rendus) ; !SSR documente explicitement l'intention pour le SSR.
     enabled: !staticPost && !!slug && !import.meta.env.SSR,
+    initialData: import.meta.env.SSR && slug ? getInjectedPostBySlug(slug, locale) : undefined,
   });
 
   const post = staticPost || generatedPost;

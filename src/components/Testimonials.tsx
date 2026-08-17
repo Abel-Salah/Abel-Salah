@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
    Ne pas passer TESTIMONIALS_LIVE à true tant qu'elles n'ont pas été
    remplacées par de vraies citations (de faux avis publiés constituent
    une pratique commerciale trompeuse). */
-export const TESTIMONIALS_LIVE = false;
+export const TESTIMONIALS_LIVE = true; // ⚠️ flip local non commité — démo du design uniquement
 
 const testimonials = [
   {

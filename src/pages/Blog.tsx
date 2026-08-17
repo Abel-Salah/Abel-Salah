@@ -9,7 +9,7 @@ import {
   getStaticPostsByLocale,
 } from "@/data/blogLocales";
 import { useGeneratedBlogPosts } from "@/hooks/useGeneratedBlogPosts";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { PageLocale } from "@/data/workLocales";
 
 const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
@@ -22,6 +22,8 @@ const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
     merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return merged;
   }, [generatedPosts, locale]);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const visiblePosts = allPosts.slice(0, visibleCount);
 
   return (
     <main className="min-h-screen bg-background pt-24 pb-16">
@@ -56,7 +58,7 @@ const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
         )}
 
         <div className="grid gap-8 md:gap-12">
-          {allPosts.map((post, index) => (
+          {visiblePosts.map((post, index) => (
             <motion.article
               key={post.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -109,6 +111,18 @@ const Blog = ({ locale = "fr" }: { locale?: PageLocale }) => {
             </motion.article>
           ))}
         </div>
+
+        {visibleCount < allPosts.length && (
+          <div className="mt-14 text-center">
+            <button
+              type="button"
+              onClick={() => setVisibleCount((count) => count + 12)}
+              className="cta-glow inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-semibold text-primary-foreground transition-all hover:gap-4"
+            >
+              {t.loadMore} ({allPosts.length - visibleCount})
+            </button>
+          </div>
+        )}
       </div>
     </main>
   );

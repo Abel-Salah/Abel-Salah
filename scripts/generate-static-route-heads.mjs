@@ -96,7 +96,7 @@ ${alternates}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(route.title)}" />
     <meta name="twitter:description" content="${escapeHtml(route.description)}" />
-    <meta name="twitter:image" content="${ogImage}" />${navigationSchema}${routeServiceSchema}${routeFaqSchema}`;
+    <meta name="twitter:image" content="${ogImage}" />\n    <link rel="alternate" type="application/rss+xml" title="Blog IA — Abel SALAH" href="https://abelsalah.fr/rss.xml" />${navigationSchema}${routeServiceSchema}${routeFaqSchema}`;
 }
 
 function applyRouteHead(baseHtml, route) {
