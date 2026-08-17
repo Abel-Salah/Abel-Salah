@@ -101,6 +101,13 @@ export const navigationByLang = {
 
 export const routes = [
   {
+    path: "/checklist",
+    lang: "fr",
+    title: "Checklist Gratuite : Auditez Votre Site en 7 Axes — Abel SALAH",
+    description:
+      "La checklist d'audit de site utilisée en live par Abel SALAH : 55+ points de contrôle et 8 prompts IA prêts à l'emploi. Téléchargement gratuit.",
+  },
+  {
     path: "/formations",
     lang: "fr",
     title: "Formations & Coaching Business | Lancement, Développement — Abel SALAH",

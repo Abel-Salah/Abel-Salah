@@ -18,6 +18,7 @@ import SiteScore from "./pages/SiteScore";
 
 const Work = lazy(() => import("./pages/Work"));
 const Formations = lazy(() => import("./pages/Formations"));
+const Checklist = lazy(() => import("./pages/Checklist"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Styleguide = lazy(() => import("./pages/Styleguide"));
@@ -71,6 +72,7 @@ export const AppShell = () => {
             <Route path="/contact" element={<Contact locale="fr" />} />
             <Route path="/services" element={<Services />} />
             <Route path="/formations" element={<Formations />} />
+            <Route path="/checklist" element={<Checklist />} />
             <Route path="/en/contact" element={<Contact locale="en" />} />
             <Route path="/es/contact" element={<Contact locale="es" />} />
             <Route path="/blog" element={<Blog locale="fr" />} />
