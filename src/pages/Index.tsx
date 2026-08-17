@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Plus, X } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import StatCounter from "@/components/StatCounter";
+import Testimonials from "@/components/Testimonials";
 import { workCanonicalByLocale } from "@/data/workLocales";
 import {
   homeAlternates,
@@ -336,6 +337,8 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           </div>
         </div>
       </section>
+
+      {locale === "fr" && <Testimonials />}
 
       <section className="section-glow overflow-hidden py-28 px-4 md:px-6 border-t border-border">
         <div className="container mx-auto">
