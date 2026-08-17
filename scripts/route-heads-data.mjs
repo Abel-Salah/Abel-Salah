@@ -441,6 +441,22 @@ export const routes = [
     injectHelmetSchemas: true,
   },
   {
+    path: "/expert-ia-toulouse",
+    lang: "fr",
+    title: "Expert IA à Toulouse | Audit, Automatisation, Formation — Abel SALAH",
+    description:
+      "Consultant IA intervenant à Toulouse, sa ville de formation : audit IA, automatisation des processus et formation d'équipes pour PME, industrie et écosystème aéronautique.",
+    injectHelmetSchemas: true,
+  },
+  {
+    path: "/expert-ia-bordeaux",
+    lang: "fr",
+    title: "Expert IA à Bordeaux | Audit, Automatisation, Formation — Abel SALAH",
+    description:
+      "Consultant IA intervenant à Bordeaux et en Nouvelle-Aquitaine : audit IA, automatisation et formation pour PME, négoce, tourisme et services. Audit découverte gratuit.",
+    injectHelmetSchemas: true,
+  },
+  {
     path: "/expert-ia-marseille",
     lang: "fr",
     title: "Expert IA à Marseille | Audit, Automatisation, Formation — Abel SALAH",

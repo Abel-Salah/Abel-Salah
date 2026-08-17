@@ -102,6 +102,8 @@ export const AppShell = () => {
             <Route path="/expert-ia-montpellier" element={<Location slug="expert-ia-montpellier" />} />
             <Route path="/expert-ia-paris" element={<Location slug="expert-ia-paris" />} />
             <Route path="/expert-ia-marseille" element={<Location slug="expert-ia-marseille" />} />
+            <Route path="/expert-ia-toulouse" element={<Location slug="expert-ia-toulouse" />} />
+            <Route path="/expert-ia-bordeaux" element={<Location slug="expert-ia-bordeaux" />} />
             <Route path="/es/experto-ia-malaga" element={<Location slug="experto-ia-malaga" />} />
             <Route path="/es/experto-ia-barcelona" element={<Location slug="experto-ia-barcelona" />} />
             <Route path="/styleguide" element={<Styleguide />} />
