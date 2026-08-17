@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Banknote, GraduationCap, Package, Repeat, Rocket, Sparkles, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, Banknote, Check, GraduationCap, Package, Repeat, Rocket, Sparkles, TrendingUp, Users } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { trackConversionEvent } from "@/lib/conversionEvents";
@@ -73,6 +73,48 @@ const revenues = [
     title: "Et bien d'autres…",
     badge: "Bientôt",
     text: "Plusieurs nouvelles sources de revenus arrivent dans les prochains mois.",
+  },
+];
+
+const packs = [
+  {
+    label: "Fondations solides.",
+    name: "Pack Starter",
+    price: "199€",
+    description: "Le programme Lancement d'entreprise pour démarrer sur des bases saines.",
+    features: [
+      "Programme Lancement d'entreprise complet",
+      "Outils et ressources prêts à l'emploi",
+      "Droits de revente à 100 %",
+      "Commission d'évolution de 25 %",
+    ],
+    highlighted: false,
+  },
+  {
+    label: "Stratégie avancée.",
+    name: "Pack Pro",
+    price: "799€",
+    description: "Lancement + Développement : commerce, digital et automatisations.",
+    features: [
+      "Programmes Lancement + Développement",
+      "Outils et ressources avancés",
+      "Droits de revente à 100 %",
+      "Commission d'évolution de 50 %",
+    ],
+    highlighted: false,
+  },
+  {
+    label: "Devenez un expert.",
+    name: "Pack Premium",
+    price: "1499€",
+    description: "L'accès complet : tous les programmes, le coaching mensuel, tous les outils.",
+    features: [
+      "Tous les programmes + coaching mensuel",
+      "Tous les outils et ressources",
+      "Droits de revente à 100 %",
+      "Commission d'évolution de 75 %",
+    ],
+    highlighted: true,
   },
 ];
 
@@ -233,6 +275,81 @@ const Formations = () => (
             );
           })}
         </div>
+      </section>
+
+      {/* Packs */}
+      <section className="section-glow overflow-hidden border-t border-border py-20">
+        <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
+          Les packs
+        </span>
+        <h2 className="heading-display mb-12 text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+          Choisissez
+          <br />
+          <span className="heading-serif-accent">votre pack /</span>
+        </h2>
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3">
+          {packs.map((pack, index) => (
+            <motion.div
+              key={pack.name}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className={`card-lift relative flex flex-col p-8 ${
+                pack.highlighted
+                  ? "border border-primary bg-primary/5 shadow-[0_0_60px_-20px_hsl(var(--primary)/0.5)]"
+                  : "card-premium"
+              }`}
+            >
+              {pack.highlighted && (
+                <span className="label-mono absolute -top-3 left-8 rounded-full bg-primary px-3 py-1 text-[11px] uppercase tracking-wider text-primary-foreground">
+                  Le plus complet
+                </span>
+              )}
+              <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {pack.label}
+              </span>
+              <div className="mt-6 flex items-baseline justify-between gap-4">
+                <h3 className="heading-display text-3xl md:text-4xl leading-none">{pack.name}</h3>
+                <span className="heading-serif-accent text-5xl text-foreground">{pack.price}</span>
+              </div>
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+                {pack.description}
+              </p>
+              <ul className="mt-8 space-y-3 border-t border-border pt-6">
+                {pack.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm text-foreground">
+                    <Check className="mt-0.5 h-4 w-4 flex-none text-primary" aria-hidden="true" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={TIDYCAL_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackConversionEvent(
+                    "book_call_click",
+                    `formations_pack_${pack.name.toLowerCase().replace(/\s/g, "_")}`,
+                    TIDYCAL_BOOKING_URL
+                  )
+                }
+                className={`mt-8 inline-flex items-center justify-center gap-3 rounded-full px-6 py-4 font-semibold transition-all hover:gap-4 ${
+                  pack.highlighted
+                    ? "cta-glow bg-primary text-primary-foreground"
+                    : "border border-border text-foreground hover:border-primary hover:text-primary"
+                }`}
+              >
+                Démarrer avec ce pack
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </motion.div>
+          ))}
+        </div>
+        <p className="label-mono mt-8 text-center text-xs uppercase tracking-wider text-muted-foreground">
+          Une question sur les packs ? Réservez un appel — 30 min · Gratuit · Sans engagement
+        </p>
       </section>
 
       {/* CTA final */}
