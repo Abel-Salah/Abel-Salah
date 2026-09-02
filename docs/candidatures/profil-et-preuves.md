@@ -8,6 +8,8 @@
 - Langues : français et espagnol courants ; anglais écrit
   excellent/professionnel, oral opérationnel
 - Statut privilégié : freelance ou intervention externalisée
+- Métiers prioritaires : formateur IA, consultant IA, référent IA externalisé,
+  accompagnement à l'adoption, au déploiement et à l'audit
 
 Ne jamais présenter l'anglais oral comme courant ou bilingue.
 

@@ -28,7 +28,7 @@ si l'interlocuteur propose explicitement de rester en contact.
 Ordre recommandé :
 
 1. cabinets, ESN, organismes de formation et partenaires locaux ;
-2. entreprises cibles et décideurs métiers ;
+2. écoles, CFA, campus, EdTech, entreprises cibles et décideurs métiers ;
 3. plateformes freelance et réseaux spécialisés ;
 4. job boards généralistes.
 
@@ -38,6 +38,8 @@ Requêtes types :
 - `chef de projet IA freelance conduite du changement` ;
 - `référent IA externalisé PME` ;
 - `formateur IA freelance entreprise` ;
+- `intervenant IA école CFA campus freelance` ;
+- `sous-traitant formation intelligence artificielle` ;
 - `AI Act gouvernance IA freelance` ;
 - `automatisation IA consultant retail` ;
 - variantes françaises, anglaises et espagnoles selon le marché.

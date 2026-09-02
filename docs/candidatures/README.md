@@ -5,8 +5,9 @@ soumettre et suivre les opportunités professionnelles d'Abel Salah.
 
 ## Objectif
 
-Obtenir en priorité des missions freelance ou externalisées en IA appliquée,
-transformation, adoption, formation, automatisation et gouvernance. Les CDI ne
+Obtenir en priorité des missions freelance ou externalisées de formateur,
+consultant ou intervenant en IA appliquée, transformation, adoption,
+automatisation et gouvernance. Les CDI ne
 sont étudiés que lorsque le contenu, la localisation et la rémunération rendent
 l'opportunité réellement pertinente.
 
@@ -23,8 +24,8 @@ l'opportunité réellement pertinente.
 
 1. Partenaires apporteurs de missions : cabinets, ESN, organismes de formation,
    agences et écosystèmes numériques.
-2. Prospection directe de réseaux, franchises, retail, fitness et PME de
-   services.
+2. Prospection directe des écoles, organismes de formation, CFA, campus,
+   réseaux, franchises, acteurs du retail, du fitness et PME de services.
 3. Plateformes et places de marché freelance.
 4. Offres d'emploi traditionnelles, uniquement en complément.
 
