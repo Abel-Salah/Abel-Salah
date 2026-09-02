@@ -1,0 +1,69 @@
+name: Opportunité professionnelle
+description: Qualifier et suivre une mission, une candidature ou un partenariat
+title: "[Opportunité] Entreprise — Intitulé"
+labels:
+  - opportunité
+body:
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options:
+        - Freelance
+        - Externalisé / temps partagé
+        - Partenariat / sous-traitance
+        - Formation
+        - CDI
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source et URL canonique
+    validations:
+      required: true
+  - type: input
+    id: reference
+    attributes:
+      label: Référence de l'offre
+  - type: input
+    id: client_final
+    attributes:
+      label: Client final ou intermédiaire
+  - type: textarea
+    id: besoin
+    attributes:
+      label: Besoin vérifié
+      description: Résumer le besoin sans extrapolation.
+    validations:
+      required: true
+  - type: textarea
+    id: adequation
+    attributes:
+      label: Adéquation et preuves
+      description: Compétences prouvées, limites et score sur 100.
+    validations:
+      required: true
+  - type: dropdown
+    id: cv
+    attributes:
+      label: CV à utiliser
+      options:
+        - Français
+        - Anglais
+        - Espagnol
+    validations:
+      required: true
+  - type: textarea
+    id: deduplication
+    attributes:
+      label: Contrôle anti-doublon
+      description: Entreprise, référence, URL, intermédiaire et client final vérifiés.
+    validations:
+      required: true
+  - type: textarea
+    id: action
+    attributes:
+      label: Prochaine action et échéance
+    validations:
+      required: true
