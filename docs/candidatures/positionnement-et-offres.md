@@ -2,9 +2,9 @@
 
 ## Positionnement principal
 
-> Consultant IA opérationnelle pour réseaux, retail, fitness et PME de
-> services : diagnostic, automatisation, adoption, formation et conformité
-> AI Act.
+> Consultant et formateur IA opérationnelle pour organismes de formation,
+> écoles, réseaux, retail, fitness et PME de services : formation, diagnostic,
+> automatisation, adoption et conformité AI Act.
 
 La différenciation repose sur la combinaison de trois expériences :
 
@@ -12,8 +12,13 @@ La différenciation repose sur la combinaison de trois expériences :
 - conseil et formation en intelligence artificielle avec SKILLCO ;
 - passage du besoin métier à une solution utilisable, documentée et adoptée.
 
-Le discours commercial doit commencer par le problème métier et le résultat
-attendu, jamais par une liste d'outils.
+La formation professionnelle constitue à la fois un secteur cible prioritaire
+et une offre d'intervention. Abel peut intervenir directement auprès des
+apprenants, former les équipes d'un organisme ou agir en sous-traitance pour ses
+clients entreprises.
+
+Le discours commercial doit commencer par le besoin pédagogique ou métier et
+le résultat attendu, jamais par une liste d'outils.
 
 ## Offre 1 — Diagnostic IA opérationnel
 
@@ -59,9 +64,10 @@ Intervention récurrente de 1 à 3 jours par semaine :
 
 ## Cibles prioritaires
 
+- organismes de formation, écoles, CFA, campus et EdTech ;
+- cabinets ou formateurs recherchant un intervenant ou un sous-traitant IA ;
 - réseaux de magasins et franchises ;
 - fitness, sport et loisirs ;
-- organismes de formation et écoles ;
 - cabinets de conseil, ESN et agences recherchant un sous-traitant ;
 - PME de services : immobilier, recrutement, commerce, marketing et fonctions
   support.
