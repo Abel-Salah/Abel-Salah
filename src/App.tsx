@@ -44,6 +44,7 @@ const routeFallback = (
 export const AppShell = () => {
   const location = useLocation();
   const isBusinessCard = location.pathname === "/carte-visite" || location.pathname === "/card";
+  const isCv = ["/cv", "/en/cv", "/es/cv"].includes(location.pathname);
 
   return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -51,7 +52,7 @@ export const AppShell = () => {
       <Sonner />
       <ScrollToTop />
       <ScrollGradient />
-      {!isBusinessCard && <ContactAgentWidget />}
+      {!isBusinessCard && !isCv && <ContactAgentWidget />}
       {!isBusinessCard && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>

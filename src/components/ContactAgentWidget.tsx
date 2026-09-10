@@ -284,7 +284,7 @@ const ContactAgentWidget = () => {
           role="dialog"
           aria-label={copy.panelTitle}
           tabIndex={-1}
-          className="fixed bottom-24 right-4 z-50 flex max-h-[70vh] w-[min(92vw,370px)] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_24px_64px_rgba(0,0,0,0.35)] outline-none animate-in fade-in slide-in-from-bottom-4 sm:right-6"
+          className="fixed bottom-24 right-4 z-50 flex max-h-[70vh] w-[min(92vw,370px)] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_24px_64px_rgba(0,0,0,0.35)] outline-none animate-in fade-in slide-in-from-bottom-4 print:hidden sm:right-6"
         >
           <div className="flex items-center justify-between gap-3 border-b border-border bg-card/60 px-5 py-4">
             <div className="flex items-center gap-3">
@@ -392,7 +392,7 @@ const ContactAgentWidget = () => {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-label={copy.buttonLabel}
-        className="group fixed bottom-5 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_8px_24px_rgba(37,99,235,0.4)] transition-transform hover:-translate-y-0.5 sm:right-6"
+        className="group fixed bottom-5 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_8px_24px_rgba(37,99,235,0.4)] transition-transform hover:-translate-y-0.5 print:hidden sm:right-6"
       >
         {open ? (
           <X className="h-6 w-6" aria-hidden="true" />
