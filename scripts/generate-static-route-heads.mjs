@@ -6,7 +6,7 @@ const siteUrl = "https://abelsalah.fr";
 const distDir = path.resolve("dist");
 const baseIndexPath = path.join(distDir, "index.html");
 const ogImage =
-  "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/390e6aa2-6998-4951-8b6c-23a48e10b181";
+  "https://storage.googleapis.com/gpt-engineer-file-uploads/yFKPGRyIVtelP0DcFywODGT5Ywu2/social-images/social-1771719056921-ABEL_SALAH.webp";
 
 function escapeHtml(value) {
   return value
@@ -92,6 +92,9 @@ ${alternates}
     <meta property="og:url" content="${canonical}" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="${ogImage}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Abel SALAH — Consultant IA &amp; AI Transformation Lead" />
     <meta property="og:locale" content="${route.lang === "en" ? "en_US" : route.lang === "es" ? "es_ES" : "fr_FR"}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(route.title)}" />

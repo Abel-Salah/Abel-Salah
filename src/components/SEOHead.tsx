@@ -13,7 +13,7 @@ interface SEOHeadProps {
 }
 
 const SITE_URL = "https://abelsalah.fr";
-const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/390e6aa2-6998-4951-8b6c-23a48e10b181";
+const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/yFKPGRyIVtelP0DcFywODGT5Ywu2/social-images/social-1771719056921-ABEL_SALAH.webp";
 
 const SEOHead = ({
   title,
@@ -72,12 +72,16 @@ const SEOHead = ({
       <meta property="og:url" content={fullCanonical} />
       <meta property="og:type" content={ogType} />
       <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Abel SALAH — Consultant IA & AI Transformation Lead" />
       <meta property="og:locale" content={ogLocale} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+      <meta name="twitter:image:alt" content="Abel SALAH — Consultant IA & AI Transformation Lead" />
 
       {breadcrumbSchema && (
         <script type="application/ld+json">

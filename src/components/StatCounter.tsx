@@ -13,10 +13,18 @@ const StatCounter = ({ value }: { value: string }) => {
   const target = match ? parseInt(match[1], 10) : 0;
   const suffix = match ? match[2] : value;
 
-  const [display, setDisplay] = useState(prefersReducedMotion ? target : 0);
+  // Keep the meaningful value in the server-rendered HTML so the stats remain
+  // useful for SEO and users who do not run the animation.
+  const [display, setDisplay] = useState(target);
 
   useEffect(() => {
-    if (!inView || prefersReducedMotion) return;
+    if (!inView) return;
+    if (prefersReducedMotion) {
+      setDisplay(target);
+      return;
+    }
+
+    setDisplay(0);
     const controls = animate(0, target, {
       duration: 1.4,
       ease: [0.16, 1, 0.3, 1],
