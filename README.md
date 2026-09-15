@@ -1,15 +1,32 @@
 # Abel SALAH
 
-Consultant IA — Montpellier.
+**Consultant IA & AI Transformation Lead** — Montpellier, France
 
-- Site : [abelsalah.fr](https://abelsalah.fr)
-- Formateurs.pro : [formateurs.pro](https://formateurs.pro)
-- Immo Montpellier : [immomontpellier.com](https://immomontpellier.com)
+Je déploie l'IA en production dans les PME et ETI : cadrage des cas d'usage, mise en production, formation des équipes. 16 ans en digital, vente et marketing, dont cinq années à former.
 
-## Candidatures et missions freelance
+## Ce que je dirige
 
-La base documentaire opérationnelle est disponible dans le
-[wiki des opportunités](docs/candidatures/README.md).
+**[SKILLCO](https://skillco.fr)** — déploiement et formation IA pour PME/ETI.
+Organisme certifié QUALIOPI (financements CPF / OPCO). Références : Docaposte, Airbus, EIG.
 
-Elle centralise le positionnement, les offres, la méthode de recherche, les
-règles anti-doublons, les modèles de messages et le registre de suivi.
+## Produits
+
+| Produit | Objet |
+|---|---|
+| [SKILL LMS](https://www.skill-lms.fr) | LMS pour organismes de formation — conformité QUALIOPI encodée dans le produit |
+| SCALLUP | SaaS de prospection B2B — ciblage, enrichissement, séquences |
+| [Formateurs.pro](https://formateurs.pro) | Plateforme de mise en relation et de gestion de formateurs |
+
+## Démonstration publique
+
+**[elevenlabs-cpf-qualifier](https://github.com/Abel-Salah/elevenlabs-cpf-qualifier)**
+Agent vocal français qui qualifie les demandes de formation entrantes, oriente vers le bon dispositif de financement (CPF / OPCO / France Travail) et transfère à un conseiller.
+ElevenLabs Agents · FastAPI · HubSpot · 17 tests hors ligne.
+
+## Stack
+
+Claude Code · Lovable · Supabase · HubSpot · Make · Python / FastAPI · TypeScript
+
+## Contact
+
+[abelsalah.fr](https://abelsalah.fr) · [LinkedIn](https://www.linkedin.com/in/abel-salah)
