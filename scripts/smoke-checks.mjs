@@ -1,0 +1,146 @@
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+
+const read = (path) => readFileSync(path, "utf8");
+const failures = [];
+
+function readTree(path) {
+  const stat = statSync(path);
+  if (stat.isFile()) return read(path);
+  return readdirSync(path)
+    .filter((entry) => !["node_modules", "dist", ".git"].includes(entry))
+    .map((entry) => readTree(join(path, entry)))
+    .join("\n");
+}
+
+function expectIncludes(path, expected, label = expected) {
+  const content = read(path);
+  if (!content.includes(expected)) {
+    failures.push(`${path}: missing ${label}`);
+  }
+}
+
+function expectNotIncludes(path, unexpected, label = unexpected) {
+  const content = readTree(path);
+  if (content.includes(unexpected)) {
+    failures.push(`${path}: unexpected ${label}`);
+  }
+}
+
+const tidyCalUrl = "https://tidycal.com/skill-lms/abel-rdv";
+const sourceText = readTree("src");
+const forbiddenClaimPatterns = [
+  /\b(?:résultat|resultat|gain|roi|pipeline|conversion|croissance)s?\s+garanti(?:e|s)?\b/i,
+  /\b(?:guaranteed|guarantee)\s+(?:result|roi|growth|conversion|pipeline)s?\b/i,
+  /\b(?:resultado|ganancia|roi|pipeline|conversion|crecimiento)s?\s+garantizado(?:s|a|as)?\b/i,
+  /\b(?:candidature|message|email|relance)s?\s+automatique(?:s)?\s+sans\s+validation\b/i,
+];
+const publicRoutes = [
+  "/",
+  "/en",
+  "/es",
+  "/audit-ia",
+  "/automatisation-commerciale",
+  "/formation-ia",
+  "/en/ai-audit",
+  "/en/sales-automation",
+  "/en/ai-training",
+  "/es/auditoria-ia",
+  "/es/automatizacion-comercial",
+  "/es/formacion-ia",
+  "/blog",
+  "/contact",
+  "/work",
+  "/about",
+  "/ecosystem",
+  "/cv",
+  "/en/cv",
+  "/es/cv",
+  "/en/work",
+  "/es/work",
+  "/en/about",
+  "/es/about",
+  "/en/contact",
+  "/es/contact",
+  "/en/ecosystem",
+  "/es/ecosystem",
+  "/produits",
+  "/en/products",
+  "/es/productos",
+  "/en/blog",
+  "/es/blog",
+  "/expert-ia-montpellier",
+  "/expert-ia-paris",
+  "/expert-ia-marseille",
+  "/es/experto-ia-malaga",
+  "/es/experto-ia-barcelona",
+];
+
+expectIncludes("src/data/homeLocales.ts", tidyCalUrl, "central TidyCal URL");
+expectIncludes("src/lib/conversionEvents.ts", "book_call_click", "booking conversion event");
+expectIncludes("src/lib/conversionEvents.ts", "offer_cta_click", "offer conversion event");
+expectNotIncludes("src", "calendly.com", "Calendly URL");
+expectIncludes("src/pages/BlogPost.tsx", "rehypeSanitize", "Markdown sanitizer");
+expectIncludes("src/pages/BlogPost.tsx", "ReactMarkdown", "Markdown renderer");
+expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "HTML tags are not allowed", "generated article HTML validation");
+expectIncludes("supabase/functions/_shared/blogArticleSchema.ts", "Unsafe URL protocols are not allowed", "generated article URL protocol validation");
+expectIncludes("supabase/functions/generate-blog-post/index.ts", "Duplicate generated title refused", "single article duplicate title guard");
+expectIncludes("supabase/functions/generate-batch-posts/index.ts", "topics must contain between 1 and 10 items", "batch topic limit");
+expectIncludes("supabase/functions/generate-batch-posts/index.ts", "Duplicate generated title refused", "batch duplicate title guard");
+expectIncludes("src/pages/AdminOpportunities.tsx", "noindex", "admin noindex");
+expectIncludes("src/pages/AdminOpportunities.tsx", "sessionStorage", "admin token session storage");
+expectNotIncludes("src/pages/AdminOpportunities.tsx", "localStorage", "persistent admin token storage");
+expectIncludes("src/pages/AdminOpportunities.tsx", "Oublier le token", "admin token clear action");
+expectIncludes("public/robots.txt", "Disallow: /admin/", "admin robots block");
+expectIncludes("public/robots.txt", "Disallow: /styleguide", "styleguide robots block");
+expectIncludes("public/llms.txt", tidyCalUrl, "TidyCal in LLM context");
+expectIncludes("public/ai.txt", tidyCalUrl, "TidyCal in AI context");
+expectIncludes("public/llms.txt", "Ne pas présenter les chiffres comme des garanties", "LLM anti-guarantee guidance");
+expectIncludes("public/ai.txt", "not universal guarantees", "AI citation guidance");
+expectIncludes("src/data/homeLocales.ts", "Preuves & méthode", "home proof section");
+expectIncludes("src/pages/OfferPage.tsx", "Preuve à collecter", "offer case proof copy");
+expectIncludes("src/pages/OfferPage.tsx", "offer.cases.map", "offer cases rendering");
+for (const pattern of forbiddenClaimPatterns) {
+  if (pattern.test(sourceText)) {
+    failures.push(`src: forbidden absolute claim pattern ${pattern}`);
+  }
+}
+expectIncludes("supabase/config.toml", "[functions.generate-blog-post]\nverify_jwt = true", "blog generation JWT");
+expectIncludes("supabase/config.toml", "[functions.run-atlas]\nverify_jwt = true", "Atlas JWT");
+expectIncludes("supabase/functions/run-atlas/index.ts", "business_development_scan", "Nova task type");
+expectIncludes("supabase/functions/run-atlas/index.ts", "google_search_console_audit", "Cléo task type");
+expectIncludes("supabase/functions/run-atlas/index.ts", "llm_visibility_audit", "Iris task type");
+expectIncludes("supabase/migrations/20260728090000_create_agent_registry.sql", "Atlas", "agent registry seed");
+expectIncludes("supabase/migrations/20260728090000_create_agent_registry.sql", "requires_human_approval", "human approval guard");
+expectIncludes("supabase/config.toml", "[functions.manage-opportunities]\nverify_jwt = true", "opportunity admin JWT");
+expectIncludes("supabase/functions/draft-job-outreach/index.ts", 'status: "pending_review"', "draft human review status");
+expectNotIncludes("supabase/functions", "sendEmail", "automatic email sending");
+
+for (const route of publicRoutes) {
+  if (route !== "/") {
+    expectIncludes("src/App.tsx", `path="${route}"`, `React route ${route}`);
+  }
+  expectIncludes("public/sitemap.xml", `https://abelsalah.fr${route === "/" ? "/" : route}`, `sitemap route ${route}`);
+}
+
+for (const route of publicRoutes.filter((route) => route !== "/")) {
+  if (["/en", "/es"].includes(route)) continue;
+  expectIncludes("public/_redirects", `${route} `, `_redirects route ${route}`);
+}
+
+/* vercel.json a dérivé silencieusement par le passé (aucun check ne le
+   couvrait) : il faut le même garde-fou que _redirects pour ne plus jamais
+   le laisser décrocher des routes réelles. */
+for (const route of publicRoutes.filter((route) => route !== "/")) {
+  expectIncludes("vercel.json", `"source": "${route}"`, `vercel.json rewrite for ${route}`);
+}
+
+if (failures.length > 0) {
+  console.error("Smoke checks failed:");
+  for (const failure of failures) {
+    console.error(`- ${failure}`);
+  }
+  process.exit(1);
+}
+
+console.log(`Smoke checks passed (${publicRoutes.length} public routes + critical invariants).`);

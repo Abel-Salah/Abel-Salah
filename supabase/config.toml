@@ -1,0 +1,34 @@
+project_id = "pcjhrmwuqyxddyeikely"
+
+[functions.generate-sitemap]
+verify_jwt = false
+
+[functions.generate-blog-post]
+verify_jwt = true
+
+[functions.generate-batch-posts]
+verify_jwt = true
+
+[functions.discover-job-opportunities]
+verify_jwt = true
+
+[functions.score-job-opportunities]
+verify_jwt = true
+
+[functions.draft-job-outreach]
+verify_jwt = true
+
+[functions.manage-opportunities]
+verify_jwt = true
+
+[functions.run-opportunity-daily]
+verify_jwt = true
+
+[functions.run-atlas]
+verify_jwt = true
+
+[functions.mcp]
+verify_jwt = false
+
+[functions.subscribe-newsletter]
+verify_jwt = false
