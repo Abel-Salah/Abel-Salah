@@ -1,0 +1,74 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: Europe/Paris
+    open-pull-requests-limit: 5
+    groups:
+      vite-tooling:
+        patterns:
+          - vite
+          - "@vitejs/*"
+          - eslint
+          - "@eslint/js"
+          - typescript
+          - typescript-eslint
+      radix-ui:
+        patterns:
+          - "@radix-ui/*"
+    labels:
+      - dependencies
+      - automated
+    ignore:
+      - dependency-name: eslint
+        update-types:
+          - version-update:semver-major
+      - dependency-name: "@eslint/js"
+        update-types:
+          - version-update:semver-major
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+      - dependency-name: vite
+        update-types:
+          - version-update:semver-major
+      - dependency-name: react
+        update-types:
+          - version-update:semver-major
+      - dependency-name: react-dom
+        update-types:
+          - version-update:semver-major
+      - dependency-name: lucide-react
+        update-types:
+          - version-update:semver-major
+      - dependency-name: tailwindcss
+        update-types:
+          - version-update:semver-major
+      - dependency-name: react-router-dom
+        update-types:
+          - version-update:semver-major
+      - dependency-name: eslint-plugin-react-hooks
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:15"
+      timezone: Europe/Paris
+    labels:
+      - dependencies
+      - ci
+    ignore:
+      - dependency-name: actions/checkout
+        update-types:
+          - version-update:semver-major
+      - dependency-name: actions/setup-node
+        update-types:
+          - version-update:semver-major

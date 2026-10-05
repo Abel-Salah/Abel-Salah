@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>La Checklist Audit de Site — Abel SALAH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" />
+<style>
+  :root {
+    --navy: #07080d; --ink: #16181f; --muted: #5b6070; --line: #e4e6ee;
+    --blue: #2537f0; --blue-soft: #eef1ff; --paper: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { font-family: 'Inter', sans-serif; color: var(--ink); }
+  @page { size: A4; margin: 0; }
+  .page { width: 210mm; height: 296mm; padding: 16mm 18mm 14mm; page-break-after: always; position: relative; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; }
+  .display { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .mono { font-family: 'Geist Mono', monospace; }
+  .label { font-family: 'Geist Mono', monospace; font-size: 8.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  .footer { position: absolute; bottom: 9mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-family: 'Geist Mono', monospace; font-size: 7.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: #9aa0b2; border-top: 1px solid var(--line); padding-top: 3mm; }
+
+  /* ---- Couverture ---- */
+  .cover { background: radial-gradient(circle at 78% 12%, rgba(37, 91, 255, 0.4), transparent 40%), linear-gradient(135deg, #04050c 0%, #060a1a 45%, #030409 100%); color: #f5f7ff; justify-content: space-between; }
+  .cover .label { color: #8d93ad; }
+  .cover h1 { font-size: 52pt; line-height: 0.9; text-transform: uppercase; letter-spacing: -0.04em; margin-top: 10mm; }
+  .cover h1 .serif { text-transform: none; color: #6b7bff; display: block; font-size: 46pt; margin-top: 2mm; }
+  .cover .pitch { font-size: 12.5pt; line-height: 1.65; color: #b9bfd4; max-width: 125mm; margin-top: 9mm; }
+  .cover .stats { display: flex; gap: 6mm; margin-top: 11mm; }
+  .cover .stat { border: 1px solid rgba(120, 138, 255, 0.35); border-radius: 3mm; padding: 5mm 7mm; }
+  .cover .stat b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19pt; color: #7c8cff; }
+  .cover .stat span { font-family: 'Geist Mono', monospace; font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8d93ad; }
+  .cover .who { display: flex; align-items: center; gap: 5mm; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 6mm; }
+  .cover .who .dot { width: 11mm; height: 11mm; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 11pt; color: #fff; }
+  .cover .who p { font-size: 9.5pt; color: #b9bfd4; line-height: 1.5; }
+  .cover .who b { color: #fff; }
+
+  /* ---- Pages contenu ---- */
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2.5px solid var(--navy); padding-bottom: 4mm; margin-bottom: 6mm; }
+  .section-head h2 { font-size: 23pt; text-transform: uppercase; letter-spacing: -0.02em; }
+  .section-head h2 .serif { text-transform: none; color: var(--blue); }
+  .section-head .num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 23pt; color: #ccd2ea; }
+  .intro { font-size: 10pt; line-height: 1.6; color: var(--muted); margin-bottom: 5.5mm; max-width: 165mm; }
+  ul.checks { list-style: none; margin-bottom: 6mm; }
+  ul.checks li { display: flex; gap: 4mm; align-items: flex-start; padding: 2.5mm 0; border-bottom: 1px solid var(--line); font-size: 9.6pt; line-height: 1.5; }
+  ul.checks li::before { content: ""; flex: none; width: 4.2mm; height: 4.2mm; border: 1.6px solid var(--blue); border-radius: 1mm; margin-top: 0.6mm; }
+  ul.checks b { color: var(--ink); }
+  .prompt { background: var(--blue-soft); border: 1px solid #ccd6ff; border-left: 3.5px solid var(--blue); border-radius: 2.5mm; padding: 5mm 6mm; }
+  .prompt .ptitle { font-family: 'Geist Mono', monospace; font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 2.5mm; }
+  .prompt p { font-family: 'Geist Mono', monospace; font-size: 8.2pt; line-height: 1.65; color: #232838; white-space: pre-wrap; }
+
+  /* ---- Page méthode ---- */
+  .steps { display: flex; flex-direction: column; gap: 4mm; margin-bottom: 7mm; }
+  .step { display: flex; gap: 5mm; align-items: flex-start; border: 1px solid var(--line); border-radius: 3mm; padding: 5mm 6mm; }
+  .step .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15pt; color: var(--blue); }
+  .step h3 { font-size: 11pt; margin-bottom: 1mm; }
+  .step p { font-size: 9.3pt; color: var(--muted); line-height: 1.55; }
+
+  /* ---- Page score / upsell ---- */
+  table.score { width: 100%; border-collapse: collapse; margin-bottom: 7mm; }
+  table.score th, table.score td { border: 1px solid var(--line); padding: 3mm 4mm; font-size: 9.3pt; text-align: left; }
+  table.score th { font-family: 'Geist Mono', monospace; font-size: 7.8pt; letter-spacing: 0.14em; text-transform: uppercase; background: #f6f7fc; color: var(--muted); }
+  table.score td.c { text-align: center; font-family: 'Geist Mono', monospace; color: var(--muted); }
+  .next { background: var(--navy); color: #f5f7ff; border-radius: 3.5mm; padding: 8mm 9mm; }
+  .next h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16.5pt; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 2.5mm; }
+  .next h3 .serif { text-transform: none; color: #6b7bff; }
+  .next p { font-size: 9.6pt; line-height: 1.6; color: #b9bfd4; margin-bottom: 4.5mm; max-width: 150mm; }
+  .next .cta { display: flex; flex-direction: column; gap: 2.6mm; }
+  .next .cta a { font-family: 'Geist Mono', monospace; font-size: 8.6pt; letter-spacing: 0.06em; color: #9fadff; text-decoration: none; }
+  .next .cta b { color: #fff; font-family: 'Inter', sans-serif; font-size: 9.6pt; letter-spacing: 0; }
+</style>
+</head>
+<body>
+
+<!-- COUVERTURE -->
+<section class="page cover">
+  <div>
+    <p class="label">Abel SALAH · Expert IA & Business — abelsalah.fr</p>
+    <h1 class="display">La checklist<span class="serif">audit de votre site /</span></h1>
+    <p class="pitch">Les règles que j'applique quand j'audite un site en live — et les prompts exacts à coller dans Claude ou ChatGPT pour auditer le vôtre, axe par axe : fond, forme, SEO, visibilité IA, conversion, risques et mesure.</p>
+    <div class="stats">
+      <div class="stat"><b>7</b><span>axes d'audit</span></div>
+      <div class="stat"><b>55+</b><span>points de contrôle</span></div>
+      <div class="stat"><b>8</b><span>prompts IA prêts</span></div>
+    </div>
+  </div>
+  <div class="who">
+    <div class="dot">AS</div>
+    <p><b>Abel SALAH</b> — Expert IA pour PME, ETI & dirigeants.<br/>16 ans d'expérience · 62 projets déployés · abelsalah.fr</p>
+  </div>
+</section>
+
+<!-- MODE D'EMPLOI -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Comment <span class="serif">l'utiliser /</span></h2><span class="num">→</span></div>
+  <div class="steps">
+    <div class="step"><span class="n">01</span><div><h3>Cochez la checklist, axe par axe</h3><p>Parcourez votre site comme un visiteur pressé. Chaque case non cochée est un chantier identifié — notez-le, ne corrigez rien tout de suite.</p></div></div>
+    <div class="step"><span class="n">02</span><div><h3>Faites travailler l'IA pour vous</h3><p>Chaque axe contient un prompt prêt à l'emploi : copiez-le dans Claude ou ChatGPT en remplaçant [URL] par l'adresse de votre site. L'IA fait l'audit, vous gardez le jugement.</p></div></div>
+    <div class="step"><span class="n">03</span><div><h3>Scorez, priorisez, agissez</h3><p>Remplissez la grille de score en dernière page. Attaquez d'abord l'axe le plus faible qui touche directement vos ventes : c'est là que le gain est le plus rapide.</p></div></div>
+  </div>
+  <div class="prompt">
+    <p class="ptitle">◆ Le prompt maître — audit complet en une fois</p>
+    <p>Tu es consultant en stratégie digitale. Audite le site [URL] comme si son dirigeant te payait pour un diagnostic honnête et sans complaisance.
+
+Analyse dans l'ordre : 1) le fond (proposition de valeur, clarté, preuves), 2) la forme (design, hiérarchie visuelle, mobile), 3) le SEO technique (balises, vitesse, structure), 4) la visibilité dans les réponses des IA (ChatGPT, Perplexity), 5) la conversion (parcours, CTA, réassurance), 6) les risques (RGPD, mentions légales, sécurité), 7) la mesure (analytics).
+
+Pour chaque axe : note sur 10, les 3 problèmes les plus coûteux, et l'action n°1 à faire cette semaine. Termine par le TOP 3 des actions toutes catégories confondues, classées par impact sur le chiffre d'affaires.</p>
+  </div>
+  <div class="footer"><span>La checklist audit de site</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 01 FOND -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Le fond <span class="serif">— votre message /</span></h2><span class="num">01</span></div>
+  <p class="intro">Un visiteur décide en quelques secondes s'il reste. Si votre message ne passe pas ce filtre, tout le reste — design, SEO, publicité — travaille pour rien.</p>
+  <ul class="checks">
+    <li><b>Le test des 5 secondes :</b> en lisant uniquement votre écran d'accueil, un inconnu comprend ce que vous faites, pour qui, et ce que ça lui rapporte.</li>
+    <li><b>Une promesse, pas une description :</b> votre titre principal exprime un résultat client, pas votre métier (« +40 % de conversion » bat « Agence digitale »).</li>
+    <li><b>Un site = une cible :</b> votre client idéal se reconnaît dans les 3 premières lignes ; vous ne parlez pas « à tout le monde ».</li>
+    <li><b>Des preuves, pas des adjectifs :</b> chiffres, résultats, cas concrets, témoignages — au moins une preuve visible sans scroller.</li>
+    <li><b>Le vocabulaire du client :</b> vous employez les mots que vos clients utilisent, pas votre jargon interne.</li>
+    <li><b>Chaque page a un objectif unique</b> et un seul message principal — pas un catalogue de tout ce que vous savez faire.</li>
+    <li><b>Vos prix ou fourchettes sont trouvables</b> (ou la raison de leur absence est assumée et expliquée).</li>
+    <li><b>Le contenu est vivant :</b> dernière publication ou mise à jour de moins de 3 mois — un site figé inspire la méfiance.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — auditer le fond</p>
+    <p>Analyse le contenu du site [URL]. En 5 secondes de lecture de la page d'accueil : que fait cette entreprise, pour qui, et quel bénéfice ? Si tu hésites, explique pourquoi. Évalue ensuite : la promesse est-elle un résultat client ou une description du métier ? Quelles preuves concrètes (chiffres, cas, témoignages) sont visibles ? Quel jargon gêne la compréhension ? Donne une note sur 10 et réécris le titre principal en 3 versions plus percutantes.</p>
+  </div>
+  <div class="footer"><span>Axe 01 — Le fond</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 02 FORME -->
+<section class="page">
+  <div class="section-head"><h2 class="display">La forme <span class="serif">— votre image /</span></h2><span class="num">02</span></div>
+  <p class="intro">Le design est votre poignée de main : avant de lire, le visiteur juge. Un site daté fait douter de toute l'entreprise — même si le fond est excellent.</p>
+  <ul class="checks">
+    <li><b>Mobile d'abord :</b> plus de 60 % de vos visiteurs sont sur téléphone — testez chaque page clé sur un vrai mobile, pas seulement sur ordinateur.</li>
+    <li><b>Aucun texte coupé, aucun débordement horizontal,</b> aucun élément qui se chevauche, sur mobile comme sur grand écran.</li>
+    <li><b>Une hiérarchie visuelle claire :</b> en plissant les yeux, on distingue immédiatement le titre, le sous-titre et l'action à faire.</li>
+    <li><b>Maximum 2 familles de polices</b> et une palette resserrée — chaque couleur a un rôle (action, texte, fond).</li>
+    <li><b>Le bouton principal se voit en premier :</b> une seule action mise en avant par écran, contrastée, formulée en verbe.</li>
+    <li><b>Des visuels qui vous appartiennent :</b> vraies photos, vrais produits, vraies captures — les banques d'images génériques diluent la confiance.</li>
+    <li><b>De l'air :</b> marges généreuses, paragraphes courts, pas de blocs de texte compacts.</li>
+    <li><b>Cohérence de bout en bout :</b> les pages secondaires (blog, mentions, 404) portent le même design que l'accueil.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — auditer la forme</p>
+    <p>Évalue le design du site [URL] comme un directeur artistique exigeant. Analyse : hiérarchie visuelle (qu'est-ce qui attire l'œil en premier, est-ce le bon élément ?), cohérence typographique et couleurs, qualité perçue sur mobile, modernité générale (ce site semble-t-il de 2026 ou de 2018 ?), lisibilité (contrastes, tailles de texte, espacement). Liste les 5 corrections visuelles au meilleur rapport impact/effort, de la plus urgente à la moins urgente, avec une note globale sur 10.</p>
+  </div>
+  <div class="footer"><span>Axe 02 — La forme</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 03 SEO TECHNIQUE -->
+<section class="page">
+  <div class="section-head"><h2 class="display">SEO <span class="serif">— être trouvé /</span></h2><span class="num">03</span></div>
+  <p class="intro">Le meilleur site du monde ne sert à rien si personne ne le trouve. Le SEO technique est la plomberie : invisible quand elle marche, catastrophique quand elle fuit.</p>
+  <ul class="checks">
+    <li><b>Chaque page a un titre unique</b> (balise title ~60 caractères, mot-clé + bénéfice) et une méta-description qui donne envie de cliquer.</li>
+    <li><b>Un seul H1 par page,</b> puis une hiérarchie H2/H3 logique qui raconte la page sans la lire.</li>
+    <li><b>Votre sitemap.xml existe, est à jour</b> et est soumis dans Google Search Console — et vous consultez la Search Console au moins une fois par mois.</li>
+    <li><b>Le site charge en moins de 3 secondes sur mobile</b> (testez sur PageSpeed Insights) ; les images sont compressées en WebP/AVIF.</li>
+    <li><b>HTTPS partout,</b> aucune ressource mixte, redirection propre de la version www ou non-www.</li>
+    <li><b>Vos contenus clés sont dans le HTML :</b> si le texte n'apparaît qu'après exécution du JavaScript, une partie des robots ne le voit pas.</li>
+    <li><b>Données structurées en place</b> (Organization, FAQ, Article, avis) — c'est ce qui nourrit les résultats enrichis.</li>
+    <li><b>Un maillage interne volontaire :</b> vos pages importantes reçoivent des liens depuis les autres pages, avec des ancres descriptives.</li>
+    <li><b>Pas de pages orphelines ni de liens cassés</b> (erreurs 404 internes).</li>
+    <li><b>Vous publiez régulièrement du contenu</b> qui répond aux vraies questions de vos clients — le SEO se nourrit de fraîcheur.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — auditer le SEO technique</p>
+    <p>Fais un audit SEO technique du site [URL]. Vérifie et commente : balises title et meta description des pages principales (uniques ? optimisées ?), structure Hn, présence et fraîcheur du sitemap.xml et du robots.txt, données structurées détectées, indices de vitesse de chargement, contenu accessible sans JavaScript, maillage interne. Présente le résultat en tableau : élément / état constaté / gravité (critique, important, mineur) / correction recommandée. Termine par les 3 corrections prioritaires.</p>
+  </div>
+  <div class="footer"><span>Axe 03 — SEO technique</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 04 VISIBILITE IA -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Visibilité IA <span class="serif">— le nouveau SEO /</span></h2><span class="num">04</span></div>
+  <p class="intro">Vos clients demandent désormais à ChatGPT ou Perplexity « quel prestataire choisir ». Si les IA ne savent pas qui vous êtes, vous n'existez pas dans ces réponses — et presque personne ne travaille encore cet axe : prenez l'avance.</p>
+  <ul class="checks">
+    <li><b>Le test de vérité :</b> demandez à ChatGPT et Perplexity « que sais-tu de [votre entreprise] ? » et « recommande un [votre métier] à [votre ville] » — êtes-vous cité, et correctement ?</li>
+    <li><b>Vos informations clés sont formulées en clair :</b> qui vous êtes, ce que vous faites, pour qui, où — en texte simple que les IA peuvent citer.</li>
+    <li><b>Une page FAQ répond aux vraies questions</b> de vos clients avec le schema FAQPage — le format préféré des moteurs de réponse.</li>
+    <li><b>Un fichier llms.txt à la racine du site</b> guide les crawlers IA vers vos contenus importants.</li>
+    <li><b>Votre expertise est démontrée par du contenu :</b> guides, cas clients, articles signés — les IA recommandent ceux qui documentent leur savoir-faire.</li>
+    <li><b>Cohérence sur tout le web :</b> mêmes nom, activité et coordonnées sur votre site, LinkedIn, Google Business Profile et annuaires.</li>
+    <li><b>Vous êtes présent là où les IA puisent :</b> avis Google, mentions presse, annuaires de référence de votre secteur.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — tester votre visibilité IA</p>
+    <p>Je veux évaluer la visibilité de mon entreprise dans les réponses des IA. Mon site : [URL]. Mon secteur : [SECTEUR]. Ma zone : [VILLE/RÉGION].
+
+1) Que sais-tu de cette entreprise ? Cite tes sources si possible. 2) Si un client te demandait de recommander 3 prestataires de ce secteur dans cette zone, qui citerais-tu et pourquoi ? 3) Analyse le site : quelles informations manquent ou sont trop enfouies pour qu'une IA puisse me citer correctement (activité, zone, preuves, FAQ, données structurées) ? 4) Donne-moi un plan en 5 actions pour apparaître dans ce type de réponses.</p>
+  </div>
+  <div class="footer"><span>Axe 04 — Visibilité IA</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 05 CONVERSION -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Conversion <span class="serif">— du trafic aux clients /</span></h2><span class="num">05</span></div>
+  <p class="intro">Attirer des visiteurs coûte cher. Les convertir ne coûte presque rien — c'est une affaire de friction, de clarté et de confiance. Doubler son taux de conversion vaut mieux que doubler son trafic.</p>
+  <ul class="checks">
+    <li><b>Une action principale par page,</b> visible sans scroller, répétée en bas de page — et son bénéfice est clair (« Réserver un audit gratuit » bat « Envoyer »).</li>
+    <li><b>Le moins de champs possible :</b> chaque champ de formulaire en plus fait fuir des prospects — ne demandez que l'indispensable.</li>
+    <li><b>De la réassurance sous chaque bouton :</b> « gratuit », « sans engagement », « réponse sous 24 h » — levez la dernière objection au moment du clic.</li>
+    <li><b>Un moyen de contact sans friction :</b> téléphone cliquable, prise de rendez-vous en ligne, réponse rapide — pas seulement un formulaire muet.</li>
+    <li><b>La preuve sociale près de l'action :</b> témoignages, notes, logos clients placés à côté des boutons, pas cachés sur une page dédiée.</li>
+    <li><b>Un parcours en 3 clics maximum</b> entre l'arrivée sur le site et la demande de contact ou l'achat.</li>
+    <li><b>Une page de remerciement qui travaille :</b> après un formulaire, proposez l'étape suivante (rendez-vous, contenu, offre) au lieu d'un simple « merci ».</li>
+    <li><b>Vous capturez les indécis :</b> un aimant à prospects (guide, checklist, diagnostic) pour garder le contact avec les 97 % qui n'achètent pas aujourd'hui.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — auditer la conversion</p>
+    <p>Analyse le site [URL] du point de vue de la conversion, comme un consultant CRO. Identifie : le parcours qu'un prospect doit suivre pour devenir client (combien de clics, où ça frotte ?), la qualité des appels à l'action (visibilité, formulation, réassurance), la preuve sociale et sa position, les frictions des formulaires, ce qui est proposé aux visiteurs pas encore prêts à acheter. Estime le potentiel d'amélioration et donne les 5 optimisations classées par impact estimé sur le taux de conversion.</p>
+  </div>
+  <div class="footer"><span>Axe 05 — Conversion</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 06 RISQUES -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Risques <span class="serif">— dormir tranquille /</span></h2><span class="num">06</span></div>
+  <p class="intro">Ces points ne font pas vendre — mais un seul d'entre eux peut coûter une amende, un litige ou votre réputation. Vingt minutes de vérification, des années de tranquillité.</p>
+  <ul class="checks">
+    <li><b>Mentions légales complètes :</b> raison sociale, SIREN, adresse, directeur de publication, hébergeur — obligatoires en France.</li>
+    <li><b>Politique de confidentialité à jour</b> : quelles données collectées, pourquoi, combien de temps, et comment exercer ses droits.</li>
+    <li><b>Consentement cookies conforme :</b> le refus est aussi simple que l'acceptation, et rien ne se déclenche avant le choix.</li>
+    <li><b>Consentement explicite sur vos formulaires :</b> une case dédiée pour l'emailing — pré-cochée = interdit.</li>
+    <li><b>CGV présentes si vous vendez en ligne</b> (prix, livraison, rétractation, garanties).</li>
+    <li><b>Certificat HTTPS valide et renouvelé,</b> aucun avertissement de sécurité navigateur.</li>
+    <li><b>Vos images, polices et contenus sont sous licence</b> — pas d'images « empruntées » à Google.</li>
+    <li><b>Sauvegardes et accès :</b> vous savez qui a accès au site, et vous pouvez le restaurer en cas de piratage ou de panne.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — auditer les risques</p>
+    <p>Vérifie la conformité du site [URL] pour une entreprise française. Contrôle : présence et complétude des mentions légales, politique de confidentialité, bandeau cookies (le refus est-il aussi simple que l'acceptation ?), consentement sur les formulaires, CGV si vente en ligne, certificat HTTPS. Pour chaque manquement : le risque encouru (amende, litige, image), sa probabilité, et la correction à apporter. Classe le tout du plus urgent au moins urgent. Précise que ton analyse ne remplace pas un avis juridique.</p>
+  </div>
+  <div class="footer"><span>Axe 06 — Risques & conformité</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- 07 MESURE -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Mesure <span class="serif">— piloter aux chiffres /</span></h2><span class="num">07</span></div>
+  <p class="intro">Ce qui ne se mesure pas ne s'améliore pas. Sans chiffres, chaque décision sur votre site est un pari — avec eux, c'est un investissement.</p>
+  <ul class="checks">
+    <li><b>Un outil d'analytics installé et consulté :</b> vous connaissez vos visiteurs mensuels, vos pages les plus vues et vos sources de trafic.</li>
+    <li><b>Google Search Console configurée :</b> vous savez sur quels mots-clés vous apparaissez et lesquels génèrent des clics.</li>
+    <li><b>Vos conversions sont tracées :</b> chaque formulaire envoyé, appel cliqué et rendez-vous pris est compté — sinon vous pilotez à l'aveugle.</li>
+    <li><b>Vous connaissez vos 3 chiffres clés :</b> visiteurs → prospects → clients, et le taux de passage entre chaque étape.</li>
+    <li><b>Chaque campagne est traçable :</b> liens avec UTM pour vos réseaux, emails et publicités — vous savez ce qui rapporte.</li>
+    <li><b>Un rituel mensuel de 30 minutes :</b> vous regardez les chiffres, tirez une leçon, décidez une action.</li>
+  </ul>
+  <div class="prompt">
+    <p class="ptitle">◆ Prompt — construire votre tableau de bord</p>
+    <p>Je dirige [TYPE D'ENTREPRISE] et mon site est [URL]. Mon objectif principal : [OBJECTIF, ex. générer des demandes de devis]. Construis-moi un tableau de bord minimal : les 5 indicateurs à suivre chaque mois (avec leur définition simple et l'outil gratuit pour les mesurer), les seuils d'alerte qui doivent me faire réagir, et le rituel mensuel de 30 minutes pour piloter mon site à partir de ces chiffres. Reste simple : je ne suis pas data analyst.</p>
+  </div>
+  <div class="footer"><span>Axe 07 — Mesure & pilotage</span><span>abelsalah.fr/checklist</span></div>
+</section>
+
+<!-- SCORE + NEXT -->
+<section class="page">
+  <div class="section-head"><h2 class="display">Votre score <span class="serif">— et la suite /</span></h2><span class="num">→</span></div>
+  <p class="intro">Comptez vos cases cochées par axe et reportez-les ici. Votre priorité n'est pas l'axe le plus faible dans l'absolu — c'est l'axe faible qui touche le plus directement vos ventes.</p>
+  <table class="score">
+    <tr><th>Axe</th><th style="width:22mm">Cases cochées</th><th style="width:20mm">Sur</th><th>Verdict (entourez)</th></tr>
+    <tr><td><b>01 · Le fond</b></td><td class="c">___ </td><td class="c">8</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>02 · La forme</b></td><td class="c">___</td><td class="c">8</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>03 · SEO technique</b></td><td class="c">___</td><td class="c">10</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>04 · Visibilité IA</b></td><td class="c">___</td><td class="c">7</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>05 · Conversion</b></td><td class="c">___</td><td class="c">8</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>06 · Risques</b></td><td class="c">___</td><td class="c">8</td><td class="c">Solide · À travailler · Urgent</td></tr>
+    <tr><td><b>07 · Mesure</b></td><td class="c">___</td><td class="c">6</td><td class="c">Solide · À travailler · Urgent</td></tr>
+  </table>
+  <div class="next">
+    <h3>Vous voulez aller <span class="serif">plus loin ?</span></h3>
+    <p>La checklist vous dit quoi regarder. Si vous voulez qu'on le fasse ensemble — audit approfondi de votre activité, formation de vos équipes ou accompagnement mensuel — le premier échange est offert.</p>
+    <div class="cta">
+      <a href="https://tidycal.com/skill-lms/abel-rdv"><b>Réserver un appel de 30 min</b> — gratuit, sans engagement → tidycal.com/skill-lms/abel-rdv</a>
+      <a href="https://abelsalah.fr/formations"><b>Formations & coaching</b> — lancement, développement, coaching mensuel → abelsalah.fr/formations</a>
+      <a href="https://abelsalah.fr/audit-ia"><b>Audit approfondi</b> — cas d'usage, automatisations, feuille de route → abelsalah.fr/audit-ia</a>
+      <a href="tel:+33757598610"><b>En direct</b> — appel ou SMS au 07 57 59 86 10</a>
+    </div>
+  </div>
+  <div class="footer"><span>© Abel SALAH — abelsalah.fr</span><span>Partagez cette checklist à un entrepreneur qui en a besoin</span></div>
+</section>
+
+</body>
+</html>
