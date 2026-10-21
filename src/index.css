@@ -222,6 +222,23 @@
   @apply transition-transform duration-200 hover:scale-105;
 }
 
+/* Preserve the v3 cascade: display typography followed base utilities,
+   while responsive text sizes supplied their own line height. */
+@layer utilities {
+  .heading-display.heading-display {
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+  @media (width >= 48rem) {
+    .heading-display.md\:text-3xl { line-height: 2.25rem; }
+    .heading-display.md\:text-4xl { line-height: 2.5rem; }
+    .heading-display.md\:text-5xl,
+    .heading-display.md\:text-6xl,
+    .heading-display.md\:text-7xl,
+    .heading-display.md\:text-8xl { line-height: 1; }
+  }
+}
+
 @layer base {
   :root {
     /* Noirs teintés bleu (hue 228) : le fond "répond" au bleu primaire au
