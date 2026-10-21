@@ -154,7 +154,7 @@ const Checklist = () => {
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
                     placeholder="Marc"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-hidden transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
                   />
                 </label>
                 <label className="block mb-5">
@@ -166,7 +166,7 @@ const Checklist = () => {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="marc@entreprise.fr"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-hidden transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
                   />
                 </label>
                 <label className="mb-6 flex cursor-pointer items-start gap-3">
