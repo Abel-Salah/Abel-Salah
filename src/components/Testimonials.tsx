@@ -44,7 +44,7 @@ const Testimonials = () => {
           <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
             Témoignages
           </span>
-          <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+          <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-tighter">
             Ce qu'ils
             <br />
             <span className="heading-serif-accent">en disent /</span>

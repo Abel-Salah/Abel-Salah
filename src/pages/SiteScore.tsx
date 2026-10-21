@@ -93,7 +93,7 @@ const SiteScore = () => {
         <form onSubmit={scanSite} className={`mt-10 max-w-3xl rounded-2xl border border-primary/25 bg-primary/5 p-6 ${scanReport ? "print:hidden" : ""}`}>
           <label htmlFor="site-url" className="block text-sm font-semibold">Obtenir un scan automatique de votre site</label>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-            <input id="site-url" type="text" inputMode="url" autoComplete="url" placeholder="votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-none ring-primary focus:ring-2" required />
+            <input id="site-url" type="text" inputMode="url" autoComplete="url" placeholder="votre-site.fr" value={url} onChange={(event) => setUrl(event.target.value)} className="min-h-12 flex-1 rounded-xl border border-border bg-background px-4 text-foreground outline-hidden ring-primary focus:ring-2" required />
             <button type="submit" disabled={scanState === "loading"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground disabled:opacity-60">{scanState === "loading" ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Analyse en cours…</> : <>Analyser le site<ArrowRight className="h-5 w-5" /></>}</button>
           </div>
           <p className="mt-3 text-xs text-muted-foreground">Entrez simplement votre domaine, avec ou sans https://. L’audit automatique analyse jusqu’à 5 pages publiques : contenu, structure, SEO, conversion et crédibilité, avec captures pleine page. Aucun mot de passe n’est demandé.</p>

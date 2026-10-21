@@ -70,7 +70,7 @@ const Checklist = () => {
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               Vu en live · 100 % gratuit
             </span>
-            <h1 className="heading-display text-[clamp(2.75rem,9vw,8rem)] uppercase leading-[0.84] tracking-[-0.05em]">
+            <h1 className="heading-display text-[clamp(2.75rem,9vw,8rem)] uppercase leading-[0.84] tracking-tighter">
               Auditez
               <br />
               <span className="heading-serif-accent text-primary">votre site /</span>
@@ -154,7 +154,7 @@ const Checklist = () => {
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
                     placeholder="Marc"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-hidden transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
                   />
                 </label>
                 <label className="block mb-5">
@@ -166,7 +166,7 @@ const Checklist = () => {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="marc@entreprise.fr"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-hidden transition-colors placeholder:text-muted-foreground/50 focus:border-primary"
                   />
                 </label>
                 <label className="mb-6 flex cursor-pointer items-start gap-3">

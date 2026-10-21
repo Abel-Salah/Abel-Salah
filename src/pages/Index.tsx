@@ -79,7 +79,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
           />
         </motion.div>
         <div className="home-hero-grain pointer-events-none absolute inset-0" aria-hidden="true" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-background to-transparent" />
 
         <div className="container relative mx-auto min-h-[calc(100vh-8rem)]">
           <div className="grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -175,7 +175,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               }
               className="block transition-transform hover:-translate-y-1"
             >
-              <div className="intro-card-media relative aspect-[9/12]">
+              <div className="intro-card-media relative aspect-9/12">
                 <img
                   src="/lovable-uploads/c01cf145-c272-4f46-ae5d-c1aebfcf3888.webp"
                   alt={content.videoAlt}
@@ -185,7 +185,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
                   height={1536}
                   decoding="async"
                 />
-                <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5">
+                <div className="absolute left-0 right-0 bottom-0 bg-linear-to-t from-black via-black/60 to-transparent p-5">
                   <div className="mb-3 inline-flex rounded-full bg-[#ffa600] px-4 py-2 text-sm font-semibold text-white">
                     {content.videoHello}
                   </div>
@@ -291,7 +291,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.beforeAfterLabel}
             </span>
-            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-tighter">
               {content.beforeAfterTitleTop}
               <br />
               <span className="text-gradient-primary">{content.beforeAfterTitleBottom}</span>
@@ -352,7 +352,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.servicesLabel}
             </span>
-            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-tighter">
               {content.servicesTitleTop}
               <br />
               <span className="heading-serif-accent">{content.servicesTitleBottom}</span>
@@ -415,7 +415,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               {content.missionLabel}
             </span>
-            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-[-0.05em]">
+            <h2 className="heading-display text-5xl md:text-8xl uppercase leading-[0.82] tracking-tighter">
               {content.missionTitleTop}
               <br />
               {content.missionTitleBottom}
@@ -472,7 +472,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
               <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
                 {content.faqLabel}
               </span>
-              <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+              <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-tighter">
                 {content.faqTitleTop}
                 <br />
                 <span className="heading-serif-accent">{content.faqTitleBottom}</span>
@@ -528,7 +528,7 @@ const Index = ({ locale = "fr" }: IndexProps) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-4 md:px-6 border-t border-border bg-gradient-to-b from-transparent to-[hsl(var(--primary)/0.03)]">
+      <section className="py-32 px-4 md:px-6 border-t border-border bg-linear-to-b from-transparent to-[hsl(var(--primary)/0.03)]">
         <div className="container mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}

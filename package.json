@@ -8,14 +8,16 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --ssr src/entry-prerender.tsx --outDir dist-ssr && node scripts/fetch-generated-posts.mjs && node scripts/generate-static-route-heads.mjs && node scripts/prerender-routes.mjs",
+    "build": "npm run lint && npm run typecheck && npm run build:app && npm run verify:static && npm audit --audit-level=moderate",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "smoke": "node scripts/smoke-checks.mjs",
     "verify:dist": "node scripts/verify-built-output.mjs",
     "preview": "vite preview",
-    "verify": "npm run lint && npm run typecheck && npm run build && node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke && npm audit --audit-level=moderate"
+    "verify": "npm run build",
+    "build:app": "vite build && vite build --ssr src/entry-prerender.tsx --outDir dist-ssr && node scripts/fetch-generated-posts.mjs && node scripts/generate-static-route-heads.mjs && node scripts/prerender-routes.mjs",
+    "verify:static": "node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke"
   },
   "dependencies": {
     "@lovable.dev/mcp-js": "^0.26.3",
@@ -43,19 +45,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react-swc": "^4.3.3",
-    "autoprefixer": "^10.5.4",
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.8.0",
-    "lovable-tagger": "^1.3.5",
     "postcss": "^8.5.25",
     "sharp": "^0.35.5",
-    "tailwindcss": "^3.4.19",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.64.0",
     "vite": "^7.3.6"

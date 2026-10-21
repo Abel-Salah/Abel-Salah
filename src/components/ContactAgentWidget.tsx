@@ -284,7 +284,7 @@ const ContactAgentWidget = () => {
           role="dialog"
           aria-label={copy.panelTitle}
           tabIndex={-1}
-          className="fixed bottom-24 right-4 z-50 flex max-h-[70vh] w-[min(92vw,370px)] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_24px_64px_rgba(0,0,0,0.35)] outline-none animate-in fade-in slide-in-from-bottom-4 print:hidden sm:right-6"
+          className="fixed bottom-24 right-4 z-50 flex max-h-[70vh] w-[min(92vw,370px)] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_24px_64px_rgba(0,0,0,0.35)] outline-hidden animate-in fade-in slide-in-from-bottom-4 print:hidden sm:right-6"
         >
           <div className="flex items-center justify-between gap-3 border-b border-border bg-card/60 px-5 py-4">
             <div className="flex items-center gap-3">

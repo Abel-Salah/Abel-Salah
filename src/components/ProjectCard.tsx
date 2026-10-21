@@ -19,7 +19,7 @@ const ProjectCard = ({ number, title, context, action, result, labels = defaultL
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       viewport={{ once: true }}
-      className="border-t border-border py-16 group bg-gradient-to-r from-transparent to-transparent hover:from-transparent hover:to-[hsl(var(--primary)/0.05)] transition-all duration-500"
+      className="border-t border-border py-16 group bg-linear-to-r from-transparent to-transparent hover:from-transparent hover:to-[hsl(var(--primary)/0.05)] transition-all duration-500"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
         <div className="md:col-span-2">

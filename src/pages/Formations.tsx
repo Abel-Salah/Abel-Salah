@@ -142,7 +142,7 @@ const Formations = () => (
         <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
           Formations & coaching
         </span>
-        <h1 className="heading-display text-[clamp(2.75rem,10vw,9rem)] uppercase leading-[0.84] tracking-[-0.05em]">
+        <h1 className="heading-display text-[clamp(2.75rem,10vw,9rem)] uppercase leading-[0.84] tracking-tighter">
           Formations
           <br />
           <span className="heading-serif-accent text-primary">qui passent à l'encaisse.</span>
@@ -207,7 +207,7 @@ const Formations = () => (
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               La méthode
             </span>
-            <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+            <h2 className="heading-display text-5xl md:text-7xl uppercase leading-[0.85] tracking-tighter">
               Le principe
               <br />
               <span className="heading-serif-accent">est simple /</span>
@@ -246,7 +246,7 @@ const Formations = () => (
         <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
           Plusieurs sources de revenus
         </span>
-        <h2 className="heading-display mb-12 text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+        <h2 className="heading-display mb-12 text-5xl md:text-7xl uppercase leading-[0.85] tracking-tighter">
           Vous appliquez,
           <br />
           <span className="text-gradient-primary">vous encaissez /</span>
@@ -282,7 +282,7 @@ const Formations = () => (
         <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
           Les packs
         </span>
-        <h2 className="heading-display mb-12 text-5xl md:text-7xl uppercase leading-[0.85] tracking-[-0.05em]">
+        <h2 className="heading-display mb-12 text-5xl md:text-7xl uppercase leading-[0.85] tracking-tighter">
           Choisissez
           <br />
           <span className="heading-serif-accent">votre pack /</span>
