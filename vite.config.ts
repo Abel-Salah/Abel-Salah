@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
+import tailwindcss from "@tailwindcss/vite";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
 
 // https://vitejs.dev/config/
@@ -15,7 +15,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
   // versionnées et gérées par le projet.
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
+    tailwindcss(),
     mode === "development" && mcpPlugin(),
   ].filter(Boolean),
 

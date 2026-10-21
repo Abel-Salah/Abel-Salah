@@ -70,7 +70,7 @@ const Checklist = () => {
             <span className="label-mono text-xs uppercase tracking-[0.2em] text-muted-foreground block mb-6">
               Vu en live · 100 % gratuit
             </span>
-            <h1 className="heading-display text-[clamp(2.75rem,9vw,8rem)] uppercase leading-[0.84] tracking-[-0.05em]">
+            <h1 className="heading-display text-[clamp(2.75rem,9vw,8rem)] uppercase leading-[0.84] tracking-tighter">
               Auditez
               <br />
               <span className="heading-serif-accent text-primary">votre site /</span>

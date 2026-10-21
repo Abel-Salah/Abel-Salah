@@ -80,7 +80,7 @@ const Products = ({ locale = "fr" }: { locale?: PageLocale }) => {
                         loading="lazy"
                         width={1920}
                         height={1216}
-                        className="w-full h-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-auto grayscale-30 group-hover:grayscale-0 transition-all duration-700"
                       />
                       <div className="absolute top-4 right-4 w-12 h-12 bg-background/90 backdrop-blur-sm border border-border group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground flex items-center justify-center transition-all">
                         <ArrowUpRight className="w-5 h-5" />

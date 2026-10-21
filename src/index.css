@@ -2,9 +2,225 @@
    bloquerait le rendu et ajouterait un aller-retour réseau séquentiel
    supplémentaire (CSS principal → fonts.googleapis.com → fonts.gstatic.com). */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility heading-display {
+  font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-optical-sizing: auto;
+  /* À taille display, un mot long ("Automatisation") peut dépasser la
+       largeur mobile : on césure selon la langue de la page (hyphens)
+       plutôt que de couper au caractère près, et overflow-wrap reste en
+       ultime filet si aucun point de césure n'existe. */
+  hyphens: auto;
+  /* Ne césurer que les mots réellement longs (≥ 8 lettres, ex.
+       "Automatisation") : les mots courts type "terrain" repassent
+       entiers à la ligne au lieu d'être coupés inutilement. */
+  hyphenate-limit-chars: 8 5 4;
+  -webkit-hyphenate-limit-before: 5;
+  -webkit-hyphenate-limit-after: 4;
+  overflow-wrap: break-word;
+  @apply text-foreground leading-[0.9] tracking-tighter;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility heading-serif-accent {
+  /* Accent éditorial : serif italique en casse normale au milieu des titres
+     display uppercase — le contraste grotesque/serif de la direction 2026. */
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.015em;
+}
+
+@utility label-mono {
+  /* Micro-labels techniques (eyebrows) en mono espacé. */
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-weight: 500;
+}
+
+@utility text-gradient-primary {
+  /* Un mot en dégradé bleu → bleu clair dans un titre. */
+  background: linear-gradient(
+    100deg,
+    hsl(var(--primary)) 10%,
+    hsl(221 100% 72%) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cta-glow {
+  /* CTA principal : léger dégradé vertical + halo bleu. */
+  background-image: linear-gradient(
+    180deg,
+    hsl(239 95% 60%),
+    hsl(var(--primary)) 55%,
+    hsl(237 92% 46%)
+  );
+  box-shadow: 0 10px 32px -10px hsl(var(--primary) / 0.55);
+}
+
+@utility card-premium {
+  /* Carte premium : fine bordure dégradée (blanc/bleu ~10%) sur fond card. */
+  border: 1px solid transparent;
+  background:
+    linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+    linear-gradient(
+        150deg,
+        hsl(var(--primary) / 0.4),
+        hsl(var(--border) / 0.35) 45%,
+        hsl(var(--primary) / 0.12)
+      )
+      border-box;
+}
+
+@utility card-lift {
+  /* Lift discret au survol des cartes. */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px -22px hsl(var(--primary) / 0.3);
+  }
+}
+
+@utility section-glow {
+  /* Halo radial bleu quasi imperceptible en tête de section sombre. */
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      640px circle at 82% -5%,
+      hsl(var(--primary) / 0.08),
+      transparent 62%
+    );
+  }
+}
+
+@utility story-link {
+  @apply relative inline-block;
+
+  &::after {
+    content: '';
+    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-primary origin-bottom-right transition-transform duration-300;
+  }
+
+  &:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+}
+
+@utility hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
 
 @layer base {
   :root {
@@ -169,108 +385,5 @@
 
   ::selection {
     @apply bg-primary text-primary-foreground;
-  }
-}
-
-@layer utilities {
-  .heading-display {
-    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-optical-sizing: auto;
-    /* À taille display, un mot long ("Automatisation") peut dépasser la
-       largeur mobile : on césure selon la langue de la page (hyphens)
-       plutôt que de couper au caractère près, et overflow-wrap reste en
-       ultime filet si aucun point de césure n'existe. */
-    hyphens: auto;
-    /* Ne césurer que les mots réellement longs (≥ 8 lettres, ex.
-       "Automatisation") : les mots courts type "terrain" repassent
-       entiers à la ligne au lieu d'être coupés inutilement. */
-    hyphenate-limit-chars: 8 5 4;
-    -webkit-hyphenate-limit-before: 5;
-    -webkit-hyphenate-limit-after: 4;
-    overflow-wrap: break-word;
-    @apply text-foreground leading-[0.9] tracking-tighter;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Accent éditorial : serif italique en casse normale au milieu des titres
-     display uppercase — le contraste grotesque/serif de la direction 2026. */
-  .heading-serif-accent {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: -0.015em;
-  }
-
-  /* Micro-labels techniques (eyebrows) en mono espacé. */
-  .label-mono {
-    font-family: 'Geist Mono', ui-monospace, monospace;
-    font-weight: 500;
-  }
-
-  /* Un mot en dégradé bleu → bleu clair dans un titre. */
-  .text-gradient-primary {
-    background: linear-gradient(100deg, hsl(var(--primary)) 10%, hsl(221 100% 72%) 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* CTA principal : léger dégradé vertical + halo bleu. */
-  .cta-glow {
-    background-image: linear-gradient(180deg, hsl(239 95% 60%), hsl(var(--primary)) 55%, hsl(237 92% 46%));
-    box-shadow: 0 10px 32px -10px hsl(var(--primary) / 0.55);
-  }
-
-  /* Carte premium : fine bordure dégradée (blanc/bleu ~10%) sur fond card. */
-  .card-premium {
-    border: 1px solid transparent;
-    background:
-      linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-      linear-gradient(150deg, hsl(var(--primary) / 0.4), hsl(var(--border) / 0.35) 45%, hsl(var(--primary) / 0.12)) border-box;
-  }
-
-  /* Lift discret au survol des cartes. */
-  .card-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-
-  .card-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 48px -22px hsl(var(--primary) / 0.3);
-  }
-
-  /* Halo radial bleu quasi imperceptible en tête de section sombre. */
-  .section-glow {
-    position: relative;
-  }
-
-  .section-glow::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(640px circle at 82% -5%, hsl(var(--primary) / 0.08), transparent 62%);
-  }
-
-  .story-link {
-    @apply relative inline-block;
-  }
-
-  .story-link::after {
-    content: '';
-    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-primary origin-bottom-right transition-transform duration-300;
-  }
-
-  .story-link:hover::after {
-    @apply scale-x-100 origin-bottom-left;
-  }
-
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
   }
 }
