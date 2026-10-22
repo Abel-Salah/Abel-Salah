@@ -15,6 +15,7 @@ import ContactAgentWidget from "@/components/ContactAgentWidget";
 import ManualWorkCalculator from "./pages/ManualWorkCalculator";
 import Tools from "./pages/Tools";
 import SiteScore from "./pages/SiteScore";
+import MarketingConsent from "./components/MarketingConsent";
 
 const Work = lazy(() => import("./pages/Work"));
 const Formations = lazy(() => import("./pages/Formations"));
@@ -50,6 +51,7 @@ export const AppShell = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <MarketingConsent />
       <ScrollToTop />
       <ScrollGradient />
       {!isBusinessCard && !isCv && <ContactAgentWidget />}
