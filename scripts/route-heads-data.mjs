@@ -100,6 +100,8 @@ export const navigationByLang = {
 };
 
 export const routes = [
+  { path: "/confirmation-rdv", lang: "fr", title: "Préparer votre échange IA — Abel SALAH", description: "Les prochaines étapes pour profiter de votre session avec Abel SALAH.", noindex: true },
+  { path: "/confirmation-webinaire", lang: "fr", title: "Préparer votre webinaire IA — Abel SALAH", description: "Les prochaines étapes pour profiter de votre session avec Abel SALAH.", noindex: true },
   {
     path: "/checklist",
     lang: "fr",

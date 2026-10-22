@@ -7,6 +7,8 @@ const tidyCalUrl = "https://tidycal.com/skill-lms/abel-rdv";
 const failures = [];
 
 const publicRoutes = [
+  { path: "/confirmation-rdv", file: "confirmation-rdv/index.html", lang: "fr", title: "Préparer votre échange IA", noindex: true },
+  { path: "/confirmation-webinaire", file: "confirmation-webinaire/index.html", lang: "fr", title: "Préparer votre webinaire IA", noindex: true },
   { path: "/", file: "index.html", lang: "fr", title: "Expert IA pour Entreprises | Audit IA" },
   { path: "/en", file: "en/index.html", lang: "en", title: "AI Consultant for Business | AI Audit" },
   { path: "/es", file: "es/index.html", lang: "es", title: "Consultor IA para Empresas | Auditoría IA" },
@@ -167,7 +169,10 @@ if (existsSync(distDir)) {
     expectIncludes(html, '<meta property="og:image"', `Open Graph image for ${route.path}`);
     expectIncludes(html, '<meta name="twitter:card" content="summary_large_image" />', `Twitter card for ${route.path}`);
     expectIncludes(html, '"@type":"SiteNavigationElement"', `SiteNavigationElement JSON-LD for ${route.path}`);
-    expectIncludes(sitemap, `<loc>${sitemapUrlFor(route.path)}</loc>`, `sitemap entry for ${route.path}`);
+    if (route.noindex) {
+      expectIncludes(html, '<meta name="robots" content="noindex,nofollow"', `noindex for ${route.path}`);
+      expect(!sitemap.includes(`<loc>${sitemapUrlFor(route.path)}</loc>`), `private journey page excluded from sitemap: ${route.path}`);
+    } else expectIncludes(sitemap, `<loc>${sitemapUrlFor(route.path)}</loc>`, `sitemap entry for ${route.path}`);
 
     // Contenu pré-rendu : le corps doit être présent sans JavaScript
     expect(!html.includes('<div id="root"></div>'), `prerendered body missing (empty #root) for ${route.path}`);

@@ -22,6 +22,7 @@ const Formations = lazy(() => import("./pages/Formations"));
 const Checklist = lazy(() => import("./pages/Checklist"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
+const BookingPreparation = lazy(() => import("./pages/BookingPreparation"));
 const Styleguide = lazy(() => import("./pages/Styleguide"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -46,6 +47,7 @@ export const AppShell = () => {
   const location = useLocation();
   const isBusinessCard = location.pathname === "/carte-visite" || location.pathname === "/card";
   const isCv = ["/cv", "/en/cv", "/es/cv"].includes(location.pathname);
+  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire"].includes(location.pathname);
 
   return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -54,13 +56,15 @@ export const AppShell = () => {
       <MarketingConsent />
       <ScrollToTop />
       <ScrollGradient />
-      {!isBusinessCard && !isCv && <ContactAgentWidget />}
-      {!isBusinessCard && <Navigation />}
+      {!isBusinessCard && !isCv && !isBookingPreparation && <ContactAgentWidget />}
+      {!isBusinessCard && !isBookingPreparation && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>
             <Route path="/" element={<Index locale="fr" />} />
             <Route path="/carte-visite" element={<BusinessCard />} />
             <Route path="/card" element={<BusinessCard />} />
+            <Route path="/confirmation-rdv" element={<BookingPreparation />} />
+            <Route path="/confirmation-webinaire" element={<BookingPreparation webinar />} />
             <Route path="/outils/calculateur-taches-manuelles" element={<ManualWorkCalculator />} />
             <Route path="/outils" element={<Tools />} />
             <Route path="/outils/score-site" element={<SiteScore />} />

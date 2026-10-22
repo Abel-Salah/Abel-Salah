@@ -13,7 +13,7 @@ export default function CardDialog({ titleId, onClose, children, returnFocus }: 
       document.body.style.overflow = previousOverflow;
       if (returnFocus?.isConnected) returnFocus.focus();
     };
-  }, []);
+  }, [returnFocus]);
 
   return <dialog ref={dialogRef} className="business-card-modal card-dialog" aria-labelledby={titleId} onClose={onClose} onClick={(event) => {
     if (event.target !== event.currentTarget) return;

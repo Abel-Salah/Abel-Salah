@@ -84,6 +84,7 @@ function buildHead(route) {
   return `    <title>${escapeHtml(route.title)}</title>
     <meta name="description" content="${escapeHtml(route.description)}" />
     <meta name="author" content="Abel SALAH" />
+    ${route.noindex ? '<meta name="robots" content="noindex,nofollow" />' : ""}
     <link rel="canonical" href="${canonical}" />
 ${alternates}
     <link rel="alternate" hreflang="x-default" href="${xDefaultHref}" />
