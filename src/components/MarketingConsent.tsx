@@ -5,7 +5,7 @@ import { CONSENT_KEY, parseConsent } from "@/lib/trackingConsent";
 const GTM = "GTM-WJS9SGGV";
 const PIXEL = "DBD5HNRC77U4SEFNH7E0";
 let refusalForVisit = false;
-let consentForVisit: boolean | null = null;
+let consentForVisit: string | null = null;
 
 // Both integrations are deliberately loaded only after affirmative consent.
 // No Purchase/Schedule event is inferred from a click or a return URL.
@@ -28,20 +28,30 @@ export default function MarketingConsent() {
       if (event.key !== CONSENT_KEY && event.key !== null) return;
       if (parseConsent(event.newValue) !== true) {
         refusalForVisit = true;
-        consentForVisit = false;
+        consentForVisit = JSON.stringify({ accepted: false, at: Date.now() });
         if (document.getElementById("abel-marketing-loader")) location.reload();
         setVisible(false);
       }
     }
+    function checkExpiry() {
+      let consent: boolean | null = null;
+      try { consent = parseConsent(localStorage.getItem(CONSENT_KEY)); } catch { /* visit fallback */ }
+      if (consent === null) consent = parseConsent(consentForVisit);
+      if (consent !== true && document.getElementById("abel-marketing-loader")) location.reload();
+    }
     window.addEventListener("storage", syncConsent);
-    return () => window.removeEventListener("storage", syncConsent);
+    const timer = window.setInterval(checkExpiry, 60_000);
+    return () => {
+      window.removeEventListener("storage", syncConsent);
+      window.clearInterval(timer);
+    };
   }, []);
   useEffect(() => {
     let consent: boolean | null = null;
     try { consent = parseConsent(localStorage.getItem(CONSENT_KEY)); } catch { /* fail closed */ }
     if (new URLSearchParams(location.search).get("marketing") === "off") refusalForVisit = true;
     try { if (sessionStorage.getItem("abel-marketing-refused") === "yes") refusalForVisit = true; } catch { /* memory fallback */ }
-    if (consent === null) consent = consentForVisit;
+    if (consent === null) consent = parseConsent(consentForVisit);
     if (refusalForVisit) consent = false;
     if (pathname.startsWith("/admin")) {
       if (document.getElementById("abel-marketing-loader")) location.reload();
@@ -51,11 +61,15 @@ export default function MarketingConsent() {
       if (document.getElementById("abel-marketing-loader")) window.dispatchEvent(new Event("abel:page"));
       else loadMarketing();
     }
+    if (consent !== true && document.getElementById("abel-marketing-loader")) {
+      location.reload();
+      return;
+    }
     setVisible(consent === null);
   }, [pathname]);
   function choose(accepted: boolean) {
     refusalForVisit = !accepted;
-    consentForVisit = accepted;
+    consentForVisit = JSON.stringify({ accepted, at: Date.now() });
     try { sessionStorage.setItem("abel-marketing-refused", accepted ? "no" : "yes"); } catch { /* memory and URL fallback */ }
     try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ accepted, at: Date.now() })); } catch { /* choice applies to this visit */ }
     // Reload also stops already-loaded third-party code when consent is withdrawn.
