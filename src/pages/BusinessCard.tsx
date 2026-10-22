@@ -1,13 +1,15 @@
-import { ArrowUpRight, BadgeCheck, Check, Download, Facebook, Linkedin, Mail, Music2, PhoneCall, X, Youtube } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, CalendarDays, Check, Download, Facebook, Linkedin, Mail, Music2, PhoneCall, X, Youtube } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { STRIPE_PAYMENT_LINKS } from "@/data/stripePaymentLinks";
 import { trackConversionEvent } from "@/lib/conversionEvents";
+import { WEBINAR_BOOKING_URL, formatWebinarDate, getUpcomingWebinars } from "@/data/webinars";
 import portrait from "@/assets/abel-salah-card-portrait.webp";
 import cover from "@/assets/business-card-cover-v2.webp";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import "./business-card.css";
 import "./business-card-enhancements.css";
+import "./business-card-webinar.css";
 
 const links = [
   { label: "SKILLCO", badge: "Projets IA & formation", href: "https://skillco.fr" },
@@ -40,6 +42,11 @@ const serviceLinks = [
 ] as const;
 
 const BusinessCard = () => {
+  const [upcomingWebinars, setUpcomingWebinars] = useState(() => getUpcomingWebinars());
+  useEffect(() => {
+    const timer = window.setInterval(() => setUpcomingWebinars(getUpcomingWebinars()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
   const [selectedOffer, setSelectedOffer] = useState<(typeof offers)[number] | null>(null);
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [serviceSubmitted, setServiceSubmitted] = useState(false);
@@ -95,6 +102,24 @@ const BusinessCard = () => {
           <a className="social social-mail" href="mailto:contact@abelsalah.fr" aria-label="Envoyer un email"><Mail /></a>
         </div>
 
+        <section className="business-card-webinar" aria-labelledby="webinar-title">
+          <p className="business-card-webinar-kicker"><CalendarDays aria-hidden="true" /> GRATUIT · 1 H EN DIRECT</p>
+          <h2 id="webinar-title">L’IA concrète pour votre entreprise</h2>
+          <p>Démonstrations, méthodes et questions-réponses avec Abel SALAH.</p>
+          {upcomingWebinars.length > 0 ? <>
+            <p className="business-card-webinar-date">Prochaine session : <strong>{formatWebinarDate(upcomingWebinars[0])}</strong><br />12 h 30 – 13 h 30 · heure de Paris</p>
+            <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL} onClick={() => trackConversionEvent("webinar_signup_click", "business_card_webinar", WEBINAR_BOOKING_URL)}>Je m’inscris gratuitement <ArrowUpRight aria-hidden="true" /></a>
+            <small>Choisissez votre date. Une inscription par session. Le lien Google Meet est envoyé après inscription.</small>
+            {upcomingWebinars.length > 1 && <div className="business-card-webinar-next-dates">
+              <strong>Les sessions suivantes</strong>
+              <ul>{upcomingWebinars.slice(1).map((date) => <li key={date}>{formatWebinarDate(date)} · 12 h 30–13 h 30</li>)}</ul>
+            </div>}
+          </> : <>
+            <p>Les prochaines dates seront annoncées prochainement.</p>
+            <button type="button" className="business-card-webinar-cta" onClick={openNewsletter}>Recevoir les prochaines dates <ArrowUpRight aria-hidden="true" /></button>
+          </>}
+        </section>
+
         <div className="business-card-actions">
           <a className="business-card-button business-card-button-secondary" href={STRIPE_PAYMENT_LINKS.exchange} target="_blank" rel="noreferrer" onClick={() => trackConversionEvent("offer_cta_click", "business_card_exchange", STRIPE_PAYMENT_LINKS.exchange)}><PhoneCall /> Échange 30 min — 49 €</a>
           <a className="business-card-button business-card-button-youtube" href="https://www.youtube.com/@abelsalah" target="_blank" rel="noreferrer"><Download /> YouTube</a>
@@ -115,8 +140,8 @@ const BusinessCard = () => {
         {activeTab === "about" && <div className="business-card-tab-panel"><strong>Un parcours commercial devenu digital.</strong><p>Après des études supérieures en commerce et une expérience comme directeur d’Intersport, j’ai choisi de bifurquer vers le digital, l’intelligence artificielle et l’accompagnement des entreprises.</p><p>Aujourd’hui, j’accompagne les entreprises autour de trois pôles d’expertise :</p><ul><li><strong>Audits</strong> pour identifier les priorités et les opportunités.</li><li><strong>Déploiements &amp; optimisations</strong> pour passer aux actions concrètes.</li><li><strong>Formation</strong> pour rendre les équipes autonomes.</li></ul></div>}
         {activeTab === "work" && <div className="business-card-projects">{projects.map(([label, href]) => <a key={href} className="business-card-link ecosystem-link" href={href} target="_blank" rel="noreferrer"><span><b>→</b><strong>{label}</strong></span><ArrowUpRight /></a>)}</div>}
 
-        <h2>Développez votre expertise commerciale !</h2>
-        <p className="business-card-newsletter">Abonnez-vous à notre newsletter et recevez<br />des conseils exclusifs et des stratégies<br />efficaces</p>
+        <h2>Développez vos usages de l’IA</h2>
+        <p className="business-card-newsletter">Recevez des conseils pratiques sur l’IA,<br />l’automatisation et la visibilité digitale.</p>
         <button type="button" className="business-card-newsletter-button" onPointerUp={openNewsletter} onClick={openNewsletter}><Mail /> Recevoir les conseils IA <ArrowUpRight /></button>
       </div>
       {selectedOffer && <div className="business-card-modal-backdrop" role="presentation" onClick={() => setSelectedOffer(null)}>

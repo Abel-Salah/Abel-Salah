@@ -1,0 +1,14 @@
+.business-card-webinar{margin:0 0 20px;padding:22px 20px;text-align:left;border:1px solid #d9d9ff;border-radius:12px;background:#f3f3ff;color:#10213f}
+.business-card-webinar .business-card-webinar-kicker{display:flex;align-items:center;gap:8px;margin:0 0 10px;color:#0000bb;font-size:12px;letter-spacing:.04em;font-weight:800}
+.business-card-webinar-kicker svg{width:18px;height:18px;flex-shrink:0}
+.business-card-webinar h2{margin:0 0 8px;font-size:22px;line-height:1.25}
+.business-card-webinar p{font-size:15px;line-height:1.5;margin:0 0 14px}
+.business-card-webinar .business-card-webinar-date{margin:16px 0;font-size:14px}
+.business-card-webinar-cta{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;border:0;border-radius:8px;background:#0000ee;color:#fff;font:inherit;font-size:16px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer}
+.business-card-webinar-cta svg{width:20px;height:20px;flex-shrink:0}
+.business-card-webinar-cta:hover{background:#0000bb}
+.business-card-webinar-cta:focus-visible{outline:3px solid #10213f;outline-offset:4px}
+.business-card-webinar small{display:block;margin-top:10px;font-size:12px;line-height:1.5;color:#43516a}
+.business-card-webinar-next-dates{margin-top:16px;padding-top:14px;border-top:1px solid #d9d9ff;font-size:12px;line-height:1.6;color:#43516a}
+.business-card-webinar-next-dates ul{margin:5px 0 0;padding-left:18px}
+@media(max-width:620px){.business-card-webinar{padding:18px 15px}.business-card-webinar h2{font-size:20px}.business-card-webinar-cta{font-size:15px}}
