@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import {
   type GeneratedArticle,
   validateGeneratedArticle,
+  articleJsonContract,
 } from "../_shared/blogArticleSchema.ts";
 import { callGeminiJson } from "../_shared/gemini.ts";
 
@@ -90,7 +91,7 @@ async function generateArticle(
 ): Promise<GeneratedArticle> {
   const systemPrompt = `Tu es un redacteur SEO expert. Redige un article de blog SEO integralement en ${LANG_LABELS[lang]} (titre, slug, tags, meta et contenu inclus), hyper concret et actionnable sur le sujet suivant : "${topic}".
 
-Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres concrets.
+Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees et des exemples explicitement fictifs, sans promesse de resultat.
 
 Regles :
 - 4-5 sections H2
@@ -103,7 +104,7 @@ Regles :
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`;
 
   return validateGeneratedArticle(await callGeminiJson<GeneratedArticle>(
-    systemPrompt,
+    `${systemPrompt}\n\n${articleJsonContract}`,
     `Genere un article de blog actionnable sur : "${topic}". Retourne uniquement le JSON structure de l'article.`,
   ));
 }
@@ -208,8 +209,8 @@ serve(async (req) => {
     console.log(`Batch complete: ${successCount}/${topics.length} articles generated`);
 
     return new Response(
-      JSON.stringify({ success: true, generated: successCount, total: topics.length, results }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ success: successCount === topics.length, generated: successCount, total: topics.length, results }),
+      { status: successCount === topics.length ? 200 : successCount > 0 ? 207 : 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("Batch error:", error);

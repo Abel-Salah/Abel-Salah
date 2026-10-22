@@ -39,6 +39,12 @@ export const generatedArticleSchema = z.object({
 
 export type GeneratedArticle = z.infer<typeof generatedArticleSchema>;
 
+// Keep the model's requested shape aligned with the validator below.
+export const articleJsonContract = `Retourne uniquement un objet JSON avec exactement ces proprietes :
+{"slug":"slug-ascii-en-minuscules","title":"Titre de l'article","metaTitle":"Titre SEO","metaDescription":"Description SEO","readTime":"5 min","tags":["IA","PME","Methode"],"excerpt":"Resume de l'article","sections":[{"title":"Titre de section","content":["Paragraphe complet."]}]}
+Contraintes obligatoires : slug 8-90 caracteres, title 30-90, metaTitle 30-70, metaDescription 90-180, excerpt 120-260 ; readTime au format entier suivi de min ; 3-6 tags de 2-35 caracteres ; 4-6 sections, chacune avec un titre de 8-100 caracteres et 1-8 paragraphes de 80-1200 caracteres chacun. Aucun HTML ni protocole javascript: ou data:.
+N'invente aucun client, temoignage, chiffre de performance ou resultat d'Abel SALAH. Les exemples sont explicitement fictifs et les calculs sont presentes comme des hypotheses, jamais comme des resultats observes. Ne presente pas de fonctionnalite, prix, loi ou statistique actuelle comme verifiee sans source fournie.`;
+
 export function validateGeneratedArticle(input: unknown): GeneratedArticle {
   return generatedArticleSchema.parse(input);
 }
