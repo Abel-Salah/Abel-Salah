@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Youtube } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
+import TidyCalBooking from "@/components/TidyCalBooking";
 import { contactAlternates, contactCanonicalByLocale, contactLocales } from "@/data/contactLocales";
 import type { PageLocale } from "@/data/workLocales";
 
@@ -50,15 +50,8 @@ const Contact = ({ locale = "fr" }: { locale?: PageLocale }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="md:col-span-7 min-w-0"
           >
-            <div className="w-full rounded-lg overflow-hidden border border-border" style={{ height: "700px" }}>
-              <iframe
-                src={TIDYCAL_BOOKING_URL}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                title={t.iframeTitle}
-                className="w-full h-full max-w-full"
-              />
+            <div className="w-full rounded-lg overflow-hidden border border-border">
+              <TidyCalBooking kind="call" title={t.iframeTitle} locale={locale} />
             </div>
           </motion.div>
 
