@@ -485,14 +485,14 @@ export const routes = [
     lang: "fr",
     title: "Abel SALAH — Consultant IA et fondateur de SKILLCO",
     description:
-      "Carte de visite professionnelle d’Abel SALAH, consultant IA et fondateur de SKILLCO.",
+      "Webinaire IA gratuit, audit express, formations IA et suivi avec Abel SALAH, fondateur de SKILLCO. Choisissez votre prochain pas.",
   },
   {
     path: "/carte-visite",
     lang: "fr",
     title: "Abel SALAH — Consultant IA et fondateur de SKILLCO",
     description:
-      "Carte de visite professionnelle d’Abel SALAH, consultant IA et fondateur de SKILLCO.",
+      "Webinaire IA gratuit, audit express, formations IA et suivi avec Abel SALAH, fondateur de SKILLCO. Choisissez votre prochain pas.",
   },
   {
     path: "/cv",
