@@ -126,6 +126,12 @@ if (existsSync(distDir)) {
     expectIncludes(cardHtml, "Consulter les dates", `neutral webinar prerender for ${route}`);
     expect(!cardHtml.includes("Prochaine session :"), `dated webinar frozen in ${route}`);
     expect(!cardHtml.includes("Je m’inscris gratuitement"), `time-sensitive webinar CTA frozen in ${route}`);
+    for (const offer of ["Audit de votre structure", "Formation initiation", "Formation intermédiaire", "Formation complète", "Suivi après formation", "Planifier un échange"]) {
+      expectIncludes(cardHtml, offer, `card conversion path ${offer} for ${route}`);
+    }
+    expectIncludes(cardHtml, "https://buy.stripe.com/6oU7sM1Gx1Eng2y1US3gk0a", `audit purchase link for ${route}`);
+    expectIncludes(cardHtml, "https://buy.stripe.com/7sY8wQ3OFfvdcQmgPM3gk0c", `follow-up purchase link for ${route}`);
+    expect(!cardHtml.includes("AUDIT EXPRESS + VISIO"), `incorrect Stripe bundle description in ${route}`);
   }
   const sitemap = read("sitemap.xml");
   const robots = read("robots.txt");

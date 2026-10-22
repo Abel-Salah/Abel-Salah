@@ -1,0 +1,65 @@
+.business-card-page { padding-top: 32px; }
+.business-card-banner { height: 110px; }
+.business-card-avatar { width: 132px; height: 132px; top: -66px; border-width: 5px; }
+.business-card-content { padding-top: 83px; padding-bottom: 28px; }
+.business-card-role { font-size: 15px; margin-bottom: 14px; }
+.business-card-socials { margin-bottom: 18px; }
+.business-card-webinar { padding: 17px 18px; margin-bottom: 12px; }
+.business-card-webinar .business-card-webinar-kicker { margin-bottom: 6px; font-size: 11px; }
+.business-card-content .business-card-webinar h2 { margin: 0 0 6px; font-size: 20px; line-height: 1.25; }
+.business-card-webinar .business-card-webinar-date { margin: 8px 0 12px; line-height: 1.6; }
+.card-next-session { display: none; }
+.card-booking-link { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; margin: 0 0 12px; color: #10213f; font-size: 13px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
+.card-booking-link svg { width: 17px; height: 17px; }
+.business-card-tabs { margin-top: 10px; }
+.business-card-tabs button { min-height: 44px; }
+.card-service-groups { display: grid; gap: 12px; text-align: left; }
+.card-service-group { padding: 18px; border: 1px solid #e1e6f0; border-radius: 12px; background: #fff; }
+.card-service-group .card-service-step { margin: 0 0 5px; color: #0000bb; font-size: 11px; font-weight: 750; letter-spacing: .025em; }
+.business-card-content .card-service-group h2 { margin: 0 0 6px; color: #10213f; font-size: 20px; line-height: 1.25; }
+.card-service-group > p:not(.card-service-step) { margin: 0 0 13px; color: #526079; font-size: 13px; line-height: 1.5; }
+.card-service-buy { display: flex; gap: 10px; align-items: center; min-height: 46px; padding: 11px 12px; border-radius: 7px; border: 1px solid #d8defa; background: #f5f6ff; color: #0000bb; text-decoration: none; font-size: 13px; font-weight: 700; }
+.card-service-buy > span { flex: 1; }
+.card-service-buy > strong { white-space: nowrap; font-size: 17px; }
+.card-service-buy > svg, .card-training-format > svg { flex-shrink: 0; width: 18px; height: 18px; }
+.card-service-buy:hover { background: #ebedff; border-color: #0000ee; }
+.card-training-group { border-color: #bcc7f9; }
+.card-training-formats { display: grid; }
+.card-training-format { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0; min-height: 64px; border: 0; border-top: 1px solid #e5eaf1; background: transparent; color: #10213f; text-align: left; font: inherit; cursor: pointer; }
+.card-training-format:hover { color: #0000bb; }
+.card-training-format strong { display: block; font-size: 14px; }
+.card-training-format small { display: block; margin-top: 4px; color: #526079; font-size: 12px; }
+.card-service-note { display: block; margin-top: 9px; color: #526079; font-size: 11px; line-height: 1.5; }
+.card-checkout-note { margin: 0; color: #526079; font-size: 11px; text-align: center; line-height: 1.5; }
+.card-newsletter-details { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e5eaf1; color: #526079; font-size: 13px; }
+.card-newsletter-details > summary, .card-quote-details > summary { cursor: pointer; font-weight: 650; padding: 8px 0; min-height: 36px; }
+.card-newsletter-details p { margin: 8px 0; line-height: 1.5; }
+.card-newsletter-details .business-card-newsletter-button { margin: 12px 0 0; width: 100%; font-size: 13px; }
+.business-card-review { margin-top: 32px; font-size: 13px; }
+.business-card-modal.card-dialog { position: fixed; inset: 0; width: min(450px, calc(100% - 24px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; overflow: auto; border: 0; padding: 40px 26px 24px; color: #10213f; }
+.card-dialog::backdrop { background: rgba(8,20,42,.58); }
+.card-dialog .card-training-duration { margin: 10px 0!important; color: #0000bb!important; font-size: 15px; font-weight: 750; }
+.card-dialog .card-dialog-note { margin: 12px 0 0!important; color: #526079!important; font-size: 12px; line-height: 1.5; }
+.card-dialog-note a { color: #0000bb; text-decoration: underline; overflow-wrap: anywhere; }
+.card-quote-details { margin-top: 18px; border-top: 1px solid #e5eaf1; padding-top: 10px; text-align: left; font-size: 13px; color: #526079; }
+.card-quote-details form { margin-top: 12px; }
+.business-card-page :is(button,a,summary,[role="tabpanel"]):focus-visible { outline: 3px solid #2459dd; outline-offset: 3px; }
+.card-dialog :is(button,a,summary,input,textarea):focus-visible { outline: 3px solid #2459dd; outline-offset: 3px; }
+@media (max-width: 620px) {
+  .business-card-page { padding-top: 0; }
+  .business-card-banner { height: 96px; }
+  .business-card-avatar { width: 116px; height: 116px; top: -58px; }
+  .business-card-content { padding-top: 73px; }
+  .business-card-content h1 { font-size: 25px; }
+  .business-card-role { font-size: 14px; }
+  .business-card-socials { margin-bottom: 16px; }
+  .business-card-webinar { padding: 15px; }
+  .business-card-content .business-card-webinar h2 { font-size: 18px; }
+  .business-card-webinar .business-card-webinar-date { font-size: 13px; }
+  .card-service-group { padding: 15px; }
+  .business-card-content .card-service-group h2 { font-size: 18px; }
+  .business-card-tabs button { font-size: 11px; padding: 8px 5px; }
+  .card-service-buy { font-size: 12px; gap: 8px; }
+  .card-service-buy > strong { font-size: 16px; }
+  .business-card-modal.card-dialog { padding: 40px 20px 22px; }
+}
