@@ -42,9 +42,12 @@ const serviceLinks = [
 ] as const;
 
 const BusinessCard = () => {
-  const [upcomingWebinars, setUpcomingWebinars] = useState(() => getUpcomingWebinars());
+  const [upcomingWebinars, setUpcomingWebinars] = useState<string[] | null>(null);
   useEffect(() => {
-    const timer = window.setInterval(() => setUpcomingWebinars(getUpcomingWebinars()), 60_000);
+    // Les dates dépendent de la visite, jamais de la date du pré-rendu statique.
+    const refresh = () => setUpcomingWebinars(getUpcomingWebinars());
+    refresh();
+    const timer = window.setInterval(refresh, 60_000);
     return () => window.clearInterval(timer);
   }, []);
   const [selectedOffer, setSelectedOffer] = useState<(typeof offers)[number] | null>(null);
@@ -106,7 +109,10 @@ const BusinessCard = () => {
           <p className="business-card-webinar-kicker"><CalendarDays aria-hidden="true" /> GRATUIT · 1 H EN DIRECT</p>
           <h2 id="webinar-title">L’IA concrète pour votre entreprise</h2>
           <p>Démonstrations, méthodes et questions-réponses avec Abel SALAH.</p>
-          {upcomingWebinars.length > 0 ? <>
+          {upcomingWebinars === null ? <>
+            <p>Consultez le calendrier pour connaître les prochaines dates.</p>
+            <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL}>Consulter les dates <ArrowUpRight aria-hidden="true" /></a>
+          </> : upcomingWebinars.length > 0 ? <>
             <p className="business-card-webinar-date">Prochaine session : <strong>{formatWebinarDate(upcomingWebinars[0])}</strong><br />12 h 30 – 13 h 30 · heure de Paris</p>
             <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL} onClick={() => trackConversionEvent("webinar_signup_click", "business_card_webinar", WEBINAR_BOOKING_URL)}>Je m’inscris gratuitement <ArrowUpRight aria-hidden="true" /></a>
             <small>Choisissez votre date. Une inscription par session. Le lien Google Meet est envoyé après inscription.</small>

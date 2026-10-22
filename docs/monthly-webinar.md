@@ -16,7 +16,7 @@ Dépôt déployé : `Abel-Salah/Abel-Salah`, projet Cloudflare Pages `abelsalah-
 
 Le bloc webinaire est placé avant les actions payantes sur `/card`. Le lien conserve une attribution UTM et émet `webinar_signup_click` via le mécanisme existant ; cet événement mesure un clic, pas une inscription confirmée. Aucune collecte de données personnelles supplémentaire sur le site.
 
-Les sessions expirées ne sont plus proposées dans le bloc. Après la dernière clôture, le bouton ouvre le formulaire de newsletter existant pour recevoir les prochaines dates. Pour prolonger la série, ajouter les mêmes dates dans Google Agenda, TidyCal et `src/data/webinars.ts`.
+Le HTML pré-rendu reste neutre (« Consulter les dates ») ; les dates disponibles sont calculées au chargement dans le navigateur et rafraîchies chaque minute. Les sessions expirées ne sont plus proposées dans le bloc. Après la dernière clôture, le bouton ouvre le formulaire de newsletter existant pour recevoir les prochaines dates. Pour prolonger la série, ajouter les mêmes dates dans Google Agenda, TidyCal et `src/data/webinars.ts`.
 
 ## Validation
 
