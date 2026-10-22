@@ -5,6 +5,7 @@ import { CONSENT_KEY, parseConsent } from "@/lib/trackingConsent";
 const GTM = "GTM-WJS9SGGV";
 const PIXEL = "DBD5HNRC77U4SEFNH7E0";
 let refusalForVisit = false;
+let consentForVisit: boolean | null = null;
 
 // Both integrations are deliberately loaded only after affirmative consent.
 // No Purchase/Schedule event is inferred from a click or a return URL.
@@ -23,10 +24,24 @@ export default function MarketingConsent() {
   const [visible, setVisible] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => {
+    function syncConsent(event: StorageEvent) {
+      if (event.key !== CONSENT_KEY && event.key !== null) return;
+      if (parseConsent(event.newValue) !== true) {
+        refusalForVisit = true;
+        consentForVisit = false;
+        if (document.getElementById("abel-marketing-loader")) location.reload();
+        setVisible(false);
+      }
+    }
+    window.addEventListener("storage", syncConsent);
+    return () => window.removeEventListener("storage", syncConsent);
+  }, []);
+  useEffect(() => {
     let consent: boolean | null = null;
     try { consent = parseConsent(localStorage.getItem(CONSENT_KEY)); } catch { /* fail closed */ }
     if (new URLSearchParams(location.search).get("marketing") === "off") refusalForVisit = true;
     try { if (sessionStorage.getItem("abel-marketing-refused") === "yes") refusalForVisit = true; } catch { /* memory fallback */ }
+    if (consent === null) consent = consentForVisit;
     if (refusalForVisit) consent = false;
     if (pathname.startsWith("/admin")) {
       if (document.getElementById("abel-marketing-loader")) location.reload();
@@ -40,6 +55,7 @@ export default function MarketingConsent() {
   }, [pathname]);
   function choose(accepted: boolean) {
     refusalForVisit = !accepted;
+    consentForVisit = accepted;
     try { sessionStorage.setItem("abel-marketing-refused", accepted ? "no" : "yes"); } catch { /* memory and URL fallback */ }
     try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ accepted, at: Date.now() })); } catch { /* choice applies to this visit */ }
     // Reload also stops already-loaded third-party code when consent is withdrawn.
