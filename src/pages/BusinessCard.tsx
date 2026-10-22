@@ -8,7 +8,7 @@ import { trackConversionEvent } from "@/lib/conversionEvents";
 import { WEBINAR_BOOKING_URL, formatWebinarDate, getUpcomingWebinars } from "@/data/webinars";
 import portrait from "@/assets/abel-salah-card-portrait.webp";
 import cover from "@/assets/business-card-cover-v2.webp";
-import { useEffect, useState, type FormEvent, type KeyboardEvent, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type MouseEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import "./business-card.css";
 import "./business-card-enhancements.css";
@@ -57,14 +57,17 @@ const BusinessCard = () => {
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [activeTab, setActiveTab] = useState<CardTab>("services");
   const [bookingRequest, setBookingRequest] = useState<{ kind: BookingKind; url: string } | null>(null);
+  const bookingReturnFocus = useRef<HTMLElement | null>(null);
+  const serviceReturnFocus = useRef<HTMLElement | null>(null);
   const openBooking = (event: MouseEvent<HTMLAnchorElement>, kind: BookingKind) => {
     if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    bookingReturnFocus.current = selectedService ? serviceReturnFocus.current : event.currentTarget;
     setSelectedService(null);
     setBookingRequest({ kind, url: event.currentTarget.href });
   };
   const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
-  const openService = (format: CardTrainingFormat) => { setSelectedService(format); setServiceSubmitted(false); };
+  const openService = (format: CardTrainingFormat, trigger: HTMLButtonElement) => { serviceReturnFocus.current = trigger; setSelectedService(format); setServiceSubmitted(false); };
   const handleTabKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
     if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
@@ -154,7 +157,7 @@ const BusinessCard = () => {
             <p className="card-service-step">02 · Passer à la pratique</p>
             <h2 id="card-training-title">Formation IA</h2>
             <p>Trois formats selon votre niveau. Programme et tarif sur devis, adaptés à votre équipe.</p>
-            <div className="card-training-formats">{CARD_TRAINING_FORMATS.map((format) => <button key={format.id} type="button" className="card-training-format" onClick={() => openService(format)} aria-haspopup="dialog"><span><strong>{format.title}</strong><small>{format.duration}</small></span><ArrowUpRight aria-hidden="true" /></button>)}</div>
+            <div className="card-training-formats">{CARD_TRAINING_FORMATS.map((format) => <button key={format.id} type="button" className="card-training-format" onClick={(event) => openService(format, event.currentTarget)} aria-haspopup="dialog"><span><strong>{format.title}</strong><small>{format.duration}</small></span><ArrowUpRight aria-hidden="true" /></button>)}</div>
           </section>
           <section className="card-service-group" aria-labelledby="card-followup-title">
             <p className="card-service-step">03 · Ancrer les usages</p>
@@ -190,7 +193,7 @@ const BusinessCard = () => {
         </form>
         </details>
       </CardDialog>}
-      {bookingRequest && <CardDialog titleId="booking-dialog-title" onClose={() => setBookingRequest(null)}>
+      {bookingRequest && <CardDialog titleId="booking-dialog-title" returnFocus={bookingReturnFocus.current} onClose={() => setBookingRequest(null)}>
         <h2 id="booking-dialog-title">{bookingRequest.kind === "webinar" ? "Inscription au webinaire IA" : "Planifier un échange"}</h2>
         <TidyCalBooking kind={bookingRequest.kind} entryUrl={bookingRequest.url} title={bookingRequest.kind === "webinar" ? "Calendrier du webinaire IA" : "Calendrier des échanges avec Abel SALAH"} />
       </CardDialog>}
