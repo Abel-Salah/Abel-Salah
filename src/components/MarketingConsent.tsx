@@ -31,6 +31,17 @@ export default function MarketingConsent() {
         consentForVisit = JSON.stringify({ accepted: false, at: Date.now() });
         if (document.getElementById("abel-marketing-loader")) location.reload();
         setVisible(false);
+      } else {
+        refusalForVisit = false;
+        consentForVisit = event.newValue;
+        const url = new URL(location.href);
+        if (url.searchParams.has("marketing")) {
+          url.searchParams.delete("marketing");
+          history.replaceState(history.state, "", url.href);
+        }
+        try { sessionStorage.setItem("abel-marketing-refused", "no"); } catch { /* memory fallback */ }
+        if (!location.pathname.startsWith("/admin")) loadMarketing();
+        setVisible(false);
       }
     }
     function checkExpiry() {
