@@ -120,6 +120,13 @@ function sitemapUrlFor(routePath) {
 expect(existsSync(distDir), "dist directory does not exist; run npm run build first");
 
 if (existsSync(distDir)) {
+  // Le HTML mis en cache ne doit jamais figer une date ou une inscription expirée.
+  for (const route of ["card", "carte-visite"]) {
+    const cardHtml = read(`${route}/index.html`);
+    expectIncludes(cardHtml, "Consulter les dates", `neutral webinar prerender for ${route}`);
+    expect(!cardHtml.includes("Prochaine session :"), `dated webinar frozen in ${route}`);
+    expect(!cardHtml.includes("Je m’inscris gratuitement"), `time-sensitive webinar CTA frozen in ${route}`);
+  }
   const sitemap = read("sitemap.xml");
   const robots = read("robots.txt");
   const headers = read("_headers");

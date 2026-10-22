@@ -1,4 +1,4 @@
-type ConversionEventName = "book_call_click" | "offer_cta_click" | "tool_click";
+type ConversionEventName = "book_call_click" | "offer_cta_click" | "tool_click" | "webinar_signup_click";
 
 type ConversionEvent = {
   name: ConversionEventName;

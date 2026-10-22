@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run lint && npm run typecheck && npm run build:app && npm run verify:static && npm audit --audit-level=moderate",
+    "build": "npm run test:webinar && npm run lint && npm run typecheck && npm run build:app && npm run verify:static && npm audit --audit-level=moderate",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
@@ -17,7 +17,8 @@
     "preview": "vite preview",
     "verify": "npm run build",
     "build:app": "vite build && vite build --ssr src/entry-prerender.tsx --outDir dist-ssr && node scripts/fetch-generated-posts.mjs && node scripts/generate-static-route-heads.mjs && node scripts/prerender-routes.mjs",
-    "verify:static": "node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke"
+    "verify:static": "node scripts/verify-static-seo.mjs && npm run verify:dist && npm run smoke",
+    "test:webinar": "node --experimental-strip-types --test scripts/webinar-sessions.test.mjs"
   },
   "dependencies": {
     "@lovable.dev/mcp-js": "^0.26.3",
