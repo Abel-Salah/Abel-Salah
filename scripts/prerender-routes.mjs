@@ -180,6 +180,7 @@ const urlFor = (routePath) => `${SITE_URL}${routePath === "/" ? "/" : routePath}
 
 const sitemapEntries = [];
 for (const route of routes) {
+  if (route.noindex) continue;
   const alternates = (route.alternates ?? [])
     .map(
       (alt) =>

@@ -22,6 +22,7 @@ const Formations = lazy(() => import("./pages/Formations"));
 const Checklist = lazy(() => import("./pages/Checklist"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
+const BookingPreparation = lazy(() => import("./pages/BookingPreparation"));
 const Styleguide = lazy(() => import("./pages/Styleguide"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -44,8 +45,10 @@ const routeFallback = (
    le pré-rendu au build (src/entry-prerender.tsx) dans StaticRouter. */
 export const AppShell = () => {
   const location = useLocation();
-  const isBusinessCard = location.pathname === "/carte-visite" || location.pathname === "/card";
-  const isCv = ["/cv", "/en/cv", "/es/cv"].includes(location.pathname);
+  const routePath = location.pathname.replace(/\/+$/, "") || "/";
+  const isBusinessCard = routePath === "/carte-visite" || routePath === "/card";
+  const isCv = ["/cv", "/en/cv", "/es/cv"].includes(routePath);
+  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire", "/en/confirmation-rdv", "/es/confirmation-rdv", "/en/confirmation-webinaire", "/es/confirmation-webinaire"].includes(routePath);
 
   return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -54,13 +57,19 @@ export const AppShell = () => {
       <MarketingConsent />
       <ScrollToTop />
       <ScrollGradient />
-      {!isBusinessCard && !isCv && <ContactAgentWidget />}
-      {!isBusinessCard && <Navigation />}
+      {!isBusinessCard && !isCv && !isBookingPreparation && <ContactAgentWidget />}
+      {!isBusinessCard && !isBookingPreparation && <Navigation />}
       <Suspense fallback={routeFallback}>
         <Routes>
             <Route path="/" element={<Index locale="fr" />} />
             <Route path="/carte-visite" element={<BusinessCard />} />
             <Route path="/card" element={<BusinessCard />} />
+            <Route path="/confirmation-rdv" element={<BookingPreparation />} />
+            <Route path="/confirmation-webinaire" element={<BookingPreparation webinar />} />
+            <Route path="/en/confirmation-rdv" element={<BookingPreparation locale="en" />} />
+            <Route path="/es/confirmation-rdv" element={<BookingPreparation locale="es" />} />
+            <Route path="/en/confirmation-webinaire" element={<BookingPreparation webinar locale="en" />} />
+            <Route path="/es/confirmation-webinaire" element={<BookingPreparation webinar locale="es" />} />
             <Route path="/outils/calculateur-taches-manuelles" element={<ManualWorkCalculator />} />
             <Route path="/outils" element={<Tools />} />
             <Route path="/outils/score-site" element={<SiteScore />} />

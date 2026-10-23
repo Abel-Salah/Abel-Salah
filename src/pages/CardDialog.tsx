@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
 
-export default function CardDialog({ titleId, onClose, children }: { titleId: string; onClose: () => void; children: ReactNode }) {
+export default function CardDialog({ titleId, onClose, children, returnFocus }: { titleId: string; onClose: () => void; children: ReactNode; returnFocus?: HTMLElement | null }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -11,8 +11,9 @@ export default function CardDialog({ titleId, onClose, children }: { titleId: st
     return () => {
       dialog?.close();
       document.body.style.overflow = previousOverflow;
+      if (returnFocus?.isConnected) returnFocus.focus();
     };
-  }, []);
+  }, [returnFocus]);
 
   return <dialog ref={dialogRef} className="business-card-modal card-dialog" aria-labelledby={titleId} onClose={onClose} onClick={(event) => {
     if (event.target !== event.currentTarget) return;

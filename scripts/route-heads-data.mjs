@@ -100,6 +100,12 @@ export const navigationByLang = {
 };
 
 export const routes = [
+  { path: "/en/confirmation-rdv", lang: "en", title: "Prepare for your AI consultation — Abel SALAH", description: "Next steps to make the most of your session with Abel SALAH.", noindex: true },
+  { path: "/es/confirmation-rdv", lang: "es", title: "Prepara tu consulta de IA — Abel SALAH", description: "Los próximos pasos para aprovechar tu sesión con Abel SALAH.", noindex: true },
+  { path: "/en/confirmation-webinaire", lang: "en", title: "Prepare for your AI webinar — Abel SALAH", description: "Next steps to make the most of your session with Abel SALAH.", noindex: true },
+  { path: "/es/confirmation-webinaire", lang: "es", title: "Prepara tu webinar de IA — Abel SALAH", description: "Los próximos pasos para aprovechar tu sesión con Abel SALAH.", noindex: true },
+  { path: "/confirmation-rdv", lang: "fr", title: "Préparer votre échange IA — Abel SALAH", description: "Les prochaines étapes pour profiter de votre session avec Abel SALAH.", noindex: true },
+  { path: "/confirmation-webinaire", lang: "fr", title: "Préparer votre webinaire IA — Abel SALAH", description: "Les prochaines étapes pour profiter de votre session avec Abel SALAH.", noindex: true },
   {
     path: "/checklist",
     lang: "fr",
