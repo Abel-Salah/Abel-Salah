@@ -16,7 +16,9 @@ Les deux générateurs demandent maintenant les mêmes noms de champs et limites
 
 Cette correction répare la création de brouillons, pas la publication hebdomadaire. Ne pas mettre simplement `published:true` : la conformité du JSON ne vérifie pas les affirmations du texte.
 
-Validation locale du correctif : `npm run build` complet réussi, audit npm sans vulnérabilité. `deno check` (Deno 2.9.6) n'a pas pu résoudre l'import existant `deno.land/std@0.168.0/http/server.ts` : connexion refusée depuis l'environnement de vérification. Le navigateur a ensuite expiré. Aucun déploiement du correctif, import d'articles, changement de client ou création de cron n'est attesté à ce stade ; la PR doit rester en brouillon jusqu'aux vérifications Edge/runtime.
+Validation actualisée le 23 octobre 2026 : `npm run build` complet réussi sur l'arbre incluant `main` b30e7f7, 44 routes vérifiées, smoke de 38 routes et audit npm sans vulnérabilité. `deno check` des deux générateurs avec Deno 2.9.6 réussit après retrait de `ALL_PROXY`/`all_proxy` pour cette commande uniquement ; les proxies HTTP(S) restent actifs et TLS reste vérifié. L'ancien refus réseau venait du proxy SOCKS. Aucun stub ni assouplissement du typage.
+
+La revue indépendante approuve le correctif de création de brouillons. Le passage Ready ouvre la revue du code ; le merge exige les gates du SHA courant. Le déploiement Supabase puis le test d'un brouillon enregistré et invisible publiquement restent obligatoires avant de déclarer le service rétabli. Aucun import d'articles, changement de lecteur, création de cron ou publication automatique n'est attesté par cette validation locale. Les fonctions préexistantes ne contrôlent pas encore un rôle opérateur : ne pas activer d'automatisation durable sur la seule protection `verify_jwt=true`.
 
 ## Suite et critères de bascule
 
