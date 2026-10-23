@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import {
   type GeneratedArticle,
   validateGeneratedArticle,
+  articleJsonContract,
 } from "../_shared/blogArticleSchema.ts";
 import { callGeminiJson } from "../_shared/gemini.ts";
 
@@ -83,10 +84,8 @@ serve(async (req) => {
         ? `Tu es un redacteur SEO expert. Redige un article de blog SEO integralement en ${langConfig.label} (titre, slug, tags, meta et contenu inclus) qui met en avant l'expertise d'Abel SALAH, consultant expert IA.
 
 Contexte sur Abel SALAH :
-- 16 ans d'experience en strategie digitale et IA
-- 62 projets IA deployes avec succes
-- Resultats concrets : +40% de taux de conversion, pipeline commercial x5, CA accompagne de 4.8M€
-- Approche : audit gratuit, accompagnement sur mesure, resultats mesurables
+- Ne mentionne aucun nombre de projets, anciennete, client ou resultat commercial non documente.
+- Approche : diagnostic des besoins, accompagnement sur mesure, mesure des resultats
 - Specialites : audit IA, strategie data, automatisation des processus, deploiement IA, formation equipes
 
 Choisis un angle unique parmi : audit IA, strategie IA, deploiement IA, formation IA, ROI de l'IA, accompagnement IA, transformation digitale.
@@ -102,7 +101,7 @@ Regles :
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`
         : `Tu es un redacteur SEO expert. Redige un article de blog SEO integralement en ${langConfig.label} (titre, slug, tags, meta et contenu inclus), hyper concret et actionnable sur l'IA en entreprise.
 
-Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees, des exemples reels, des chiffres concrets.
+Le lecteur doit pouvoir appliquer les conseils immediatement. Inclus des etapes numerotees et des exemples explicitement fictifs, sans promesse de resultat.
 
 Regles :
 - 4-5 sections H2
@@ -115,7 +114,7 @@ Regles :
 - NE PAS reprendre un titre deja utilise. Titres existants : ${existingTitles}`;
 
     const article = validateGeneratedArticle(await callGeminiJson<GeneratedArticle>(
-      systemPrompt,
+      `${systemPrompt}\n\n${articleJsonContract}`,
       `Genere un nouvel article de blog ${type === "promotion" ? "promotionnel sur Abel SALAH" : "actionnable sur l'IA en entreprise"}. Retourne uniquement le JSON structure de l'article.`,
     ));
 
