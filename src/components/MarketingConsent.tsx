@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { CONSENT_KEY, parseConsent } from "@/lib/trackingConsent";
+import { bookingConsentAllowed, claimBookingEvent, marketingBookingEvent } from "@/lib/bookingConfirmation";
 
 const GTM = "GTM-WJS9SGGV";
 const PIXEL = "DBD5HNRC77U4SEFNH7E0";
@@ -23,6 +24,32 @@ function loadMarketing() {
 export default function MarketingConsent() {
   const [visible, setVisible] = useState(false);
   const { pathname } = useLocation();
+  useEffect(() => {
+    function confirmedBooking(event: Event) {
+      const booking = marketingBookingEvent((event as CustomEvent<unknown>).detail);
+      if (!booking || refusalForVisit || location.pathname.startsWith("/admin") || new URLSearchParams(location.search).get("marketing") === "off") return;
+      let persisted: string | null = null;
+      try {
+        if (sessionStorage.getItem("abel-marketing-refused") === "yes") return;
+        persisted = localStorage.getItem(CONSENT_KEY);
+      } catch { /* use the affirmative visit choice only */ }
+      if (!bookingConsentAllowed(persisted, consentForVisit, refusalForVisit) || !document.getElementById("abel-marketing-loader")) return;
+      const marketing = window as unknown as {
+        ttq?: { track: (name: string, properties: Record<string, string>, options: { event_id: string }) => void };
+        dataLayer?: Record<string, string>[];
+      };
+      if (typeof marketing.ttq?.track !== "function") return;
+      let storage: Storage | null = null;
+      try { storage = localStorage; } catch { /* memory deduplication remains available */ }
+      if (!claimBookingEvent(booking.eventId, storage)) return;
+      try {
+        marketing.ttq.track(booking.name, { content_name: booking.kind === "call" ? "Echange Abel SALAH" : "Webinaire IA Abel SALAH" }, { event_id: booking.eventId });
+        marketing.dataLayer?.push({ event: "abel_booking_confirmed", booking_kind: booking.kind, event_id: booking.eventId });
+      } catch { /* SDK failures must not affect a successful booking */ }
+    }
+    window.addEventListener("abel:booking-confirmed", confirmedBooking);
+    return () => window.removeEventListener("abel:booking-confirmed", confirmedBooking);
+  }, []);
   useEffect(() => {
     function syncConsent(event: StorageEvent) {
       if (event.key !== CONSENT_KEY && event.key !== null) return;

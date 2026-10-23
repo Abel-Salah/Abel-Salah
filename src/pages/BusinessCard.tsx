@@ -2,11 +2,13 @@ import { ArrowUpRight, BadgeCheck, CalendarDays, Facebook, Linkedin, Mail, Music
 import SEOHead from "@/components/SEOHead";
 import { CARD_BOOKING_URL, CARD_PURCHASES, CARD_TRAINING_FORMATS, getTrainingBookingUrl, type CardTrainingFormat } from "@/data/cardServices";
 import CardDialog from "./CardDialog";
+import TidyCalBooking from "@/components/TidyCalBooking";
+import type { BookingKind } from "@/lib/bookingConfirmation";
 import { trackConversionEvent } from "@/lib/conversionEvents";
 import { WEBINAR_BOOKING_URL, formatWebinarDate, getUpcomingWebinars } from "@/data/webinars";
 import portrait from "@/assets/abel-salah-card-portrait.webp";
 import cover from "@/assets/business-card-cover-v2.webp";
-import { useEffect, useState, type FormEvent, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type MouseEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import "./business-card.css";
 import "./business-card-enhancements.css";
@@ -54,8 +56,18 @@ const BusinessCard = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [activeTab, setActiveTab] = useState<CardTab>("services");
+  const [bookingRequest, setBookingRequest] = useState<{ kind: BookingKind; url: string } | null>(null);
+  const bookingReturnFocus = useRef<HTMLElement | null>(null);
+  const serviceReturnFocus = useRef<HTMLElement | null>(null);
+  const openBooking = (event: MouseEvent<HTMLAnchorElement>, kind: BookingKind) => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    bookingReturnFocus.current = selectedService ? serviceReturnFocus.current : event.currentTarget;
+    setSelectedService(null);
+    setBookingRequest({ kind, url: event.currentTarget.href });
+  };
   const openNewsletter = () => { setNewsletterOpen(true); setNewsletterStatus("idle"); };
-  const openService = (format: CardTrainingFormat) => { setSelectedService(format); setServiceSubmitted(false); };
+  const openService = (format: CardTrainingFormat, trigger: HTMLButtonElement) => { serviceReturnFocus.current = trigger; setSelectedService(format); setServiceSubmitted(false); };
   const handleTabKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
     if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
@@ -121,14 +133,14 @@ const BusinessCard = () => {
             <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL}>Consulter les dates <ArrowUpRight aria-hidden="true" /></a>
           </> : upcomingWebinars.length > 0 ? <>
             <p className="business-card-webinar-date"><span className="card-next-session">Prochaine session : </span><strong>{formatWebinarDate(upcomingWebinars[0])}</strong><br />12 h 30 – 13 h 30 · heure de Paris</p>
-            <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL} onClick={() => trackConversionEvent("webinar_signup_click", "business_card_webinar", WEBINAR_BOOKING_URL)}>Je m’inscris gratuitement <ArrowUpRight aria-hidden="true" /></a>
+            <a className="business-card-webinar-cta" href={WEBINAR_BOOKING_URL} aria-haspopup="dialog" onClick={(event) => { trackConversionEvent("webinar_signup_click", "business_card_webinar", WEBINAR_BOOKING_URL); openBooking(event, "webinar"); }}>Je m’inscris gratuitement <ArrowUpRight aria-hidden="true" /></a>
           </> : <>
             <p>Les prochaines dates seront annoncées prochainement.</p>
             <button type="button" className="business-card-webinar-cta" onClick={openNewsletter}>Recevoir les prochaines dates <ArrowUpRight aria-hidden="true" /></button>
           </>}
         </section>
 
-        <a className="card-booking-link" href={CARD_BOOKING_URL} onClick={() => trackConversionEvent("book_call_click", "business_card_planning", CARD_BOOKING_URL)}><CalendarDays aria-hidden="true" /> Planifier un échange · 30 min <ArrowUpRight aria-hidden="true" /></a>
+        <a className="card-booking-link" href={CARD_BOOKING_URL} aria-haspopup="dialog" onClick={(event) => { trackConversionEvent("book_call_click", "business_card_planning", CARD_BOOKING_URL); openBooking(event, "call"); }}><CalendarDays aria-hidden="true" /> Planifier un échange · 30 min <ArrowUpRight aria-hidden="true" /></a>
 
         <div className="business-card-tabs" role="tablist" aria-label="Informations complémentaires">
           {tabs.map((tab, index) => <button key={tab.id} id={`card-tab-${tab.id}`} type="button" role="tab" aria-selected={activeTab === tab.id} aria-controls="card-tab-panel" tabIndex={activeTab === tab.id ? 0 : -1} className={activeTab === tab.id ? "is-active" : ""} onClick={() => setActiveTab(tab.id)} onKeyDown={(event) => handleTabKey(event, index)}>{tab.label}</button>)}
@@ -145,7 +157,7 @@ const BusinessCard = () => {
             <p className="card-service-step">02 · Passer à la pratique</p>
             <h2 id="card-training-title">Formation IA</h2>
             <p>Trois formats selon votre niveau. Programme et tarif sur devis, adaptés à votre équipe.</p>
-            <div className="card-training-formats">{CARD_TRAINING_FORMATS.map((format) => <button key={format.id} type="button" className="card-training-format" onClick={() => openService(format)} aria-haspopup="dialog"><span><strong>{format.title}</strong><small>{format.duration}</small></span><ArrowUpRight aria-hidden="true" /></button>)}</div>
+            <div className="card-training-formats">{CARD_TRAINING_FORMATS.map((format) => <button key={format.id} type="button" className="card-training-format" onClick={(event) => openService(format, event.currentTarget)} aria-haspopup="dialog"><span><strong>{format.title}</strong><small>{format.duration}</small></span><ArrowUpRight aria-hidden="true" /></button>)}</div>
           </section>
           <section className="card-service-group" aria-labelledby="card-followup-title">
             <p className="card-service-step">03 · Ancrer les usages</p>
@@ -168,7 +180,7 @@ const BusinessCard = () => {
         <h2 id="service-request-title">{selectedService.title}</h2>
         <p className="card-training-duration">{selectedService.duration}</p>
         <p>{selectedService.description}</p>
-        <a className="business-card-modal-cta" href={getTrainingBookingUrl(selectedService)} onClick={() => trackConversionEvent("book_call_click", `business_card_formation_${selectedService.id}`, getTrainingBookingUrl(selectedService))}>Planifier un échange <ArrowUpRight aria-hidden="true" /></a>
+        <a className="business-card-modal-cta" href={getTrainingBookingUrl(selectedService)} onClick={(event) => { trackConversionEvent("book_call_click", `business_card_formation_${selectedService.id}`, getTrainingBookingUrl(selectedService)); openBooking(event, "call"); }}>Planifier un échange <ArrowUpRight aria-hidden="true" /></a>
         <p className="card-dialog-note">Cet échange sert à cadrer le programme, le tarif et les dates de formation. Il ne réserve pas une session de formation.</p>
         <details className="card-quote-details"><summary>Ou demander un devis par email</summary>
         {serviceSubmitted && <p role="status" className="card-dialog-note">Votre messagerie a été sollicitée. Vérifiez le message puis envoyez-le pour transmettre votre demande. Si elle ne s’ouvre pas, écrivez à <a href="mailto:contact@abelsalah.fr">contact@abelsalah.fr</a>.</p>}<form className="newsletter-form" onSubmit={submitServiceRequest}>
@@ -180,6 +192,10 @@ const BusinessCard = () => {
           <button type="submit">Préparer mon email <ArrowUpRight aria-hidden="true" /></button><small>Votre messagerie s’ouvrira avec le format choisi et vos informations. Vous devrez envoyer l’email pour transmettre la demande.</small>
         </form>
         </details>
+      </CardDialog>}
+      {bookingRequest && <CardDialog titleId="booking-dialog-title" returnFocus={bookingReturnFocus.current} onClose={() => setBookingRequest(null)}>
+        <h2 id="booking-dialog-title">{bookingRequest.kind === "webinar" ? "Inscription au webinaire IA" : "Planifier un échange"}</h2>
+        <TidyCalBooking kind={bookingRequest.kind} entryUrl={bookingRequest.url} title={bookingRequest.kind === "webinar" ? "Calendrier du webinaire IA" : "Calendrier des échanges avec Abel SALAH"} />
       </CardDialog>}
       {newsletterOpen && <CardDialog titleId="newsletter-title" onClose={() => setNewsletterOpen(false)}>
           <span className="business-card-modal-check"><Mail /></span>
