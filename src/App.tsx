@@ -45,9 +45,10 @@ const routeFallback = (
    le pré-rendu au build (src/entry-prerender.tsx) dans StaticRouter. */
 export const AppShell = () => {
   const location = useLocation();
-  const isBusinessCard = location.pathname === "/carte-visite" || location.pathname === "/card";
-  const isCv = ["/cv", "/en/cv", "/es/cv"].includes(location.pathname);
-  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire"].includes(location.pathname);
+  const routePath = location.pathname.replace(/\/+$/, "") || "/";
+  const isBusinessCard = routePath === "/carte-visite" || routePath === "/card";
+  const isCv = ["/cv", "/en/cv", "/es/cv"].includes(routePath);
+  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire"].includes(routePath);
 
   return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
