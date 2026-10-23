@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { bookingPreparation } from "@/data/bookingPreparation";
 import "@/pages/booking-preparation.css";
 import { bookingUrls, bookingEventId, parseBookingConfirmation, type BookingKind } from "@/lib/bookingConfirmation";
 
@@ -29,7 +30,7 @@ export default function TidyCalBooking({ kind, title, locale = "fr", entryUrl }:
   }, [kind]);
   return <div className="abel-booking">
     {completed && <p role="status">{labels[locale].done}</p>}
-    {completed && <Link className="booking-confirmed-next" to={kind === "call" ? "/confirmation-rdv" : "/confirmation-webinaire"} state={{ confirmedBooking: kind }}>{locale === "en" ? "Prepare for your session" : locale === "es" ? "Prepara tu sesión" : "Préparer ma session"}</Link>}
+    {completed && <Link className="booking-confirmed-next" to={bookingPreparation[locale][kind].path} state={{ confirmedBooking: kind }}>{locale === "en" ? "Prepare for your session" : locale === "es" ? "Prepara tu sesión" : "Préparer ma session"}</Link>}
     <iframe ref={frame} src={urls.embedded} title={title} width="100%" height="700" className="w-full border-0" />
     <p className="text-sm"><a href={urls.external} target="_blank" rel="noreferrer">{labels[locale].open}</a></p>
   </div>;

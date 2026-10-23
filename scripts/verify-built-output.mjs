@@ -7,6 +7,10 @@ const tidyCalUrl = "https://tidycal.com/skill-lms/abel-rdv";
 const failures = [];
 
 const publicRoutes = [
+  { path: "/en/confirmation-rdv", file: "en/confirmation-rdv/index.html", lang: "en", title: "Prepare for your AI consultation", noindex: true },
+  { path: "/es/confirmation-rdv", file: "es/confirmation-rdv/index.html", lang: "es", title: "Prepara tu consulta de IA", noindex: true },
+  { path: "/en/confirmation-webinaire", file: "en/confirmation-webinaire/index.html", lang: "en", title: "Prepare for your AI webinar", noindex: true },
+  { path: "/es/confirmation-webinaire", file: "es/confirmation-webinaire/index.html", lang: "es", title: "Prepara tu webinar de IA", noindex: true },
   { path: "/confirmation-rdv", file: "confirmation-rdv/index.html", lang: "fr", title: "Préparer votre échange IA", noindex: true },
   { path: "/confirmation-webinaire", file: "confirmation-webinaire/index.html", lang: "fr", title: "Préparer votre webinaire IA", noindex: true },
   { path: "/", file: "index.html", lang: "fr", title: "Expert IA pour Entreprises | Audit IA" },

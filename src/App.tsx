@@ -48,7 +48,7 @@ export const AppShell = () => {
   const routePath = location.pathname.replace(/\/+$/, "") || "/";
   const isBusinessCard = routePath === "/carte-visite" || routePath === "/card";
   const isCv = ["/cv", "/en/cv", "/es/cv"].includes(routePath);
-  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire"].includes(routePath);
+  const isBookingPreparation = ["/confirmation-rdv", "/confirmation-webinaire", "/en/confirmation-rdv", "/es/confirmation-rdv", "/en/confirmation-webinaire", "/es/confirmation-webinaire"].includes(routePath);
 
   return <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -66,6 +66,10 @@ export const AppShell = () => {
             <Route path="/card" element={<BusinessCard />} />
             <Route path="/confirmation-rdv" element={<BookingPreparation />} />
             <Route path="/confirmation-webinaire" element={<BookingPreparation webinar />} />
+            <Route path="/en/confirmation-rdv" element={<BookingPreparation locale="en" />} />
+            <Route path="/es/confirmation-rdv" element={<BookingPreparation locale="es" />} />
+            <Route path="/en/confirmation-webinaire" element={<BookingPreparation webinar locale="en" />} />
+            <Route path="/es/confirmation-webinaire" element={<BookingPreparation webinar locale="es" />} />
             <Route path="/outils/calculateur-taches-manuelles" element={<ManualWorkCalculator />} />
             <Route path="/outils" element={<Tools />} />
             <Route path="/outils/score-site" element={<SiteScore />} />
