@@ -1,0 +1,92 @@
+name: Contenu / campagne
+description: Suivre une vidéo, une série, une campagne ou un chantier du tunnel de vente
+title: "content: "
+body:
+  - type: dropdown
+    id: deliverable_type
+    attributes:
+      label: Type
+      options:
+        - Vidéo YouTube longue
+        - Short / TikTok
+        - Série éditoriale
+        - Live
+        - Landing page / tunnel
+        - Email / CRM
+        - Tracking / reporting
+    validations:
+      required: true
+
+  - type: input
+    id: objective
+    attributes:
+      label: Objectif mesurable
+      placeholder: Ex. générer 30 leads qualifiés pour l'Audit Express
+    validations:
+      required: true
+
+  - type: dropdown
+    id: offer
+    attributes:
+      label: Offre ou CTA principal
+      options:
+        - Ressource gratuite
+        - Audit Express — 29 €
+        - Coaching Business 1 mois — 299 €
+        - Formation / accompagnement sur mesure — devis
+        - Abonnement / engagement uniquement
+    validations:
+      required: true
+
+  - type: textarea
+    id: audience_angle
+    attributes:
+      label: Audience, problème et angle
+      description: Décrire la cible, son problème, la promesse et la preuve disponible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: production
+    attributes:
+      label: Production
+      value: |
+        - [ ] Hook validé
+        - [ ] Script validé
+        - [ ] Tournage terminé
+        - [ ] Montage terminé
+        - [ ] Titre et miniature validés
+        - [ ] Déclinaisons courtes produites
+        - [ ] Publication programmée
+
+  - type: textarea
+    id: tracking
+    attributes:
+      label: Tracking
+      value: |
+        - Contenu ID :
+        - UTM source :
+        - UTM medium :
+        - UTM campaign :
+        - UTM content :
+        - Affiliate ID :
+        - Link ID :
+        - URL finale :
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurement
+    attributes:
+      label: Résultats et apprentissages
+      description: Compléter après 24 heures, 7 jours et 30 jours.
+      value: |
+        - Portée / vues :
+        - CTR :
+        - Rétention / complétion :
+        - Clics :
+        - Leads :
+        - Ventes :
+        - Revenu net :
+        - Commission attribuée :
+        - Décision (répéter, corriger, arrêter) :

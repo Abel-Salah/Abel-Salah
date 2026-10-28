@@ -141,6 +141,7 @@ Etat observe au dernier audit documentaire :
 - [Deploiement et rollback](docs/deployment.md)
 - [Qualite, tests et maintenance](docs/quality.md)
 - [Checklist release sans GitHub Actions](docs/release-checklist.md)
+- [Roadmap contenu, offres, tunnel et tracking](docs/content-commerce-roadmap.md)
 - [Decisions d'architecture](docs/decisions)
 
 ## Points d'attention
