@@ -22,10 +22,12 @@ peut ensuite recevoir un seul e-mail contenant le lien PDF fixe.
   le SHA du fichier ; ne pas prétendre que l’historique CLI est synchronisé et ne
   pas lancer un `db push` global pour enregistrer rétroactivement cette étape.
 - Déployer seulement ce fichier via l’éditeur de la fonction dans le dashboard,
-  puis vérifier le code effectivement enregistré. Le contrôle JWT historique du
-  gateway doit être désactivé pour ce seul endpoint public à clé publishable ;
-  validation, origines permises, quotas et consentement sont gérés dans le handler.
-  Ne pas modifier la configuration des fonctions existantes.
+  puis vérifier le code effectivement enregistré. Tester l’appel public avec les
+  en-têtes réels du client avant tout changement JWT. Le 03/11, l’interface affichait
+  le contrôle JWT activé et les appels avec la clé publishable fonctionnaient :
+  aucun changement manuel de ce réglage n’a été nécessaire. Validation, origines
+  permises, quotas et consentement sont gérés dans le handler. Ne pas modifier
+  la configuration des fonctions existantes.
 
 Le runtime réutilise les secrets du projet `RESEND_API_KEY` et
 `NEWSLETTER_FROM_EMAIL`, ainsi que les variables Supabase serveur natives. Ne pas
@@ -81,3 +83,26 @@ Revert du seul raccordement frontend par PR soumise aux mêmes gates. Conserver
 les tables nouvelles, les contacts copiés et les historiques d’envoi : aucun
 DROP/DELETE de compensation. Ne pas réactiver aveuglément un envoi dont l’état
 fournisseur est incertain ; réconcilier son identifiant avant reprise.
+
+## Qualification du backend — 3 novembre 2026
+
+Après validation explicite du lot par Abel, migration additive appliquée et trois
+lignes historiques copiées avec leurs sept champs identiques. Aucun article ou
+brouillon modifié. Contrôles après application : RLS actif, accès directs publics
+refusés, 306 articles dont305 publiés et empreinte du brouillon inchangée.
+Le seul handler subscribe-checklist a été déployé via le dashboard personnel ;
+son code enregistré est identique au fichier relu. Aucun secret exporté et aucune
+autre fonction redéployée.
+
+Deux demandes simultanées vers la boîte connectée ont produit une réservation
+active et un seul envoi accepté. Réception réelle confirmée dans la boîte
+principale : lien PDF attendu, référence correspondante, SPF/DKIM/DMARC valides.
+Le formulaire de la preview affiche le succès et le lien PDF ; la reprise de la
+même adresse ne renvoie pas d’e-mail. Les preuves et identifiants privés restent
+hors dépôt ; la bascule frontend publique et ses contrôles suivent les gates de PR.
+
+La capacité Mac1 étant passée sous le seuil de3Gio, aucun nouveau build local
+n’a été lancé. Cette mise à jour documentaire est commise directement sur la
+branche dédiée via le connecteur GitHub ; le code applicatif et le handler sont
+inchangés depuis leur vérification complète. Le worktree local propre reste sur
+le commit précédemment relu jusqu’à une synchronisation après requalification.
