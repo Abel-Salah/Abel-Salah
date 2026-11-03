@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Download, FileCheck2, MessageSquareText, ShieldCheck } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import SEOHead from "@/components/SEOHead";
-import { contentSupabase } from "@/integrations/supabase/contentClient";
+import { checklistSupabase } from "@/integrations/supabase/checklistClient";
 import { TIDYCAL_BOOKING_URL } from "@/data/homeLocales";
 import { trackConversionEvent } from "@/lib/conversionEvents";
 
@@ -28,7 +28,7 @@ const Checklist = () => {
     setStatus("sending");
 
     const source = new URLSearchParams(search).get("utm_source") ?? "site";
-    const { error } = await contentSupabase.from("checklist_leads").insert({
+    const { error } = await checklistSupabase.from("checklist_leads").insert({
       first_name: firstName.trim(),
       email: email.trim().toLowerCase(),
       consent,

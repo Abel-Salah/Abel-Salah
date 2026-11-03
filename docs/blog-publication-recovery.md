@@ -34,6 +34,52 @@ La revue indépendante approuve le correctif de création de brouillons. Le pass
 
 Conserver la base historique, les articles et le routage existants jusqu'à comparaison complète. Le correctif des prompts peut être annulé en restaurant les trois fichiers depuis `53e1f03a618d9397303801097e1ba010b3a07805` ; cela rétablit aussi le défaut de statut HTTP. Aucune migration ni bascule de lecteur n'est incluse dans ce correctif.
 
+
+## Raccordement des articles — 3 novembre 2026
+
+Les 305 articles déjà publiés ont été copiés dans le backend personnel après
+comparaison du schéma et des permissions, sauvegarde/restauration du brouillon,
+revue indépendante et accord humain. Une relecture indépendante des quatorze
+champs de chaque ligne a confirmé leur égalité ; la destination contient
+305 publiés et un brouillon inchangé, invisible au rôle `anon`. Les contenus
+historiques restent conservés. Preuves et propriétaire :
+[chantier de migration #196](https://github.com/Abel-Salah/PROJECT-RULES/issues/196).
+
+Le code sépare désormais deux connexions publiques sans session :
+
+- `contentClient.ts` lit les articles de `pcjhrmwuqyxddyeikely` ; le lecteur et
+  `scripts/fetch-generated-posts.mjs` partagent `publicContentConfig.ts`.
+- `checklistClient.ts` conserve la collecte `checklist_leads` sur le backend
+  historique. Le formulaire importe ce client explicitement ; le changement
+  des articles ne déplace aucun lead et ne modifie pas son consentement.
+
+Le build refuse une erreur réseau/HTTP, moins de 305 articles, un doublon,
+une structure invalide ou un résultat potentiellement tronqué. Il ne publie
+plus un cache de secours vide ou périmé. `npm run test:content` vérifie ces cas,
+et fait partie de `npm run verify`. Aucun changement de cron, fonction Supabase,
+secret, policy, publication automatique ou brouillon n'est inclus.
+
+Le gate `npm audit --audit-level=moderate` a aussi imposé deux corrections
+transitives : override `@hono/node-server` 2.1.3
+([avis éditeur](https://github.com/honojs/node-server/security/advisories/GHSA-rmxm-3fg6-px4f))
+et `minimatch` 11.0.1
+([avis éditeur](https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249)).
+Le lockfile est recalculé ; lint, types et build restent obligatoires pour
+vérifier la compatibilité de l'outillage avec cette nouvelle version de minimatch.
+
+Avant merge : `npm ci`, `npm run verify`, revue du commit exact, preview Cloudflare
+verte et parcours article/checklist ; comparer à nouveau les articles source/cible
+et l'empreinte du brouillon immédiatement avant bascule. Après merge, contrôler
+le SHA servi sur `abelsalah.fr`, articles, sitemap/RSS et formulaire avec une
+adresse technique réservée, puis recouper l'enregistrement et le PDF. Le rendu
+de la page de succès ne prouve pas la réception d'un e-mail.
+
+Retour arrière du routage : revert du seul commit de raccordement via une PR
+soumise aux mêmes gates et à une preview, puis contrôle de production. Garder les
+305 lignes copiées et le brouillon ; aucun rollback SQL ni suppression source.
+L'ancien backend ne peut être arrêté tant que la collecte checklist et ses
+éventuels traitements ne sont pas migrés et vérifiés séparément.
+
 ## Campagnes
 
 Le suivi des visites et le suivi des conversions sont deux validations distinctes. Ne pas déclarer une réservation à partir d'un clic, ni un paiement à partir d'une simple page de retour. Les paiements nécessitent une confirmation Stripe signée avec déduplication ; les réservations une confirmation effective du prestataire. Aucun lancement de campagne n'est inclus dans ce correctif.
