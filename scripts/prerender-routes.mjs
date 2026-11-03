@@ -32,7 +32,7 @@ const { render, blogSlugAlternates, blogCanonicalByLocale } = await import(
   pathToFileURL(ssrEntryPath).href
 );
 
-/* Articles générés (base contenu Lovable) : mis en cache par
+/* Articles générés (base personnelle, publiés uniquement) : mis en cache par
    scripts/fetch-generated-posts.mjs. Injectés dans globalThis pour que le SSR
    des pages /blog et /blog/:slug rende leur contenu sans fetch. */
 const generatedPostsCachePath = path.resolve("scripts/.generated-posts-cache.json");
