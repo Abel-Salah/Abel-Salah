@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Download, FileCheck2, MessageSquareText, ShieldCheck } from "lucide-react";
 import { Link, useLocation } from "react-router";
@@ -20,29 +20,50 @@ const Checklist = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "done" | "error">("idle");
+  const [isSending, setIsSending] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<"sent" | "unconfirmed">("unconfirmed");
+  const [emailRetryAllowed, setEmailRetryAllowed] = useState(false);
+  const inFlight = useRef(false);
+  const downloadTracked = useRef(false);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (status === "sending" || status === "done") return;
-    setStatus("sending");
-
-    const source = new URLSearchParams(search).get("utm_source") ?? "site";
-    const { error } = await checklistSupabase.from("checklist_leads").insert({
-      first_name: firstName.trim(),
-      email: email.trim().toLowerCase(),
-      consent,
-      source,
-    });
-
-    /* Doublon (23505) = lead déjà connu : on lui redonne le PDF sans friction. */
-    if (error && error.code !== "23505") {
-      setStatus("error");
-      return;
+  const requestChecklist = async () => {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setIsSending(true);
+    const alreadyRegistered = status === "done";
+    if (!alreadyRegistered) setStatus("idle");
+    try {
+      const source = (new URLSearchParams(search).get("utm_source") ?? "site").slice(0, 100);
+      const { data, error } = await checklistSupabase.functions.invoke<{
+        ok: boolean;
+        emailStatus: "sent" | "unconfirmed";
+        emailRetryAllowed: boolean;
+      }>("subscribe-checklist", {
+        body: { first_name: firstName.trim(), email: email.trim().toLowerCase(), consent, source },
+      });
+      if (error || !data?.ok || !["sent", "unconfirmed"].includes(data.emailStatus)) {
+        if (!alreadyRegistered) setStatus("error");
+        return;
+      }
+      setEmailStatus(data.emailStatus);
+      setEmailRetryAllowed(data.emailRetryAllowed === true);
+      if (!downloadTracked.current) {
+        trackConversionEvent("tool_click", `checklist_download_${source}`, PDF_URL);
+        downloadTracked.current = true;
+      }
+      setStatus("done");
+    } catch {
+      if (!alreadyRegistered) setStatus("error");
+    } finally {
+      inFlight.current = false;
+      setIsSending(false);
     }
+  };
 
-    trackConversionEvent("tool_click", `checklist_download_${source}`, PDF_URL);
-    setStatus("done");
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    void requestChecklist();
   };
 
   return (
@@ -103,8 +124,9 @@ const Checklist = () => {
                 </span>
                 <h2 className="heading-display text-3xl leading-none mb-4">Votre checklist est prête.</h2>
                 <p className="text-sm leading-relaxed text-muted-foreground mb-6">
-                  Téléchargez-la maintenant — vous la recevrez aussi par email avec quelques
-                  conseils pour aller plus loin.
+                  {emailStatus === "sent"
+                    ? "Le lien de téléchargement a également été envoyé par e-mail."
+                    : "Votre demande est enregistrée. L’envoi par e-mail n’a pas pu être confirmé ; téléchargez le PDF ci-dessous."}
                 </p>
                 <a
                   href={PDF_URL}
@@ -115,6 +137,12 @@ const Checklist = () => {
                   <Download className="h-5 w-5" aria-hidden="true" />
                   Télécharger le PDF
                 </a>
+                {emailStatus === "unconfirmed" && emailRetryAllowed && (
+                  <button type="button" disabled={isSending} onClick={() => void requestChecklist()}
+                    className="mt-4 text-sm underline underline-offset-4 disabled:opacity-60">
+                    {isSending ? "Envoi en cours…" : "Réessayer l’envoi par e-mail"}
+                  </button>
+                )}
                 <div className="mt-8 space-y-3 border-t border-border pt-6">
                   <p className="label-mono text-xs uppercase tracking-wider text-muted-foreground">
                     La prochaine étape
@@ -178,16 +206,15 @@ const Checklist = () => {
                     className="mt-1 h-4 w-4 accent-primary"
                   />
                   <span className="text-xs leading-relaxed text-muted-foreground">
-                    J'accepte de recevoir la checklist et les conseils d'Abel SALAH par email.
-                    Désinscription en un clic, à tout moment.
+                    J'accepte de recevoir cette checklist par e-mail.
                   </span>
                 </label>
                 <button
                   type="submit"
-                  disabled={status === "sending"}
+                  disabled={isSending}
                   className="cta-glow inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 font-semibold text-primary-foreground transition-all hover:gap-4 disabled:opacity-60"
                 >
-                  {status === "sending" ? "Un instant…" : "Recevoir la checklist gratuite"}
+                  {isSending ? "Un instant…" : "Recevoir la checklist gratuite"}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </button>
                 {status === "error" && (
