@@ -71,6 +71,18 @@ test("an already-sent request returns the PDF without resending", async () => {
   assert.equal(data.emailStatus, "sent"); assert.equal(h.calls.length, 1);
 });
 
+test("recipient quotas are stable across proxy headers and distinct between addresses", async () => {
+  const h = harness({ claim: { state: "busy" } });
+  await h.handler(makeRequest());
+  await h.handler(makeRequest({ ...input, email: " CLIENT@EXAMPLE.ORG " }, {
+    headers: { origin: "https://abelsalah.fr", "content-type": "application/json", "x-forwarded-for": "198.51.100.1, 10.0.0.1", "cf-connecting-ip": "198.51.100.2" },
+  }));
+  await h.handler(makeRequest({ ...input, email: "other@example.org" }));
+  assert.equal(h.calls[0].body.p_client_key, h.calls[1].body.p_client_key);
+  assert.notEqual(h.calls[0].body.p_client_key, h.calls[2].body.p_client_key);
+  assert.ok(!h.calls[0].body.p_client_key.includes(input.email));
+});
+
 test("busy and stale deliveries never trigger a mail; stale delivery cannot invite blind retry", async () => {
   for (const state of ["busy", "held"]) {
     const h = harness({ claim: { state } }); const data = await (await h.handler(makeRequest())).json();

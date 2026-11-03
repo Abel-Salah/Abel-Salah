@@ -82,9 +82,9 @@ export function createChecklistHandler(env: ChecklistEnvironment, fetcher: typeo
     };
     let claim: unknown;
     try {
-      const rawIP = (request.headers.get("x-forwarded-for")?.split(",").at(-1)?.trim() ||
-        request.headers.get("cf-connecting-ip") || "unknown").slice(0,200);
-      const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(env.serviceRoleKey + "|" + rawIP));
+      // Bound retries by recipient, independently of untrusted proxy/IP headers.
+      // The separate fixed global quota also bounds distinct-recipient requests.
+      const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(env.serviceRoleKey + "|" + email));
       const clientKey = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2,"0")).join("");
       claim = await rpc("claim_checklist_delivery", {
         p_first_name: name, p_email: email, p_consent: true, p_source: source,

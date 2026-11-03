@@ -45,9 +45,12 @@ les doubles clics concurrents ; un envoi déjà enregistré n’est pas répét�
 conservé et une clé `checklist-v1/<id>` rendent la requête fournisseur identique
 sur les reprises. Resend conserve ses clés pendant24h ; une incertitude de plus
 de23h est retenue pour réconciliation humaine, sans renvoi automatique. Quotas
-atomiques100 demandes/jour au total et5/heure par empreinte client ; aucune IP
-brute stockée. Les en-têtes client n’étant pas une authentification, le plafond
-global reste la borne de coût même si un appelant falsifie son origine/IP.
+atomiques100 demandes/jour au total et5 tentatives/heure par adresse e-mail
+normalisée et hachée avec un secret serveur ; aucune IP lue ou stockée. Les
+en-têtes de proxy ne servent pas à identifier une personne : aucun risque de
+quota partagé par tous les visiteurs derrière le même proxy. Une adresse et une
+origine déclarées ne sont pas une authentification ; le plafond global borne
+aussi les demandes utilisant des adresses distinctes.
 
 L’e-mail contient uniquement la checklist demandée, pas d’inscription newsletter
 ni de campagne. Le consentement est explicite. Le PDF reste disponible si l’envoi
